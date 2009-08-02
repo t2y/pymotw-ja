@@ -32,7 +32,7 @@ except:
 PROJECT = 'PyMOTW'
 
 # What version is this?
-VERSION = '1.94'
+VERSION = '1.99'
 
 # The sphinx templates expect the VERSION in the shell environment
 os.environ['VERSION'] = VERSION
@@ -120,7 +120,7 @@ options(
         server_path = '/var/www/doughellmann/DocumentRoot/PyMOTW/',
 
         # What template should be used for the web site HTML?
-        template_source = '~/Devel/personal/doughellmann/templates/base.html',
+        template_source = '~/Devel/doughellmann/doughellmann/templates/base.html',
         template_dest = 'sphinx/templates/web/base.html',        
     ),
     
@@ -177,8 +177,14 @@ def remake_directories(*dirnames):
     return
 
 @task
-@needs(['cog'])
+@needs(['cog', 'htmlquick'])
 def html(options):
+    "Run cog to produce example output and then generate HTML files."
+    return
+    
+@task
+def htmlquick(options):
+    "Generate HTML output without running cog first."
     set_templates(options.html.templates)
     if paverutils is None:
         raise RuntimeError('Could not find sphinxcontrib.paverutils, will not be able to build HTML output.')
@@ -193,13 +199,13 @@ def html(options):
 def sdist(options):
     """Create a source distribution.
     """
-    # Copy the output file to the desktop
+    # Move the output file to the desktop
     dist_files = path('dist').glob('*.tar.gz')
     dest_dir = path(options.sdistext.outdir).expanduser()
     for f in dist_files:
         dest_file = dest_dir / f.basename()
         dest_file.unlink()
-        f.copy(dest_dir)
+        f.move(dest_dir)
     
     sh('growlnotify -m "package built"')
     return
@@ -220,7 +226,6 @@ def set_templates(template_name):
     return
 
 @task
-@needs(['cog'])
 def pdf():
     """Generate the PDF book.
     """
@@ -242,17 +247,23 @@ def website(options):
     return
 
 @task
-def installwebsite():
+def installwebsite(options):
     """Rebuild and copy website files to the remote server.
     """
     # Clean up
     remake_directories(options.pdf.builddir, options.website.builddir)
     # Rebuild
-    call_task('website')
+    website(options)
+    # Install
+    rsyncwebsite(options)
+    return
+    
+@task
+def rsyncwebsite(options):
     # Copy to the server
     os.environ['RSYNC_RSH'] = '/usr/bin/ssh'
     src_path = path(options.website.builddir) / 'html'
-    sh('cd %s; rsync --archive --delete --verbose . %s:%s' % 
+    sh('(cd %s; rsync --archive --delete --verbose . %s:%s)' % 
         (src_path, options.website.server, options.website.server_path))
     return
 
@@ -309,14 +320,38 @@ def clean_blog_html(body):
     
     return s
 
-def gen_blog_post(outdir, input_base, blog_base):
+def get_post_title(filename):
+    f = open(filename, 'rt')
+    try:
+        body = f.read()
+    finally:
+        f.close()
+
+    # Clean up the HTML
+    from BeautifulSoup import BeautifulSoup
+
+    # The post body is passed to stdin.
+    soup = BeautifulSoup(body)
+
+    # Get the heading(s)
+    h1 = soup.findAll('h1')[0]
+
+    # Get BeautifulSoup's version of the string
+    title = ' '.join(h1.contents)
+
+    return title
+
+
+def gen_blog_post(outdir, input_base, blog_base, url_base):
     """Generate the blog post body.
     """
     outdir = path(outdir)
     input_file = outdir / input_base
     blog_file = outdir/ blog_base
     
-    canonical_url = "http://www.doughellmann.com/PyMOTW/" + MODULE + "/"
+    canonical_url = "http://www.doughellmann.com/" + url_base
+    if not canonical_url.endswith('/'):
+        canonical_url += '/'
     if input_base != "index.html":
         canonical_url += input_base
     home_page_reference = '''<p><a class="reference external" href="http://www.doughellmann.com/PyMOTW/">PyMOTW Home</a></p>'''
@@ -330,7 +365,6 @@ def gen_blog_post(outdir, input_base, blog_base):
     return
 
 @task
-@needs(['cog'])
 @cmdopts([
     ('in-file=', 'b', 'Blog input filename (e.g., "-b index.html")'),
     ('out-file=', 'B', 'Blog output filename (e.g., "-B blog.html")'),
@@ -366,9 +400,16 @@ def blog(options):
         outdir=options.blog.outdir, 
         input_base=options.blog.in_file, 
         blog_base=options.blog.out_file,
+        url_base=options.blog.sourcedir,
         )
     
-    if 'EDITOR' in os.environ:
+    if os.path.exists('bin/SendToMarsEdit.scpt'):
+        title = get_post_title(blog_file)
+        sh('osascript bin/SendToMarsEdit.scpt "%s" "%s"' % 
+            (blog_file, "PyMOTW: %s" % title)
+            )
+    
+    elif 'EDITOR' in os.environ:
         sh('$EDITOR %s' % blog_file)
     return
 
@@ -378,6 +419,22 @@ def commit():
     """Commit the changes to hg.
     """
     sh('hg commit')
+    return
+
+@task
+@needs(['uncog'])
+def bitbucket_push(options):
+    sh('hg push')
+    return
+
+@task
+def release(options):
+    """Run the automatable steps of the release process."""
+    sdist(options)
+    installwebsite(options)
+    blog(options)
+    bitbucket_push(options)
+    print 'NEXT: upload package, "paver register", post to blog'
     return
 
 @task

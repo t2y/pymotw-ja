@@ -1,8 +1,23 @@
 History
 =======
 
-Working
-  - Add :ref:`article-data-structures` article.
+1.99
+  - 2 Aug 2009, Add :ref:`article-data-structures` article.
+
+1.98
+  - Added link to Roberto Pauletto's Italian translation.
+  - 27 July 2009, Add :ref:`article-text-processing` article.
+
+1.97
+  - 19 July 2009, :mod:`urllib2`
+
+1.96
+  - 12 July 2009, :ref:`article-file-access`
+
+1.95
+  - 5 July 2009, :mod:`abc`
+  - Rearrange packaging to install the HTML files.
+  - Add ``motw`` command line app to show PyMOTW article on a given module, similar to pydoc.
 
 1.94
   - Moved ``run_script()`` from pavement.py to `sphinxcontrib-paverutils <http://pypi.python.org/pypi/sphinxcontrib-paverutils>`_ 1.1.

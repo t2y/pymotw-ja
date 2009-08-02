@@ -48,6 +48,7 @@ class PostHandler(BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
         self.wfile.write('Client: %s\n' % str(self.client_address))
+        self.wfile.write('User-agent: %s\n' % str(self.headers['user-agent']))
         self.wfile.write('Path: %s\n' % self.path)
         self.wfile.write('Form data:\n')
 
@@ -59,8 +60,8 @@ class PostHandler(BaseHTTPRequestHandler):
                 file_data = field_item.file.read()
                 file_len = len(file_data)
                 del file_data
-                self.wfile.write('\tUploaded %s (%d bytes)\n' % (field, 
-                                                                 file_len))
+                self.wfile.write('\tUploaded %s as "%s" (%d bytes)\n' % \
+                        (field, field_item.filename, file_len))
             else:
                 # Regular form value
                 self.wfile.write('\t%s=%s\n' % (field, form[field].value))
