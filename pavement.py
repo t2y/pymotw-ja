@@ -125,7 +125,7 @@ options(
         
         # What server hosts the website?
         server = 'www.doughellmann.com',
-        server_path = '/var/www/doughellmann/DocumentRoot/PyMOTW/',
+        server_path = '/var/www/doughellmann/DocumentRoot/PyMOTW-ja/',
 
         # What template should be used for the web site HTML?
         template_source = '~/Devel/doughellmann/doughellmann/templates/base.html',
@@ -354,11 +354,11 @@ def pdf():
 def website(options):
     """Create local copy of website files.
     """
-    pdf(options)
+#    pdf(options)
     webhtml(options)
     # Copy the PDF to the files to be copied to the directory to install
-    pdf_file = path(options.pdf.builddir) / 'latex' / (PROJECT + '-' + VERSION + '.pdf')
-    pdf_file.copy(path(options.website.builddir) / 'html')
+#    pdf_file = path(options.pdf.builddir) / 'latex' / (PROJECT + '-' + VERSION + '.pdf')
+#    pdf_file.copy(path(options.website.builddir) / 'html')
     return
 
 @task
