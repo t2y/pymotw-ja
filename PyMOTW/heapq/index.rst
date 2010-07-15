@@ -16,9 +16,9 @@ heapq - インプレースヒープソートアルゴリズム
         Python's lists.
     :Python Version: New in 2.3 with additions in 2.5
 
-:Purpose:
+:目的:
     heapq は Python のリストで使用し易い最小ヒープソートアルゴリズムを実装します
-:Python Version: 2.3 で新規追加、2.5 で機能拡張されています
+:Python バージョン: 2.3 で新規追加、2.5 で機能拡張されています
 
 ..
     A *heap* is a tree-like data structure where the child nodes have a

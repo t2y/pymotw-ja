@@ -17,8 +17,8 @@ base64 -- バイナリデータを ASCII 文字へエンコードする
     :Purpose: The base64 module contains functions for translating binary data into a subset of ASCII suitable for transmission using plaintext protocols.
     :Python Version: 1.4 and later
 
-:Purpose: base64 モジュールは、プレーンテキストプロトコルによる通信に適した ASCII 文字のサブセットへバイナリデータを変換する機能を持ちます。
-:Python Version: 1.4 以上
+:目的: base64 モジュールは、プレーンテキストプロトコルによる通信に適した ASCII 文字のサブセットへバイナリデータを変換する機能を持ちます。
+:Python バージョン: 1.4 以上
 
 ..
     The base64, base32, and base16 encodings convert 8 bit bytes to values with 6, 5, or 4 bits of useful data per byte, allowing non-ASCII bytes to be encoded as ASCII characters for transmission over protocols that require plain ASCII, such as SMTP.  The *base* values correspond to the length of the alphabet used in each encoding.  There are also URL-safe variations of the original encodings that use slightly different results.
