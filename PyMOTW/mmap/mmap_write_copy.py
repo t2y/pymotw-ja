@@ -33,7 +33,7 @@ __version__ = "$Id$"
 import mmap
 import shutil
 
-# Copy the example file
+# サンプルファイルをコピーする
 shutil.copyfile('lorem.txt', 'lorem_copy.txt')
 
 word = 'consectetuer'
