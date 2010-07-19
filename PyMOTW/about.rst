@@ -126,6 +126,8 @@ PyMOTW の記事を Python インタラクティブインタプリタの実行�
     *******************************************************
     ...
 
+.. _translations:
+
 ..
     Translations and Other Versions
     ===============================
@@ -134,93 +136,76 @@ PyMOTW の記事を Python インタラクティブインタプリタの実行�
 ====================
 
 ..
-    Chinese
-    -------
+    `Chinese <http://www.vbarter.cn/pymotw/>`_
+..
+  Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code
+  project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and
+  posted the completed translations at http://www.vbarter.cn/pymotw/.
 
-中国語
-------
+`中国語 <http://www.vbarter.cn/pymotw/>`_
+
+  Junjie Cai (蔡俊杰) と Yan Sheng (盛艳) は PyMOTWCN (http://code.google.com/p/pymotwcn/) という google code プロジェクトを始めました。 http://www.vbarter.cn/pymotw/ に完全な翻訳を投稿しています。
 
 ..
-    Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code
-    project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and
-    posted the completed translations at http://www.vbarter.cn/pymotw/.
+    `German <http://schoenian-online.de/pymotw.html>`_
+..
+  Ralf Schönian is translating PyMOTW into German, following an
+  alphabetical order.  The results are available on his web site,
+  http://schoenian-online.de/pymotw.html.  Ralf is an active member of
+  the `pyCologne
+  <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_
+  user group in Germany and author of pyVoc, the open source
+  English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
 
-Junjie Cai (蔡俊杰) と Yan Sheng (盛艳) は PyMOTWCN (http://code.google.com/p/pymotwcn/) という google code プロジェクトを始めました。 http://www.vbarter.cn/pymotw/ に完全な翻訳を投稿しています。
+`ドイツ語 <http://schoenian-online.de/pymotw.html>`_
+
+  Ralf Schönian はアルファベット順に PyMOTW をドイツ語に翻訳しています。その成果は彼の web サイト http://schoenian-online.de/pymotw.html で確認できます。Ralf はドイツの `pyCologne <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_ ユーザグループのアクティブメンバーで、オープンソースの英語/ドイツ語のボキャブラリトレーナーである pyVoc (http://code.google.com/p/pyvoc/) の開発者です。
+
+.. 18 July 2010 - Removed for now because it looks like the site is offline.
+
+.. `Italian <http://robyp.x10hosting.com/>`_
+
+..   Roberto Pauletto is working on an Italian translation at
+..   http://robyp.x10hosting.com/.  Roberto creates Windows applications
+..   with C# by day, and tinkers with Linux and Python at home.  He has
+..   recently moved to Python from Perl for all of his
+..   system-administration scripting.
+
+..   Roberto Pauletto が http://robyp.x10hosting.com/ でイタリア語翻訳をしています。Roberto は昼間は Windows アプリケーションを C# で開発していて、自宅では Linux と Python をいじくり回しています。彼は最近、開発した全てのシステム管理用スクリプトを Perl から Python へ移行しました。
 
 ..
-    German
-    ------
+    `Spanish <http://denklab.org/articles/category/pymotw/>`_
+..
+  `Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish
+  translation that follows the English version posts. Ernesto is in
+  Bolivia, and is translating these examples as a way to contribute to
+  the members of the `Bolivian Free Software
+  <http://www.softwarelibre.org.bo/>`_ community who use Python.  The
+  full list of articles available in Spanish can be found at
+  http://denklab.org/articles/category/pymotw/, and there is an `RSS
+  feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
 
-ドイツ語
---------
+`スペイン語 <http://denklab.org/articles/category/pymotw/>`_
+
+  `Ernesto Rico Schmidt <http://denklab.org/>`_ は英語版の投稿を見ながらスペイン語翻訳を提供しています。Ernesto は Bolivia に住んでいて、Python を使用する `Bolivian Free Software <http://www.softwarelibre.org.bo/>`_ コミュニティメンバーへの貢献手段の1つの例として翻訳しています。スペイン語の記事の完全なリストは http://denklab.org/articles/category/pymotw/ で発見できます。 `RSS フィード <http://denklab.org/feeds/articles/category/pymotw/>`_ も提供されています。
 
 ..
-    Ralf Schönian is translating PyMOTW into German, following an
-    alphabetical order.  The results are available on his web site,
-    http://schoenian-online.de/pymotw.html.  Ralf is an active member of
-    the `pyCologne
-    <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_
-    user group in Germany and author of pyVoc, the open source
-    English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
-
-Ralf Schönian はアルファベット順に PyMOTW をドイツ語に翻訳しています。その成果は彼の web サイト http://schoenian-online.de/pymotw.html で確認できます。Ralf はドイツの `pyCologne <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_ ユーザグループのアクティブメンバーで、オープンソースの英語/ドイツ語のボキャブラリトレーナーである pyVoc (http://code.google.com/p/pyvoc/) の開発者です。
-
+    `Japanese <http://www.doughellmann.com/PyMOTW-ja/>`_
 ..
-    Italian
-    -------
+  `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a
+  Japanese translation. Tetsuya has used Python for 1.5 years. He has
+  as experience at a Linux Distributor using Python with yum,
+  anaconda, and rpm-tools while building RPM packages. Now, he uses it
+  to make useful tools for himself, and is interested in application
+  frameworks such as Django, mercurial and wxPython. Tetsuya is a
+  member of `Python Japan User's Group <http://www.python.jp/Zope/>`_
+  and `Python Code Reading
+  <http://groups.google.co.jp/group/python-code-reading>`_. The home
+  page for his translation is http://www.doughellmann.com/PyMOTW-ja/.
 
-イタリア語
-----------
+`日本語 <http://www.doughellmann.com/PyMOTW-ja/>`_
 
-..
-    Roberto Pauletto is working on an Italian translation at
-    http://robyp.x10hosting.com/.  Roberto creates Windows applications
-    with C# by day, and tinkers with Linux and Python at home.  He has
-    recently moved to Python from Perl for all of his
-    system-administration scripting.
-
-Roberto Pauletto が http://robyp.x10hosting.com/ でイタリア語翻訳をしています。Roberto は昼間は Windows アプリケーションを C# で開発していて、自宅では Linux と Python をいじくり回しています。彼は最近、開発した全てのシステム管理用スクリプトを Perl から Python へ移行しました。
-
-..
-    Spanish
-    -------
-
-スペイン語
-----------
-
-..
-    `Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish
-    translation that follows the English version posts. Ernesto is in
-    Bolivia, and is translating these examples as a way to contribute to
-    the members of the `Bolivian Free Software
-    <http://www.softwarelibre.org.bo/>`_ community who use Python.  The
-    full list of articles available in Spanish can be found at
-    http://denklab.org/articles/category/pymotw/, and there is an `RSS
-    feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
-
-`Ernesto Rico Schmidt <http://denklab.org/>`_ は英語版の投稿を見ながらスペイン語翻訳を提供しています。
-Ernesto は Bolivia に住んでいて、Python を使用する `Bolivian Free Software <http://www.softwarelibre.org.bo/>`_ コミュニティメンバーへの貢献手段の1つの例として翻訳しています。スペイン語の記事の完全なリストは http://denklab.org/articles/category/pymotw/ で発見できます。 `RSS フィード <http://denklab.org/feeds/articles/category/pymotw/>`_ も提供されています。
-
-..
-    Japanese
-    --------
-
-日本語
-------
-
-..
-    `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a
-    Japanese translation. Tetsuya has used Python for 1.5 years. He has as
-    experience at a Linux Distributor using Python with yum, anaconda, and
-    rpm-tools while building RPM packages. Now, he uses it to make useful
-    tools for himself, and is interested in application frameworks such as
-    Django, mercurial and wxPython. Tetsuya is a member of `Python Japan
-    User's Group <http://www.python.jp/Zope/>`_ and `Python Code Reading
-    <http://groups.google.co.jp/group/python-code-reading>`_. The home
-    page for his translation is
-    http://d.hatena.ne.jp/t2y-1979/20090525/1243227350.
-
-`Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ は日本語翻訳をしています。Tetsuya は Python を 1.5 年程度使っています。彼は Linux ディストリビュータで働いていた頃 RPM パッケージのビルド等に yum, anaconda や rpm-tools で Python を使用していました。現在は自分用のツールを開発したりして Django, mercurial や wxPython 等のアプリケーションフレームワークに興味を持っています。Tetsuya は `Python Japan User's Group <http://www.python.jp/Zope/>`_ や `Python Code Reading <http://groups.google.co.jp/group/python-code-reading>`_ のメンバーです。日本語翻訳は http://www.doughellmann.com/PyMOTW-ja/ にあります。
+  `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ は日本語翻訳をしています。Tetsuya は Python を 1.5 年程度使っています。彼は Linux ディストリビュータで働いていた頃 RPM パッケージのビルド等に yum, anaconda や rpm-tools で Python を使用していました。現在は自分用のツールを開発したりして Django, mercurial や wxPython 等のアプリケーションフレームワークに興味を持っています。Tetsuya は `Python Japan User's Group <http://www.python.jp/Zope/>`_ や `Python Code Reading <http://groups.google.co.jp/group/python-code-reading>`_ のメンバーです。日本語翻訳は http://www.doughellmann.com/PyMOTW-ja/ にあります。
 
 ..
     Compendiums
