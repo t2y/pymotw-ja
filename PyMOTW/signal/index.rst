@@ -7,8 +7,11 @@
 signal -- 非同期のシステムイベント通知を受け取る
 ================================================
 
-.. module:: signal
+..
     :synopsis: Receive notification of asynchronous system events
+
+.. module:: signal
+    :synopsis: 非同期のシステムイベント通知を受け取る
 
 ..
     :Purpose: Receive notification of asynchronous system events

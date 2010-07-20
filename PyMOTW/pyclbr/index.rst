@@ -7,8 +7,11 @@
 pyclbr -- Python クラスブラウザサポート
 =======================================
 
-.. module:: pyclbr
+..
     :synopsis: Python class browser support
+
+.. module:: pyclbr
+    :synopsis: Python クラスブラウザサポート
 
 ..
     :Purpose: Implements an API suitable for use in a source code editor for making a class browser.

@@ -7,8 +7,11 @@
 tempfile -- 一時的なファイルシステムリソースを作成する
 ======================================================
 
-.. module:: tempfile
+..
     :synopsis: Create temporary filesystem resources.
+
+.. module:: tempfile
+    :synopsis: 一時的なファイルシステムリソースを作成する
 
 ..
     :Purpose: Create temporary filesystem resources.

@@ -7,8 +7,11 @@
 mmap -- 直接的なコンテンツ読み込みの代替となるメモリマップファイル
 ==================================================================
 
-.. module:: mmap
+..
     :synopsis: Memory-map files instead of reading the contents directly.
+
+.. module:: mmap
+    :synopsis: 直接的なコンテンツ読み込みの代替となるメモリマップファイル
 
 ..
     :Purpose: Memory-map files instead of reading the contents directly.
