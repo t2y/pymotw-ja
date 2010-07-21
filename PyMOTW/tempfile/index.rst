@@ -18,7 +18,7 @@ tempfile -- 一時的なファイルシステムリソースを作成する
     :Python Version: Since 1.4 with major security revisions in 2.3
 
 :目的: 一時的なファイルシステムリソースを作成する
-:Python バージョン: 1.4 以降、2.3 で主要なセキュリティ修正が施された
+:Python バージョン: 1.4 以上、2.3 で主要なセキュリティ修正が施された
 
 ..
     Many programs need to create files to write intermediate
