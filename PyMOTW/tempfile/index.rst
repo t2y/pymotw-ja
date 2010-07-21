@@ -62,6 +62,18 @@ TemporaryFile
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile.py'))
 .. }}}
+
+::
+
+	$ python tempfile_TemporaryFile.py
+	Building a file name yourself:
+	temp: <open file '/tmp/guess_my_name.6148.txt', mode 'w+b' at 0xb77717a0>
+	temp.name: /tmp/guess_my_name.6148.txt
+	
+	TemporaryFile:
+	temp: <open file '<fdopen>', mode 'w+b' at 0xb7771b10>
+	temp.name: <fdopen>
+
 .. {{{end}}}
 
 ..
@@ -84,6 +96,12 @@ TemporaryFile
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile_binary.py'))
 .. }}}
+
+::
+
+	$ python tempfile_TemporaryFile_binary.py
+	Some data
+
 .. {{{end}}}
 
 ..
@@ -104,6 +122,13 @@ TemporaryFile
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_TemporaryFile_text.py'))
 .. }}}
+
+::
+
+	$ python tempfile_TemporaryFile_text.py
+	first
+	second
+
 .. {{{end}}}
 
 NamedTemporaryFile
@@ -131,6 +156,14 @@ NamedTemporaryFile
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_NamedTemporaryFile.py'))
 .. }}}
+
+::
+
+	$ python tempfile_NamedTemporaryFile.py
+	temp: <open file '<fdopen>', mode 'w+b' at 0xb77227a0>
+	temp.name: /tmp/tmpadRXGI
+	Exists after close: False
+
 .. {{{end}}}
 
 mkdtemp
@@ -157,6 +190,12 @@ mkdtemp
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_mkdtemp.py'))
 .. }}}
+
+::
+
+	$ python tempfile_mkdtemp.py
+	/tmp/tmpbl8wv3
+
 .. {{{end}}}
 
 ..
@@ -201,6 +240,13 @@ random を除いた全ての値、つまり *dir* , *prefix* , *suffix* が :fun
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_NamedTemporaryFile_args.py'))
 .. }}}
+
+::
+
+	$ python tempfile_NamedTemporaryFile_args.py
+	temp: <open file '<fdopen>', mode 'w+b' at 0xb77ac7a0>
+	temp.name: /tmp/prefix_0BWiCu_suffix
+
 .. {{{end}}}
 
 ..
@@ -232,6 +278,13 @@ random を除いた全ての値、つまり *dir* , *prefix* , *suffix* が :fun
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_settings.py'))
 .. }}}
+
+::
+
+	$ python tempfile_settings.py
+	gettempdir(): /tmp
+	gettempprefix(): tmp
+
 .. {{{end}}}
 
 ..
@@ -292,6 +345,12 @@ Python は標準のディレクトリリストを探して、ユーザがファ�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'tempfile_tempdir.py'))
 .. }}}
+
+::
+
+	$ python tempfile_tempdir.py
+	gettempdir(): /I/changed/this/path
+
 .. {{{end}}}
     
 ..

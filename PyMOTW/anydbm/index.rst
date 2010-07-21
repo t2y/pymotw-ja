@@ -31,6 +31,12 @@ The ``open()`` function takes *flags* to control how the database file is manage
 .. sh("cd %s; rm -f /tmp/example.db" % workdir)
 .. cog.out(run_script(cog.inFile, 'anydbm_new.py'))
 .. }}}
+
+::
+
+	$ python anydbm_new.py
+	
+
 .. {{{end}}}
 
 
@@ -45,6 +51,12 @@ Your results may vary, depending on what modules are installed on your system.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'anydbm_whichdb.py'))
 .. }}}
+
+::
+
+	$ python anydbm_whichdb.py
+	dbhash
+
 .. {{{end}}}
 
 
@@ -62,6 +74,16 @@ Once open, ``db`` is a dictionary-like object, with support for the usual method
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'anydbm_existing.py'))
 .. }}}
+
+::
+
+	$ python anydbm_existing.py
+	keys(): ['author', 'key', 'today']
+	iterating: author Doug
+	iterating: key value
+	iterating: today Sunday
+	db["author"] = Doug
+
 .. {{{end}}}
 
 Error Cases
@@ -78,6 +100,21 @@ Passing another type results in a TypeError.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'anydbm_intkeys.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python anydbm_intkeys.py
+	Traceback (most recent call last):
+	  File "anydbm_intkeys.py", line 16, in <module>
+	    db[1] = 'one'
+	  File "/usr/lib/python2.6/bsddb/__init__.py", line 276, in __setitem__
+	    _DeadlockWrap(wrapF)  # self.db[key] = value
+	  File "/usr/lib/python2.6/bsddb/dbutils.py", line 68, in DeadlockWrap
+	    return function(*_args, **_kwargs)
+	  File "/usr/lib/python2.6/bsddb/__init__.py", line 275, in wrapF
+	    self.db[key] = value
+	TypeError: Integer keys only allowed for Recno and Queue DB's
+
 .. {{{end}}}
 
 Values must be strings or ``None``.
@@ -91,6 +128,21 @@ A similar TypeError is raised if a value is not a string.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'anydbm_intvalue.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python anydbm_intvalue.py
+	Traceback (most recent call last):
+	  File "anydbm_intvalue.py", line 16, in <module>
+	    db['one'] = 1
+	  File "/usr/lib/python2.6/bsddb/__init__.py", line 276, in __setitem__
+	    _DeadlockWrap(wrapF)  # self.db[key] = value
+	  File "/usr/lib/python2.6/bsddb/dbutils.py", line 68, in DeadlockWrap
+	    return function(*_args, **_kwargs)
+	  File "/usr/lib/python2.6/bsddb/__init__.py", line 275, in wrapF
+	    self.db[key] = value
+	TypeError: Data values must be of type string or None.
+
 .. {{{end}}}
 
 .. seealso::

@@ -52,6 +52,14 @@ The output will look something like this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sched_basic.py'))
 .. }}}
+
+::
+
+	$ python sched_basic.py
+	START: 1279706308.9
+	EVENT: 1279706310.9 first
+	EVENT: 1279706311.9 second
+
 .. {{{end}}}
 
 The time printed for the first event is 2 seconds after start, and the
@@ -80,6 +88,16 @@ past the desired start time of the second event.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sched_overlap.py'))
 .. }}}
+
+::
+
+	$ python sched_overlap.py
+	START: 1279706311.94
+	BEGIN EVENT : 1279706313.94 first
+	FINISH EVENT: 1279706315.94 first
+	BEGIN EVENT : 1279706315.94 second
+	FINISH EVENT: 1279706317.94 second
+
 .. {{{end}}}
 
 
@@ -101,6 +119,14 @@ the event, instead of the amount of time to delay.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sched_priority.py'))
 .. }}}
+
+::
+
+	$ python sched_priority.py
+	START: 1279706318.0
+	EVENT: 1279706320.0 second
+	EVENT: 1279706320.0 first
+
 .. {{{end}}}
 
 
@@ -124,6 +150,15 @@ time.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sched_cancel.py'))
 .. }}}
+
+::
+
+	$ python sched_cancel.py
+	START: 1279706320.05
+	EVENT: 1279706323.05 E2
+	NOW: 1
+	FINAL: 1
+
 .. {{{end}}}
 
 

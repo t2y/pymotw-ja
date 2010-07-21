@@ -43,6 +43,27 @@ When run, the output is:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'timeit_example.py'))
 .. }}}
+
+::
+
+	$ python timeit_example.py
+	TIMEIT:
+	setup
+	main statement
+	main statement
+	5.96046447754e-06
+	REPEAT:
+	setup
+	main statement
+	main statement
+	setup
+	main statement
+	main statement
+	setup
+	main statement
+	main statement
+	[4.0531158447265625e-06, 2.86102294921875e-06, 2.86102294921875e-06]
+
 .. {{{end}}}
 
 When called, :func:`timeit()` runs the setup statement one time, then
@@ -67,6 +88,13 @@ dictionary using the strings as keys.
 ::
 
     # {{{cog include('timeit/timeit_dictionary.py', 'header')}}}
+    import timeit
+    import sys
+
+    # A few constants
+    range_size=1000
+    count=1000
+    setup_statement="l = [ (str(x), x) for x in range(%d) ]; d = {}" % range_size
     # {{{end}}}
 
 Next, we can define a short utility function to print the results in a
@@ -80,6 +108,17 @@ course).
 ::
 
     # {{{cog include('timeit/timeit_dictionary.py', 'show_results')}}}
+    def show_results(result):
+        "Print results in terms of microseconds per pass and per item."
+        global count, range_size
+        per_pass = 1000000 * (result / count)
+        print '%.2f usec/pass' % per_pass,
+        per_item = per_pass / range_size
+        print '%.2f usec/item' % per_item
+
+    print "%d items" % range_size
+    print "%d iterations" % count
+    print
     # {{{end}}}
 
 To establish a baseline, the first configuration tested will use
@@ -95,6 +134,16 @@ initialize the list of values and the dictionary.
 ::
 
     # {{{cog include('timeit/timeit_dictionary.py', 'setitem')}}}
+    # Using __setitem__ without checking for existing values first
+    print '__setitem__:\t',
+    sys.stdout.flush()
+    # using setitem
+    t = timeit.Timer("""
+    for s, i in l:
+        d[s] = i
+    """, 
+    setup_statement)
+    show_results(t.timeit(number=count))
     # {{{end}}}
 
 The next variation uses :func:`setdefault()` to ensure that values
@@ -103,6 +152,15 @@ already in the dictionary are not overwritten.
 ::
 
     # {{{cog include('timeit/timeit_dictionary.py', 'setdefault')}}}
+    # Using setdefault
+    print 'setdefault:\t',
+    sys.stdout.flush()
+    t = timeit.Timer("""
+    for s, i in l:
+        d.setdefault(s, i)
+    """,
+    setup_statement)
+    show_results(t.timeit(number=count))
     # {{{end}}}
 
 Another way to avoid overwriting existing values is to use
@@ -111,6 +169,17 @@ Another way to avoid overwriting existing values is to use
 ::
 
     # {{{cog include('timeit/timeit_dictionary.py', 'has_key')}}}
+    # Using has_key
+    print 'has_key:\t',
+    sys.stdout.flush()
+    # using setitem
+    t = timeit.Timer("""
+    for s, i in l:
+        if not d.has_key(s):
+            d[s] = i
+    """, 
+    setup_statement)
+    show_results(t.timeit(number=count))
     # {{{end}}}
 
 Or by adding the value only if we receive a :ref:`KeyError
@@ -119,6 +188,19 @@ Or by adding the value only if we receive a :ref:`KeyError
 ::
 
     # {{{cog include('timeit/timeit_dictionary.py', 'exception')}}}
+    # Using exceptions
+    print 'KeyError:\t',
+    sys.stdout.flush()
+    # using setitem
+    t = timeit.Timer("""
+    for s, i in l:
+        try:
+            existing = d[s]
+        except KeyError:
+            d[s] = i
+    """, 
+    setup_statement)
+    show_results(t.timeit(number=count))
     # {{{end}}}
 
 And the last method we will test is the (relatively) new form using
@@ -127,6 +209,17 @@ And the last method we will test is the (relatively) new form using
 ::
 
     # {{{cog include('timeit/timeit_dictionary.py', 'in')}}}
+    # Using "in"
+    print '"not in":\t',
+    sys.stdout.flush()
+    # using setitem
+    t = timeit.Timer("""
+    for s, i in l:
+        if s not in d:
+            d[s] = i
+    """, 
+    setup_statement)
+    show_results(t.timeit(number=count))
     # {{{end}}}
 
 
@@ -135,6 +228,19 @@ When run, the script produces output similar to this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'timeit_dictionary.py'))
 .. }}}
+
+::
+
+	$ python timeit_dictionary.py
+	1000 items
+	1000 iterations
+	
+	__setitem__:	235.83 usec/pass 0.24 usec/item
+	setdefault:	389.41 usec/pass 0.39 usec/item
+	has_key:	325.85 usec/pass 0.33 usec/item
+	KeyError:	226.89 usec/pass 0.23 usec/item
+	"not in":	184.11 usec/pass 0.18 usec/item
+
 .. {{{end}}}
 
 Those times are for a MacBook Pro running Python 2.6. Your times will
@@ -159,6 +265,60 @@ For example, to get help:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m timeit -h', ignore_error=True))
 .. }}}
+
+::
+
+	$ python -m timeit -h
+	Tool for measuring execution time of small code snippets.
+	
+	This module avoids a number of common traps for measuring execution
+	times.  See also Tim Peters' introduction to the Algorithms chapter in
+	the Python Cookbook, published by O'Reilly.
+	
+	Library usage: see the Timer class.
+	
+	Command line usage:
+	    python timeit.py [-n N] [-r N] [-s S] [-t] [-c] [-h] [statement]
+	
+	Options:
+	  -n/--number N: how many times to execute 'statement' (default: see below)
+	  -r/--repeat N: how many times to repeat the timer (default 3)
+	  -s/--setup S: statement to be executed once initially (default 'pass')
+	  -t/--time: use time.time() (default on Unix)
+	  -c/--clock: use time.clock() (default on Windows)
+	  -v/--verbose: print raw timing results; repeat for more digits precision
+	  -h/--help: print this usage message and exit
+	  statement: statement to be timed (default 'pass')
+	
+	A multi-line statement may be given by specifying each line as a
+	separate argument; indented lines are possible by enclosing an
+	argument in quotes and using leading spaces.  Multiple -s options are
+	treated similarly.
+	
+	If -n is not given, a suitable number of loops is calculated by trying
+	successive powers of 10 until the total time is at least 0.2 seconds.
+	
+	The difference in default timer function is because on Windows,
+	clock() has microsecond granularity but time()'s granularity is 1/60th
+	of a second; on Unix, clock() has 1/100th of a second granularity and
+	time() is much more precise.  On either platform, the default timer
+	functions measure wall clock time, not the CPU time.  This means that
+	other processes running on the same computer may interfere with the
+	timing.  The best thing to do when accurate timing is necessary is to
+	repeat the timing a few times and use the best time.  The -r option is
+	good for this; the default of 3 repetitions is probably enough in most
+	cases.  On Unix, you can use clock() to measure CPU time.
+	
+	Note: there is a certain baseline overhead associated with executing a
+	pass statement.  The code here doesn't try to hide it, but you should
+	be aware of it.  The baseline overhead can be measured by invoking the
+	program without arguments.
+	
+	The baseline overhead differs between Python versions!  Also, to
+	fairly compare older Python versions to Python 2.3, you may want to
+	use python -O for the older versions to avoid timing SET_LINENO
+	instructions.
+
 .. {{{end}}}
 
 The statement argument works a little differently than the argument to
@@ -170,6 +330,12 @@ whole thing in quotes. For example:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'python -m timeit -s "d={}" "for i in range(1000):" "  d[str(i)] = i"', interpreter=None))
 .. }}}
+
+::
+
+	$ python -m timeit -s "d={}" "for i in range(1000):" "  d[str(i)] = i"
+	1000 loops, best of 3: 667 usec per loop
+
 .. {{{end}}}
 
 It is also possible to define a function with more complex code, then
@@ -184,6 +350,12 @@ Then to run the test:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'python -m timeit "import timeit_setitem; timeit_setitem.test_setitem()"', interpreter=None))
 .. }}}
+
+::
+
+	$ python -m timeit "import timeit_setitem; timeit_setitem.test_setitem()"
+	1000 loops, best of 3: 916 usec per loop
+
 .. {{{end}}}
 
 

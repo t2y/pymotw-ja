@@ -35,6 +35,19 @@ current working directory:
 .. outdir.rmtree()
 .. cog.out(run_script(cog.inFile, 'glob_maketestdata.py'))
 .. }}}
+
+::
+
+	$ python glob_maketestdata.py
+	dir
+	dir/file.txt
+	dir/file1.txt
+	dir/file2.txt
+	dir/filea.txt
+	dir/fileb.txt
+	dir/subdir
+	dir/subdir/subfile.txt
+
 .. {{{end}}}
 
 .. note::
@@ -58,6 +71,17 @@ without recursing further into subdirectories.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'glob_asterisk.py'))
 .. }}}
+
+::
+
+	$ python glob_asterisk.py
+	dir/subdir
+	dir/file2.txt
+	dir/file1.txt
+	dir/fileb.txt
+	dir/filea.txt
+	dir/file.txt
+
 .. {{{end}}}
 
 To list files in a subdirectory, you must include the subdirectory in the
@@ -73,6 +97,15 @@ case depends on a wildcard to find the directory.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'glob_subdir.py'))
 .. }}}
+
+::
+
+	$ python glob_subdir.py
+	Named explicitly:
+		dir/subdir/subfile.txt
+	Named with wildcard:
+		dir/subdir/subfile.txt
+
 .. {{{end}}}
 
 The results, in this case, are the same. If there was another subdirectory,
@@ -96,6 +129,15 @@ of any type, then end with ".txt".
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'glob_question.py'))
 .. }}}
+
+::
+
+	$ python glob_question.py
+	dir/file2.txt
+	dir/file1.txt
+	dir/fileb.txt
+	dir/filea.txt
+
 .. {{{end}}}
 
 
@@ -118,6 +160,13 @@ range value could be written ``[0123456789]``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'glob_charrange.py'))
 .. }}}
+
+::
+
+	$ python glob_charrange.py
+	dir/file2.txt
+	dir/file1.txt
+
 .. {{{end}}}
 
 

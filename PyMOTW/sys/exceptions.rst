@@ -27,6 +27,13 @@ though the except hook is set.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_excepthook.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python sys_excepthook.py
+	Before exception
+	Unhandled error: <type 'exceptions.RuntimeError'> This is the error message
+
 .. {{{end}}}
 
 Current Exception
@@ -60,6 +67,13 @@ the exception class, an exception instance, and a traceback.  Using
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_exc_info.py'))
 .. }}}
+
+::
+
+	$ python sys_exc_info.py
+	Handling RuntimeError exception with message "This is the error message" in Thread-2
+	Handling RuntimeError exception with message "This is the error message" in Thread-1
+
 .. {{{end}}}
 
 Previous Interactive Exception

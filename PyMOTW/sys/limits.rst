@@ -26,6 +26,14 @@ itself.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_getrefcount.py'))
 .. }}}
+
+::
+
+	$ python sys_getrefcount.py
+	At start         : 2
+	Second reference : 3
+	After del        : 2
+
 .. {{{end}}}
 
 .. seealso::
@@ -50,6 +58,22 @@ you also need to know how big objects are.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_getsizeof.py'))
 .. }}}
+
+::
+
+	$ python sys_getsizeof.py
+	      list : 32
+	     tuple : 24
+	      dict : 136
+	       str : 25
+	       str : 30
+	       int : 12
+	     float : 16
+	  classobj : 44
+	  instance : 32
+	      type : 448
+	  NewStyle : 28
+
 .. {{{end}}}
 
 The reported size for your own classes does not include the size of
@@ -65,6 +89,13 @@ consumed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_getsizeof_object.py'))
 .. }}}
+
+::
+
+	$ python sys_getsizeof_object.py
+	WithoutAttributes: 28
+	WithAttributes: 28
+
 .. {{{end}}}
 
 
@@ -79,6 +110,12 @@ the sizes of attributes of an object.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_getsizeof_custom.py'))
 .. }}}
+
+::
+
+	$ python sys_getsizeof_custom.py
+	78
+
 .. {{{end}}}
 
 Recursion
@@ -101,6 +138,22 @@ program has an opportunity to handle the situation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_recursionlimit.py'))
 .. }}}
+
+::
+
+	$ python sys_recursionlimit.py
+	Initial limit: 1000
+	Modified limit: 10
+	generate_recursion_error(1)
+	generate_recursion_error(2)
+	generate_recursion_error(3)
+	generate_recursion_error(4)
+	generate_recursion_error(5)
+	generate_recursion_error(6)
+	generate_recursion_error(7)
+	generate_recursion_error(8)
+	Caught exception: maximum recursion depth exceeded while getting the str of an object
+
 .. {{{end}}}
 
 
@@ -124,6 +177,14 @@ currently configured.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_maximums.py'))
 .. }}}
+
+::
+
+	$ python sys_maximums.py
+	maxint    : 2147483647
+	maxsize   : 2147483647
+	maxunicode: 1114111
+
 .. {{{end}}}
 
 Floating Point Values
@@ -146,6 +207,28 @@ underlying system's float implementation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_float_info.py'))
 .. }}}
+
+::
+
+	$ python sys_float_info.py
+	Smallest difference (epsilon): 2.22044604925e-16
+	
+	Digits (dig)              : 15
+	Mantissa digits (mant_dig): 53
+	
+	Maximum (max): 1.79769313486e+308
+	Minimum (min): 2.22507385851e-308
+	
+	Radix of exponents (radix): 2
+	
+	Maximum exponent for radix (max_exp): 1024
+	Minimum exponent for radix (min_exp): -1021
+	
+	Maximum exponent for power of 10 (max_10_exp): 308
+	Minimum exponent for power of 10 (min_10_exp): -307
+	
+	Rounding for addition (rounds): 1
+
 .. {{{end}}}
 
 .. seealso::

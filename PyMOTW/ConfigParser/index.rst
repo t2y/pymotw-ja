@@ -52,6 +52,12 @@ look something like this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'configparser_example.py'))
 .. }}}
+
+::
+
+	$ python configparser_example.py
+	http://localhost:8080/Portal
+
 .. {{{end}}}
 
 

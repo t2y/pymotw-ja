@@ -29,6 +29,17 @@ the dup list is to the same object that is in the l list.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_shallow.py'))
 .. }}}
+
+::
+
+	$ python copy_shallow.py
+	l  : [<__main__.MyClass instance at 0xb76b876c>]
+	dup: [<__main__.MyClass instance at 0xb76b876c>]
+	dup is l: False
+	dup == l: True
+	dup[0] is l[0]: True
+	dup[0] == l[0]: True
+
 .. {{{end}}}
 
 
@@ -53,6 +64,17 @@ reference, but the two objects still evaluate as being equal.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_deep.py'))
 .. }}}
+
+::
+
+	$ python copy_deep.py
+	l  : [<__main__.MyClass instance at 0xb78067ac>]
+	dup: [<__main__.MyClass instance at 0xb7806bcc>]
+	dup is l: False
+	dup == l: True
+	dup[0] is l[0]: False
+	dup[0] == l[0]: True
+
 .. {{{end}}}
 
 
@@ -79,6 +101,13 @@ This example illustrates how the methods are called:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_hooks.py'))
 .. }}}
+
+::
+
+	$ python copy_hooks.py
+	__copy__()
+	__deepcopy__({})
+
 .. {{{end}}}
 
 
@@ -130,6 +159,37 @@ stack overflow error.  When the *root* node is copied, we see:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_recursion.py'))
 .. }}}
+
+::
+
+	$ python copy_recursion.py
+	
+	<Graph(root) id=3077513260>
+	{   }
+	  COPYING TO <Graph(root) id=3077513420>
+	
+	<Graph(a) id=3077513292>
+	{   <Graph(root) id=3077513260>: <Graph(root) id=3077513420>,
+	    3077489408L: 'root',
+	    3077494548L: ['root']}
+	  COPYING TO <Graph(a) id=3077513516>
+	
+	<Graph(root) id=3077513260>
+	  ALREADY COPIED TO <Graph(root) id=3077513420>
+	
+	<Graph(b) id=3077513324>
+	{   <Graph(root) id=3077513260>: <Graph(root) id=3077513420>,
+	    <Graph(a) id=3077513292>: <Graph(a) id=3077513516>,
+	    3077489408L: 'root',
+	    3077494548L: [   'root',
+	                     'a',
+	                     <Graph(root) id=3077513260>,
+	                     <Graph(a) id=3077513292>],
+	    3077513260L: <Graph(root) id=3077513420>,
+	    3077513292L: <Graph(a) id=3077513516>,
+	    3077777536L: 'a'}
+	  COPYING TO <Graph(b) id=3077513580>
+
 .. {{{end}}}
 
 The second time the *root* node is encountered, while the *a* node is

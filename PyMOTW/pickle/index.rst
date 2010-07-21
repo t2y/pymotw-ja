@@ -64,6 +64,21 @@ here use the ASCII output because it is easier to understand in print.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pickle_string.py'))
 .. }}}
+
+::
+
+	$ python pickle_string.py
+	DATA:[{'a': 'A', 'b': 2, 'c': 3.0}]
+	PICKLE: (lp1
+	(dp2
+	S'a'
+	S'A'
+	sS'c'
+	F3
+	sS'b'
+	I2
+	sa.
+
 .. {{{end}}}
 
 Once the data is serialized, you can write it to a file, socket, pipe, etc.
@@ -80,6 +95,15 @@ object as the original. No surprise there.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pickle_unpickle.py'))
 .. }}}
+
+::
+
+	$ python pickle_unpickle.py
+	BEFORE:[{'a': 'A', 'b': 2, 'c': 3.0}]
+	AFTER:[{'a': 'A', 'b': 2, 'c': 3.0}]
+	SAME?: False
+	EQUAL?: True
+
 .. {{{end}}}
 
 
@@ -105,6 +129,17 @@ database format could use pickles to store objects, too, though
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pickle_stream.py'))
 .. }}}
+
+::
+
+	$ python pickle_stream.py
+	WRITING: pickle (elkcip)
+	WRITING: cPickle (elkciPc)
+	WRITING: last (tsal)
+	READ: pickle (elkcip)
+	READ: cPickle (elkciPc)
+	READ: last (tsal)
+
 .. {{{end}}}
 
 Besides storing data, pickles are very handy for inter-process
@@ -139,6 +174,14 @@ argument on the command line:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pickle_dump_to_file_1.py test.dat'))
 .. }}}
+
+::
+
+	$ python pickle_dump_to_file_1.py test.dat
+	WRITING: pickle (elkcip)
+	WRITING: cPickle (elkciPc)
+	WRITING: last (tsal)
+
 .. {{{end}}}
 
 A simplistic attempt to load the resulting pickled objects fails:
@@ -152,6 +195,15 @@ This version fails because there is no SimpleObject class available:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pickle_load_from_file_1.py test.dat', ignore_error=True))
 .. }}}
+
+::
+
+	$ python pickle_load_from_file_1.py test.dat
+	Traceback (most recent call last):
+	  File "pickle_load_from_file_1.py", line 52, in <module>
+	    o = pickle.load(in_s)
+	AttributeError: 'module' object has no attribute 'SimpleObject'
+
 .. {{{end}}}
 
 The corrected version, which imports SimpleObject from the original
@@ -168,6 +220,14 @@ to the end of the import list, then re-run the script:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pickle_load_from_file_2.py test.dat'))
 .. }}}
+
+::
+
+	$ python pickle_load_from_file_2.py test.dat
+	READ: pickle (elkcip)
+	READ: cPickle (elkciPc)
+	READ: last (tsal)
+
 .. {{{end}}}
 
 There are some special considerations when pickling data types with
@@ -213,6 +273,26 @@ after being passed through pickle.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pickle_cycle.py'))
 .. }}}
+
+::
+
+	$ python pickle_cycle.py
+	ORIGINAL GRAPH:
+	 root ->  a (3077373164)
+	    a ->  b (3077384556)
+	    b ->  a (3077373164)
+	    b ->  c (3077384588)
+	    a ->  a (3077373164)
+	 root ->  b (3077384556)
+	
+	RELOADED GRAPH:
+	 root ->  a (3077384684)
+	    a ->  b (135129324)
+	    b ->  a (3077384684)
+	    b ->  c (135129484)
+	    a ->  a (3077384684)
+	 root ->  b (135129324)
+
 .. {{{end}}}
 
 

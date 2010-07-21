@@ -72,6 +72,15 @@ An AssertionError is raised by a failed ``assert`` statement.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_AssertionError_assert.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_AssertionError_assert.py
+	Traceback (most recent call last):
+	  File "exceptions_AssertionError_assert.py", line 12, in <module>
+	    assert False, 'The assertion failed'
+	AssertionError: The assertion failed
+
 .. {{{end}}}
 
 It is also used in the :mod:`unittest` module in methods like ``failIf()``.
@@ -83,6 +92,24 @@ It is also used in the :mod:`unittest` module in methods like ``failIf()``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_AssertionError_unittest.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_AssertionError_unittest.py
+	F
+	======================================================================
+	FAIL: test (__main__.AssertionExample)
+	----------------------------------------------------------------------
+	Traceback (most recent call last):
+	  File "exceptions_AssertionError_unittest.py", line 17, in test
+	    self.failUnless(False)
+	AssertionError
+	
+	----------------------------------------------------------------------
+	Ran 1 test in 0.000s
+	
+	FAILED (failures=1)
+
 .. {{{end}}}
 
 
@@ -100,6 +127,15 @@ not exist:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_AttributeError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_AttributeError.py
+	Traceback (most recent call last):
+	  File "exceptions_AttributeError.py", line 16, in <module>
+	    print o.attribute
+	AttributeError: 'NoAttributes' object has no attribute 'attribute'
+
 .. {{{end}}}
 
 Or when trying to modify a read-only attribute:
@@ -111,6 +147,16 @@ Or when trying to modify a read-only attribute:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_AttributeError_assignment.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_AttributeError_assignment.py
+	This is the attribute value
+	Traceback (most recent call last):
+	  File "exceptions_AttributeError_assignment.py", line 20, in <module>
+	    o.attribute = 'New value'
+	AttributeError: can't set attribute
+
 .. {{{end}}}
 
 
@@ -162,6 +208,14 @@ Raised inside a generator the generator's ``close()`` method is called.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_GeneratorExit.py'))
 .. }}}
+
+::
+
+	$ python exceptions_GeneratorExit.py
+	Yielding 0
+	0
+	Exiting early
+
 .. {{{end}}}
 
 .. _exceptions-IOError:
@@ -179,6 +233,15 @@ an input file does not exist.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_IOError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_IOError.py
+	Traceback (most recent call last):
+	  File "exceptions_IOError.py", line 12, in <module>
+	    f = open('/does/not/exist', 'r')
+	IOError: [Errno 2] No such file or directory: '/does/not/exist'
+
 .. {{{end}}}
 
 .. _exceptions-ImportError:
@@ -198,6 +261,15 @@ There are a few conditions where an ImportError might be raised.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_ImportError_nomodule.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_ImportError_nomodule.py
+	Traceback (most recent call last):
+	  File "exceptions_ImportError_nomodule.py", line 12, in <module>
+	    import module_does_not_exist
+	ImportError: No module named module_does_not_exist
+
 .. {{{end}}}
 
 2. If ``from X import Y`` is used and Y cannot be found inside the
@@ -210,6 +282,15 @@ module X, an ImportError is raised.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_ImportError_missingname.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_ImportError_missingname.py
+	Traceback (most recent call last):
+	  File "exceptions_ImportError_missingname.py", line 12, in <module>
+	    from exceptions import MadeUpName
+	ImportError: cannot import name MadeUpName
+
 .. {{{end}}}
 
 
@@ -225,6 +306,15 @@ An IndexError is raised when a sequence reference is out of range.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_IndexError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_IndexError.py
+	Traceback (most recent call last):
+	  File "exceptions_IndexError.py", line 13, in <module>
+	    print my_seq[3]
+	IndexError: list index out of range
+
 .. {{{end}}}
 
 .. _exceptions-KeyError:
@@ -241,6 +331,15 @@ Similarly, a KeyError is raised when a value is not found as a key of a dictiona
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_KeyError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_KeyError.py
+	Traceback (most recent call last):
+	  File "exceptions_KeyError.py", line 13, in <module>
+	    print d['c']
+	KeyError: 'c'
+
 .. {{{end}}}
 
 .. _exceptions-KeyboardInterrupt:
@@ -317,6 +416,17 @@ name.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_NameError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_NameError.py
+	Traceback (most recent call last):
+	  File "exceptions_NameError.py", line 15, in <module>
+	    func()
+	  File "exceptions_NameError.py", line 13, in func
+	    print unknown_name
+	NameError: global name 'unknown_name' is not defined
+
 .. {{{end}}}
 
 .. _exceptions-NotImplementedError:
@@ -335,6 +445,18 @@ simulating an *interface*.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_NotImplementedError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_NotImplementedError.py
+	SubClass doing something!
+	Traceback (most recent call last):
+	  File "exceptions_NotImplementedError.py", line 27, in <module>
+	    BaseClass().do_something()
+	  File "exceptions_NotImplementedError.py", line 18, in do_something
+	    raise NotImplementedError(self.__class__.__name__ + '.do_something')
+	NotImplementedError: BaseClass.do_something
+
 .. {{{end}}}
 
 .. seealso::
@@ -354,6 +476,17 @@ raised when an error comes back from an os-specific function.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_OSError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_OSError.py
+	0 /dev/pts/10
+	1
+	Traceback (most recent call last):
+	  File "exceptions_OSError.py", line 15, in <module>
+	    print i, os.ttyname(i)
+	OSError: [Errno 22] Invalid argument
+
 .. {{{end}}}
 
 
@@ -373,6 +506,32 @@ Regular integers are converted to long values as needed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_OverflowError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_OverflowError.py
+	Regular integer: (maxint=2147483647)
+	No overflow for  <type 'long'> i = 6442450941
+	
+	Long integer:
+	 0 1
+	10 1024
+	20 1048576
+	30 1073741824
+	40 1099511627776
+	50 1125899906842624
+	60 1152921504606846976
+	70 1180591620717411303424
+	80 1208925819614629174706176
+	90 1237940039285380274899124224
+	
+	Floating point values:
+	0 1.23794003929e+27
+	1 1.53249554087e+54
+	2 2.34854258277e+108
+	3 5.5156522631e+216
+	Overflowed after  5.5156522631e+216 (34, 'Numerical result out of range')
+
 .. {{{end}}}
 
 
@@ -389,6 +548,18 @@ already been garbage collected, a ReferenceError occurs.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_ReferenceError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_ReferenceError.py
+	BEFORE: obj
+	(Deleting <__main__.ExpensiveObject object at 0xb76cdd6c>)
+	AFTER:
+	Traceback (most recent call last):
+	  File "exceptions_ReferenceError.py", line 26, in <module>
+	    print 'AFTER:', p.name
+	ReferenceError: weakly-referenced object no longer exists
+
 .. {{{end}}}
 
 .. _exceptions-RuntimeError:
@@ -414,6 +585,19 @@ This exception is not considered an error.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_StopIteration.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_StopIteration.py
+	<listiterator object at 0xb777126c>
+	0
+	1
+	2
+	Traceback (most recent call last):
+	  File "exceptions_StopIteration.py", line 19, in <module>
+	    print i.next()
+	StopIteration
+
 .. {{{end}}}
 
 
@@ -432,6 +616,13 @@ find exactly what part of the input text caused the exception.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_SyntaxError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_SyntaxError.py
+	Syntax error <string> (1-10): five times three
+	invalid syntax (<string>, line 1)
+
 .. {{{end}}}
 
 
@@ -468,6 +659,15 @@ calling a function with the wrong type of object.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_TypeError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_TypeError.py
+	Traceback (most recent call last):
+	  File "exceptions_TypeError.py", line 12, in <module>
+	    result = ('tuple',) + 'string'
+	TypeError: can only concatenate tuple (not "str") to tuple
+
 .. {{{end}}}
 
 
@@ -489,6 +689,13 @@ name.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_UnboundLocalError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_UnboundLocalError.py
+	Global name error: global name 'unknown_global_name' is not defined
+	Local name error: local variable 'local_val' referenced before assignment
+
 .. {{{end}}}
 
 
@@ -514,6 +721,15 @@ right type but an invalid value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_ValueError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_ValueError.py
+	Traceback (most recent call last):
+	  File "exceptions_ValueError.py", line 12, in <module>
+	    print chr(1024)
+	ValueError: chr() arg not in range(256)
+
 .. {{{end}}}
 
 .. _exceptions-ZeroDivisionError:
@@ -531,6 +747,15 @@ ZeroDivisionError is raised.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'exceptions_ZeroDivisionError.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python exceptions_ZeroDivisionError.py
+	Traceback (most recent call last):
+	  File "exceptions_ZeroDivisionError.py", line 12, in <module>
+	    print 1/0
+	ZeroDivisionError: integer division or modulo by zero
+
 .. {{{end}}}
 
 .. _exceptions-warning:

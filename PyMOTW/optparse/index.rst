@@ -93,6 +93,12 @@ to single character options. The example above uses both forms,
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_short.py'))
 .. }}}
+
+::
+
+	$ python optparse_short.py
+	(<Values at 0xb77ab0ec: {'a': True, 'c': 3, 'b': 'val'}>, [])
+
 .. {{{end}}}
 
 Notice that the type of the value associated with ``'c'`` in the
@@ -111,6 +117,12 @@ And the results are similar:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_long.py'))
 .. }}}
+
+::
+
+	$ python optparse_long.py
+	(<Values at 0xb74f150c: {'noarg': True, 'witharg': 'val', 'witharg2': 3}>, [])
+
 .. {{{end}}}
 
 Comparing with getopt
@@ -130,6 +142,16 @@ The short form:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py -o output.txt'))
 .. }}}
+
+::
+
+	$ python optparse_getoptcomparison.py -o output.txt
+	ARGV      : ['-o', 'output.txt']
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : output.txt
+	REMAINING : []
+
 .. {{{end}}}
 
 or the long form:
@@ -137,6 +159,16 @@ or the long form:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py --output output.txt'))
 .. }}}
+
+::
+
+	$ python optparse_getoptcomparison.py --output output.txt
+	ARGV      : ['--output', 'output.txt']
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : output.txt
+	REMAINING : []
+
 .. {{{end}}}
 
 
@@ -145,6 +177,16 @@ Any unique prefix of the long option can also be used:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_getoptcomparison.py --out output.txt'))
 .. }}}
+
+::
+
+	$ python optparse_getoptcomparison.py --out output.txt
+	ARGV      : ['--out', 'output.txt']
+	VERSION   : 1.0
+	VERBOSE   : False
+	OUTPUT    : output.txt
+	REMAINING : []
+
 .. {{{end}}}
 
 
@@ -169,6 +211,21 @@ well).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_callback.py'))
 .. }}}
+
+::
+
+	$ python optparse_callback.py
+	with_callback:
+		option: <Option at 0xb77b4b0c: --with>
+		opt_str: --with
+		value: foo
+		parser: <optparse.OptionParser instance at 0xb77b490c>
+	flag_callback:
+		option: <Option at 0xb77b48ac: --flag>
+		opt_str: --flag
+		value: None
+		parser: <optparse.OptionParser instance at 0xb77b490c>
+
 .. {{{end}}}
 
 Callbacks can be configured to take multiple arguments using the *nargs*
@@ -185,6 +242,16 @@ the value argument.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_callback_nargs.py'))
 .. }}}
+
+::
+
+	$ python optparse_callback_nargs.py
+	with_callback:
+		option: <Option at 0xb76cd80c: --with>
+		opt_str: --with
+		value: ('foo', 'bar')
+		parser: <optparse.OptionParser instance at 0xb76cd86c>
+
 .. {{{end}}}
 
 Help Messages
@@ -210,6 +277,17 @@ printed in the right column.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'optparse_help.py --help'))
 .. }}}
+
+::
+
+	$ python optparse_help.py --help
+	Usage: optparse_help.py [options]
+	
+	Options:
+	  -h, --help   show this help message and exit
+	  --no-foo     Turn off foo
+	  --with=WITH  Include optional feature
+
 .. {{{end}}}
 
 .. seealso::

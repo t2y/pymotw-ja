@@ -31,6 +31,18 @@ The contents of ``sys.modules`` change as new modules are imported.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_modules.py'))
 .. }}}
+
+::
+
+	$ python sys_modules.py
+	UserDict, __builtin__, __main__, _abcoll, _codecs, _sre, _warnings,
+	abc, codecs, copy_reg, encodings, encodings.__builtin__,
+	encodings.aliases, encodings.codecs, encodings.encodings,
+	encodings.utf_8, errno, exceptions, genericpath, linecache, new, os,
+	os.path, paste, posix, posixpath, re, signal, site, sre_compile,
+	sre_constants, sre_parse, stat, string, strop, sys, textwrap, types,
+	warnings, zipimport
+
 .. {{{end}}}
 
 
@@ -58,6 +70,29 @@ through ``sys.builtin_module_names``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_builtins.py'))
 .. }}}
+
+::
+
+	$ python sys_builtins.py
+	__builtin__
+	__main__
+	_ast
+	_codecs
+	_sre
+	_symtable
+	_warnings
+	errno
+	exceptions
+	gc
+	imp
+	marshal
+	posix
+	pwd
+	signal
+	sys
+	thread
+	zipimport
+
 .. {{{end}}}
 
 
@@ -125,6 +160,16 @@ directly.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_path_modify.py'))
 .. }}}
+
+::
+
+	$ python sys_path_modify.py
+	Base directory: .
+	Imported example from: ./package_dir_a/example.pyc
+		This is example A
+	Reloaded example from: ./package_dir_b/example.pyc
+		This is example B
+
 .. {{{end}}}
 
 
@@ -164,6 +209,16 @@ real path on the filesystem. This test prevents the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_path_hooks_noisy.py'))
 .. }}}
+
+::
+
+	$ python sys_path_hooks_noisy.py
+	Checking NoisyImportFinder support for NoisyImportFinder_PATH_TRIGGER
+	NoisyImportFinder looking for "target_module"
+	Checking NoisyImportFinder support for /home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/sys
+	NoisyImportFinder does not work for /home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/sys
+	Import failed: No module named target_module
+
 .. {{{end}}}
 
 Importing from a Shelve
@@ -188,6 +243,17 @@ this.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_create.py'))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_create.py
+	Created /tmp/pymotw_import_example.shelve with:
+		data:README
+		package.__init__
+		package.module1
+		package.subpackage.__init__
+		package.subpackage.module2
+
 .. {{{end}}}
 
 Next, we need to provide finder and loader classes that know how to
@@ -215,6 +281,31 @@ module-level attributes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_package.py'))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_package.py
+	Import of "package":
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found it as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	
+	Examine package details:
+	  message: This message is in package.__init__
+	  __name__: package
+	  __package__: 
+	  __file__: <ShelveLoader "/tmp/pymotw_import_example.shelve"[package]>
+	  __path__: ['/tmp/pymotw_import_example.shelve']
+	  __loader__: <sys_shelve_importer.ShelveLoader object at 0x80d4a0c>
+	
+	Global settings:
+	sys.modules entry: <module 'package' from '<ShelveLoader "/tmp/pymotw_import_example.shelve"[package]>'>
+
 .. {{{end}}}
 
 Packages
@@ -229,6 +320,60 @@ The loading of other modules and sub-packages proceeds in the same way.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_module.py'))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_module.py
+	
+	Import of "package.module1":
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found it as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	looking for "package.module1" in /tmp/pymotw_import_example.shelve ... found it as package.module1
+	loading source for "package.module1" from shelf
+	creating a new module object for "package.module1"
+	imported as regular module
+	execing source...
+	package.module1 imported
+	done
+	
+	Examine package.module1 details:
+	  message: This message is in package.module1
+	  __name__: package.module1
+	  __package__: package
+	  __file__: <ShelveLoader "/tmp/pymotw_import_example.shelve"[package.module1]>
+	  __path__: /tmp/pymotw_import_example.shelve
+	  __loader__: <sys_shelve_importer.ShelveLoader object at 0x80d4e6c>
+	
+	Import of "package.subpackage.module2":
+	looking for "package.subpackage" in /tmp/pymotw_import_example.shelve ... found it as package.subpackage.__init__
+	loading source for "package.subpackage" from shelf
+	creating a new module object for "package.subpackage"
+	adding path for package
+	execing source...
+	package.subpackage imported
+	done
+	looking for "package.subpackage.module2" in /tmp/pymotw_import_example.shelve ... found it as package.subpackage.module2
+	loading source for "package.subpackage.module2" from shelf
+	creating a new module object for "package.subpackage.module2"
+	imported as regular module
+	execing source...
+	package.subpackage.module2 imported
+	done
+	
+	Examine package.subpackage.module2 details:
+	  message: This message is in package.subpackage.module2
+	  __name__: package.subpackage.module2
+	  __package__: package.subpackage
+	  __file__: <ShelveLoader "/tmp/pymotw_import_example.shelve"[package.subpackage.module2]>
+	  __path__: /tmp/pymotw_import_example.shelve
+	  __loader__: <sys_shelve_importer.ShelveLoader object at 0x80d4f0c>
+
 .. {{{end}}}
 
 Reloading
@@ -248,6 +393,29 @@ reload.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_reload.py'))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_reload.py
+	First import of "package":
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found it as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	
+	Reloading "package":
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found it as package.__init__
+	loading source for "package" from shelf
+	reusing existing module from previous import of "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+
 .. {{{end}}}
 
 Import Errors
@@ -262,6 +430,21 @@ When a module cannot be imported, ``ImportError`` is raised.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_missing.py'))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_missing.py
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found it as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	looking for "package.module3" in /tmp/pymotw_import_example.shelve ... not found
+	Failed to import: No module named module3
+
 .. {{{end}}}
 
 Package Data
@@ -288,6 +471,34 @@ exist.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_shelve_importer_get_data.py', ignore_error=True))
 .. }}}
+
+::
+
+	$ python sys_shelve_importer_get_data.py
+	new shelf added to import path: /tmp/pymotw_import_example.shelve
+	looking for "package" in /tmp/pymotw_import_example.shelve ... found it as package.__init__
+	loading source for "package" from shelf
+	creating a new module object for "package"
+	adding path for package
+	execing source...
+	package imported
+	done
+	looking for data for "/tmp/pymotw_import_example.shelve/README"
+	
+	==============
+	package README
+	==============
+	
+	This is the README for ``package``.
+	
+	looking for data for "/tmp/pymotw_import_example.shelve/foo"
+	Traceback (most recent call last):
+	  File "sys_shelve_importer_get_data.py", line 26, in <module>
+	    foo = package.__loader__.get_data(foo_path)
+	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/sys/sys_shelve_importer.py", line 114, in get_data
+	    raise IOError
+	IOError
+
 .. {{{end}}}
 
 
@@ -313,6 +524,86 @@ on the path.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_path_importer_cache.py'))
 .. }}}
+
+::
+
+	$ python sys_path_importer_cache.py
+	PATH:['/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/sys',
+	 '/usr/lib/python2.6/site-packages/jsonlib-1.3.10-py2.6-linux-i686.egg',
+	 '/usr/lib/python2.6/site-packages/BeautifulSoup-3.1.0.1-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/Sphinx-0.6.4-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/docutils-0.6-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/Jinja2-2.2.1-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/Pygments-1.2.2-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/pylint-0.19.0-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/logilab_astng-0.19.3-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/logilab_common-0.46.0-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/clonedigger-1.0.9_beta-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/multitask-0.2.0-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/nose-0.11.1-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/Pikzie-0.9.5-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/bzr-2.2b1-py2.6-linux-i686.egg',
+	 '/usr/lib/python2.6/site-packages/py-1.2.1-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/paver_templates-0.1.0b3-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/virtualenv-1.4.9-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/Cheetah-2.4.2.1-py2.6-linux-i686.egg',
+	 '/usr/lib/python2.6/site-packages/pkginfo-0.6-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/Markdown-2.0.3-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/sphinxcontrib_paverutils-1.2-py2.6.egg',
+	 '/usr/lib/python2.6/site-packages/Paver-1.0.3-py2.6.egg',
+	 '/usr/lib/python26.zip',
+	 '/usr/lib/python2.6',
+	 '/usr/lib/python2.6/plat-linux2',
+	 '/usr/lib/python2.6/lib-tk',
+	 '/usr/lib/python2.6/lib-old',
+	 '/usr/lib/python2.6/lib-dynload',
+	 '/usr/lib/python2.6/site-packages',
+	 '/usr/lib/python2.6/site-packages/Numeric',
+	 '/usr/lib/python2.6/site-packages/PIL',
+	 '/usr/lib/python2.6/site-packages/pygoogle',
+	 '/usr/lib/python2.6/site-packages/gst-0.10',
+	 '/usr/lib/python2.6/site-packages/gtk-2.0']
+	
+	IMPORTERS:
+	{'/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/sys': None,
+	 '/usr/lib/python2.6': None,
+	 '/usr/lib/python2.6/': None,
+	 '/usr/lib/python2.6/encodings': None,
+	 '/usr/lib/python2.6/lib-dynload': None,
+	 '/usr/lib/python2.6/lib-old': <imp.NullImporter object at 0xb76fd488>,
+	 '/usr/lib/python2.6/lib-tk': <imp.NullImporter object at 0xb76fd480>,
+	 '/usr/lib/python2.6/plat-linux2': None,
+	 '/usr/lib/python2.6/site-packages': None,
+	 '/usr/lib/python2.6/site-packages/BeautifulSoup-3.1.0.1-py2.6.egg': <zipimporter object "/usr/lib/python2.6/site-packages/BeautifulSoup-3.1.0.1-py2.6.egg">,
+	 '/usr/lib/python2.6/site-packages/Cheetah-2.4.2.1-py2.6-linux-i686.egg': None,
+	 '/usr/lib/python2.6/site-packages/Jinja2-2.2.1-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/Markdown-2.0.3-py2.6.egg': <zipimporter object "/usr/lib/python2.6/site-packages/Markdown-2.0.3-py2.6.egg">,
+	 '/usr/lib/python2.6/site-packages/Numeric': None,
+	 '/usr/lib/python2.6/site-packages/PIL': None,
+	 '/usr/lib/python2.6/site-packages/Paver-1.0.3-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/Pikzie-0.9.5-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/Pygments-1.2.2-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/Sphinx-0.6.4-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/bzr-2.2b1-py2.6-linux-i686.egg': None,
+	 '/usr/lib/python2.6/site-packages/clonedigger-1.0.9_beta-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/docutils-0.6-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/gst-0.10': None,
+	 '/usr/lib/python2.6/site-packages/gtk-2.0': None,
+	 '/usr/lib/python2.6/site-packages/jsonlib-1.3.10-py2.6-linux-i686.egg': <zipimporter object "/usr/lib/python2.6/site-packages/jsonlib-1.3.10-py2.6-linux-i686.egg">,
+	 '/usr/lib/python2.6/site-packages/logilab_astng-0.19.3-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/logilab_common-0.46.0-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/multitask-0.2.0-py2.6.egg': <zipimporter object "/usr/lib/python2.6/site-packages/multitask-0.2.0-py2.6.egg">,
+	 '/usr/lib/python2.6/site-packages/nose-0.11.1-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/paver_templates-0.1.0b3-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/pkginfo-0.6-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/py-1.2.1-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/pygoogle': None,
+	 '/usr/lib/python2.6/site-packages/pylint-0.19.0-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/sphinxcontrib_paverutils-1.2-py2.6.egg': None,
+	 '/usr/lib/python2.6/site-packages/virtualenv-1.4.9-py2.6.egg': None,
+	 '/usr/lib/python26.zip': <imp.NullImporter object at 0xb76fd028>,
+	 'sys_path_importer_cache.py': <imp.NullImporter object at 0xb76fd490>}
+
 .. {{{end}}}
 
 
@@ -338,6 +629,23 @@ loaders (although this example is truncated for simplicity).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_meta_path.py'))
 .. }}}
+
+::
+
+	$ python sys_meta_path.py
+	Creating NoisyMetaImportFinder for foo
+	
+	NoisyMetaImportFinder looking for "foo" with path "None"
+	 ... found prefix, returning loader
+	loading foo
+	
+	NoisyMetaImportFinder looking for "foo.bar" with path "['path-entry-goes-here']"
+	 ... found prefix, returning loader
+	loading foo.bar
+	
+	NoisyMetaImportFinder looking for "bar" with path "None"
+	 ... not the right prefix, cannot load
+
 .. {{{end}}}
 
 

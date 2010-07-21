@@ -26,6 +26,14 @@ so it should not be modified in place.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dircache_listdir.py'))
 .. }}}
+
+::
+
+	$ python dircache_listdir.py
+	Contents : ['__init__.py', 'dircache_annotate.py', 'dircache_listdir.py', 'dircache_listdir_file_added.py', 'dircache_reset.py', 'index.rst']
+	Identical: True
+	Equal    : True
+
 .. {{{end}}}
 
 If the contents of the directory changes, it is rescanned.
@@ -39,6 +47,14 @@ In this case the new file causes a new list to be constructed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dircache_listdir_file_added.py'))
 .. }}}
+
+::
+
+	$ python dircache_listdir_file_added.py
+	Identical : False
+	Equal     : False
+	Difference: ['pymotw_tmp.txt']
+
 .. {{{end}}}
 
 It is also possible to reset the entire cache, discarding its contents so that
@@ -51,6 +67,14 @@ each path will be rechecked.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dircache_reset.py'))
 .. }}}
+
+::
+
+	$ python dircache_reset.py
+	Identical : False
+	Equal     : True
+	Difference: []
+
 .. {{{end}}}
 
 
@@ -70,6 +94,27 @@ always appends a ``'/'``, not os.sep.)
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'dircache_annotate.py'))
 .. }}}
+
+::
+
+	$ python dircache_annotate.py
+	                 ORIGINAL	                ANNOTATED
+	-------------------------	-------------------------
+	                      .hg	                     .hg/
+	                .hgignore	                .hgignore
+	                  .hgtags	                  .hgtags
+	              LICENSE.txt	              LICENSE.txt
+	              MANIFEST.in	              MANIFEST.in
+	                   PyMOTW	                  PyMOTW/
+	               README.txt	               README.txt
+	                      bin	                     bin/
+	                   module	                   module
+	                     motw	                     motw
+	              pavement.py	              pavement.py
+	   sitemap_gen_config.xml	   sitemap_gen_config.xml
+	                   sphinx	                  sphinx/
+	                    utils	                   utils/
+
 .. {{{end}}}
 
 .. seealso::

@@ -36,6 +36,46 @@ using the :option:`--trace` option.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m trace --trace trace_example/main.py'))
 .. }}}
+
+::
+
+	$ python -m trace --trace trace_example/main.py
+	 --- modulename: threading, funcname: settrace
+	threading.py(90):     _trace_hook = func
+	 --- modulename: trace, funcname: <module>
+	<string>(1):   --- modulename: trace, funcname: <module>
+	main.py(7): """
+	main.py(12): from recurse import recurse
+	 --- modulename: recurse, funcname: <module>
+	recurse.py(7): """
+	recurse.py(12): def recurse(level):
+	recurse.py(18): def not_called():
+	main.py(14): def main():
+	main.py(19): if __name__ == '__main__':
+	main.py(20):     main()
+	 --- modulename: trace, funcname: main
+	main.py(15):     print 'This is the main program.'
+	This is the main program.
+	main.py(16):     recurse(2)
+	 --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(2)
+	recurse.py(14):     if level:
+	recurse.py(15):         recurse(level-1)
+	 --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(1)
+	recurse.py(14):     if level:
+	recurse.py(15):         recurse(level-1)
+	 --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(0)
+	recurse.py(14):     if level:
+	recurse.py(16):     return
+	recurse.py(16):     return
+	recurse.py(16):     return
+	main.py(17):     return
+
 .. {{{end}}}
 
 The first part of the output shows some setup operations performed by
@@ -59,6 +99,16 @@ to the same directory as the module, named after the module but with a
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m trace --count trace_example/main.py'))
 .. }}}
+
+::
+
+	$ python -m trace --count trace_example/main.py
+	trace: Could not open '/usr/lib/python2.6/threading.cover' for writing: [Errno 13] Permission denied: '/usr/lib/python2.6/threading.cover'- skipping
+	This is the main program.
+	recurse(2)
+	recurse(1)
+	recurse(0)
+
 .. {{{end}}}
 
 And two output files, ``trace_example/main.cover``:
@@ -90,6 +140,28 @@ report.
 .. cog.out(run_script(cog.inFile, '-m trace --coverdir coverdir1 --count --file coverdir1/coverage_report.dat trace_example/main.py', include_prefix=False))
 .. cog.out(run_script(cog.inFile, '-m trace --coverdir coverdir1 --count --file coverdir1/coverage_report.dat trace_example/main.py', include_prefix=False))
 .. }}}
+
+::
+
+	$ python -m trace --coverdir coverdir1 --count --file coverdir1/coverage_report.dat trace_example/main.py
+	Skipping counts file 'coverdir1/coverage_report.dat': [Errno 2] No such file or directory: 'coverdir1/coverage_report.dat'
+	This is the main program.
+	recurse(2)
+	recurse(1)
+	recurse(0)
+
+	$ python -m trace --coverdir coverdir1 --count --file coverdir1/coverage_report.dat trace_example/main.py
+	This is the main program.
+	recurse(2)
+	recurse(1)
+	recurse(0)
+
+	$ python -m trace --coverdir coverdir1 --count --file coverdir1/coverage_report.dat trace_example/main.py
+	This is the main program.
+	recurse(2)
+	recurse(1)
+	recurse(0)
+
 .. {{{end}}}
 
 Once the coverage information is recorded to the ``.cover`` files, you
@@ -98,6 +170,15 @@ can produce reports with the :option:`--report` option.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m trace --coverdir coverdir1 --report --summary --missing --file coverdir1/coverage_report.dat trace_example/main.py'))
 .. }}}
+
+::
+
+	$ python -m trace --coverdir coverdir1 --report --summary --missing --file coverdir1/coverage_report.dat trace_example/main.py
+	lines   cov%   module   (path)
+	  598     0%   threading   (/usr/lib/python2.6/threading.py)
+	    8   100%   trace_example.main   (trace_example/main.py)
+	    8    87%   trace_example.recurse   (trace_example/recurse.py)
+
 .. {{{end}}}
 
 Since the program ran three times, the coverage report shows values
@@ -122,6 +203,23 @@ For a simple list of the functions called, use :option:`--listfuncs`:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m trace --listfuncs trace_example/main.py'))
 .. }}}
+
+::
+
+	$ python -m trace --listfuncs trace_example/main.py
+	This is the main program.
+	recurse(2)
+	recurse(1)
+	recurse(0)
+	
+	functions called:
+	filename: /usr/lib/python2.6/threading.py, modulename: threading, funcname: settrace
+	filename: <string>, modulename: <string>, funcname: <module>
+	filename: trace_example/main.py, modulename: main, funcname: <module>
+	filename: trace_example/main.py, modulename: main, funcname: main
+	filename: trace_example/recurse.py, modulename: recurse, funcname: <module>
+	filename: trace_example/recurse.py, modulename: recurse, funcname: recurse
+
 .. {{{end}}}
 
 For more details about who is doing the calling, use
@@ -130,6 +228,36 @@ For more details about who is doing the calling, use
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m trace --listfuncs --trackcalls trace_example/main.py'))
 .. }}}
+
+::
+
+	$ python -m trace --listfuncs --trackcalls trace_example/main.py
+	This is the main program.
+	recurse(2)
+	recurse(1)
+	recurse(0)
+	
+	calling relationships:
+	
+	*** /usr/lib/python2.6/trace.py ***
+	  --> /usr/lib/python2.6/threading.py
+	    trace.Trace.run -> threading.settrace
+	  --> <string>
+	    trace.Trace.run -> <string>.<module>
+	
+	*** <string> ***
+	  --> trace_example/main.py
+	    <string>.<module> -> main.<module>
+	
+	*** trace_example/main.py ***
+	    main.<module> -> main.main
+	  --> trace_example/recurse.py
+	    main.<module> -> recurse.<module>
+	    main.main -> recurse.recurse
+	
+	*** trace_example/recurse.py ***
+	    recurse.recurse -> recurse.recurse
+
 .. {{{end}}}
 
 Programming Interface
@@ -150,6 +278,31 @@ information from ``main.py`` is included in the output.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'trace_run.py'))
 .. }}}
+
+::
+
+	$ python trace_run.py
+	 --- modulename: threading, funcname: settrace
+	threading.py(90):     _trace_hook = func
+	 --- modulename: trace_run, funcname: <module>
+	<string>(1):   --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(2)
+	recurse.py(14):     if level:
+	recurse.py(15):         recurse(level-1)
+	 --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(1)
+	recurse.py(14):     if level:
+	recurse.py(15):         recurse(level-1)
+	 --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(0)
+	recurse.py(14):     if level:
+	recurse.py(16):     return
+	recurse.py(16):     return
+	recurse.py(16):     return
+
 .. {{{end}}}
 
 That same output could have been produced with the :func:`runfunc()`
@@ -164,6 +317,28 @@ by the tracer.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'trace_runfunc.py'))
 .. }}}
+
+::
+
+	$ python trace_runfunc.py
+	 --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(2)
+	recurse.py(14):     if level:
+	recurse.py(15):         recurse(level-1)
+	 --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(1)
+	recurse.py(14):     if level:
+	recurse.py(15):         recurse(level-1)
+	 --- modulename: recurse, funcname: recurse
+	recurse.py(13):     print 'recurse(%s)' % level
+	recurse(0)
+	recurse.py(14):     if level:
+	recurse.py(16):     return
+	recurse.py(16):     return
+	recurse.py(16):     return
+
 .. {{{end}}}
 
 Saving Result Data
@@ -181,6 +356,18 @@ the :class:`CoverageResults` instance from the :class:`Trace` object.
 .. cog.out(run_script(cog.inFile, 'trace_CoverageResults.py'))
 .. cog.out(run_script(cog.inFile, 'find coverdir2', interpreter=None, include_prefix=False))
 .. }}}
+
+::
+
+	$ python trace_CoverageResults.py
+	recurse(2)
+	recurse(1)
+	recurse(0)
+
+	$ find coverdir2
+	coverdir2
+	coverdir2/trace_example.recurse.cover
+
 .. {{{end}}}
 
 And the contents of ``coverdir2/trace_example.recurse.cover``:
@@ -203,6 +390,16 @@ with cummulative data.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'trace_report.py'))
 .. }}}
+
+::
+
+	$ python trace_report.py
+	recurse(2)
+	recurse(1)
+	recurse(0)
+	lines   cov%   module   (path)
+	    7    57%   trace_example.recurse   (/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/trace/trace_example/recurse.py)
+
 .. {{{end}}}
 
 Trace Options

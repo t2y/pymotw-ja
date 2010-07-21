@@ -53,6 +53,20 @@ When run as myself (527, 501) on OS X, I see this output:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_process_user_example.py'))
 .. }}}
+
+::
+
+	$ python os_process_user_example.py
+	BEFORE CHANGE:
+	Effective User  : 500
+	Effective Group : 500
+	Actual User     : 500 morimoto
+	Actual Group    : 500
+	Actual Groups   : [10, 500]
+	
+	ERROR: Could not change effective group.  Re-run as root.
+	ERROR: Could not change effective user.  Re-run as root.
+
 .. {{{end}}}
 
 Notice that the values do not change. Since I am not running as root,
@@ -124,6 +138,22 @@ for child processes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_environ_example.py'))
 .. }}}
+
+::
+
+	$ python -u os_environ_example.py
+	Initial value: None
+	Child process:
+	
+	
+	Changed value: THIS VALUE WAS CHANGED
+	Child process:
+	THIS VALUE WAS CHANGED
+	
+	Removed value: None
+	Child process:
+	
+
 .. {{{end}}}
 
 
@@ -146,6 +176,16 @@ not be surprising:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_cwd_example.py'))
 .. }}}
+
+::
+
+	$ python os_cwd_example.py
+	Starting: /home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/os
+	['os_directories.py', 'os_spawn_example.py', 'os_popen4.py', 'os_popen.py', 'os_popen2_seq.py', 'os_popen3.py', 'os_access.py', 'os_stat_chmod_example.txt', 'os_process_user_example.py', 'os_process_id_example.py', 'os_system_shell.py', 'os_exec_example.py', 'os_popen2.py', '__init__.py', 'os_stat.py', 'index.rst', 'os_environ_example.py', 'os_waitpid_example.py', 'os_kill_example.py', 'os_walk.py', 'os_stat_chmod.py', 'os_system_background.py', 'os_cwd_example.py', 'os_wait_example.py', 'os_system_example.py', 'os_fork_example.py', 'os_symlinks.py']
+	Moving up one: ..
+	After move: /home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW
+	['mail.png', 'unittest', 'locale', 'datetime', 'decimal', 'warnings', 'pyclbr', 'urlparse', 'asynchat', 'hmac', 'internet_data.rst', 'shlex', 'optparse', 'threading', 'traceback', 'sys', 'cmd', 'struct', 'uuid', 'numeric.rst', 'robotparser', 'profilers.rst', 'operator', 'Queue', 'heapq', 'BaseHTTPServer', 'mhlib', 'rlcompleter', 'calendar', 'StringIO', 'plistlib', 'hashlib', 'shelve', 'feed.png', 'shutil', 'ipc.rst', 'zipfile', 'internet_protocols.rst', 'linecache', 'optional_os.rst', 'abc', 'base64', 'gzip', 'tabnanny', 'whichdb', 'file_formats.rst', 'cryptographic.rst', 'xml', 'miscelaneous.rst', 'profile', 'signal', 'grp', 'subprocess', 'csv', 'SocketServer', 'fractions', 'anydbm', 'pipes', 'inspect', 'builtins.rst', 'copyright.rst', 'logging', 'pickle', 'weakref', 'pdf_contents.rst', '__init__.py', '__init__.pyc', 'difflib', 'generic_os.rst', 'pkgutil', 'runtime_services.rst', 'glob', 'smtpd', 'site', 'getpass', 'imp', 'compileall', 'pydoc', 'sched', 'unix.rst', 'file_access.rst', 'ConfigParser', 'xmlrpclib', 'language.rst', 'bisect', 'about.rst', 'mmap', 'urllib', 'pprint', 'collections', 'dev_tools.rst', 'gettext', 'dircache', 'cc-by-nc-sa.png', 'data_types.rst', 'markup.rst', 'fnmatch', 'SimpleXMLRPCServer', 'readline', 'importing.rst', 'time', 'fileinput', 'dumbdbm', 'Cookie', 'array', 'tempfile', 'articles', 'bz2', 'gdbm', 'exceptions', 'contextlib', 'history.rst', 'smtplib', 'tarfile', 'string_services.rst', 'dis', 'compression.rst', 'webbrowser', 'multiprocessing', 'dbm', 'contents.rst', 'pwd', 'itertools', 'urllib2', 'os', 'platform', 'EasyDialogs', 'zipimport', 'gc', 'ospath', 'asyncore', 'timeit', 'resource', 'atexit', 'json', 'i18n.rst', 'filecmp', 'cgitb', 'copy', 'frameworks.rst', 'textwrap', 'getopt', 'string', 'persistence.rst', 'commands', 'dbhash', 'mailbox', 'functools', 'imaplib', 'trace', 'zlib']
+
 .. {{{end}}}
 
 
@@ -184,6 +224,16 @@ streams also assume Unix-like terminology:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen.py
+	popen, read:
+		stdout: 'to stdout\n'
+	
+	popen, write:
+		stdin: to stdin
+
 .. {{{end}}}
 
 The caller can only read from or write to the streams associated with
@@ -209,6 +259,13 @@ pipe; even serialized objects.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen2.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen2.py
+	popen2:
+		pass through: 'through stdin to stdout'
+
 .. {{{end}}}
 
 In most cases, it is desirable to have access to both stdout and
@@ -235,6 +292,14 @@ section of the Python library documentation.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen3.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen3.py
+	popen3:
+		pass through: 'through stdin to stdout'
+		stderr: ';to stderr\n'
+
 .. {{{end}}}
 
 And finally, :func:`popen4()` returns 2 streams, stdin and a merged
@@ -248,6 +313,13 @@ be logged, but not parsed directly.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen4.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen4.py
+	popen4:
+		combined output: 'through stdin to stdout;to stderr\n'
+
 .. {{{end}}}
 
 Besides accepting a single string command to be given to the shell for
@@ -262,6 +334,13 @@ case, the arguments are not processed by the shell.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_popen2_seq.py'))
 .. }}}
+
+::
+
+	$ python -u os_popen2_seq.py
+	popen2, cmd as sequence:
+		pass through: 'through stdin to stdout'
+
 .. {{{end}}}
 
 
@@ -292,6 +371,16 @@ should look something like this:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_access.py'))
 .. }}}
+
+::
+
+	$ python os_access.py
+	Testing: os_access.py
+	Exists: True
+	Readable: True
+	Writable: True
+	Executable: False
+
 .. {{{end}}}
 
 
@@ -324,6 +413,17 @@ was installed. Try passing different filenames on the command line to
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_stat.py'))
 .. }}}
+
+::
+
+	$ python os_stat.py
+	os.stat(os_stat.py):
+		Size: 1516
+		Permissions: 0100664
+		Owner: 500
+		Device: 2053
+		Last modified: Mon Jul 12 18:49:33 2010
+
 .. {{{end}}}
 
 
@@ -343,6 +443,12 @@ mode of the file to begin with:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_stat_chmod.py'))
 .. }}}
+
+::
+
+	$ python os_stat_chmod.py
+	Adding execute permission
+
 .. {{{end}}}
 
 .. _os-directories:
@@ -360,6 +466,16 @@ including creating, listing contents, and removing them.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_directories.py'))
 .. }}}
+
+::
+
+	$ python os_directories.py
+	Creating os_directories_example
+	Creating os_directories_example/example.txt
+	Listing os_directories_example
+	['example.txt']
+	Cleaning up
+
 .. {{{end}}}
 
 
@@ -393,6 +509,14 @@ message when it is used. In general it is better to use
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_symlinks.py'))
 .. }}}
+
+::
+
+	$ python os_symlinks.py
+	Creating link /tmp/tmp6T1GX9 -> os_symlinks.py
+	Permissions: 0120777
+	Points to: os_symlinks.py
+
 .. {{{end}}}
 
 
@@ -412,6 +536,213 @@ directory listing.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_walk.py'))
 .. }}}
+
+::
+
+	$ python os_walk.py
+	
+	/tmp
+		.ICE-unix/
+		.X0-lock
+		.X11-unix/
+		.esd-500/
+		3659_02-0115.txt
+		4AO3EV.tmp
+		75HYEV.tmp
+		Excel2007BinaryFileFormat(xlsb)Specification.pdf
+		bkup.log
+		dhklf008.tgz
+		dirs-0KTOFV
+		dirs-28UUFV
+		dirs-5CSDFV
+		dirs-62HUEV
+		dirs-6JBKFV
+		dirs-73MBEV
+		dirs-7P7RDV
+		dirs-AKCMFV
+		dirs-AMF9EV
+		dirs-CARSFV
+		dirs-EVQGFV
+		dirs-G3YFFV
+		dirs-G7OHEV
+		dirs-IANEFV
+		dirs-IVZ7DV
+		dirs-J8SREV
+		dirs-JVGAFV
+		dirs-K4SMEV
+		dirs-KM7ZFV
+		dirs-LN8MEV
+		dirs-M2R8EV
+		dirs-M9OHEV
+		dirs-NP95DV
+		dirs-ORRHDV
+		dirs-QOCVEV
+		dirs-RO2GEV
+		dirs-S0TWEV
+		dirs-U53HDV
+		dirs-VHBRDV
+		dirs-YPW1DV
+		dirs-ZFHPEV
+		django.po
+		djangojs.po
+		dmfxlibmlver3.doc
+		dmfxlibver3.doc
+		example.db
+		hosts
+		kde-morimoto/
+		keyring-NNmbf2/
+		keyring-qoDG37/
+		ksocket-morimoto/
+		nsmail-1.asc
+		nsmail-2.asc
+		orbit-morimoto/
+		plugtmp-1/
+		plugtmp/
+		pulse-uXTDCdjuejPW/
+		pymotw_import_example.shelve
+		scim-helper-manager-socket-morimoto
+		scim-panel-socket:0-morimoto
+		scim-socket-frontend-morimoto
+		sphinx-err-1j4tOo.log
+		sphinx-err-2emfzd.log
+		sphinx-err-2vIYM7.log
+		sphinx-err-68_vWW.log
+		sphinx-err-7bn26G.log
+		sphinx-err-9YxfTg.log
+		sphinx-err-AkPXqU.log
+		sphinx-err-B6nIVr.log
+		sphinx-err-BhIGyy.log
+		sphinx-err-CHBG5d.log
+		sphinx-err-DbJGW6.log
+		sphinx-err-E4rP0z.log
+		sphinx-err-FpjRCb.log
+		sphinx-err-GX7aTs.log
+		sphinx-err-Mat86d.log
+		sphinx-err-O5B2V_.log
+		sphinx-err-R78Fqn.log
+		sphinx-err-Rlu__E.log
+		sphinx-err-UJhDOd.log
+		sphinx-err-VRQ2FL.log
+		sphinx-err-_W2ccO.log
+		sphinx-err-aTHJDM.log
+		sphinx-err-bOdk1X.log
+		sphinx-err-dOVkWv.log
+		sphinx-err-dZIo1p.log
+		sphinx-err-dg4xGX.log
+		sphinx-err-fD9qaA.log
+		sphinx-err-gEqdhj.log
+		sphinx-err-gLHw0q.log
+		sphinx-err-h4zdqz.log
+		sphinx-err-i9n7cC.log
+		sphinx-err-jHZNpP.log
+		sphinx-err-jg9ZEJ.log
+		sphinx-err-jj3ld1.log
+		sphinx-err-ke6Yfj.log
+		sphinx-err-l2jixV.log
+		sphinx-err-mECiSc.log
+		sphinx-err-o9Q6G4.log
+		sphinx-err-rxOeos.log
+		sphinx-err-tACpKT.log
+		sphinx-err-u1Da67.log
+		ssh-NHRlfb2285/
+		ssh-zRKFQQ2189/
+		trace_example.recurse.cover
+		tracker-morimoto/
+		virtual-morimoto.26mNh3/
+		virtual-morimoto.FWbKZy/
+		virtual-morimoto.NUY9DD/
+		virtual-morimoto.NfSC6x/
+		virtual-morimoto.RDLY7B/
+		virtual-morimoto.vPtnVs/
+		vmware-temp/
+	
+	/tmp/virtual-morimoto.FWbKZy
+	
+	/tmp/pulse-uXTDCdjuejPW
+		native
+		pid
+	
+	/tmp/virtual-morimoto.NUY9DD
+	
+	/tmp/.ICE-unix
+		2189
+	
+	/tmp/virtual-morimoto.NfSC6x
+	
+	/tmp/tracker-morimoto
+		Attachments/
+		cache.db
+		morimoto_tracker_lock
+	
+	/tmp/tracker-morimoto/Attachments
+	
+	/tmp/virtual-morimoto.26mNh3
+	
+	/tmp/plugtmp-1
+	
+	/tmp/ssh-zRKFQQ2189
+		agent.2189
+	
+	/tmp/keyring-NNmbf2
+		socket
+		socket.pkcs11
+		socket.ssh
+	
+	/tmp/vmware-temp
+		vmware-root/
+	
+	/tmp/keyring-qoDG37
+		socket
+		socket.pkcs11
+		socket.ssh
+	
+	/tmp/.X11-unix
+		X0
+	
+	/tmp/plugtmp
+	
+	/tmp/orbit-morimoto
+		bonobo-activation-register-d21c58466e94adb1be8470194c44e2d9.lock
+		bonobo-activation-server-d21c58466e94adb1be8470194c44e2d9-ior
+		linc-194e-0-56d294e97c613
+		linc-700d-0-2ff90f92a6423
+		linc-88b-0-3f1bd51b782d8
+		linc-88d-0-5c6a3cb3f1fe
+		linc-8bc-0-e5cbc58e4d6
+		linc-8be-0-537db2987ad5f
+		linc-8fa-0-432f5a6780ff
+		linc-907-0-6d7bf08ea2e6f
+		linc-908-0-231ea7d55663d
+		linc-90a-0-4405393733f30
+		linc-90c-0-35a9515b435ce
+		linc-90e-0-26c10e9933a5e
+		linc-90f-0-30b9d7ca6098f
+		linc-917-0-2d7c39cf46778
+		linc-91d-0-b5247be79cb8
+		linc-938-0-2f4cfb6a1ad2
+		linc-939-0-45d9b60e86700
+		linc-944-0-8b8597db7ec6
+		linc-946-0-1a31ed0b85b2c
+		linc-950-0-7299709ba851
+		linc-9da-0-13aa6968b6991
+		linc-a13-0-7fc1535310719
+	
+	/tmp/ksocket-morimoto
+		kdeinit4__0
+		klauncherMT3558.slave-socket
+	
+	/tmp/kde-morimoto
+	
+	/tmp/ssh-NHRlfb2285
+		agent.2285
+	
+	/tmp/.esd-500
+		socket
+	
+	/tmp/virtual-morimoto.RDLY7B
+	
+	/tmp/virtual-morimoto.vPtnVs
+
 .. {{{end}}}
 
 .. _os-system:
@@ -437,6 +768,39 @@ the command line to be executed by a sub-process running a shell.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_system_example.py'))
 .. }}}
+
+::
+
+	$ python -u os_system_example.py
+	合計 152
+	-rw-rw-r-- 1 morimoto morimoto     0 2010-07-12 18:49 __init__.py
+	-rw-rw-r-- 1 morimoto morimoto 50263 2010-07-21 18:52 index.rst
+	-rw-rw-r-- 1 morimoto morimoto  1360 2010-07-12 18:49 os_access.py
+	-rw-rw-r-- 1 morimoto morimoto  1347 2010-07-12 18:49 os_cwd_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1499 2010-07-12 18:49 os_directories.py
+	-rw-rw-r-- 1 morimoto morimoto  1573 2010-07-12 18:49 os_environ_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1241 2010-07-12 18:49 os_exec_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1267 2010-07-12 18:49 os_fork_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1703 2010-07-12 18:49 os_kill_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1476 2010-07-12 18:49 os_popen.py
+	-rw-rw-r-- 1 morimoto morimoto  1506 2010-07-12 18:49 os_popen2.py
+	-rw-rw-r-- 1 morimoto morimoto  1528 2010-07-12 18:49 os_popen2_seq.py
+	-rw-rw-r-- 1 morimoto morimoto  1658 2010-07-12 18:49 os_popen3.py
+	-rw-rw-r-- 1 morimoto morimoto  1567 2010-07-12 18:49 os_popen4.py
+	-rw-rw-r-- 1 morimoto morimoto  1395 2010-07-12 18:49 os_process_id_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1896 2010-07-12 18:49 os_process_user_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1206 2010-07-12 18:49 os_spawn_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1516 2010-07-12 18:49 os_stat.py
+	-rw-rw-r-- 1 morimoto morimoto  1751 2010-07-12 18:49 os_stat_chmod.py
+	-rwxrw-r-- 1 morimoto morimoto     8 2010-07-21 18:59 os_stat_chmod_example.txt
+	-rw-rw-r-- 1 morimoto morimoto  1421 2010-07-12 18:49 os_symlinks.py
+	-rw-rw-r-- 1 morimoto morimoto  1250 2010-07-12 18:49 os_system_background.py
+	-rw-rw-r-- 1 morimoto morimoto  1191 2010-07-12 18:49 os_system_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1214 2010-07-12 18:49 os_system_shell.py
+	-rw-rw-r-- 1 morimoto morimoto  1499 2010-07-12 18:49 os_wait_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1555 2010-07-12 18:49 os_waitpid_example.py
+	-rw-rw-r-- 1 morimoto morimoto  1643 2010-07-12 18:49 os_walk.py
+
 .. {{{end}}}
 
 
@@ -450,6 +814,12 @@ include shell syntax such as globbing or environment variables:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_system_shell.py'))
 .. }}}
+
+::
+
+	$ python -u os_system_shell.py
+	drwxrwxr-x 2 morimoto morimoto 4096 2010-07-21 18:59 .
+
 .. {{{end}}}
 
 
@@ -470,6 +840,15 @@ accomplish the same thing.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_system_background.py'))
 .. }}}
+
+::
+
+	$ python -u os_system_background.py
+	Calling...
+	2010年  7月 21日 水曜日 18:59:07 JST
+	Sleeping...
+	2010年  7月 21日 水曜日 18:59:10 JST
+
 .. {{{end}}}
 
 .. _creating-processes-with-os-fork:
@@ -496,6 +875,13 @@ example, but it should look something like:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u os_fork_example.py'))
 .. }}}
+
+::
+
+	$ python -u os_fork_example.py
+	I am the child
+	Child process id: 6626
+
 .. {{{end}}}
 
 After the fork, you end up with two processes running the same
@@ -532,6 +918,18 @@ In a real app, you probably wouldn't need to (or want to) call
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_kill_example.py'))
 .. }}}
+
+::
+
+	$ python os_kill_example.py
+	Forking...
+	PARENT: Pausing before sending signal...
+	PARENT: Signaling 6629
+	Forking...
+	CHILD: Setting up signal handler
+	CHILD: Pausing to wait for signal
+	Received USR1 in process 6629
+
 .. {{{end}}}
 
 
@@ -551,6 +949,121 @@ process.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_exec_example.py'))
 .. }}}
+
+::
+
+	$ python os_exec_example.py
+	合計 10396
+	-rw-rw-r--  1 morimoto morimoto  142899 2010-07-21 12:56 3659_02-0115.txt
+	-rw-------  1 morimoto morimoto    2419 2010-06-29 18:43 4AO3EV.tmp
+	-rw-------  1 morimoto morimoto    2419 2010-06-29 12:19 75HYEV.tmp
+	-rw-rw-r--  1 morimoto morimoto 4458794 2010-07-14 16:21 Excel2007BinaryFileFormat(xlsb)Specification.pdf
+	-rw-rw-r--  1 morimoto morimoto     168 2010-07-21 17:52 bkup.log
+	-rw-rw-r--  1 morimoto morimoto 3990400 2010-07-15 14:02 dhklf008.tgz
+	-rw-------  1 morimoto morimoto       0 2010-07-06 08:53 dirs-0KTOFV
+	-rw-------  1 morimoto morimoto       0 2010-07-06 08:50 dirs-28UUFV
+	-rw-------  1 morimoto morimoto       0 2010-07-15 08:44 dirs-5CSDFV
+	-rw-------  1 morimoto morimoto       0 2010-06-30 15:16 dirs-62HUEV
+	-rw-------  1 morimoto morimoto       0 2010-07-16 08:56 dirs-6JBKFV
+	-rw-------  1 morimoto morimoto       0 2010-06-16 08:41 dirs-73MBEV
+	-rw-------  1 morimoto morimoto       0 2010-06-02 03:07 dirs-7P7RDV
+	-rw-------  1 morimoto morimoto       0 2010-07-08 08:08 dirs-AKCMFV
+	-rw-------  1 morimoto morimoto       0 2010-06-28 09:04 dirs-AMF9EV
+	-rw-------  1 morimoto morimoto       0 2010-07-09 07:32 dirs-CARSFV
+	-rw-------  1 morimoto morimoto       0 2010-07-11 11:59 dirs-EVQGFV
+	-rw-------  1 morimoto morimoto       0 2010-07-13 08:38 dirs-G3YFFV
+	-rw-------  1 morimoto morimoto       0 2010-06-18 08:53 dirs-G7OHEV
+	-rw-------  1 morimoto morimoto       0 2010-07-14 08:55 dirs-IANEFV
+	-rw-------  1 morimoto morimoto       0 2010-06-12 10:58 dirs-IVZ7DV
+	-rw-------  1 morimoto morimoto       0 2010-07-01 08:48 dirs-J8SREV
+	-rw-------  1 morimoto morimoto       0 2010-06-29 08:53 dirs-JVGAFV
+	-rw-------  1 morimoto morimoto       0 2010-06-17 08:30 dirs-K4SMEV
+	-rw-------  1 morimoto morimoto       0 2010-07-20 08:42 dirs-KM7ZFV
+	-rw-------  1 morimoto morimoto       0 2010-06-21 08:39 dirs-LN8MEV
+	-rw-------  1 morimoto morimoto       0 2010-07-02 08:59 dirs-M2R8EV
+	-rw-------  1 morimoto morimoto       0 2010-06-15 08:30 dirs-M9OHEV
+	-rw-------  1 morimoto morimoto       0 2010-06-22 08:15 dirs-NP95DV
+	-rw-------  1 morimoto morimoto       0 2010-06-06 13:34 dirs-ORRHDV
+	-rw-------  1 morimoto morimoto       0 2010-06-25 08:05 dirs-QOCVEV
+	-rw-------  1 morimoto morimoto       0 2010-06-11 08:24 dirs-RO2GEV
+	-rw-------  1 morimoto morimoto       0 2010-06-26 13:12 dirs-S0TWEV
+	-rw-------  1 morimoto morimoto       0 2010-06-03 08:37 dirs-U53HDV
+	-rw-------  1 morimoto morimoto       0 2010-05-31 09:13 dirs-VHBRDV
+	-rw-------  1 morimoto morimoto       0 2010-06-14 08:33 dirs-YPW1DV
+	-rw-------  1 morimoto morimoto       0 2010-06-23 08:33 dirs-ZFHPEV
+	-rw-r--r--  1 morimoto morimoto   51739 2010-07-20 15:05 django.po
+	-rw-r--r--  1 morimoto morimoto   18674 2010-07-15 19:29 djangojs.po
+	-rw-r--r--  1 morimoto morimoto  848384 2010-04-16 09:42 dmfxlibmlver3.doc
+	-rw-rw-r--  1 morimoto morimoto  826880 2010-06-16 12:50 dmfxlibver3.doc
+	-rw-rw-r--  1 morimoto morimoto   12288 2010-07-21 18:58 example.db
+	-rw-r--r--  1 morimoto morimoto     187 2010-02-04 06:51 hosts
+	drwx------  2 morimoto morimoto    4096 2010-07-20 09:07 kde-morimoto
+	drwx------  2 morimoto morimoto    4096 2010-07-20 08:42 keyring-NNmbf2
+	drwx------  2 morimoto morimoto    4096 2009-09-14 08:15 keyring-qoDG37
+	drwx------  2 morimoto morimoto    4096 2010-07-20 09:07 ksocket-morimoto
+	-rw-------  1 morimoto morimoto    6462 2010-06-14 08:42 nsmail-1.asc
+	-rw-------  1 morimoto morimoto    2498 2010-07-21 10:41 nsmail-2.asc
+	drwx------  2 morimoto morimoto    4096 2010-07-21 18:59 orbit-morimoto
+	drwx------  2 morimoto morimoto    4096 2010-07-21 15:59 plugtmp
+	drwx------  2 morimoto morimoto    4096 2010-07-12 18:46 plugtmp-1
+	drwx------. 2 morimoto morimoto    4096 2010-07-20 08:42 pulse-uXTDCdjuejPW
+	-rw-rw-r--  1 morimoto morimoto   12288 2010-07-21 18:57 pymotw_import_example.shelve
+	srw-------  1 morimoto morimoto       0 2010-07-20 08:42 scim-helper-manager-socket-morimoto
+	srw-------  1 morimoto morimoto       0 2010-07-20 08:42 scim-panel-socket:0-morimoto
+	srw-------  1 morimoto morimoto       0 2010-07-20 08:42 scim-socket-frontend-morimoto
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 18:32 sphinx-err-1j4tOo.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 17:29 sphinx-err-2emfzd.log
+	-rw-------  1 morimoto morimoto    1305 2010-07-12 19:42 sphinx-err-2vIYM7.log
+	-rw-------  1 morimoto morimoto     792 2010-07-15 09:54 sphinx-err-68_vWW.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 07:38 sphinx-err-7bn26G.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 20:37 sphinx-err-9YxfTg.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 09:57 sphinx-err-AkPXqU.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 09:37 sphinx-err-B6nIVr.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 10:10 sphinx-err-BhIGyy.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 21:00 sphinx-err-CHBG5d.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-20 18:30 sphinx-err-DbJGW6.log
+	-rw-------  1 morimoto morimoto    1305 2010-07-12 19:45 sphinx-err-E4rP0z.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 08:20 sphinx-err-FpjRCb.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 09:37 sphinx-err-GX7aTs.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-20 18:06 sphinx-err-Mat86d.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 17:36 sphinx-err-O5B2V_.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-20 09:29 sphinx-err-R78Fqn.log
+	-rw-------  1 morimoto morimoto    1375 2010-07-12 20:05 sphinx-err-Rlu__E.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 08:25 sphinx-err-UJhDOd.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 17:44 sphinx-err-VRQ2FL.log
+	-rw-------  1 morimoto morimoto     792 2010-07-14 17:33 sphinx-err-_W2ccO.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 18:27 sphinx-err-aTHJDM.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 10:15 sphinx-err-bOdk1X.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 18:34 sphinx-err-dOVkWv.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 18:03 sphinx-err-dZIo1p.log
+	-rw-------  1 morimoto morimoto     832 2010-07-14 17:33 sphinx-err-dg4xGX.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 17:43 sphinx-err-fD9qaA.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 17:34 sphinx-err-gEqdhj.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 20:55 sphinx-err-gLHw0q.log
+	-rw-------  1 morimoto morimoto     832 2010-07-15 09:56 sphinx-err-h4zdqz.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 08:33 sphinx-err-i9n7cC.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 10:14 sphinx-err-jHZNpP.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 09:25 sphinx-err-jg9ZEJ.log
+	-rw-------  1 morimoto morimoto     832 2010-07-12 19:41 sphinx-err-jj3ld1.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 09:27 sphinx-err-ke6Yfj.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 08:21 sphinx-err-l2jixV.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-16 10:19 sphinx-err-mECiSc.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 17:38 sphinx-err-o9Q6G4.log
+	-rw-------  1 morimoto morimoto     792 2010-07-12 19:38 sphinx-err-rxOeos.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-16 10:28 sphinx-err-tACpKT.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 18:05 sphinx-err-u1Da67.log
+	drwx------  2 morimoto morimoto    4096 2010-07-20 08:42 ssh-NHRlfb2285
+	drwx------  2 morimoto morimoto    4096 2010-07-20 08:42 ssh-zRKFQQ2189
+	-rw-rw-r--  1 morimoto morimoto     448 2010-07-21 18:50 trace_example.recurse.cover
+	drwx------. 3 morimoto morimoto    4096 2010-07-20 09:08 tracker-morimoto
+	drwx------  2 morimoto morimoto    4096 2010-07-14 08:56 virtual-morimoto.26mNh3
+	drwx------  2 morimoto morimoto    4096 2010-07-11 11:59 virtual-morimoto.FWbKZy
+	drwx------  2 morimoto morimoto    4096 2010-07-13 08:39 virtual-morimoto.NUY9DD
+	drwx------  2 morimoto morimoto    4096 2010-07-20 08:42 virtual-morimoto.NfSC6x
+	drwx------  2 morimoto morimoto    4096 2010-07-16 08:56 virtual-morimoto.RDLY7B
+	drwx------  2 morimoto morimoto    4096 2010-07-15 08:44 virtual-morimoto.vPtnVs
+	drwxrwxrwx  3 root     root        4096 2010-07-13 08:38 vmware-temp
+
 .. {{{end}}}
 
 
@@ -590,6 +1103,32 @@ is the exit status").
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_wait_example.py'))
 .. }}}
+
+::
+
+	$ python os_wait_example.py
+	PARENT: Forking 0
+	WORKER 0: Starting
+	WORKER 0: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	WORKER 1: Starting
+	WORKER 1: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	PARENT: Forking 2
+	WORKER 2: Starting
+	WORKER 2: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	PARENT: Forking 2
+	PARENT: Waiting for 0
+	PARENT: (6635, 0)
+	PARENT: Waiting for 1
+	PARENT: (6636, 256)
+	PARENT: Waiting for 2
+	PARENT: (6637, 512)
+
 .. {{{end}}}
 
 If you want a specific process, use :func:`os.waitpid()`.
@@ -601,6 +1140,32 @@ If you want a specific process, use :func:`os.waitpid()`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_waitpid_example.py'))
 .. }}}
+
+::
+
+	$ python os_waitpid_example.py
+	PARENT: Forking 0
+	WORKER 0: Starting
+	WORKER 0: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	WORKER 1: Starting
+	WORKER 1: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	PARENT: Forking 2
+	WORKER 2: Starting
+	WORKER 2: Finishing
+	PARENT: Forking 0
+	PARENT: Forking 1
+	PARENT: Forking 2
+	PARENT: Waiting for 6640
+	PARENT: (6640, 0)
+	PARENT: Waiting for 6641
+	PARENT: (6641, 256)
+	PARENT: Waiting for 6642
+	PARENT: (6642, 512)
+
 .. {{{end}}}
 
 :func:`wait3()` and :func:`wait4()` work in a similar manner, but
@@ -620,6 +1185,121 @@ As a convenience, the :func:`spawn*()` family of functions handles the
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'os_spawn_example.py'))
 .. }}}
+
+::
+
+	$ python os_spawn_example.py
+	合計 10396
+	-rw-rw-r--  1 morimoto morimoto  142899 2010-07-21 12:56 3659_02-0115.txt
+	-rw-------  1 morimoto morimoto    2419 2010-06-29 18:43 4AO3EV.tmp
+	-rw-------  1 morimoto morimoto    2419 2010-06-29 12:19 75HYEV.tmp
+	-rw-rw-r--  1 morimoto morimoto 4458794 2010-07-14 16:21 Excel2007BinaryFileFormat(xlsb)Specification.pdf
+	-rw-rw-r--  1 morimoto morimoto     168 2010-07-21 17:52 bkup.log
+	-rw-rw-r--  1 morimoto morimoto 3990400 2010-07-15 14:02 dhklf008.tgz
+	-rw-------  1 morimoto morimoto       0 2010-07-06 08:53 dirs-0KTOFV
+	-rw-------  1 morimoto morimoto       0 2010-07-06 08:50 dirs-28UUFV
+	-rw-------  1 morimoto morimoto       0 2010-07-15 08:44 dirs-5CSDFV
+	-rw-------  1 morimoto morimoto       0 2010-06-30 15:16 dirs-62HUEV
+	-rw-------  1 morimoto morimoto       0 2010-07-16 08:56 dirs-6JBKFV
+	-rw-------  1 morimoto morimoto       0 2010-06-16 08:41 dirs-73MBEV
+	-rw-------  1 morimoto morimoto       0 2010-06-02 03:07 dirs-7P7RDV
+	-rw-------  1 morimoto morimoto       0 2010-07-08 08:08 dirs-AKCMFV
+	-rw-------  1 morimoto morimoto       0 2010-06-28 09:04 dirs-AMF9EV
+	-rw-------  1 morimoto morimoto       0 2010-07-09 07:32 dirs-CARSFV
+	-rw-------  1 morimoto morimoto       0 2010-07-11 11:59 dirs-EVQGFV
+	-rw-------  1 morimoto morimoto       0 2010-07-13 08:38 dirs-G3YFFV
+	-rw-------  1 morimoto morimoto       0 2010-06-18 08:53 dirs-G7OHEV
+	-rw-------  1 morimoto morimoto       0 2010-07-14 08:55 dirs-IANEFV
+	-rw-------  1 morimoto morimoto       0 2010-06-12 10:58 dirs-IVZ7DV
+	-rw-------  1 morimoto morimoto       0 2010-07-01 08:48 dirs-J8SREV
+	-rw-------  1 morimoto morimoto       0 2010-06-29 08:53 dirs-JVGAFV
+	-rw-------  1 morimoto morimoto       0 2010-06-17 08:30 dirs-K4SMEV
+	-rw-------  1 morimoto morimoto       0 2010-07-20 08:42 dirs-KM7ZFV
+	-rw-------  1 morimoto morimoto       0 2010-06-21 08:39 dirs-LN8MEV
+	-rw-------  1 morimoto morimoto       0 2010-07-02 08:59 dirs-M2R8EV
+	-rw-------  1 morimoto morimoto       0 2010-06-15 08:30 dirs-M9OHEV
+	-rw-------  1 morimoto morimoto       0 2010-06-22 08:15 dirs-NP95DV
+	-rw-------  1 morimoto morimoto       0 2010-06-06 13:34 dirs-ORRHDV
+	-rw-------  1 morimoto morimoto       0 2010-06-25 08:05 dirs-QOCVEV
+	-rw-------  1 morimoto morimoto       0 2010-06-11 08:24 dirs-RO2GEV
+	-rw-------  1 morimoto morimoto       0 2010-06-26 13:12 dirs-S0TWEV
+	-rw-------  1 morimoto morimoto       0 2010-06-03 08:37 dirs-U53HDV
+	-rw-------  1 morimoto morimoto       0 2010-05-31 09:13 dirs-VHBRDV
+	-rw-------  1 morimoto morimoto       0 2010-06-14 08:33 dirs-YPW1DV
+	-rw-------  1 morimoto morimoto       0 2010-06-23 08:33 dirs-ZFHPEV
+	-rw-r--r--  1 morimoto morimoto   51739 2010-07-20 15:05 django.po
+	-rw-r--r--  1 morimoto morimoto   18674 2010-07-15 19:29 djangojs.po
+	-rw-r--r--  1 morimoto morimoto  848384 2010-04-16 09:42 dmfxlibmlver3.doc
+	-rw-rw-r--  1 morimoto morimoto  826880 2010-06-16 12:50 dmfxlibver3.doc
+	-rw-rw-r--  1 morimoto morimoto   12288 2010-07-21 18:58 example.db
+	-rw-r--r--  1 morimoto morimoto     187 2010-02-04 06:51 hosts
+	drwx------  2 morimoto morimoto    4096 2010-07-20 09:07 kde-morimoto
+	drwx------  2 morimoto morimoto    4096 2010-07-20 08:42 keyring-NNmbf2
+	drwx------  2 morimoto morimoto    4096 2009-09-14 08:15 keyring-qoDG37
+	drwx------  2 morimoto morimoto    4096 2010-07-20 09:07 ksocket-morimoto
+	-rw-------  1 morimoto morimoto    6462 2010-06-14 08:42 nsmail-1.asc
+	-rw-------  1 morimoto morimoto    2498 2010-07-21 10:41 nsmail-2.asc
+	drwx------  2 morimoto morimoto    4096 2010-07-21 18:59 orbit-morimoto
+	drwx------  2 morimoto morimoto    4096 2010-07-21 15:59 plugtmp
+	drwx------  2 morimoto morimoto    4096 2010-07-12 18:46 plugtmp-1
+	drwx------. 2 morimoto morimoto    4096 2010-07-20 08:42 pulse-uXTDCdjuejPW
+	-rw-rw-r--  1 morimoto morimoto   12288 2010-07-21 18:57 pymotw_import_example.shelve
+	srw-------  1 morimoto morimoto       0 2010-07-20 08:42 scim-helper-manager-socket-morimoto
+	srw-------  1 morimoto morimoto       0 2010-07-20 08:42 scim-panel-socket:0-morimoto
+	srw-------  1 morimoto morimoto       0 2010-07-20 08:42 scim-socket-frontend-morimoto
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 18:32 sphinx-err-1j4tOo.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 17:29 sphinx-err-2emfzd.log
+	-rw-------  1 morimoto morimoto    1305 2010-07-12 19:42 sphinx-err-2vIYM7.log
+	-rw-------  1 morimoto morimoto     792 2010-07-15 09:54 sphinx-err-68_vWW.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 07:38 sphinx-err-7bn26G.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 20:37 sphinx-err-9YxfTg.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 09:57 sphinx-err-AkPXqU.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 09:37 sphinx-err-B6nIVr.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 10:10 sphinx-err-BhIGyy.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 21:00 sphinx-err-CHBG5d.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-20 18:30 sphinx-err-DbJGW6.log
+	-rw-------  1 morimoto morimoto    1305 2010-07-12 19:45 sphinx-err-E4rP0z.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 08:20 sphinx-err-FpjRCb.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 09:37 sphinx-err-GX7aTs.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-20 18:06 sphinx-err-Mat86d.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 17:36 sphinx-err-O5B2V_.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-20 09:29 sphinx-err-R78Fqn.log
+	-rw-------  1 morimoto morimoto    1375 2010-07-12 20:05 sphinx-err-Rlu__E.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 08:25 sphinx-err-UJhDOd.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 17:44 sphinx-err-VRQ2FL.log
+	-rw-------  1 morimoto morimoto     792 2010-07-14 17:33 sphinx-err-_W2ccO.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 18:27 sphinx-err-aTHJDM.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 10:15 sphinx-err-bOdk1X.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 18:34 sphinx-err-dOVkWv.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 18:03 sphinx-err-dZIo1p.log
+	-rw-------  1 morimoto morimoto     832 2010-07-14 17:33 sphinx-err-dg4xGX.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 17:43 sphinx-err-fD9qaA.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-14 17:34 sphinx-err-gEqdhj.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 20:55 sphinx-err-gLHw0q.log
+	-rw-------  1 morimoto morimoto     832 2010-07-15 09:56 sphinx-err-h4zdqz.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 08:33 sphinx-err-i9n7cC.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-15 10:14 sphinx-err-jHZNpP.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 09:25 sphinx-err-jg9ZEJ.log
+	-rw-------  1 morimoto morimoto     832 2010-07-12 19:41 sphinx-err-jj3ld1.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 09:27 sphinx-err-ke6Yfj.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 08:21 sphinx-err-l2jixV.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-16 10:19 sphinx-err-mECiSc.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 17:38 sphinx-err-o9Q6G4.log
+	-rw-------  1 morimoto morimoto     792 2010-07-12 19:38 sphinx-err-rxOeos.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-16 10:28 sphinx-err-tACpKT.log
+	-rw-------  1 morimoto morimoto    1684 2010-07-21 18:05 sphinx-err-u1Da67.log
+	drwx------  2 morimoto morimoto    4096 2010-07-20 08:42 ssh-NHRlfb2285
+	drwx------  2 morimoto morimoto    4096 2010-07-20 08:42 ssh-zRKFQQ2189
+	-rw-rw-r--  1 morimoto morimoto     448 2010-07-21 18:50 trace_example.recurse.cover
+	drwx------. 3 morimoto morimoto    4096 2010-07-20 09:08 tracker-morimoto
+	drwx------  2 morimoto morimoto    4096 2010-07-14 08:56 virtual-morimoto.26mNh3
+	drwx------  2 morimoto morimoto    4096 2010-07-11 11:59 virtual-morimoto.FWbKZy
+	drwx------  2 morimoto morimoto    4096 2010-07-13 08:39 virtual-morimoto.NUY9DD
+	drwx------  2 morimoto morimoto    4096 2010-07-20 08:42 virtual-morimoto.NfSC6x
+	drwx------  2 morimoto morimoto    4096 2010-07-16 08:56 virtual-morimoto.RDLY7B
+	drwx------  2 morimoto morimoto    4096 2010-07-15 08:44 virtual-morimoto.vPtnVs
+	drwxrwxrwx  3 root     root        4096 2010-07-13 08:38 vmware-temp
+
 .. {{{end}}}
 
 

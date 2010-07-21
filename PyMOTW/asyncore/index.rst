@@ -38,6 +38,125 @@ One example of how this client app may run is:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'asyncore_http_client.py'))
 .. }}}
+
+::
+
+	$ python asyncore_http_client.py
+	http://www.python.org/: connecting to ('www.python.org', 80)
+	http://www.doughellmann.com/PyMOTW/contents.html: connecting to ('www.doughellmann.com', 80)
+	root: LOOP STARTING
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: writable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: writable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_connect()
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_write() -> "GET http://www.doughellmann.com/PyMOTW/contents.html HTTP/1.0
+	
+	"
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: writable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_connect()
+	http://www.python.org/: handle_write() -> "GET http://www.python.org/ HTTP/1.0
+	
+	"
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 268 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 4206 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 2804 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_read() -> 1776 bytes
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: handle_close()
+	http://www.python.org/: handle_read() -> 0 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1173 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_close()
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 0 bytes
+	root: LOOP DONE
+	http://www.python.org/ got 18600 bytes
+	http://www.doughellmann.com/PyMOTW/contents.html got 27965 bytes
+
 .. {{{end}}}
 
 Servers
@@ -54,6 +173,93 @@ The EchoServer and EchoHandler are defined in separate classes because they do d
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'asyncore_echo_server.py'))
 .. }}}
+
+::
+
+	$ python asyncore_echo_server.py
+	EchoServer: binding to ('127.0.0.1', 58842)
+	EchoClient: connecting to ('127.0.0.1', 58842)
+	EchoClient: writable() -> True
+	EchoServer: handle_accept() -> ('127.0.0.1', 35264)
+	EchoServer: handle_close()
+	EchoClient: handle_connect()
+	EchoClient: handle_write() -> (512) "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	egestas, enim et consectetuer ullamcorper, lectus ligula rutrum leo, a
+	elementum elit tortor eu quam. Duis tincidunt nisi ut ante. Nulla
+	facilisi. Sed tristique eros eu libero. Pellentesque vel arcu. Vivamus
+	purus orci, iaculis ac, suscipit sit amet, pulvinar eu,
+	lacus. Praesent placerat tortor sed nisl. Nunc blandit diam egestas
+	dui. Pellentesque habitant morbi tristique senectus et netus et
+	malesuada fames ac turpis egestas. Aliquam viverra f"
+	EchoClient: writable() -> True
+	EchoHandler('127.0.0.1', 58842): writable() -> False
+	EchoHandler('127.0.0.1', 58842): handle_read() -> (256) "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	egestas, enim et consectetuer ullamcorper, lectus ligula rutrum leo, a
+	elementum elit tortor eu quam. Duis tincidunt nisi ut ante. Nulla
+	facilisi. Sed tristique eros eu libero. Pellentesque ve"
+	EchoClient: handle_write() -> (225) "ringilla
+	leo. Nulla feugiat augue eleifend nulla. Vivamus mauris. Vivamus sed
+	mauris in nibh placerat egestas. Suspendisse potenti. Mauris massa. Ut
+	eget velit auctor tortor blandit sollicitudin. Suspendisse imperdiet
+	justo.
+	"
+	EchoClient: writable() -> False
+	EchoHandler('127.0.0.1', 58842): writable() -> True
+	EchoHandler('127.0.0.1', 58842): handle_read() -> (256) "l arcu. Vivamus
+	purus orci, iaculis ac, suscipit sit amet, pulvinar eu,
+	lacus. Praesent placerat tortor sed nisl. Nunc blandit diam egestas
+	dui. Pellentesque habitant morbi tristique senectus et netus et
+	malesuada fames ac turpis egestas. Aliquam viverra f"
+	EchoHandler('127.0.0.1', 58842): handle_write() -> (256) "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	egestas, enim et consectetuer ullamcorper, lectus ligula rutrum leo, a
+	elementum elit tortor eu quam. Duis tincidunt nisi ut ante. Nulla
+	facilisi. Sed tristique eros eu libero. Pellentesque ve"
+	EchoHandler('127.0.0.1', 58842): writable() -> True
+	EchoClient: writable() -> False
+	EchoHandler('127.0.0.1', 58842): writable() -> True
+	EchoClient: handle_read() -> (256) "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	egestas, enim et consectetuer ullamcorper, lectus ligula rutrum leo, a
+	elementum elit tortor eu quam. Duis tincidunt nisi ut ante. Nulla
+	facilisi. Sed tristique eros eu libero. Pellentesque ve"
+	EchoHandler('127.0.0.1', 58842): handle_read() -> (225) "ringilla
+	leo. Nulla feugiat augue eleifend nulla. Vivamus mauris. Vivamus sed
+	mauris in nibh placerat egestas. Suspendisse potenti. Mauris massa. Ut
+	eget velit auctor tortor blandit sollicitudin. Suspendisse imperdiet
+	justo.
+	"
+	EchoHandler('127.0.0.1', 58842): handle_write() -> (256) "l arcu. Vivamus
+	purus orci, iaculis ac, suscipit sit amet, pulvinar eu,
+	lacus. Praesent placerat tortor sed nisl. Nunc blandit diam egestas
+	dui. Pellentesque habitant morbi tristique senectus et netus et
+	malesuada fames ac turpis egestas. Aliquam viverra f"
+	EchoHandler('127.0.0.1', 58842): writable() -> True
+	EchoClient: writable() -> False
+	EchoHandler('127.0.0.1', 58842): writable() -> True
+	EchoClient: handle_read() -> (256) "l arcu. Vivamus
+	purus orci, iaculis ac, suscipit sit amet, pulvinar eu,
+	lacus. Praesent placerat tortor sed nisl. Nunc blandit diam egestas
+	dui. Pellentesque habitant morbi tristique senectus et netus et
+	malesuada fames ac turpis egestas. Aliquam viverra f"
+	EchoHandler('127.0.0.1', 58842): handle_write() -> (225) "ringilla
+	leo. Nulla feugiat augue eleifend nulla. Vivamus mauris. Vivamus sed
+	mauris in nibh placerat egestas. Suspendisse potenti. Mauris massa. Ut
+	eget velit auctor tortor blandit sollicitudin. Suspendisse imperdiet
+	justo.
+	"
+	EchoHandler('127.0.0.1', 58842): writable() -> False
+	EchoHandler('127.0.0.1', 58842): handle_close()
+	EchoClient: writable() -> False
+	EchoClient: handle_read() -> (225) "ringilla
+	leo. Nulla feugiat augue eleifend nulla. Vivamus mauris. Vivamus sed
+	mauris in nibh placerat egestas. Suspendisse potenti. Mauris massa. Ut
+	eget velit auctor tortor blandit sollicitudin. Suspendisse imperdiet
+	justo.
+	"
+	EchoClient: writable() -> False
+	EchoClient: handle_close()
+	EchoClient: RECEIVED COPY OF MESSAGE
+	EchoClient: handle_read() -> (0) ""
+
 .. {{{end}}}
 
 In this example the server, handler, and client objects are all being maintained in the same socket map by asyncore in a single process. To separate the server from the client, simply instantiate them from separate scripts and run ``asyncore.loop()`` in both. When a dispatcher is closed, it is removed from the map maintained by asyncore and the loop exits when the map is empty.
@@ -72,6 +278,149 @@ Here we see that the client is only asked to read or data once per call into ``a
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'asyncore_loop.py'))
 .. }}}
+
+::
+
+	$ python asyncore_loop.py
+	http://www.doughellmann.com/PyMOTW/contents.html: connecting to ('www.doughellmann.com', 80)
+	http://www.python.org/: connecting to ('www.python.org', 80)
+	root: loop_counter=1
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: writable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: writable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_connect()
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_write() -> "GET http://www.doughellmann.com/PyMOTW/contents.html HTTP/1.0
+	
+	"
+	root: loop_counter=2
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: writable() -> True
+	http://www.python.org/: handle_connect()
+	http://www.python.org/: handle_write() -> "GET http://www.python.org/ HTTP/1.0
+	
+	"
+	root: loop_counter=3
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 268 bytes
+	root: loop_counter=4
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=5
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=6
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	root: loop_counter=7
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: handle_read() -> 2804 bytes
+	root: loop_counter=8
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=9
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=10
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=11
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=12
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=13
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=14
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=15
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	root: loop_counter=16
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: handle_read() -> 5608 bytes
+	root: loop_counter=17
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	root: loop_counter=18
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=19
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=20
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=21
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=22
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=23
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=24
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=25
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=26
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=27
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: handle_read() -> 1402 bytes
+	root: loop_counter=28
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: handle_read() -> 4580 bytes
+	root: loop_counter=29
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.python.org/: readable() -> True
+	http://www.python.org/: handle_close()
+	http://www.python.org/: handle_read() -> 0 bytes
+	root: loop_counter=30
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1396 bytes
+	root: loop_counter=31
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 1173 bytes
+	root: loop_counter=32
+	http://www.doughellmann.com/PyMOTW/contents.html: readable() -> True
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_close()
+	http://www.doughellmann.com/PyMOTW/contents.html: handle_read() -> 0 bytes
+
 .. {{{end}}}
 
 Working with Files
@@ -88,6 +437,27 @@ This example was tested under Python 2.5.2, so I am using ``os.open()`` to get a
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'asyncore_file_dispatcher.py'))
 .. }}}
+
+::
+
+	$ python asyncore_file_dispatcher.py
+	READ: (256) "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+	egestas, enim et consectetuer ullamcorper, lectus ligula rutrum leo, a
+	elementum elit tortor eu quam. Duis tincidunt nisi ut ante. Nulla
+	facilisi. Sed tristique eros eu libero. Pellentesque ve"
+	READ: (256) "l arcu. Vivamus
+	purus orci, iaculis ac, suscipit sit amet, pulvinar eu,
+	lacus. Praesent placerat tortor sed nisl. Nunc blandit diam egestas
+	dui. Pellentesque habitant morbi tristique senectus et netus et
+	malesuada fames ac turpis egestas. Aliquam viverra f"
+	READ: (225) "ringilla
+	leo. Nulla feugiat augue eleifend nulla. Vivamus mauris. Vivamus sed
+	mauris in nibh placerat egestas. Suspendisse potenti. Mauris massa. Ut
+	eget velit auctor tortor blandit sollicitudin. Suspendisse imperdiet
+	justo.
+	"
+	READ: (0) ""
+
 .. {{{end}}}
 
 

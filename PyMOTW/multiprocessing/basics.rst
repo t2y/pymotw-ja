@@ -18,6 +18,16 @@ may not be entirely clean depending on the order of execution.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_simple.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_simple.py
+	Worker
+	Worker
+	Worker
+	Worker
+	Worker
+
 .. {{{end}}}
 
 
@@ -37,6 +47,16 @@ The integer argument is now included in the message printed by each worker:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_simpleargs.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_simpleargs.py
+	Worker: 1
+	Worker: 0
+	Worker: 2
+	Worker: 3
+	Worker: 4
+
 .. {{{end}}}
 
 Importable Target Functions
@@ -68,6 +88,16 @@ and produces output like the first example above:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_import_main.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_import_main.py
+	Worker
+	Worker
+	Worker
+	Worker
+	Worker
+
 .. {{{end}}}
 
 Determining the Current Process
@@ -89,6 +119,17 @@ unnamed process ``worker_1``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_names.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_names.py
+	worker 1 Starting
+	worker 1 Exiting
+	Process-3 Starting
+	Process-3 Exiting
+	my_service Starting
+	my_service Exiting
+
 .. {{{end}}}
 
 
@@ -118,6 +159,14 @@ second sleep.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_daemon.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_daemon.py
+	Starting: daemon 6464
+	Starting: non-daemon 6465
+	Exiting : non-daemon 6465
+
 .. {{{end}}}
 
 The daemon process is terminated automatically before the main program
@@ -142,6 +191,15 @@ Since we wait for the daemon to exit using ``join()``, we do see its
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_daemon_join.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_daemon_join.py
+	Starting: non-daemon
+	Exiting : non-daemon
+	Starting: daemon
+	Exiting : daemon
+
 .. {{{end}}}
 
 By default, ``join()`` blocks indefinitely. It is also possible to
@@ -159,6 +217,14 @@ sleeps, the process is still "alive" after ``join()`` returns.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_daemon_join_timeout.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_daemon_join_timeout.py
+	Starting: non-daemon
+	Exiting : non-daemon
+	d.is_alive() True
+
 .. {{{end}}}
 
 Terminating Processes
@@ -183,6 +249,15 @@ the child process.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_terminate.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_terminate.py
+	BEFORE: <Process(Process-1, initial)> False
+	DURING: <Process(Process-1, started)> True
+	TERMINATED: <Process(Process-1, started)> True
+	JOINED: <Process(Process-1, stopped[SIGTERM])> False
+
 .. {{{end}}}
 
 
@@ -207,6 +282,30 @@ Processes that raise an exception automatically get an ``exitcode`` of 1.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_exitcode.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_exitcode.py
+	Starting process for exit_error
+	Starting process for exit_ok
+	Starting process for return_value
+	Starting process for raises
+	Process raises:
+	Traceback (most recent call last):
+	  File "/usr/lib/python2.6/multiprocessing/process.py", line 231, in _bootstrap
+	    self.run()
+	  File "/usr/lib/python2.6/multiprocessing/process.py", line 88, in run
+	    self._target(*self._args, **self._kwargs)
+	  File "multiprocessing_exitcode.py", line 24, in raises
+	    raise RuntimeError('There was an error!')
+	RuntimeError: There was an error!
+	Starting process for terminated
+	exit_error.exitcode = 1
+	exit_ok.exitcode = 0
+	return_value.exitcode = 0
+	raises.exitcode = 1
+	terminated.exitcode = -15
+
 .. {{{end}}}
 
 
@@ -231,6 +330,20 @@ level of detail you want.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_log_to_stderr.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_log_to_stderr.py
+	[INFO/Process-1] child process calling self.run()
+	Doing some work
+	[INFO/Process-1] process shutting down
+	[DEBUG/Process-1] running all "atexit" finalizers with priority >= 0
+	[DEBUG/Process-1] running the remaining "atexit" finalizers
+	[INFO/Process-1] process exiting with exitcode 0
+	[INFO/MainProcess] process shutting down
+	[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+	[DEBUG/MainProcess] running the remaining "atexit" finalizers
+
 .. {{{end}}}
 
 To manipulate the logger directly (change its level setting or add
@@ -246,6 +359,16 @@ configuration file API, using the name ``multiprocessing``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_get_logger.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_get_logger.py
+	[INFO/Process-1] child process calling self.run()
+	Doing some work
+	[INFO/Process-1] process shutting down
+	[INFO/Process-1] process exiting with exitcode 0
+	[INFO/MainProcess] process shutting down
+
 .. {{{end}}}
 
 
@@ -264,4 +387,14 @@ to use a custom subclass.  The derived class should override
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_subclass.py'))
 .. }}}
+
+::
+
+	$ python multiprocessing_subclass.py
+	In Worker-1
+	In Worker-2
+	In Worker-3
+	In Worker-4
+	In Worker-5
+
 .. {{{end}}}

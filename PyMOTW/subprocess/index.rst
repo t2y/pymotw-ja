@@ -45,6 +45,27 @@ function.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_os_system.py'))
 .. }}}
+
+::
+
+	$ python subprocess_os_system.py
+	__init__.py
+	index.rst
+	interaction.py
+	repeater.py
+	signal_child.py
+	signal_parent.py
+	subprocess_os_system.py
+	subprocess_pipes.py
+	subprocess_popen2.py
+	subprocess_popen3.py
+	subprocess_popen4.py
+	subprocess_popen_read.py
+	subprocess_popen_write.py
+	subprocess_shell_variables.py
+	subprocess_signal_parent_shell.py
+	subprocess_signal_setsid.py
+
 .. {{{end}}}
 
 When *shell* is set to ``True``, shell variables in the command
@@ -57,6 +78,27 @@ string are expanded:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_shell_variables.py'))
 .. }}}
+
+::
+
+	$ python subprocess_shell_variables.py
+	Desktop
+	Documents
+	Download
+	MailAttach
+	Music
+	Pictures
+	Public
+	Templates
+	Videos
+	bin
+	dev
+	kanri
+	pkgs
+	rpmbuild
+	tmp
+	work
+
 .. {{{end}}}
 
 Working with Pipes
@@ -77,6 +119,14 @@ Reading from the output of a pipe:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen_read.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen_read.py
+	
+	read:
+		stdout: '\n'
+
 .. {{{end}}}
 
 
@@ -89,6 +139,14 @@ Writing to the input of a pipe:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen_write.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen_write.py
+	
+	write:
+		stdin: to stdin
+
 .. {{{end}}}
 
 popen2
@@ -103,6 +161,14 @@ Reading and writing, as with popen2:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen2.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen2.py
+	
+	popen2:
+		pass through: 'through stdin to stdout'
+
 .. {{{end}}}
 
 popen3
@@ -117,6 +183,15 @@ Separate streams for stdout and stderr, as with popen3:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen3.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen3.py
+	
+	popen3:
+		pass through: 'through stdin to stdout'
+		stderr: ';to stderr\n'
+
 .. {{{end}}}
 
 popen4
@@ -131,6 +206,14 @@ Merged stdout and stderr, as with popen4:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_popen4.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_popen4.py
+	
+	popen4:
+		combined output: 'through stdin to stdout\n;to stderr\n'
+
 .. {{{end}}}
 
 Connecting Segments of a Pipe
@@ -147,6 +230,26 @@ Unix shell.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u subprocess_pipes.py'))
 .. }}}
+
+::
+
+	$ python -u subprocess_pipes.py
+	Included files:
+		subprocess_os_system.py
+		subprocess_shell_variables.py
+		subprocess_popen_read.py
+		subprocess_popen_write.py
+		subprocess_popen2.py
+		subprocess_popen3.py
+		subprocess_popen4.py
+		subprocess_pipes.py
+		repeater.py
+		interaction.py
+		signal_child.py
+		signal_parent.py
+		subprocess_signal_parent_shell.py
+		subprocess_signal_setsid.py
+
 .. {{{end}}}
 
 
@@ -187,6 +290,40 @@ for each loop:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-u interaction.py'))
 .. }}}
+
+::
+
+	$ python -u interaction.py
+	One line at a time:
+	repeater.py: starting
+	0
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+	repeater.py: exiting
+	
+	
+	All output at once:
+	repeater.py: starting
+	repeater.py: exiting
+	0
+	1
+	2
+	3
+	4
+	5
+	6
+	7
+	8
+	9
+	
+
 .. {{{end}}}
 
 
@@ -216,6 +353,16 @@ the output will look something like:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'signal_parent.py'))
 .. }}}
+
+::
+
+	$ python signal_parent.py
+	PARENT: Pausing before sending signal...
+	CHILD 5744: Setting up signal handler
+	CHILD 5744: Pausing to wait for signal
+	PARENT: Signaling child
+	CHILD 5744: Received USR1
+
 .. {{{end}}}
 
 .. _subprocess-process-groups:
@@ -245,6 +392,18 @@ this example, there are three separate processes interacting:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_signal_parent_shell.py'))
 .. }}}
+
+::
+
+	$ python subprocess_signal_parent_shell.py
+	PARENT: Pausing before sending signal to child 5747...
+	Shell script in process 5747
+	+ python signal_child.py
+	CHILD 5748: Setting up signal handler
+	CHILD 5748: Pausing to wait for signal
+	PARENT: Signaling child 5747
+	CHILD 5748: Never received signal
+
 .. {{{end}}}
 
 The solution to this problem is to use a *process group* to associate
@@ -267,6 +426,18 @@ pid value from our :class:`Popen` instance.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_signal_setsid.py'))
 .. }}}
+
+::
+
+	$ python subprocess_signal_setsid.py
+	PARENT: Pausing before sending signal to child 5751...
+	Shell script in process 5751
+	+ python signal_child.py
+	CHILD 5752: Setting up signal handler
+	CHILD 5752: Pausing to wait for signal
+	PARENT: Signaling process group 5751
+	CHILD 5752: Received USR1
+
 .. {{{end}}}
 
 
