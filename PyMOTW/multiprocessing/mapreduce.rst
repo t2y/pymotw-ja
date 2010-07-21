@@ -27,38 +27,6 @@ Each input filename is converted to a sequence of ``(word, 1)`` pairs by ``file_
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_wordcount.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_wordcount.py
-	PoolWorker-1 reading communication.rst
-	PoolWorker-1 reading index.rst
-	PoolWorker-1 reading mapreduce.rst
-	PoolWorker-2 reading basics.rst
-	
-	TOP 20 WORDS BY FREQUENCY
-	
-	process         :    76
-	multiprocessing :    42
-	worker          :    36
-	after           :    31
-	running         :    30
-	start           :    29
-	processes       :    27
-	literal         :    26
-	header          :    26
-	pymotw          :    26
-	python          :    26
-	end             :    26
-	daemon          :    24
-	now             :    22
-	consumer        :    20
-	starting        :    19
-	exiting         :    17
-	event           :    16
-	run             :    14
-	mod             :    14
-
 .. {{{end}}}
 
 .. seealso::

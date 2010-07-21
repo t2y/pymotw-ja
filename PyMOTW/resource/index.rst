@@ -38,19 +38,6 @@ interesting:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'resource_getrusage.py'))
 .. }}}
-
-::
-
-	$ python resource_getrusage.py
-	User time                 (ru_utime  ) = 0.013997
-	System time               (ru_stime  ) = 0.004999
-	Max. Resident Set Size    (ru_maxrss ) = 0
-	Shared Memory Size        (ru_ixrss  ) = 0
-	Unshared Memory Size      (ru_idrss  ) = 0
-	Stack Size                (ru_isrss  ) = 0
-	Block inputs              (ru_inblock) = 0
-	Block outputs             (ru_oublock) = 0
-
 .. {{{end}}}
 
 Resource Limits
@@ -70,20 +57,6 @@ the operating system.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'resource_getrlimit.py'))
 .. }}}
-
-::
-
-	$ python resource_getrlimit.py
-	Maximum core file size            (RLIMIT_CORE    ) :                    0                   -1
-	Maximum CPU time                  (RLIMIT_CPU     ) :                   -1                   -1
-	Maximum file size                 (RLIMIT_FSIZE   ) :                   -1                   -1
-	Maximum heap size                 (RLIMIT_DATA    ) :                   -1                   -1
-	Maximum stack size                (RLIMIT_STACK   ) :             10485760                   -1
-	Maximum resident set size         (RLIMIT_RSS     ) :                   -1                   -1
-	Maximum number of processes       (RLIMIT_NPROC   ) :                 1024                15863
-	Maximum number of open files      (RLIMIT_NOFILE  ) :                 1024                 1024
-	Maximum lockable memory address   (RLIMIT_MEMLOCK ) :                65536                65536
-
 .. {{{end}}}
 
 The limits can be changed with :func:`setrlimit()`.  For example, to
@@ -97,15 +70,6 @@ value can be set to use a smaller soft limit value.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'resource_setrlimit_nofile.py'))
 .. }}}
-
-::
-
-	$ python resource_setrlimit_nofile.py
-	Soft limit starts as  : 1024
-	Soft limit changed to : 4
-	random has fd = 3
-	[Errno 24] Too many open files: '/dev/null'
-
 .. {{{end}}}
 
 It can also be useful to limit the amount of CPU time a process should
@@ -122,17 +86,6 @@ them, but in this case we just print a message and exit.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'resource_setrlimit_cpu.py', ignore_error=True))
 .. }}}
-
-::
-
-	$ python resource_setrlimit_cpu.py
-	Soft limit starts as  : -1
-	Soft limit changed to : 1
-	
-	Starting: Wed Jul 21 18:59:34 2010
-	EXPIRED : Wed Jul 21 18:59:35 2010
-	(time ran out)
-
 .. {{{end}}}
 
 

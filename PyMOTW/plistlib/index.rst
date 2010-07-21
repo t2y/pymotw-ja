@@ -71,41 +71,6 @@ is an open file handle or the name of a file.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'plistlib_write_plist.py'))
 .. }}}
-
-::
-
-	$ python plistlib_write_plist.py
-	<?xml version="1.0" encoding="UTF-8"?>
-	<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-	<plist version="1.0">
-	<dict>
-		<key>a_bool</key>
-		<false/>
-		<key>an_int</key>
-		<integer>2</integer>
-		<key>nested_dict</key>
-		<dict>
-			<key>key</key>
-			<string>value</string>
-		</dict>
-		<key>nested_list</key>
-		<array>
-			<string>a</string>
-			<string>b</string>
-			<string>c</string>
-		</array>
-		<key>simple_string</key>
-		<string>This string has no special characters.</string>
-		<key>the_float</key>
-		<real>5.9000000000000004</real>
-		<key>timestamp</key>
-		<date>2010-07-21T18:58:05Z</date>
-		<key>xml_string</key>
-		<string>&lt;element attr="value"&gt;This string includes XML markup &amp;nbsp;&lt;/element&gt;</string>
-	</dict>
-	</plist>
-	
-
 .. {{{end}}}
 
 
@@ -128,22 +93,6 @@ string, instead of writing to a file.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'plistlib_binary_write.py'))
 .. }}}
-
-::
-
-	$ python plistlib_binary_write.py
-	<?xml version="1.0" encoding="UTF-8"?>
-	<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-	<plist version="1.0">
-	<dict>
-		<key>binary_data</key>
-		<data>
-		VGhpcyBkYXRhIGhhcyBhbiBlbWJlZGRlZCBudWxsLiAA
-		</data>
-	</dict>
-	</plist>
-	
-
 .. {{{end}}}
 
 Binary data is automatically converted to a ``Data`` instance when
@@ -158,12 +107,6 @@ The ``data`` attribute of the object contains the decoded data.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'plistlib_binary_read.py'))
 .. }}}
-
-::
-
-	$ python plistlib_binary_read.py
-	'This data has an embedded null. \x00'
-
 .. {{{end}}}
 
 

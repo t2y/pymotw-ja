@@ -58,14 +58,6 @@ StringIO と cStringIO -- ファイルのような API を使用してテキス�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'stringio_examples.py'))
 .. }}}
-
-::
-
-	$ python stringio_examples.py
-	This goes into the buffer. And so does this.
-	
-	Inital value for read buffer
-
 .. {{{end}}}
 
 ..

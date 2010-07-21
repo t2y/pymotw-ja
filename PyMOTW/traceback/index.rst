@@ -66,31 +66,6 @@ the informational and traceback messages are mingled correctly:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'traceback_print_exc.py'))
 .. }}}
-
-::
-
-	$ python traceback_print_exc.py
-	print_exc() with no exception:
-	None
-	
-	print_exc():
-	Traceback (most recent call last):
-	  File "traceback_print_exc.py", line 20, in <module>
-	    produce_exception()
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 16, in produce_exception
-	    produce_exception(recursion_level-1)
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 16, in produce_exception
-	    produce_exception(recursion_level-1)
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 18, in produce_exception
-	    raise RuntimeError()
-	RuntimeError
-	
-	print_exc(1):
-	Traceback (most recent call last):
-	  File "traceback_print_exc.py", line 20, in <module>
-	    produce_exception()
-	RuntimeError
-
 .. {{{end}}}
 
 ``print_exc()`` is just a shortcut for :func:`print_exception()`,
@@ -103,22 +78,6 @@ which requires explicit arguments:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'traceback_print_exception.py'))
 .. }}}
-
-::
-
-	$ python traceback_print_exception.py
-	Traceback (most recent call last):
-	  File "traceback_print_exception.py", line 16, in <module>
-	    produce_exception()
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 16, in produce_exception
-	    produce_exception(recursion_level-1)
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 16, in produce_exception
-	    produce_exception(recursion_level-1)
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 18, in produce_exception
-	    raise RuntimeError()
-	RuntimeError
-	print_exception():
-
 .. {{{end}}}
 
 
@@ -131,18 +90,6 @@ And :func:`print_exception()` uses :func:`format_exception()`:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'traceback_format_exception.py'))
 .. }}}
-
-::
-
-	$ python traceback_format_exception.py
-	format_exception():
-	['Traceback (most recent call last):\n',
-	 '  File "traceback_format_exception.py", line 17, in <module>\n    produce_exception()\n',
-	 '  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 16, in produce_exception\n    produce_exception(recursion_level-1)\n',
-	 '  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 16, in produce_exception\n    produce_exception(recursion_level-1)\n',
-	 '  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 18, in produce_exception\n    raise RuntimeError()\n',
-	 'RuntimeError\n']
-
 .. {{{end}}}
 
 
@@ -162,28 +109,6 @@ print_stack()
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'traceback_print_stack.py'))
 .. }}}
-
-::
-
-	$ python traceback_print_stack.py
-	Calling f() directly:
-	  File "traceback_print_stack.py", line 19, in <module>
-	    f()
-	  File "traceback_print_stack.py", line 16, in f
-	    traceback.print_stack(file=sys.stdout)
-	
-	Calling f() from 3 levels deep:
-	  File "traceback_print_stack.py", line 23, in <module>
-	    call_function(f)
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 22, in call_function
-	    return call_function(f, recursion_level-1)
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 22, in call_function
-	    return call_function(f, recursion_level-1)
-	  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 24, in call_function
-	    return f()
-	  File "traceback_print_stack.py", line 16, in f
-	    traceback.print_stack(file=sys.stdout)
-
 .. {{{end}}}
 
 format_stack()
@@ -196,16 +121,6 @@ format_stack()
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'traceback_format_stack.py'))
 .. }}}
-
-::
-
-	$ python traceback_format_stack.py
-	['  File "traceback_format_stack.py", line 19, in <module>\n    formatted_stack = call_function(f)\n',
-	 '  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 22, in call_function\n    return call_function(f, recursion_level-1)\n',
-	 '  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 22, in call_function\n    return call_function(f, recursion_level-1)\n',
-	 '  File "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py", line 24, in call_function\n    return f()\n',
-	 '  File "traceback_format_stack.py", line 17, in f\n    return traceback.format_stack()\n']
-
 .. {{{end}}}
 
 extract_stack()
@@ -218,25 +133,6 @@ extract_stack()
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'traceback_extract_stack.py'))
 .. }}}
-
-::
-
-	$ python traceback_extract_stack.py
-	[('traceback_extract_stack.py', 19, '<module>', 'stack = call_function(f)'),
-	 ('/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py',
-	  22,
-	  'call_function',
-	  'return call_function(f, recursion_level-1)'),
-	 ('/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py',
-	  22,
-	  'call_function',
-	  'return call_function(f, recursion_level-1)'),
-	 ('/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/traceback/traceback_example.py',
-	  24,
-	  'call_function',
-	  'return f()'),
-	 ('traceback_extract_stack.py', 17, 'f', 'return traceback.extract_stack()')]
-
 .. {{{end}}}
 
 .. seealso::

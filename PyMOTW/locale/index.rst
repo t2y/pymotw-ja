@@ -231,16 +231,6 @@ instead of :func:`currency`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'locale_grouping.py'))
 .. }}}
-
-::
-
-	$ python locale_grouping.py
-	                 USA:         123,456           123,456.78
-	              France:         123 456           123 456,78
-	               Spain:          123456            123456,78
-	            Portugal:          123456            123456,78
-	              Poland:          123456            123456,78
-
 .. {{{end}}}
 
 

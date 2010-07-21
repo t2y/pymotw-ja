@@ -46,53 +46,6 @@ the records by name.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwall.py'))
 .. }}}
-
-::
-
-	$ python pwd_getpwall.py
-	User          UID Home Dir                  Description
-	------------ ---- ------------------------- ------------------------------
-	adm             3 /var/adm                  adm
-	avahi          70 /                         Avahi daemon
-	beagleindex    58 /var/cache/beagle         User for Beagle indexing
-	bin             1 /bin                      bin
-	daemon          2 /sbin                     daemon
-	dbus           81 /                         System message bus
-	dhellmann     503 /home/dhellmann           
-	estraier      398 /var/cache/hyperestraier  
-	ftp            14 /var/ftp                  FTP User
-	games          12 /usr/games                games
-	gdm            42 /home/gdm                 
-	gopher         13 /var/gopher               gopher
-	haldaemon      68 /                         HAL daemon
-	halt            7 /sbin                     halt
-	lp              4 /var/spool/lpd            lp
-	mail            8 /var/spool/mail           mail
-	morimoto      500 /home/morimoto            Tetsuya Morimoto
-	mysql          27 /var/lib/mysql            MySQL Server
-	named          25 /var/named                Named
-	nfsnobody    65534 /var/lib/nfs              Anonymous NFS User
-	nobody         99 /                         Nobody
-	nscd           28 /                         NSCD Daemon
-	ntp            38 /etc/ntp                  
-	operator       11 /root                     operator
-	polkituser     87 /                         PolicyKit
-	postfix        89 /var/spool/postfix        
-	pulse         498 /                         PulseAudio daemon
-	root            0 /root                     root
-	rpc            32 /var/lib/rpcbind          Rpcbind Daemon
-	rpcuser        29 /var/lib/nfs              RPC Service User
-	shutdown        6 /sbin                     shutdown
-	smbuser       502 /home/smbuser             
-	sshd           74 /var/empty/sshd           Privilege-separated SSH
-	sync            5 /sbin                     sync
-	tcpdump        72 /                         
-	tmorimoto     501 /home/tmorimoto           
-	torrent       499 /var/spool/bittorrent     BitTorrent Seed/Tracker
-	uucp           10 /var/spool/uucp           uucp
-	vcsa           69 /dev                      virtual console memory owner
-	xfs            43 /etc/X11/fs               X Font Server
-
 .. {{{end}}}
 
 
@@ -115,25 +68,6 @@ reported as all ``*``.
 .. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py dhellmann'))
 .. cog.out(run_script(cog.inFile, 'pwd_getpwnam.py nobody', include_prefix=False))
 .. }}}
-
-::
-
-	$ python pwd_getpwnam.py dhellmann
-	Username: dhellmann
-	Password: x
-	Comment : 
-	UID/GID : 503 / 504
-	Home    : /home/dhellmann
-	Shell   : /bin/bash
-
-	$ python pwd_getpwnam.py nobody
-	Username: nobody
-	Password: x
-	Comment : Nobody
-	UID/GID : 99 / 99
-	Home    : /
-	Shell   : /sbin/nologin
-
 .. {{{end}}}
 
 
@@ -150,12 +84,6 @@ This is useful to find the owner of a file:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwuid_fileowner.py'))
 .. }}}
-
-::
-
-	$ python pwd_getpwuid_fileowner.py
-	pwd_getpwuid_fileowner.py is owned by morimoto (500)
-
 .. {{{end}}}
 
 
@@ -169,12 +97,6 @@ user currently running a process:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pwd_getpwuid_process.py'))
 .. }}}
-
-::
-
-	$ python pwd_getpwuid_process.py
-	Currently running with UID=500 username=morimoto
-
 .. {{{end}}}
 
 

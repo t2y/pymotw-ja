@@ -46,16 +46,6 @@ first element is everything that comes before it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_split.py'))
 .. }}}
-
-::
-
-	$ python ospath_split.py
-	"/one/two/three" : "('/one/two', 'three')"
-	"/one/two/three/" : "('/one/two/three', '')"
-	"/" : "('/', '')"
-	"." : "('', '.')"
-	"" : "('', '')"
-
 .. {{{end}}}
 
 ``basename()`` returns a value equivalent to the second part of the
@@ -68,16 +58,6 @@ first element is everything that comes before it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_basename.py'))
 .. }}}
-
-::
-
-	$ python ospath_basename.py
-	"/one/two/three" : "three"
-	"/one/two/three/" : ""
-	"/" : ""
-	"." : "."
-	"" : ""
-
 .. {{{end}}}
 
 ``dirname()`` returns the first part of the split path:
@@ -89,16 +69,6 @@ first element is everything that comes before it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_dirname.py'))
 .. }}}
-
-::
-
-	$ python ospath_dirname.py
-	"/one/two/three" : "/one/two"
-	"/one/two/three/" : "/one/two/three"
-	"/" : "/"
-	"." : ""
-	"" : ""
-
 .. {{{end}}}
 
 ``splitext()`` works like ``split()`` but divides the path on the
@@ -111,16 +81,6 @@ extension separator, rather than the directory separator.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_splitext.py'))
 .. }}}
-
-::
-
-	$ python ospath_splitext.py
-	"filename.txt" : ('filename', '.txt')
-	"filename" : ('filename', '')
-	"/path/to/filename.txt" : ('/path/to/filename', '.txt')
-	"/" : ('/', '')
-	"" : ('', '')
-
 .. {{{end}}}
 
 ``commonprefix()`` takes a list of paths as an argument and returns a
@@ -139,13 +99,6 @@ though one path does not include a directory named ``three``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_commonprefix.py'))
 .. }}}
-
-::
-
-	$ python ospath_commonprefix.py
-	['/one/two/three/four', '/one/two/threefold', '/one/two/three/']
-	/one/two/three
-
 .. {{{end}}}
 
 Building Paths
@@ -163,14 +116,6 @@ To combine several path components into a single value, use ``join()``:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_join.py'))
 .. }}}
-
-::
-
-	$ python ospath_join.py
-	('one', 'two', 'three') : one/two/three
-	('/', 'one', 'two', 'three') : /one/two/three
-	('/one', '/two', '/three') : /three
-
 .. {{{end}}}
 
 It's also easy to work with paths that include "variable" components
@@ -184,14 +129,6 @@ converts the tilde (``~``) character to a user's home directory.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_expanduser.py'))
 .. }}}
-
-::
-
-	$ python ospath_expanduser.py
-	~ : /home/morimoto
-	~dhellmann : /home/dhellmann
-	~postgres : ~postgres
-
 .. {{{end}}}
 
 ``expandvars()`` is more general, and expands any shell environment
@@ -204,12 +141,6 @@ variables present in the path.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_expandvars.py'))
 .. }}}
-
-::
-
-	$ python ospath_expandvars.py
-	/path/to/VALUE
-
 .. {{{end}}}
 
 Normalizing Paths
@@ -226,14 +157,6 @@ components. Use ``normpath()`` to clean them up:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_normpath.py'))
 .. }}}
-
-::
-
-	$ python ospath_normpath.py
-	one//two//three : one/two/three
-	one/./two/./three : one/two/three
-	one/../one/two/three : one/two/three
-
 .. {{{end}}}
 
 To convert a relative path to a complete absolute filename, use
@@ -246,15 +169,6 @@ To convert a relative path to a complete absolute filename, use
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_abspath.py'))
 .. }}}
-
-::
-
-	$ python ospath_abspath.py
-	"." : "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/ospath"
-	".." : "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW"
-	"./one/two/three" : "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/ospath/one/two/three"
-	"../one/two/three" : "/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/one/two/three"
-
 .. {{{end}}}
 
 File Times
@@ -271,16 +185,6 @@ retrieving file properties, which can be more convenient than calling
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ospath_properties.py'))
 .. }}}
-
-::
-
-	$ python ospath_properties.py
-	File         : ospath_properties.py
-	Access time  : Wed Jul 21 18:52:58 2010
-	Modified time: Mon Jul 12 18:49:33 2010
-	Change time  : Mon Jul 12 18:49:33 2010
-	Size         : 495
-
 .. {{{end}}}
 
 Testing Files
@@ -302,48 +206,6 @@ of these conditions.
 .. cog.out(run_script(cog.inFile, 'ln -s /does/not/exist broken_link', interpreter='', trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'ospath_tests.py', include_prefix=False))
 .. }}}
-
-::
-
-	$ ln -s /does/not/exist broken_link
-	$ python ospath_tests.py
-	File        : ospath_tests.py
-	Absolute    : False
-	Is File?    : True
-	Is Dir?     : False
-	Is Link?    : False
-	Mountpoint? : False
-	Exists?     : True
-	Link Exists?: True
-	
-	File        : 
-	Absolute    : False
-	Is File?    : False
-	Is Dir?     : False
-	Is Link?    : False
-	Mountpoint? : False
-	Exists?     : False
-	Link Exists?: False
-	
-	File        : /
-	Absolute    : True
-	Is File?    : False
-	Is Dir?     : True
-	Is Link?    : False
-	Mountpoint? : True
-	Exists?     : True
-	Link Exists?: True
-	
-	File        : ./broken_link
-	Absolute    : False
-	Is File?    : False
-	Is Dir?     : False
-	Is Link?    : True
-	Mountpoint? : False
-	Exists?     : False
-	Link Exists?: True
-	
-
 .. {{{end}}}
 
 
@@ -363,18 +225,6 @@ directory listing, ignoring ``.svn`` directories.
 .. run_script(cog.inFile, 'rm -rf example', interpreter='')
 .. cog.out(run_script(cog.inFile, 'ospath_walk.py'))
 .. }}}
-
-::
-
-	$ python ospath_walk.py
-	example (User data)
-	  two.txt
-	  one/
-	
-	example/one (User data)
-	  file.txt
-	
-
 .. {{{end}}}
 
 

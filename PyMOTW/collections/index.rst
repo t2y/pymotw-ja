@@ -173,18 +173,6 @@ This makes tuples convenient containers for simple uses.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_tuple.py'))
 .. }}}
-
-::
-
-	$ python collections_tuple.py
-	Representation: ('Bob', 30, 'male')
-	
-	Field by index: Jane
-	
-	Fields by index:
-	Bob is a 30 year old male
-	Jane is a 29 year old female
-
 .. {{{end}}}
 
 On the other hand, remembering which index should be used for each
@@ -211,20 +199,6 @@ the positional indexes of standard tuples.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'collections_namedtuple_person.py'))
 .. }}}
-
-::
-
-	$ python collections_namedtuple_person.py
-	Type of Person: <type 'type'>
-	
-	Representation: Person(name='Bob', age=30, gender='male')
-	
-	Field by name: Jane
-	
-	Fields by index:
-	Bob is a 30 year old male
-	Jane is a 29 year old female
-
 .. {{{end}}}
 
 

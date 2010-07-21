@@ -53,14 +53,6 @@ array -- データ型固定のシーケンス
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'array_string.py'))
 .. }}}
-
-::
-
-	$ python array_string.py
-	As string: This is the array.
-	As array : array('c', 'This is the array.')
-	As hex   : 54686973206973207468652061727261792e
-
 .. {{{end}}}
 
 ..
@@ -83,15 +75,6 @@ array -- データ型固定のシーケンス
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'array_sequence.py'))
 .. }}}
-
-::
-
-	$ python array_sequence.py
-	Initial : array('i', [0, 1, 2, 3, 4])
-	Extended: array('i', [0, 1, 2, 3, 4, 0, 1, 2, 3, 4])
-	Slice   : array('i', [3, 4, 0])
-	Iterator: [(0, 0), (1, 1), (2, 2), (3, 3), (4, 4), (5, 0), (6, 1), (7, 2), (8, 3), (9, 4)]
-
 .. {{{end}}}
 
 ..
@@ -121,14 +104,6 @@ array -- データ型固定のシーケンス
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'array_file.py'))
 .. }}}
-
-::
-
-	$ python array_file.py
-	A1: array('i', [0, 1, 2, 3, 4])
-	Raw Contents: 0000000001000000020000000300000004000000
-	A2: array('i', [0, 1, 2, 3, 4])
-
 .. {{{end}}}
 
 ..
@@ -153,18 +128,6 @@ array -- データ型固定のシーケンス
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'array_byteswap.py'))
 .. }}}
-
-::
-
-	$ python array_byteswap.py
-	    A1 hex         A1     A2 hex         A2
-	---------- ---------- ---------- ----------
-	  00000000          0   00000000          0
-	  01000000          1   00000001   16777216
-	  02000000          2   00000002   33554432
-	  03000000          3   00000003   50331648
-	  04000000          4   00000004   67108864
-
 .. {{{end}}}
 
 ..

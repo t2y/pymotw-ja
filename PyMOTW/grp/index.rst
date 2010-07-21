@@ -42,78 +42,6 @@ printing the report.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_getgrall.py'))
 .. }}}
-
-::
-
-	$ python grp_getgrall.py
-	Name           GID   Password Members
-	------------- ---- ---------- ------------------------------
-	adm              4          x root, adm, daemon
-	admin          503          x 
-	audio           63          x 
-	avahi           70          x 
-	beagleindex     58          x 
-	bin              1          x root, bin, daemon
-	cdrom           16          x 
-	daemon           2          x root, bin, daemon
-	dbus            81          x 
-	dhellmann      504          x 
-	dialout         93          x 
-	dip             40          x 
-	disk             6          x root
-	estraier       398          x 
-	floppy          19          x 
-	ftp             50          x 
-	fuse           499          x 
-	games           20          x 
-	gdm             42          x 
-	gnokii         498          x 
-	gopher          30          x 
-	haldaemon       68          x 
-	jackuser       334          x 
-	kmem             9          x 
-	lock            54          x 
-	lp               7          x daemon, lp
-	mail            12          x mail, postfix
-	man             15          x 
-	mem              8          x 
-	morimoto       500          x 
-	mysql           27          x 
-	named           25          x 
-	nfsnobody      494          x 
-	nobody          99          x 
-	nscd            28          x 
-	ntp             38          x 
-	polkituser      87          x 
-	postdrop        90          x 
-	postfix         89          x 
-	pulse          493          x 
-	pulse-access   491          x 
-	pulse-rt       492          x 
-	root             0          x root
-	rpc             32          x 
-	rpcuser         29          x 
-	slocate         21          x 
-	smbuser        502          x 
-	sshd            74          x 
-	stapdev        496          x 
-	stapusr        495          x 
-	sys              3          x root, bin, adm
-	tape            33          x 
-	tcpdump         72          x 
-	tmorimoto      501          x 
-	torrent        497          x 
-	tty              5          x 
-	users          100          x 
-	utempter        35          x 
-	utmp            22          x 
-	uucp            14          x uucp
-	vcsa            69          x 
-	video           39          x 
-	wbpriv          88          x 
-	wheel           10          x root, morimoto
-	xfs             43          x 
-
 .. {{{end}}}
 
 Group Memberships for a User
@@ -129,12 +57,6 @@ given user:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_groups_for_user.py'))
 .. }}}
-
-::
-
-	$ python grp_groups_for_user.py
-	dhellmann belongs to: 
-
 .. {{{end}}}
 
 Finding a Group By Name
@@ -150,15 +72,6 @@ a specific group, either by name or numeric id.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_getgrnam.py'))
 .. }}}
-
-::
-
-	$ python grp_getgrnam.py
-	Name    : admin
-	GID     : 503
-	Password: x
-	Members : 
-
 .. {{{end}}}
 
 Finding a Group by ID
@@ -174,12 +87,6 @@ To identify the group running the current process, combine
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_getgrgid_process.py'))
 .. }}}
-
-::
-
-	$ python grp_getgrgid_process.py
-	Currently running with GID=500 name=morimoto
-
 .. {{{end}}}
 
 And to get the group name based on the permissions on a file, look up
@@ -192,12 +99,6 @@ the group returned by ``os.stat()``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'grp_getgrgid_fileowner.py'))
 .. }}}
-
-::
-
-	$ python grp_getgrgid_fileowner.py
-	grp_getgrgid_fileowner.py is owned by morimoto (500)
-
 .. {{{end}}}
 
 

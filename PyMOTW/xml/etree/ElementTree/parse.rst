@@ -36,12 +36,6 @@ object.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_parse_opml.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_parse_opml.py
-	<xml.etree.ElementTree.ElementTree instance at 0xb78072ec>
-
 .. {{{end}}}
 
 Traversing the Parsed Tree
@@ -60,35 +54,6 @@ Here we print the entire tree, one tag at a time.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_dump_opml.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_dump_opml.py
-	opml {'version': '1.0'}
-	head {}
-	title {}
-	dateCreated {}
-	dateModified {}
-	body {}
-	outline {'text': 'Science and Tech'}
-	outline {'xmlUrl': 'http://www.publicradio.org/columns/futuretense/podcast.xml', 'text': 'APM: Future Tense', 'type': 'rss', 'htmlUrl': 'http://www.publicradio.org/columns/futuretense/'}
-	outline {'xmlUrl': 'http://www.npr.org/rss/podcast.php?id=510030', 'text': 'Engines Of Our Ingenuity Podcast', 'type': 'rss', 'htmlUrl': 'http://www.uh.edu/engines/engines.htm'}
-	outline {'xmlUrl': 'http://www.nyas.org/Podcasts/Atom.axd', 'text': 'Science & the City', 'type': 'rss', 'htmlUrl': 'http://www.nyas.org/WhatWeDo/SciencetheCity.aspx'}
-	outline {'text': 'Books and Fiction'}
-	outline {'xmlUrl': 'http://feeds.feedburner.com/podiobooks', 'text': 'Podiobooker', 'type': 'rss', 'htmlUrl': 'http://www.podiobooks.com/blog'}
-	outline {'xmlUrl': 'http://web.me.com/normsherman/Site/Podcast/rss.xml', 'text': 'The Drabblecast', 'type': 'rss', 'htmlUrl': 'http://web.me.com/normsherman/Site/Podcast/Podcast.html'}
-	outline {'xmlUrl': 'http://www.tor.com/rss/category/TorDotStories', 'text': 'tor.com / category / tordotstories', 'type': 'rss', 'htmlUrl': 'http://www.tor.com/'}
-	outline {'text': 'Computers and Programming'}
-	outline {'xmlUrl': 'http://leo.am/podcasts/mbw', 'text': 'MacBreak Weekly', 'type': 'rss', 'htmlUrl': 'http://twit.tv/mbw'}
-	outline {'xmlUrl': 'http://leo.am/podcasts/floss', 'text': 'FLOSS Weekly', 'type': 'rss', 'htmlUrl': 'http://twit.tv'}
-	outline {'xmlUrl': 'http://www.coreint.org/podcast.xml', 'text': 'Core Intuition', 'type': 'rss', 'htmlUrl': 'http://www.coreint.org/'}
-	outline {'text': 'Python'}
-	outline {'xmlUrl': 'http://advocacy.python.org/podcasts/pycon.rss', 'text': 'PyCon Podcast', 'type': 'rss', 'htmlUrl': 'http://advocacy.python.org/podcasts/'}
-	outline {'xmlUrl': 'http://advocacy.python.org/podcasts/littlebit.rss', 'text': 'A Little Bit of Python', 'type': 'rss', 'htmlUrl': 'http://advocacy.python.org/podcasts/'}
-	outline {'xmlUrl': 'http://djangodose.com/everything/feed/', 'text': 'Django Dose Everything Feed', 'type': 'rss'}
-	outline {'text': 'Miscelaneous'}
-	outline {'xmlUrl': 'http://www.castsampler.com/cast/feed/rss/dhellmann/', 'text': "dhellmann's CastSampler Feed", 'type': 'rss', 'htmlUrl': 'http://www.castsampler.com/users/dhellmann/'}
-
 .. {{{end}}}
 
 If we wanted to print only the groups of names and feed URLs for the
@@ -106,29 +71,6 @@ limited to only nodes with the tag ``'outline'``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_show_feed_urls.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_show_feed_urls.py
-	Science and Tech
-	  APM: Future Tense :: http://www.publicradio.org/columns/futuretense/podcast.xml
-	  Engines Of Our Ingenuity Podcast :: http://www.npr.org/rss/podcast.php?id=510030
-	  Science & the City :: http://www.nyas.org/Podcasts/Atom.axd
-	Books and Fiction
-	  Podiobooker :: http://feeds.feedburner.com/podiobooks
-	  The Drabblecast :: http://web.me.com/normsherman/Site/Podcast/rss.xml
-	  tor.com / category / tordotstories :: http://www.tor.com/rss/category/TorDotStories
-	Computers and Programming
-	  MacBreak Weekly :: http://leo.am/podcasts/mbw
-	  FLOSS Weekly :: http://leo.am/podcasts/floss
-	  Core Intuition :: http://www.coreint.org/podcast.xml
-	Python
-	  PyCon Podcast :: http://advocacy.python.org/podcasts/pycon.rss
-	  A Little Bit of Python :: http://advocacy.python.org/podcasts/littlebit.rss
-	  Django Dose Everything Feed :: http://djangodose.com/everything/feed/
-	Miscelaneous
-	  dhellmann's CastSampler Feed :: http://www.castsampler.com/cast/feed/rss/dhellmann/
-
 .. {{{end}}}
 
 Finding Nodes in a Document
@@ -158,24 +100,6 @@ the URL is not found.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_find_feeds_by_tag.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_find_feeds_by_tag.py
-	http://www.publicradio.org/columns/futuretense/podcast.xml
-	http://www.npr.org/rss/podcast.php?id=510030
-	http://www.nyas.org/Podcasts/Atom.axd
-	http://feeds.feedburner.com/podiobooks
-	http://web.me.com/normsherman/Site/Podcast/rss.xml
-	http://www.tor.com/rss/category/TorDotStories
-	http://leo.am/podcasts/mbw
-	http://leo.am/podcasts/floss
-	http://www.coreint.org/podcast.xml
-	http://advocacy.python.org/podcasts/pycon.rss
-	http://advocacy.python.org/podcasts/littlebit.rss
-	http://djangodose.com/everything/feed/
-	http://www.castsampler.com/cast/feed/rss/dhellmann/
-
 .. {{{end}}}
 
 Another version can take advantage of the fact that we know the
@@ -195,24 +119,6 @@ using it.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_find_feeds_by_structure.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_find_feeds_by_structure.py
-	http://www.publicradio.org/columns/futuretense/podcast.xml
-	http://www.npr.org/rss/podcast.php?id=510030
-	http://www.nyas.org/Podcasts/Atom.axd
-	http://feeds.feedburner.com/podiobooks
-	http://web.me.com/normsherman/Site/Podcast/rss.xml
-	http://www.tor.com/rss/category/TorDotStories
-	http://leo.am/podcasts/mbw
-	http://leo.am/podcasts/floss
-	http://www.coreint.org/podcast.xml
-	http://advocacy.python.org/podcasts/pycon.rss
-	http://advocacy.python.org/podcasts/littlebit.rss
-	http://djangodose.com/everything/feed/
-	http://www.castsampler.com/cast/feed/rss/dhellmann/
-
 .. {{{end}}}
 
 This version is limited to our existing structure, though, so if the
@@ -245,14 +151,6 @@ The node on line 5 of the input file has 2 attributes, ``name`` and
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_node_attributes.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_node_attributes.py
-	with_attributes
-	  foo  = "bar"
-	  name = "value"
-
 .. {{{end}}}
 
 The text content of the nodes is available, along with the "tail" text
@@ -268,19 +166,6 @@ line 4 has text with a tail (including any whitespace).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_node_text.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_node_text.py
-	child
-	  child node text: This child contains text.
-	  and tail text  : 
-	  
-	child_with_tail
-	  child node text: This child has regular text.
-	  and tail text  : And "tail" text.
-	  
-
 .. {{{end}}}
 
 XML entity references embedded in the document are conveniently
@@ -297,14 +182,6 @@ document.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_entity_references.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_entity_references.py
-	entity_expansion
-	  in attribute: This & That
-	  in text     : That & This
-
 .. {{{end}}}
 
 
@@ -344,59 +221,6 @@ pass the list of event names you want to receive to
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_show_all_events.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_show_all_events.py
-	start            opml         3074715884
-	..start          head         3074716300
-	....start        title        3074716332
-	....end          title        3074716332
-	....start        dateCreated  3074716620
-	....end          dateCreated  3074716620
-	....start        dateModified 3074716684
-	....end          dateModified 3074716684
-	..end            head         3074716300
-	..start          body         3074716780
-	....start        outline      3074716908
-	......start      outline      3074717132
-	......end        outline      3074717132
-	......start      outline      3074717196
-	......end        outline      3074717196
-	......start      outline      3074717388
-	......end        outline      3074717388
-	....end          outline      3074716908
-	....start        outline      3074717580
-	......start      outline      3074717644
-	......end        outline      3074717644
-	......start      outline      3074717484
-	......end        outline      3074717484
-	......start      outline      3074717772
-	......end        outline      3074717772
-	....end          outline      3074717580
-	....start        outline      3074717964
-	......start      outline      3074718028
-	......end        outline      3074718028
-	......start      outline      3074717868
-	......end        outline      3074717868
-	......start      outline      3074718156
-	......end        outline      3074718156
-	....end          outline      3074717964
-	....start        outline      3074718380
-	......start      outline      3074718476
-	......end        outline      3074718476
-	......start      outline      3074718540
-	......end        outline      3074718540
-	......start      outline      3074718732
-	......end        outline      3074718732
-	....end          outline      3074718380
-	....start        outline      3074718924
-	......start      outline      3074718988
-	......end        outline      3074718988
-	....end          outline      3074718924
-	..end            body         3074716780
-	end              opml         3074715884
-
 .. {{{end}}}
 
 The event-style of processing may be more natural for some operations,
@@ -416,24 +240,6 @@ be imported into another application.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_write_podcast_csv.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_write_podcast_csv.py
-	"Science and Tech","APM: Future Tense","http://www.publicradio.org/columns/futuretense/podcast.xml","http://www.publicradio.org/columns/futuretense/"
-	"Science and Tech","Engines Of Our Ingenuity Podcast","http://www.npr.org/rss/podcast.php?id=510030","http://www.uh.edu/engines/engines.htm"
-	"Science and Tech","Science & the City","http://www.nyas.org/Podcasts/Atom.axd","http://www.nyas.org/WhatWeDo/SciencetheCity.aspx"
-	"Books and Fiction","Podiobooker","http://feeds.feedburner.com/podiobooks","http://www.podiobooks.com/blog"
-	"Books and Fiction","The Drabblecast","http://web.me.com/normsherman/Site/Podcast/rss.xml","http://web.me.com/normsherman/Site/Podcast/Podcast.html"
-	"Books and Fiction","tor.com / category / tordotstories","http://www.tor.com/rss/category/TorDotStories","http://www.tor.com/"
-	"Computers and Programming","MacBreak Weekly","http://leo.am/podcasts/mbw","http://twit.tv/mbw"
-	"Computers and Programming","FLOSS Weekly","http://leo.am/podcasts/floss","http://twit.tv"
-	"Computers and Programming","Core Intuition","http://www.coreint.org/podcast.xml","http://www.coreint.org/"
-	"Python","PyCon Podcast","http://advocacy.python.org/podcasts/pycon.rss","http://advocacy.python.org/podcasts/"
-	"Python","A Little Bit of Python","http://advocacy.python.org/podcasts/littlebit.rss","http://advocacy.python.org/podcasts/"
-	"Python","Django Dose Everything Feed","http://djangodose.com/everything/feed/",""
-	"Miscelaneous","dhellmann's CastSampler Feed","http://www.castsampler.com/cast/feed/rss/dhellmann/","http://www.castsampler.com/users/dhellmann/"
-
 .. {{{end}}}
 
 
@@ -469,24 +275,6 @@ returned to the user of the :class:`XMLTreeBuilder`.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_podcast_csv_treebuilder.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_podcast_csv_treebuilder.py
-	"Science and Tech","APM: Future Tense","http://www.publicradio.org/columns/futuretense/podcast.xml","http://www.publicradio.org/columns/futuretense/"
-	"Science and Tech","Engines Of Our Ingenuity Podcast","http://www.npr.org/rss/podcast.php?id=510030","http://www.uh.edu/engines/engines.htm"
-	"Science and Tech","Science & the City","http://www.nyas.org/Podcasts/Atom.axd","http://www.nyas.org/WhatWeDo/SciencetheCity.aspx"
-	"Books and Fiction","Podiobooker","http://feeds.feedburner.com/podiobooks","http://www.podiobooks.com/blog"
-	"Books and Fiction","The Drabblecast","http://web.me.com/normsherman/Site/Podcast/rss.xml","http://web.me.com/normsherman/Site/Podcast/Podcast.html"
-	"Books and Fiction","tor.com / category / tordotstories","http://www.tor.com/rss/category/TorDotStories","http://www.tor.com/"
-	"Computers and Programming","MacBreak Weekly","http://leo.am/podcasts/mbw","http://twit.tv/mbw"
-	"Computers and Programming","FLOSS Weekly","http://leo.am/podcasts/floss","http://twit.tv"
-	"Computers and Programming","Core Intuition","http://www.coreint.org/podcast.xml","http://www.coreint.org/"
-	"Python","PyCon Podcast","http://advocacy.python.org/podcasts/pycon.rss","http://advocacy.python.org/podcasts/"
-	"Python","A Little Bit of Python","http://advocacy.python.org/podcasts/littlebit.rss","http://advocacy.python.org/podcasts/"
-	"Python","Django Dose Everything Feed","http://djangodose.com/everything/feed/",""
-	"Miscelaneous","dhellmann's CastSampler Feed","http://www.castsampler.com/cast/feed/rss/dhellmann/","http://www.castsampler.com/users/dhellmann/"
-
 .. {{{end}}}
 
 
@@ -508,30 +296,6 @@ Notice that unlike with :func:`parse()`, the return value is an
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_XML.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_XML.py
-	parsed = <Element root at b74b8f4c>
-	root
-	
-	group
-	
-	child
-	  text: "This is child "a"."
-	  id   = "a"
-	
-	child
-	  text: "This is child "b"."
-	  id   = "b"
-	
-	group
-	
-	child
-	  text: "This is child "c"."
-	  id   = "c"
-	
-
 .. {{{end}}}
 
 For structured XML that uses the "id" attribute to identify unique
@@ -549,14 +313,6 @@ individual nodes in the tree.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'ElementTree_XMLID.py'))
 .. }}}
-
-::
-
-	$ python ElementTree_XMLID.py
-	a = <Element child at b743c0ac>
-	b = <Element child at b743c20c>
-	c = <Element child at b743c2cc>
-
 .. {{{end}}}
 
 

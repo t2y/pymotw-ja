@@ -50,27 +50,6 @@ The result of this script is a new mailbox file with 2 email messages.
 .. (path(cog.inFile).dirname() / 'example.mbox').unlink()
 .. cog.out(run_script(cog.inFile, 'mailbox_mbox_create.py'))
 .. }}}
-
-::
-
-	$ python mailbox_mbox_create.py
-	From MAILER-DAEMON Wed Jul 21 09:59:41 2010
-	From: Author <author@example.com>
-	To: Recipient <recipient@example.com>
-	Subject: Sample message 1
-	
-	This is the body.
-	>From (should be escaped).
-	There are 3 lines.
-	
-	From MAILER-DAEMON Wed Jul 21 09:59:41 2010
-	From: Author <author@example.com>
-	To: Recipient <recipient@example.com>
-	Subject: Sample message 2
-	
-	This is the second body.
-	
-
 .. {{{end}}}
 
 Reading an mbox Mailbox
@@ -92,13 +71,6 @@ instead of the *keys*.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_mbox_read.py'))
 .. }}}
-
-::
-
-	$ python mailbox_mbox_read.py
-	Sample message 1
-	Sample message 2
-
 .. {{{end}}}
 
 Removing Messages from an mbox Mailbox
@@ -118,21 +90,6 @@ to be written to disk.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_mbox_remove.py'))
 .. }}}
-
-::
-
-	$ python mailbox_mbox_remove.py
-	Removing: 1
-	From MAILER-DAEMON Wed Jul 21 09:59:41 2010
-	From: Author <author@example.com>
-	To: Recipient <recipient@example.com>
-	Subject: Sample message 1
-	
-	This is the body.
-	>From (should be escaped).
-	There are 3 lines.
-	
-
 .. {{{end}}}
 
 Maildir
@@ -174,39 +131,6 @@ subdirectory.  Once they are "read" a client could move them to the
 .. (path(cog.inFile).dirname() / 'Example').rmtree()
 .. cog.out(run_script(cog.inFile, 'mailbox_maildir_create.py'))
 .. }}}
-
-::
-
-	$ python mailbox_maildir_create.py
-	Example
-		Directories: ['cur', 'new', 'tmp']
-	Example/cur
-		Directories: []
-	Example/new
-		Directories: []
-	
-	*** Example/new/1279706382.M42325P6910Q2.onikiri.tk.dehenken.co.jp
-	From: Author <author@example.com>
-	To: Recipient <recipient@example.com>
-	Subject: Sample message 2
-	
-	This is the second body.
-	
-	********************
-	
-	*** Example/new/1279706382.M2747P6910Q1.onikiri.tk.dehenken.co.jp
-	From: Author <author@example.com>
-	To: Recipient <recipient@example.com>
-	Subject: Sample message 1
-	
-	This is the body.
-	From (will not be escaped).
-	There are 3 lines.
-	
-	********************
-	Example/tmp
-		Directories: []
-
 .. {{{end}}}
 
 
@@ -225,13 +149,6 @@ particular order.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_maildir_read.py'))
 .. }}}
-
-::
-
-	$ python mailbox_maildir_read.py
-	Sample message 1
-	Sample message 2
-
 .. {{{end}}}
 
 
@@ -248,31 +165,6 @@ To remove an existing message from a Maildir mailbox, use its key with
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_maildir_remove.py'))
 .. }}}
-
-::
-
-	$ python mailbox_maildir_remove.py
-	Removing: 1279706382.M42325P6910Q2.onikiri.tk.dehenken.co.jp
-	Example
-		Directories: ['cur', 'new', 'tmp']
-	Example/cur
-		Directories: []
-	Example/new
-		Directories: []
-	
-	*** Example/new/1279706382.M2747P6910Q1.onikiri.tk.dehenken.co.jp
-	From: Author <author@example.com>
-	To: Recipient <recipient@example.com>
-	Subject: Sample message 1
-	
-	This is the body.
-	From (will not be escaped).
-	There are 3 lines.
-	
-	********************
-	Example/tmp
-		Directories: []
-
 .. {{{end}}}
 
 
@@ -293,65 +185,6 @@ folder name with ``.``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'mailbox_maildir_folders.py'))
 .. }}}
-
-::
-
-	$ python mailbox_maildir_folders.py
-	Example
-	Example/cur
-	Example/new
-	Example/new/1279706382.M2747P6910Q1.onikiri.tk.dehenken.co.jp
-	Example/tmp
-	Example
-	Example/cur
-	Example/new
-	Example/new/1279706382.M2747P6910Q1.onikiri.tk.dehenken.co.jp
-	Example/tmp
-	Example/.subfolder
-	Example/.subfolder/cur
-	Example/.subfolder/new
-	Example/.subfolder/maildirfolder
-	Example/.subfolder/tmp
-	Example
-	Example/cur
-	Example/new
-	Example/new/1279706382.M2747P6910Q1.onikiri.tk.dehenken.co.jp
-	Example/tmp
-	Example/.subfolder
-	Example/.subfolder/cur
-	Example/.subfolder/new
-	Example/.subfolder/maildirfolder
-	Example/.subfolder/tmp
-	Example/.subfolder/.second_level
-	Example/.subfolder/.second_level/cur
-	Example/.subfolder/.second_level/new
-	Example/.subfolder/.second_level/maildirfolder
-	Example/.subfolder/.second_level/tmp
-	Example
-	Example/cur
-	Example/new
-	Example/new/1279706382.M2747P6910Q1.onikiri.tk.dehenken.co.jp
-	Example/tmp
-	Example/.subfolder
-	Example/.subfolder/cur
-	Example/.subfolder/new
-	Example/.subfolder/maildirfolder
-	Example/.subfolder/tmp
-	Before: []
-	
-	##############################
-	
-	subfolder created: ['subfolder']
-	subfolder contents: []
-	
-	##############################
-	
-	second_level created: ['second_level']
-	
-	##############################
-	
-	second_level removed: []
-
 .. {{{end}}}
 
 

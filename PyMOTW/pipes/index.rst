@@ -44,14 +44,6 @@ specified as argument to ``open()``, whether reading or writing.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_simple_write.py'))
 .. }}}
-
-::
-
-	$ python pipes_simple_write.py
-	+ cat -
-	cat - >/tmp/tmpWgktjE
-	Some text
-
 .. {{{end}}}
 
 Reading from a pipeline works basically the same way, with a few
@@ -68,14 +60,6 @@ We can read the results from the pipeline directly.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_simple_read.py'))
 .. }}}
-
-::
-
-	$ python pipes_simple_read.py
-	+ cat -
-	cat - </tmp/tmp9wlZ5Z
-	Some text
-
 .. {{{end}}}
 
 Using Files Instead of Streams
@@ -102,22 +86,6 @@ the input and output of the step.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_file_kind.py'))
 .. }}}
-
-::
-
-	$ python pipes_file_kind.py
-	+ trap 'rm -f /tmp/tmpVJCnL4; exit' 1 2 3 13 14 15
-	+ cat
-	+ IN=/tmp/tmpVJCnL4
-	+ OUT=/tmp/tmpyBMzdW
-	+ cat /tmp/tmpVJCnL4
-	+ rm -f /tmp/tmpVJCnL4
-	trap 'rm -f /tmp/tmpVJCnL4; exit' 1 2 3 13 14 15
-	cat >/tmp/tmpVJCnL4
-	IN=/tmp/tmpVJCnL4; OUT=/tmp/tmpyBMzdW; cat $IN > $OUT
-	rm -f /tmp/tmpVJCnL4
-	Some text
-
 .. {{{end}}}
 
 And the input and output *kind* values can be mixed, so that different
@@ -134,24 +102,6 @@ fails in the middle or the shell is killed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_mixed_kinds.py'))
 .. }}}
-
-::
-
-	$ python pipes_mixed_kinds.py
-	+ trap 'rm -f /tmp/tmpllfe2o; exit' 1 2 3 13 14 15
-	+ cat
-	+ IN=/tmp/tmpllfe2o
-	+ cat /tmp/tmpllfe2o
-	+ OUT=/tmp/tmpW9A3De
-	+ cat -
-	+ rm -f /tmp/tmpllfe2o
-	trap 'rm -f /tmp/tmpllfe2o; exit' 1 2 3 13 14 15
-	cat >/tmp/tmpllfe2o
-	IN=/tmp/tmpllfe2o; cat $IN |
-	{ OUT=/tmp/tmpW9A3De; cat - > $OUT; }
-	rm -f /tmp/tmpllfe2o
-	Some text
-
 .. {{{end}}}
 
 
@@ -192,13 +142,6 @@ output is easy:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_multistep.py'))
 .. }}}
-
-::
-
-	$ python pipes_multistep.py
-	SANDBOXES:
-	['*']
-
 .. {{{end}}}
 
 
@@ -217,18 +160,6 @@ through the pipeline and create an output file for reading.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_copy.py'))
 .. }}}
-
-::
-
-	$ python pipes_copy.py
-	+ IN=lorem.txt
-	+ grep -n tortor lorem.txt
-	IN=lorem.txt; grep -n tortor $IN >/tmp/tmpR6M895
-	3:elementum elit tortor eu quam. Duis tincidunt nisi ut ante. Nulla
-	6:lacus. Praesent placerat tortor sed nisl. Nunc blandit diam egestas
-	11:eget velit auctor tortor blandit sollicitudin. Suspendisse imperdiet
-	
-
 .. {{{end}}}
 
 
@@ -251,13 +182,6 @@ pipelines that perform the same basic function with small variations.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pipes_clone.py'))
 .. }}}
-
-::
-
-	$ python pipes_clone.py
-	  "py":  1857
-	"perl":   124
-
 .. {{{end}}}
 
 

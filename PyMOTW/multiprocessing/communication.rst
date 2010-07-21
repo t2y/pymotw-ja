@@ -23,12 +23,6 @@ then the main process waits for the worker to finish.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_queue.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_queue.py
-	Doing something fancy in Process-1 for Fancy Dan!
-
 .. {{{end}}}
 
 A more complex example shows how to manage several workers consuming
@@ -49,36 +43,6 @@ completed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_producer_consumer.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_producer_consumer.py
-	Creating 4 consumers
-	Consumer-1: 0 * 0
-	Consumer-1: 7 * 7
-	Consumer-1: Exiting
-	Consumer-3: 2 * 2
-	Consumer-3: 6 * 6
-	Consumer-3: Exiting
-	Consumer-4: 3 * 3
-	Consumer-4: 4 * 4
-	Consumer-4: 9 * 9
-	Consumer-4: Exiting
-	Consumer-2: 1 * 1
-	Consumer-2: 5 * 5
-	Consumer-2: 8 * 8
-	Consumer-2: Exiting
-	Result: 0 * 0 = 0
-	Result: 3 * 3 = 9
-	Result: 1 * 1 = 1
-	Result: 2 * 2 = 4
-	Result: 5 * 5 = 25
-	Result: 4 * 4 = 16
-	Result: 7 * 7 = 49
-	Result: 6 * 6 = 36
-	Result: 8 * 8 = 64
-	Result: 9 * 9 = 81
-
 .. {{{end}}}
 
 
@@ -101,17 +65,6 @@ responsible for checking the state of the event using ``is_set()``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_event.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_event.py
-	wait_for_event_timeout: starting
-	wait_for_event_timeout: e.is_set()-> False
-	wait_for_event: starting
-	wait_for_event: e.is_set()-> True
-	main: waiting before calling Event.set()
-	main: event is set
-
 .. {{{end}}}
 
 Controlling access to resources with Lock
@@ -131,13 +84,6 @@ output stream with the lock.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_lock.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_lock.py
-	Lock acquired via with
-	Lock acquired directly
-
 .. {{{end}}}
 
 
@@ -158,17 +104,6 @@ the first stage is done.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_condition.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_condition.py
-	Starting stage_2[1]
-	stage_2[1] running
-	Starting stage_2[2]
-	stage_2[2] running
-	Starting s1
-	s1 done and ready for stage 2
-
 .. {{{end}}}
 
 
@@ -196,31 +131,6 @@ processes to show that only 3 are running concurrently.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_semaphore.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_semaphore.py
-	Now running: ['2', '1', '3']
-	Now running: ['2', '1', '3']
-	Now running: ['2']
-	Now running: ['2', '1', '4']
-	Now running: ['5', '0', '7']
-	Now running: ['5', '0', '8']
-	Now running: ['5', '0', '9']
-	Now running: ['2', '4', '5']
-	Now running: ['5', '0', '6']
-	Now running: ['4', '5', '0']
-	Now running: []
-	Now running: []
-	Now running: []
-	Now running: []
-	Now running: []
-	Now running: []
-	Now running: []
-	Now running: []
-	Now running: []
-	Now running: []
-
 .. {{{end}}}
 
 Managers
@@ -240,12 +150,6 @@ anyone modifies it.  Dictionaries are also supported.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_manager_dict.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_manager_dict.py
-	Results: {0: 0, 1: 2, 2: 4, 3: 6, 4: 8, 5: 10, 6: 12, 7: 14, 8: 16, 9: 18}
-
 .. {{{end}}}
 
 Namespaces
@@ -262,13 +166,6 @@ all of the clients.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_namespaces.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_namespaces.py
-	Before event, consumer got: 'Namespace' object has no attribute 'value'
-	After event, consumer got: This is the value
-
 .. {{{end}}}
 
 It is important to know that *updates* to the contents of mutable
@@ -281,13 +178,6 @@ values in the namespace are *not* propagated automatically.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_namespaces_mutable.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_namespaces_mutable.py
-	Before event, consumer got: []
-	After event, consumer got: []
-
 .. {{{end}}}
 
 
@@ -308,12 +198,4 @@ built-in ``map()``, except that individual tasks run in parallel.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_pool.py'))
 .. }}}
-
-::
-
-	$ python multiprocessing_pool.py
-	Input   : [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-	Built-in: [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
-	Pool    : [0, 2, 4, 6, 8, 10, 12, 14, 16, 18]
-
 .. {{{end}}}

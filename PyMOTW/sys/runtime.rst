@@ -25,14 +25,6 @@ arguments, including the name of the script itself, are saved to
 .. cog.out(run_script(cog.inFile, 'sys_argv.py', trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'sys_argv.py -v foo blah', include_prefix=False))
 .. }}}
-
-::
-
-	$ python sys_argv.py
-	Arguments: ['sys_argv.py']
-	$ python sys_argv.py -v foo blah
-	Arguments: ['sys_argv.py', '-v', 'foo', 'blah']
-
 .. {{{end}}}
 
 .. seealso::
@@ -59,35 +51,6 @@ is intended for use with warning or error messages.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, interpreter='cat sys_stdio.py | python', script_name='sys_stdio.py'))
 .. }}}
-
-::
-
-	$ cat sys_stdio.py | python sys_stdio.py
-	STATUS: Reading from stdin
-	STATUS: Writing data to stdout
-	#!/usr/bin/env python
-	# encoding: utf-8
-	#
-	# Copyright (c) 2009 Doug Hellmann All rights reserved.
-	#
-	"""
-	"""
-	#end_pymotw_header
-	
-	import sys
-	
-	print >>sys.stderr, 'STATUS: Reading from stdin'
-	
-	data = sys.stdin.read()
-	
-	print >>sys.stderr, 'STATUS: Writing data to stdout'
-	
-	sys.stdout.write(data)
-	sys.stdout.flush()
-	
-	print >>sys.stderr, 'STATUS: Done'
-	STATUS: Done
-
 .. {{{end}}}
 
 
@@ -111,12 +74,4 @@ error.
 .. cog.out(run_script(cog.inFile, 'sys_exit.py 0 ; echo "Exited $?"', trailing_newlines=False))
 .. cog.out(run_script(cog.inFile, 'sys_exit.py 1 ; echo "Exited $?"', include_prefix=False, ignore_error=True))
 .. }}}
-
-::
-
-	$ python sys_exit.py 0 ; echo "Exited $?"
-	Exited 0
-	$ python sys_exit.py 1 ; echo "Exited $?"
-	Exited 1
-
 .. {{{end}}}

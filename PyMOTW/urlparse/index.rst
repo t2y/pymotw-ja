@@ -27,12 +27,6 @@ network location, path, parameters, query, and fragment.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlparse.py'))
 .. }}}
-
-::
-
-	$ python urlparse_urlparse.py
-	ParseResult(scheme='http', netloc='netloc', path='/path', params='parameters', query='query=argument', fragment='fragment')
-
 .. {{{end}}}
 
 
@@ -56,21 +50,6 @@ integer when present and ``None`` when not.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlparseattrs.py'))
 .. }}}
-
-::
-
-	$ python urlparse_urlparseattrs.py
-	scheme  : http
-	netloc  : user:pass@NetLoc:80
-	path    : /path
-	params  : parameters
-	query   : query=argument
-	fragment: fragment
-	username: user
-	password: pass
-	hostname: netloc (netloc in lower case)
-	port    : 80
-
 .. {{{end}}}
 
 The :func:`urlsplit()` function is an alternative to
@@ -88,21 +67,6 @@ elements instead of 6, and there is no *params* attribute.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlsplit.py'))
 .. }}}
-
-::
-
-	$ python urlparse_urlsplit.py
-	SplitResult(scheme='http', netloc='user:pass@NetLoc:80', path='/path;parameters/path2;parameters2', query='query=argument', fragment='fragment')
-	scheme  : http
-	netloc  : user:pass@NetLoc:80
-	path    : /path;parameters/path2;parameters2
-	query   : query=argument
-	fragment: fragment
-	username: user
-	password: pass
-	hostname: netloc (netloc in lower case)
-	port    : 80
-
 .. {{{end}}}
 
 To simply strip the fragment identifier from a URL, as you might need
@@ -117,14 +81,6 @@ The return value is a tuple containing the base URL and the fragment.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urldefrag.py'))
 .. }}}
-
-::
-
-	$ python urlparse_urldefrag.py
-	http://netloc/path;parameters?query=argument#fragment
-	http://netloc/path;parameters?query=argument
-	fragment
-
 .. {{{end}}}
 
 Unparsing
@@ -143,13 +99,6 @@ single string. The parsed URL object has a :func:`geturl()` method.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_geturl.py'))
 .. }}}
-
-::
-
-	$ python urlparse_geturl.py
-	ORIG  : http://netloc/path;parameters?query=argument#fragment
-	PARSED: http://netloc/path;parameters?query=argument#fragment
-
 .. {{{end}}}
 
 If you have a regular tuple of values, you can use
@@ -166,15 +115,6 @@ show that :func:`urlunparse()` works with normal tuples, too.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlunparse.py'))
 .. }}}
-
-::
-
-	$ python urlparse_urlunparse.py
-	ORIG  : http://netloc/path;parameters?query=argument#fragment
-	PARSED: <class 'urlparse.ParseResult'> ParseResult(scheme='http', netloc='netloc', path='/path', params='parameters', query='query=argument', fragment='fragment')
-	TUPLE : <type 'tuple'> ('http', 'netloc', '/path', 'parameters', 'query=argument', 'fragment')
-	NEW   : http://netloc/path;parameters?query=argument#fragment
-
 .. {{{end}}}
 
 If the input URL included superfluous parts, those may be dropped from the
@@ -191,15 +131,6 @@ original, but is equivalent according to the standard.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urlunparseextra.py'))
 .. }}}
-
-::
-
-	$ python urlparse_urlunparseextra.py
-	ORIG  : http://netloc/path;?#
-	PARSED: <class 'urlparse.ParseResult'> ParseResult(scheme='http', netloc='netloc', path='/path', params='', query='', fragment='')
-	TUPLE : <type 'tuple'> ('http', 'netloc', '/path', '', '', '')
-	NEW   : http://netloc/path
-
 .. {{{end}}}
 
 Joining
@@ -219,13 +150,6 @@ into account when the second URL is computed.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'urlparse_urljoin.py'))
 .. }}}
-
-::
-
-	$ python urlparse_urljoin.py
-	http://www.example.com/path/anotherfile.html
-	http://www.example.com/anotherfile.html
-
 .. {{{end}}}
 
 .. seealso::

@@ -38,16 +38,6 @@ removed from the queue in the same order they are inserted.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'Queue_fifo.py'))
 .. }}}
-
-::
-
-	$ python Queue_fifo.py
-	0
-	1
-	2
-	3
-	4
-
 .. {{{end}}}
 
 LIFO Queue
@@ -67,16 +57,6 @@ The item most recently ``put()`` into the queue is removed by
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'Queue_lifo.py'))
 .. }}}
-
-::
-
-	$ python Queue_lifo.py
-	4
-	3
-	2
-	1
-	0
-
 .. {{{end}}}
 
 .. _Queue-PriorityQueue:
@@ -103,17 +83,6 @@ the queue at the time ``get()`` was called.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'Queue_priority.py'))
 .. }}}
-
-::
-
-	$ python Queue_priority.py
-	New job: Mid-level job
-	New job: Low-level job
-	New job: Important job
-	Processing job: Important job
-	Processing job: Mid-level job
-	Processing job: Low-level job
-
 .. {{{end}}}
 
 

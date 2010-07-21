@@ -52,15 +52,6 @@ write to ``sys.stdout``.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_call.py'))
 .. }}}
-
-::
-
-	$ python sys_settrace_call.py
-	Call to a on line 27 of sys_settrace_call.py from line 32 of sys_settrace_call.py
-	in a()
-	Call to b on line 24 of sys_settrace_call.py from line 29 of sys_settrace_call.py
-	in b()
-
 .. {{{end}}}
 
 Tracing Inside Functions
@@ -80,21 +71,6 @@ Here the global list of functions is kept in the variable
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_line.py'))
 .. }}}
-
-::
-
-	$ python sys_settrace_line.py
-	Call to a on line 40 of sys_settrace_line.py
-	Call to b on line 35 of sys_settrace_line.py
-	  b line 36
-	  b line 37
-	Call to c on line 31 of sys_settrace_line.py
-	input = 10
-	Leaving c()
-	  b line 38
-	Leaving b()
-	Leaving a()
-
 .. {{{end}}}
 
 
@@ -114,17 +90,6 @@ return ``trace_calls_and_returns`` when a function is called.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_return.py'))
 .. }}}
-
-::
-
-	$ python sys_settrace_return.py
-	Call to a on line 25 of sys_settrace_return.py
-	in a()
-	Call to b on line 21 of sys_settrace_return.py
-	in b()
-	b => response_from_b 
-	a => response_from_b response_from_b 
-
 .. {{{end}}}
 
 
@@ -148,15 +113,6 @@ whether the caller catches and ignores it or not.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'sys_settrace_exception.py'))
 .. }}}
-
-::
-
-	$ python sys_settrace_exception.py
-	Tracing exception: RuntimeError "generating exception in c()" on line 26 of c
-	Tracing exception: RuntimeError "generating exception in c()" on line 29 of b
-	Tracing exception: RuntimeError "generating exception in c()" on line 33 of a
-	Exception handler: generating exception in c()
-
 .. {{{end}}}
 
 

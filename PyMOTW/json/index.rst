@@ -50,13 +50,6 @@ json -- JavaScript Object Notation Serializer
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_simple_types.py'))
 .. }}}
-
-::
-
-	$ python json_simple_types.py
-	DATA: [{'a': 'A', 'c': 3.0, 'b': (2, 4)}]
-	JSON: [{"a": "A", "c": 3.0, "b": [2, 4]}]
-
 .. {{{end}}}
 
 ..
@@ -78,15 +71,6 @@ json -- JavaScript Object Notation Serializer
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_simple_types_decode.py'))
 .. }}}
-
-::
-
-	$ python json_simple_types_decode.py
-	ENCODED: [{"a": "A", "c": 3.0, "b": [2, 4]}]
-	DECODED: [{u'a': u'A', u'c': 3.0, u'b': [2, 4]}]
-	ORIGINAL: <type 'tuple'>
-	DECODED : <type 'list'>
-
 .. {{{end}}}
 
 ..
@@ -118,16 +102,6 @@ pickle より優れた JSON の他の利点はその結果(出力)を人間が�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_sort_keys.py'))
 .. }}}
-
-::
-
-	$ python json_sort_keys.py
-	DATA: [{'a': 'A', 'c': 3.0, 'b': (2, 4)}]
-	JSON: [{"a": "A", "c": 3.0, "b": [2, 4]}]
-	SORT: [{"a": "A", "b": [2, 4], "c": 3.0}]
-	UNSORTED MATCH: False
-	SORTED MATCH  : True
-
 .. {{{end}}}
 
 ..
@@ -150,23 +124,6 @@ pickle より優れた JSON の他の利点はその結果(出力)を人間が�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_indent.py'))
 .. }}}
-
-::
-
-	$ python json_indent.py
-	DATA: [{'a': 'A', 'c': 3.0, 'b': (2, 4)}]
-	NORMAL: [{"a": "A", "b": [2, 4], "c": 3.0}]
-	INDENT: [
-	  {
-	    "a": "A", 
-	    "b": [
-	      2, 
-	      4
-	    ], 
-	    "c": 3.0
-	  }
-	]
-
 .. {{{end}}}
 
 ..
@@ -193,16 +150,6 @@ pickle より優れた JSON の他の利点はその結果(出力)を人間が�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_compact_encoding.py'))
 .. }}}
-
-::
-
-	$ python json_compact_encoding.py
-	DATA: [{'a': 'A', 'c': 3.0, 'b': (2, 4)}]
-	repr(data)             : 35
-	dumps(data)            : 35
-	dumps(data, indent=2)  : 76
-	dumps(data, separators): 29
-
 .. {{{end}}}
 
 ..
@@ -234,16 +181,6 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_skipkeys.py'))
 .. }}}
-
-::
-
-	$ python json_skipkeys.py
-	First attempt
-	ERROR: key ('d',) is not a string
-	
-	Second attempt
-	[{"a": "A", "c": 3.0, "b": [2, 4]}]
-
 .. {{{end}}}
 
 ..
@@ -292,17 +229,6 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_dump_default.py'))
 .. }}}
-
-::
-
-	$ python json_dump_default.py
-	First attempt
-	ERROR: <MyObj(instance value goes here)> is not JSON serializable
-	
-	With default
-	default( <MyObj(instance value goes here)> )
-	{"s": "instance value goes here", "__module__": "json_myobj", "__class__": "MyObj"}
-
 .. {{{end}}}
 
 ..
@@ -335,15 +261,6 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_load_object_hook.py'))
 .. }}}
-
-::
-
-	$ python json_load_object_hook.py
-	MODULE: <module 'json_myobj' from '/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/json/json_myobj.pyc'>
-	CLASS: <class 'json_myobj.MyObj'>
-	INSTANCE ARGS: {'s': u'instance value goes here'}
-	[<MyObj(instance value goes here)>]
-
 .. {{{end}}}
 
 ..
@@ -389,30 +306,6 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_encoder_iterable.py'))
 .. }}}
-
-::
-
-	$ python json_encoder_iterable.py
-	PART: [
-	PART: {
-	PART: "a"
-	PART: : 
-	PART: "A"
-	PART: , 
-	PART: "c"
-	PART: : 
-	PART: 3.0
-	PART: , 
-	PART: "b"
-	PART: : 
-	PART: [
-	PART: 2
-	PART: , 
-	PART: 4
-	PART: ]
-	PART: }
-	PART: ]
-
 .. {{{end}}}
 
 ..
@@ -441,14 +334,6 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_encoder_default.py'))
 .. }}}
-
-::
-
-	$ python json_encoder_default.py
-	<MyObj(internal data)>
-	default( <MyObj(internal data)> )
-	{"s": "internal data", "__module__": "json_myobj", "__class__": "MyObj"}
-
 .. {{{end}}}
 
 ..
@@ -470,15 +355,6 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_decoder_object_hook.py'))
 .. }}}
-
-::
-
-	$ python json_decoder_object_hook.py
-	MODULE: <module 'json_myobj' from '/home/morimoto/work/translate/02_pymotw/pymotw-ja/PyMOTW/json/json_myobj.pyc'>
-	CLASS: <class 'json_myobj.MyObj'>
-	INSTANCE ARGS: {'s': u'instance value goes here'}
-	[<MyObj(instance value goes here)>]
-
 .. {{{end}}}
 
 ..
@@ -511,12 +387,6 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_dump_file.py'))
 .. }}}
-
-::
-
-	$ python json_dump_file.py
-	[{"a": "A", "c": 3.0, "b": [2, 4]}]
-
 .. {{{end}}}
 
 ..
@@ -533,12 +403,6 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_load_file.py'))
 .. }}}
-
-::
-
-	$ python json_load_file.py
-	[{u'a': u'A', u'c': 3.0, u'b': [2, 4]}]
-
 .. {{{end}}}
 
 
@@ -570,18 +434,6 @@ JSONDecoder には終了文字のある JSON データのような、複数の�
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_mixed_data.py'))
 .. }}}
-
-::
-
-	$ python json_mixed_data.py
-	JSON first:
-	Object              : [{u'a': u'A', u'c': 3.0, u'b': [2, 4]}]
-	End of parsed input : 35
-	Remaining text      : ' This text is not JSON.'
-	
-	JSON embedded:
-	ERROR: No JSON object could be decoded
-
 .. {{{end}}}
 
 ..

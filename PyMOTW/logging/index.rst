@@ -41,14 +41,6 @@ message:
 .. outfile.unlink()
 .. cog.out(run_script(cog.inFile, 'logging_file_example.py'))
 .. }}}
-
-::
-
-	$ python logging_file_example.py
-	FILE:
-	DEBUG:root:This message should go to the log file
-	
-
 .. {{{end}}}
 
 
@@ -73,17 +65,6 @@ the application:
 .. deleted = [ f.unlink() for f in outfile.glob('*') ]
 .. cog.out(run_script(cog.inFile, 'logging_rotatingfile_example.py'))
 .. }}}
-
-::
-
-	$ python logging_rotatingfile_example.py
-	logging_rotatingfile_example.out.2
-	logging_rotatingfile_example.out
-	logging_rotatingfile_example.out.5
-	logging_rotatingfile_example.out.4
-	logging_rotatingfile_example.out.3
-	logging_rotatingfile_example.out.1
-
 .. {{{end}}}
 
 The most current file is always ``logging_rotatingfile_example.out``, and
@@ -132,22 +113,6 @@ messages show up at different levels:
 .. cog.out(run_script(cog.inFile, 'logging_level_example.py debug'))
 .. cog.out(run_script(cog.inFile, 'logging_level_example.py info', include_prefix=False))
 .. }}}
-
-::
-
-	$ python logging_level_example.py debug
-	DEBUG:root:This is a debug message
-	INFO:root:This is an info message
-	WARNING:root:This is a warning message
-	ERROR:root:This is an error message
-	CRITICAL:root:This is a critical error message
-
-	$ python logging_level_example.py info
-	INFO:root:This is an info message
-	WARNING:root:This is a warning message
-	ERROR:root:This is an error message
-	CRITICAL:root:This is a critical error message
-
 .. {{{end}}}
 
 Naming Logger Instances
@@ -173,13 +138,6 @@ And the output:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'logging_modules_example.py'))
 .. }}}
-
-::
-
-	$ python logging_modules_example.py
-	WARNING:package1.module1:This message comes from one module
-	WARNING:package2.module2:And this message comes from another module
-
 .. {{{end}}}
 
 There are many, many, more options for configuring logging, including

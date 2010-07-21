@@ -36,42 +36,6 @@ default).
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pprint_pprint.py'))
 .. }}}
-
-::
-
-	$ python pprint_pprint.py
-	PRINT:
-	[(0, {'a': 'A', 'c': 'C', 'b': 'B', 'e': 'E', 'd': 'D', 'g': 'G', 'f': 'F', 'h': 'H'}), (1, {'a': 'A', 'c': 'C', 'b': 'B', 'e': 'E', 'd': 'D', 'g': 'G', 'f': 'F', 'h': 'H'}), (2, {'a': 'A', 'c': 'C', 'b': 'B', 'e': 'E', 'd': 'D', 'g': 'G', 'f': 'F', 'h': 'H'})]
-	
-	PPRINT:
-	[(0,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C',
-	   'd': 'D',
-	   'e': 'E',
-	   'f': 'F',
-	   'g': 'G',
-	   'h': 'H'}),
-	 (1,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C',
-	   'd': 'D',
-	   'e': 'E',
-	   'f': 'F',
-	   'g': 'G',
-	   'h': 'H'}),
-	 (2,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C',
-	   'd': 'D',
-	   'e': 'E',
-	   'f': 'F',
-	   'g': 'G',
-	   'h': 'H'})]
-
 .. {{{end}}}
 
 Formatting
@@ -89,39 +53,6 @@ to another function.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pprint_pformat.py'))
 .. }}}
-
-::
-
-	$ python pprint_pformat.py
-	DEBUG    Logging pformatted data
-	DEBUG    [(0,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C',
-	   'd': 'D',
-	   'e': 'E',
-	   'f': 'F',
-	   'g': 'G',
-	   'h': 'H'}),
-	 (1,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C',
-	   'd': 'D',
-	   'e': 'E',
-	   'f': 'F',
-	   'g': 'G',
-	   'h': 'H'}),
-	 (2,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C',
-	   'd': 'D',
-	   'e': 'E',
-	   'f': 'F',
-	   'g': 'G',
-	   'h': 'H'})]
-
 .. {{{end}}}
 
 Arbitrary Classes
@@ -137,14 +68,6 @@ your own classes, if they define a ``__repr__()`` method.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pprint_arbitrary_object.py'))
 .. }}}
-
-::
-
-	$ python pprint_arbitrary_object.py
-	[node('node-1', []),
-	 node('node-2', [node('node-2-1', [])]),
-	 node('node-3', [node('node-3-1', [])])]
-
 .. {{{end}}}
 
 
@@ -162,13 +85,6 @@ example:
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pprint_recursion.py'))
 .. }}}
-
-::
-
-	$ python pprint_recursion.py
-	id(local_data) => 3077288236
-	['a', 'b', 1, 2, <Recursion on list with id=3077288236>]
-
 .. {{{end}}}
 
 
@@ -188,12 +104,6 @@ pretty printer goes.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pprint_depth.py'))
 .. }}}
-
-::
-
-	$ python pprint_depth.py
-	[(...), (...), (...)]
-
 .. {{{end}}}
 
 
@@ -215,44 +125,6 @@ invalid syntax.
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pprint_width.py'))
 .. }}}
-
-::
-
-	$ python pprint_width.py
-	WIDTH = 80
-	[(0, {'a': 'A', 'b': 'B', 'c': 'C'}),
-	 (1, {'a': 'A', 'b': 'B', 'c': 'C'}),
-	 (2, {'a': 'A', 'b': 'B', 'c': 'C'})]
-	
-	WIDTH = 20
-	[(0,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C'}),
-	 (1,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C'}),
-	 (2,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C'})]
-	
-	WIDTH = 5
-	[(0,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C'}),
-	 (1,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C'}),
-	 (2,
-	  {'a': 'A',
-	   'b': 'B',
-	   'c': 'C'})]
-	
-
 .. {{{end}}}
 
 .. seealso::
