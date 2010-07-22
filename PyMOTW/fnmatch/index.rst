@@ -95,7 +95,7 @@ fnmatch モジュールは Unix シェルで使用されるような glob パタ
     In this example, ``filter()`` returns the list of names of the example
     source files associated with this post.
 
-このサンプルでは ``filter()`` はこのページで紹介しているサンプルソースファイル名のリストを返します。
+このサンプルでは ``filter()`` は本稿で紹介しているサンプルソースファイル名のリストを返します。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'fnmatch_filter.py'))
