@@ -120,7 +120,7 @@ heapq -- インプレースヒープソートアルゴリズム
     stdlib documentation, ``heapify()`` and ``heappop()`` are used to sort
     a list of numbers.
 
-一度ヒープが正しく構成されると、最小値の要素を削除するために ``heappop()`` を使用します。標準ライブラリドキュメントで説明されている例では ``heapify()`` と ``heappop()`` が数値のリストをソートするために使用されています。
+1度ヒープが正しく構成されると、最小値の要素を削除するために ``heappop()`` を使用します。標準ライブラリドキュメントで説明されている例では ``heapify()`` と ``heappop()`` が数値のリストをソートするために使用されています。
 
 .. include:: heapq_heappop.py
     :literal:
