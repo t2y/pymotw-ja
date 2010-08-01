@@ -453,8 +453,10 @@ Multicall は1度に1つ以上の呼び出しの送信を許容する XML-RPC �
 
     `xmlrpclib <http://docs.python.org/lib/module-xmlrpclib.html>`_
         .. Standard library documentation for this module.
+
         本モジュールの標準ライブラリドキュメント
 
     :mod:`SimpleXMLRPCServer`
         .. An XML-RPC server implementation.
+
         XML-RPC サーバの1つの実装
