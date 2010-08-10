@@ -18,7 +18,7 @@ locale -- POSIX 文化のローカライゼーション API
     :Python Version: 1.5, with extensions through 2.5 (this discussion assumes 2.5)
 
 :目的: POSIX 文化のローカライゼーション API
-:Python バージョン: 1.5 で追加され 2.5 で機能拡張(本稿の内容は 2.5 を想定)
+:Python バージョン: 1.5 で新規追加され 2.5 で機能拡張(本稿の内容は 2.5 を想定)
 
 ..
     The locale module is part of Python's internationalization and
@@ -357,16 +357,14 @@ locale モジュールは Python の国際化の仕組みの一部でローカ�
 
 ここでの話題は locale モジュールの高レベル関数のみ説明します。低レベルの関数(``format_string()``)、アプリケーションでロケールを管理するために関連する関数(``resetlocale()``)といった関数群もあります。いつもの通り、あなたは Python のライブラリドキュメントでさらに詳細を確認したくなるでしょう。
 
-..
-    `locale <http://docs.python.org/library/locale.html>`_
-        The standard library documentation for this module.
-    :mod:`gettext`
-        Message catalogs for translations.
-
 .. seealso::
 
     `locale <http://docs.python.org/library/locale.html>`_
+        .. The standard library documentation for this module.
+
         本モジュールの標準ライブラリドキュメント
 
     :mod:`gettext`
+        .. Message catalogs for translations.
+
         翻訳のためのメッセージカタログ

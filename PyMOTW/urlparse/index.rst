@@ -18,7 +18,7 @@ urlparse -- URL を部分文字列に分割する
     :Python Version: since 1.4
 
 :目的: URL を部分文字列に分割する
-:Python バージョン: 1.4 以降
+:Python バージョン: 1.4 以上
 
 ..
     The :mod:`urlparse` module provides functions for breaking URLs down
@@ -226,21 +226,19 @@ URL を解析することに加えて :mod:`urlparse` には関連するフラ�
 .. }}}
 .. {{{end}}}
 
-..
-    `urlparse <http://docs.python.org/lib/module-urlparse.html>`_
-        Standard library documentation for this module.
-    :mod:`urllib`
-        Retrieve the contents of a resource identified by a URL.
-    :mod:`urllib2`
-        Alternative API for accessing remote URLs.
-
 .. seealso::
 
     `urlparse <http://docs.python.org/lib/module-urlparse.html>`_
+        .. Standard library documentation for this module.
+
         本モジュールの標準ライブラリドキュメント
 
     :mod:`urllib`
+        .. Retrieve the contents of a resource identified by a URL.
+
         URL で識別されるリソースからコンテンツを取り出す
 
     :mod:`urllib2`
+        .. Alternative API for accessing remote URLs.
+
         リモート URL アクセスの代替 API
