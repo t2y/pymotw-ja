@@ -28,7 +28,7 @@ class MyService:
     PREFIX = 'prefix'
 
     def _dispatch(self, method, params):
-        # Remove our prefix from the method name
+        # メソッド名から接頭辞を削除する
         if not method.startswith(self.PREFIX + '.'):
             raise Exception('method "%s" is not supported' % method)
         

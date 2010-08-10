@@ -1,100 +1,200 @@
-History
-=======
+..
+    History
+    =======
+
+履歴
+====
+
+..
+  - 11 July 2010, :mod:`gc`
 
 1.120
 
   - 8 Aug 2010, :mod:`argparse`
 
 1.119
+  - 2011年7月11日, :mod:`gc`
 
-  - 11 July 2010, :mod:`gc`
 
-1.118.1
-
+..
   - Updates to :mod:`locale`
 
-1.118
+1.118.1
+  - :mod:`locale` を更新
 
+
+..
   - Roberto Pauletto's Italian translation has moved to
     http://robyp.x10hosting.com/
   - 27 June 2010, :mod:`site`
 
-1.117a
+1.118
+  - Roberto Pauletto のイタリア語翻訳は http://robyp.x10hosting.com/ へ移転しました
+  - 2010年6月27日, :mod:`site`
 
+
+..
   - Added LifoQueue and PriorityQueue examples to :mod:`Queue`.
   - Completed an editing pass of the entire document, tweaking wording
     and formatting.
 
-1.117
+1.117a
+  - :mod:`Queue` へ LifoQueue と PriorityQueue のサンプルを追加
+  - 言い回しやフォーマットを微調整して完全なドキュメントの編集パスを完了
+
+
+..
   - Updated :mod:`fileinput` example to use
     :mod:`xml.etree.ElementTree`.  Added an example to show how to get
     the filename and line number being processed.
 
-1.116
+1.117
+  - :mod:`xml.etree.ElementTree` を使用するために :mod:`fileinput` のサンプルを更新、そのファイル名と処理中の行番号を取得する方法を提示するサンプルを追加
+
+
+..
   - 21 Mar 2010, :ref:`xml.etree.ElementTree.creating`
   - Fixed example in :ref:`abc-abstract-properties` so both the setter
     and getter work.  Thanks to Rune Hansen for pointing out the error
     in the original version.
 
-1.115
+1.116
+  - 2010年3月21日, :ref:`xml.etree.ElementTree.creating`
+  - セッターとゲッターが動作するように :ref:`abc-abstract-properties` のサンプルを修正、オリジナルバージョンのエラーを指摘してくれた Rune Hansen に感謝
+
+
+..
   - 14 Mar 2010, :ref:`xml.etree.ElementTree.parsing`
 
-1.114
+1.115
+  - 2010年3月14日, :ref:`xml.etree.ElementTree.parsing`
+
+..
   - 7 Mar 2010, :mod:`tabnanny`
 
-1.113
+1.114
+  - 2010年3月7日, :mod:`tabnanny`
+
+
+..
   - 30 Jan 2010, :mod:`cgitb`
   - Added reference to presentation about using PyObjC to read/write
     binary plist files to :mod:`plist`.
 
-1.112
+1.113
+  - 2010年1月30日, :mod:`cgitb`
+  - :mod:`plist` に対するバイナリ plist ファイルを読み書きするために PyObjC 使用に関連するプレゼンテーションをリファレンスに追加
+
+
+..
   - 29 Nov 2009, :mod:`plistlib`
 
-1.111.1
+1.112
+  - 2009年11月29日, :mod:`plistlib`
+
+
+..
   - Clarify memory example based on comment from tartley.
   - Fix core dump detection in commands_getstatusoutput.py.  
     Thanks to Felix Labrecque for pointing out that it was wrong.
 
-1.111
+1.111.1
+  - tartley からのコメントをベースにメモリのサンプルを明確化
+  - commands_getstatusoutput.py のコアダンプ検出を修正、誤りを指摘してくれた Felix Labrecque に感謝
+
+
+..
   - 23 Nov 2009, :mod:`sys`, continued with :ref:`sys-imports`
 
-1.110
+1.111
+  - 2009年11月23日, :ref:`sys-imports` に続けて :mod:`sys` を修正
+
+
+..
   - 15 Nov 2009, :mod:`sys`, continued with :ref:`sys-threads`
 
-1.109
+1.110
+  - 2009年11月15日, :ref:`sys-threads` に続けて :mod:`sys` を修正
+
+
+..
   - 8 Nov 2009, :mod:`sys`, continued with :ref:`sys-tracing`
 
-1.108
+1.109
+  - 2009年11月8日, :ref:`sys-tracing` に続けて :mod:`sys` を修正
+
+
+..
   - 1 Nov 2009, :mod:`sys`, continued with :ref:`sys-exceptions`
 
-1.107
+1.108
+  - 2009年11月1日, :ref:`sys-exceptions` に続けて :mod:`sys` を修正
+
+
+..
   - 25 Oct 2009, :mod:`sys`, continued with :ref:`sys-limits`
 
-1.106
+1.107
+  - 2009年10月25日, :ref:`sys-limits` に続けて :mod:`sys` を修正
+
+
+..
   - 18 Oct 2009, :mod:`sys`, continued with :ref:`sys-runtime`
 
-1.105
+1.106
+  - 2009年10月18日, :ref:`sys-runtime` に続けて :mod:`sys` を修正
+
+
+..
   - 12 Oct 2009, :mod:`sys` started with :ref:`sys-interpreter`
 
-1.104
+1.105
+  - 2009年10月12日, :ref:`sys-interpreter` に続けて :mod:`sys` を修正
+
+
+..
   - 20 Sept 2009, :mod:`resource`
 
-1.103
+1.104
+  - 2009年9月20日, :mod:`resource`
+
+
+..
   - 5 Sept 2009, :mod:`fractions`
 
-1.102
+1.103
+  - 2009年9月5日, :mod:`fractions`
+
+
+..
   - 30 Aug 2009, :mod:`decimal`
 
-1.101
+1.102
+  - 2009年8月30日, :mod:`decimal`
+
+
+..
   - 23 Aug 2009, :mod:`dis`
 
-1.100
+1.101
+  - 2009年8月23日, :mod:`dis`
+
+
+..
   - 9 Aug 2009, :mod:`pydoc`
   - Add pipes example to :mod:`subprocess`.
   - Add circular reference example to :mod:`pickle`.
   - Use the Sphinx text builder to create clean plaintext files for use with motw command line app.
   - Use :mod:`pydoc` ``pager()`` to show plaintext help from :ref:`motw-cli`.
   - Add built-in function ``motw()`` so that importing PyMOTW into your interactive session makes it easy to get to the examples interactively.  See :ref:`motw-interactive`.
+
+1.100
+  - 2009年8月9日, :mod:`pydoc`
+  - :mod:`subprocess` にパイプのサンプルを追加
+  - :mod:`pickle` に循環参照のサンプルを追加
+  - motw コマンドラインアプリが使用するプレーンテキストを作成するために Sphinx テキストビルダーを使用
+  - :ref:`motw-cli` からプレーンテキストのヘルプを表示するための ``pager()`` に :mod:`pydoc` を追加
+  - インタラクティブシェルのセッションへ PyMOTW をインポートして対話的に PyMOTW のサンプルを取得し易いようにビルトイン関数 ``motw()`` を追加、 :ref:`motw-interactive` を参照
 
 1.99
   - 2 Aug 2009, Add :ref:`article-data-structures` article.

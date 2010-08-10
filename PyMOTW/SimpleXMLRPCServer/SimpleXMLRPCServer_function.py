@@ -13,12 +13,12 @@ from SimpleXMLRPCServer import SimpleXMLRPCServer
 import logging
 import os
 
-# Set up logging
+# ロギングをセットアップ
 logging.basicConfig(level=logging.DEBUG)
 
 server = SimpleXMLRPCServer(('localhost', 9000), logRequests=True)
 
-# Expose a function
+# 関数を公開する
 def list_contents(dir_name):
     logging.debug('list_contents(%s)', dir_name)
     return os.listdir(dir_name)

@@ -17,6 +17,6 @@ try:
     print 'temp:', temp
     print 'temp.name:', temp.name
 finally:
-    # Automatically cleans up the file
+    # 自動的にファイルを削除する
     temp.close()
 print 'Exists after close:', os.path.exists(temp.name)
