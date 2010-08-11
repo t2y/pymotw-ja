@@ -441,7 +441,7 @@ NotImplementedError
 
 .. seealso::
 
-   :mod:`abc` - 抽象ベースクラス
+   :mod:`abc` - 抽象基底クラス
 
 OSError
 -------

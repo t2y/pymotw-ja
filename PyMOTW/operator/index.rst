@@ -258,7 +258,7 @@ operator モジュールの関数は演算のために標準の Python インタ
     :mod:`abc` includes :ref:`abstract base classes
     <abc-collection-types>` for collection types.
 
-:mod:`abc` はコレクション型の :ref:`抽象ベースクラス <abc-collection-types>` を含みます。
+:mod:`abc` はコレクション型の :ref:`抽象基底クラス <abc-collection-types>` を含みます。
 
 .. seealso::
 
