@@ -85,7 +85,7 @@ itertools -- 効率的なループ処理のためのイテレータ関数
     as the slice operator for lists: start, stop, and step. The start and
     step arguments are optional.
 
-``islice()`` 関数は入力イテレータからインデックスで選択された要素を返すイテレータを返します。それはリストのスライシングのように同じ引数である開始、停止、ステップを取ります。開始とステップの引数はオプションです。
+``islice()`` 関数は入力イテレータからインデックスで選択された要素を返すイテレータを返します。それはリストのスライシングのように開始、停止、ステップといった同じ引数を取ります。開始とステップの引数はオプションです。
 
 .. include:: itertools_islice.py
     :literal:
@@ -120,7 +120,7 @@ itertools -- 効率的なループ処理のためのイテレータ関数
     values from the original input, the new iterators will not produce
     those values:
 
-``tee()`` が生成する新たなイテレータはその入力イテレータを共有するので、これ以上はオリジナルのイテレータを使用すべきではありません。もしオリジナルの入力イテレータから値を取り出すと、新たなイテレータはその取り出した値を生成しないでしょう。
+``tee()`` が生成する新たなイテレータはそのオリジナルの入力イテレータを共有するので、生成後はオリジナルの入力イテレータを使用してはいけません。もしオリジナルの入力イテレータから値を取り出すと、新たなイテレータはその取り出された値を生成しません。
 
 .. include:: itertools_tee_error.py
     :literal:
@@ -171,7 +171,7 @@ itertools -- 効率的なループ処理のためのイテレータ関数
     syntax. Where the mapping function to imap() is called f(i1, i2), the
     mapping function to starmap() is called ``f(*i)``.
 
-``starmap()`` 関数は ``imap()`` 関数によく似ていますが、複数のイテレータからタプルを構築する代わりに ``*`` 構文でマッピングする関数への引数として1つのイテレータの要素を分割します。imap() にマッピングされる関数が f(i1, i2) な場合 starmap() にマッピングされる関数は ``f(*i)`` になります。
+``starmap()`` 関数は ``imap()`` 関数によく似ていますが、複数のイテレータを持つタプルを構築する代わりにマッピングする関数への引数として ``*`` 構文で1つのイテレータ内にある要素を分割して渡します。imap() にマッピングされる関数が f(i1, i2) のように引数を渡して呼び出す場合 starmap() にマッピングされる関数は ``f(*i)`` になります。
 
 .. include:: itertools_starmap.py
     :literal:
