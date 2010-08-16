@@ -85,7 +85,7 @@ itertools -- 効率的なループ処理のためのイテレータ関数
     as the slice operator for lists: start, stop, and step. The start and
     step arguments are optional.
 
-``islice()`` 関数は入力イテレータからインデックスで選択された要素を返すイテレータを返します。それはリストのスライシングのように同じ引数である開始、停止、ステップを取ります。開始と停止の引数はオプションです。
+``islice()`` 関数は入力イテレータからインデックスで選択された要素を返すイテレータを返します。それはリストのスライシングのように同じ引数である開始、停止、ステップを取ります。開始とステップの引数はオプションです。
 
 .. include:: itertools_islice.py
     :literal:
