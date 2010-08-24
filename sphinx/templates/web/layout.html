@@ -58,10 +58,10 @@
 
 {%- block rellinks %}
     {%- if hasdoc('about') %}
-    <link rel="author" title="About these documents" href="{{ pathto('about') }}" />
+    <link rel="author" title="このドキュメントについて" href="{{ pathto('about') }}" />
     {%- endif %}
-    <link rel="contents" title="Global table of contents" href="{{ pathto('contents') }}" />
-    <link rel="index" title="Global index" href="{{ pathto('genindex') }}" />
+    <link rel="contents" title="コンテンツテーブル" href="{{ pathto('contents') }}" />
+    <link rel="index" title="インデックス" href="{{ pathto('genindex') }}" />
     {%- if hasdoc('copyright') %}
     <link rel="copyright" title="Copyright" href="{{ pathto('copyright') }}" />
     {%- endif %}
@@ -81,21 +81,21 @@
 {% block sidebar %}
 {%- block sidebartoc %}
 {%- if display_toc %}
-  <h3>Page Contents</h3>
+  <h3>ページコンテンツ</h3>
   {{ toc }}
 {%- endif %}
 {%- endblock %}
 
-    <h3>Navigation</h3>
+    <h3>ナビゲーション</h3>
       <p>
-    <a href="{{ pathto("contents") }}"><strong>Table of Contents</strong></a><br/>
+    <a href="{{ pathto("contents") }}"><strong>コンテンツテーブル</strong></a><br/>
     {% if next or prev %}
         {%- if prev %}
-          <a href="{{ prev.link|e }}" title="previous chapter"><strong>Previous:</strong> {{ prev.title }}</a><br/>
+          <a href="{{ prev.link|e }}" title="前の章へ"><strong>前:</strong> {{ prev.title }}</a><br/>
         {%- endif %}
 
         {%- if next %}
-          <a href="{{ next.link|e }}" title="next chapter"><strong>Next:</strong> {{ next.title }}</a><br/>
+          <a href="{{ next.link|e }}" title="次の章へ"><strong>次:</strong> {{ next.title }}</a><br/>
         {%- endif %}
       </p>
     {% endif %}

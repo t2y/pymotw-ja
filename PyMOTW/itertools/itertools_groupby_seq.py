@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -41,7 +42,7 @@ class Point:
     def __cmp__(self, other):
         return cmp((self.x, self.y), (other.x, other.y))
 
-# Create a dataset of Point instances
+# Point インスタンスのデータセットを作成する
 data = list(imap(Point, 
                  cycle(islice(count(), 3)), 
                  islice(count(), 10),
@@ -50,18 +51,18 @@ data = list(imap(Point,
 print 'Data:', data
 print
 
-# Try to group the unsorted data based on X values
+# X 値ベースのソートされていないデータをグループ化しようとする
 print 'Grouped, unsorted:'
 for k, g in groupby(data, lambda o:o.x):
     print k, list(g)
 print
 
-# Sort the data
+# データをソートする
 data.sort()
 print 'Sorted:', data
 print
 
-# Group the sorted data based on X values
+# X 値ベースのソートされたデータをグループ化する
 print 'Grouped, sorted:'
 for k, g in groupby(data, lambda o:o.x):
     print k, list(g)

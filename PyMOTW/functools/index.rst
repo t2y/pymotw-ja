@@ -1,35 +1,56 @@
-=====================================================================
-functools -- Tools for making decorators and other function wrappers.
-=====================================================================
+..
+    =====================================================================
+    functools -- Tools for making decorators and other function wrappers.
+    =====================================================================
 
-.. module:: functools
+=============================================================
+functools -- デコレータを作るためのツールとその他の関数ラッパ
+=============================================================
+
+..
     :synopsis: Tools for making decorators and other function wrappers.
 
-:Purpose: 
-    The functools module includes tools for wrapping functions and other
-    callable objects.
-:Python Version: new in 2.5
+.. module:: functools
+    :synopsis: デコレータを作るためのツールとその他の関数ラッパ
 
-The primary tool supplied by the functools module is the class
-``partial``, which can be used to "wrap" a callable with default
-arguments. The resulting object is itself callable and can be treated
-as though it is the original function.  It takes all of the same
-arguments as the original callable and can be invoked with extra
-positional or named arguments as well.
+..
+    :Purpose: 
+        The functools module includes tools for wrapping functions and other
+        callable objects.
+    :Python Version: new in 2.5
+
+:目的: functools モジュールは関数やその他の呼び出し可能オブジェクトをラップするためのツールを提供します
+:Python バージョン: 2.5 で新規追加
+
+..
+    The primary tool supplied by the functools module is the class
+    ``partial``, which can be used to "wrap" a callable with default
+    arguments. The resulting object is itself callable and can be treated
+    as though it is the original function.  It takes all of the same
+    arguments as the original callable and can be invoked with extra
+    positional or named arguments as well.
+
+functools モジュールで提供される主なツールは、デフォルト引数で呼び出し可能オブジェクトを "ラップ" するために使用される ``partial`` クラスです。その結果として返されるオブジェクトはそれ自身が呼び出し可能でオリジナルの関数を経由するように扱われます。オリジナルの呼び出し可能オブジェクトと同じ全ての引数を取り、さらに追加の位置引数やキーワード引数を受け取って実行することができます。
 
 partial
 =======
 
-This example shows two simple partial objects for the function
-``myfunc()``.  Notice that ``show_details()`` prints the func, args,
-and keywords attributes of the partial object.
+..
+    This example shows two simple partial objects for the function
+    ``myfunc()``.  Notice that ``show_details()`` prints the func, args,
+    and keywords attributes of the partial object.
+
+このサンプルは ``myfunc()`` 関数のために2つの単純な partial オブジェクトの説明をします。 ``show_details()`` は渡された関数、その引数と partial オブジェクトの keywords 属性を表示することに注目してください。
 
 .. include:: functools_partial.py
     :literal:
     :start-after: #end_pymotw_header
 
-At the end of the example, the first partial created is invoked without
-passing a value for *a*, causing an exception.
+..
+    At the end of the example, the first partial created is invoked without
+    passing a value for *a*, causing an exception.
+
+このサンプルの最後で、最初に作成した partial オブジェクトの仮引数 *a* に値を渡さずに実行するので例外が発生します。
 
 ::
 
@@ -68,19 +89,25 @@ passing a value for *a*, causing an exception.
 update_wrapper
 ==============
 
-The partial object does not have ``__name__`` or ``__doc__``
-attributes by default. Losing those attributes for decorated functions
-makes them more difficult to debug. By using ``update_wrapper``, you
-can copy or add attributes from the original function to the partial
-object.
+..
+    The partial object does not have ``__name__`` or ``__doc__``
+    attributes by default. Losing those attributes for decorated functions
+    makes them more difficult to debug. By using ``update_wrapper``, you
+    can copy or add attributes from the original function to the partial
+    object.
+
+partial オブジェクトはデフォルトで ``__name__`` や ``__doc__`` 属性を持っていません。デコレートされた関数のそういった属性をなくしてしまうことはデバッグをより難しくしてしまいます。 ``update_wrapper`` を使用することでオリジナルの関数から partial オブジェクトに渡された属性をコピー又は追加することができます。
 
 .. include:: functools_update_wrapper.py
     :literal:
     :start-after: #end_pymotw_header
 
-The attributes added to the wrapper are defined in
-``functools.WRAPPER_ASSIGNMENTS``, while ``functools.WRAPPER_UPDATES``
-lists values to be modified.
+..
+    The attributes added to the wrapper are defined in
+    ``functools.WRAPPER_ASSIGNMENTS``, while ``functools.WRAPPER_UPDATES``
+    lists values to be modified.
+
+そのラッパへ追加される属性は ``functools.WRAPPER_ASSIGNMENTS`` で定義されます。一方 ``functools.WRAPPER_UPDATES`` は変更される値を表示します。
 
 ::
 
@@ -104,10 +131,17 @@ lists values to be modified.
 		__name__: myfunc
 		__doc__ 'Docstring for myfunc().'
 
-Methods and Other Callables
-===========================
+..
+    Methods and Other Callables
+    ===========================
 
-Partials work with any callable object, including methods and instances.
+メソッドとその他の呼び出し可能オブジェクト
+==========================================
+
+..
+    Partials work with any callable object, including methods and instances.
+
+partial はメソッドやインスタンスも含め、どのような呼び出し可能オブジェクトでも動作します。
 
 .. include:: functools_method.py
     :literal:
@@ -155,11 +189,14 @@ Partials work with any callable object, including methods and instances.
 wraps
 =====
 
-Updating the properties of a wrapped callable is especially useful
-when used in a decorator, since the decorated function ends up with
-properties of the original, "raw", function. :mod:`functools` provides
-a convenience function, ``wraps()``, to be used as a decorator itself
-and to apply ``update_wrapper()`` automatically.
+..
+    Updating the properties of a wrapped callable is especially useful
+    when used in a decorator, since the decorated function ends up with
+    properties of the original, "raw", function. :mod:`functools` provides
+    a convenience function, ``wraps()``, to be used as a decorator itself
+    and to apply ``update_wrapper()`` automatically.
+
+ラップされた呼び出し可能オブジェクトのプロパティ更新は、decorated 関数が最終的にオリジナルの "raw" 関数のプロパティになるのでデコレータで行うとかなり便利です。 :mod:`functools` は ``wraps()`` という便利な関数を提供します。それはデコレータのように使用されて自動的に ``update_wrapper()`` を適用します。
 
 .. include:: functools_wraps.py
     :literal:
@@ -189,5 +226,6 @@ and to apply ``update_wrapper()`` automatically.
 .. seealso::
 
     `functools <http://docs.python.org/library/functools.html>`_
-        The standard library documentation for this module.
-    
+        .. The standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント

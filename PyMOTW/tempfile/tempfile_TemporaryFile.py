@@ -20,7 +20,7 @@ try:
     print 'temp.name:', temp.name
 finally:
     temp.close()
-    # Clean up the temporary file yourself
+    # 自分で一時ファイルを削除する
     os.remove(filename)
 
 print
@@ -30,5 +30,5 @@ try:
     print 'temp:', temp
     print 'temp.name:', temp.name
 finally:
-    # Automatically cleans up the file
+    # 自動的に一時ファイルを削除する
     temp.close()

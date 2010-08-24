@@ -24,7 +24,7 @@ def wait_for_signal():
     signal.pause()
     print 'Done waiting'
 
-# Start a thread that will not receive the signal
+# シグナルを受け取らないスレッドを開始する
 receiver = threading.Thread(target=wait_for_signal, name='receiver')
 receiver.start()
 time.sleep(0.1)
@@ -37,7 +37,7 @@ sender = threading.Thread(target=send_signal, name='sender')
 sender.start()
 sender.join()
 
-# Wait for the thread to see the signal (not going to happen!)
+# シグナルを確認するためにスレッドを待ちます(発生しない！)
 print 'Waiting for', receiver
 signal.alarm(2)
 receiver.join()
