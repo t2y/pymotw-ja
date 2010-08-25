@@ -6,8 +6,8 @@
 ====
 
 1.122
-
-  - 22 Aug 2010, :mod:`math`
+  .. - 22 Aug 2010, :mod:`math`
+  - 2010年8月22日, :mod:`math`
 
 1.121
   .. - 15 Aug 2010, :mod:`doctest`
