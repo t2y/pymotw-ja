@@ -9,6 +9,6 @@
 __version__ = "$Id$"
 #end_pymotw_header
 
-# This data was generated with the random module.
+# このデータは random モジュールで生成されました
 
 data = [19, 9, 4, 10, 11, 8, 2]

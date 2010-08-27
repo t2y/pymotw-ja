@@ -12,7 +12,7 @@ __version__ = "$Id$"
 import smtplib
 
 server = smtplib.SMTP('mail')
-server.set_debuglevel(True) # show communication with the server
+server.set_debuglevel(True) # サーバとの通信内容を表示する
 try:
     dhellmann_result = server.verify('dhellmann')
     notthere_result = server.verify('notthere')

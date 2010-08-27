@@ -25,12 +25,12 @@ def use_alarm():
     time.sleep(3)
     print time.ctime(), 'Done with sleep'
 
-# Start a thread that will not receive the signal
+# シグナルを受け取らないスレッドを開始する
 alarm_thread = threading.Thread(target=use_alarm, name='alarm_thread')
 alarm_thread.start()
 time.sleep(0.1)
 
-# Wait for the thread to see the signal (not going to happen!)
+# シグナルを確認するためにスレッドを待ちます(発生しない！)
 print time.ctime(), 'Waiting for', alarm_thread
 alarm_thread.join()
 

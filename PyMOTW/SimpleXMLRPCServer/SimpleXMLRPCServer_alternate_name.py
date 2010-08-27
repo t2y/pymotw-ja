@@ -14,7 +14,7 @@ import os
 
 server = SimpleXMLRPCServer(('localhost', 9000))
 
-# Expose a function with an alternate name
+# 別名で関数を公開する
 def list_contents(dir_name):
     return os.listdir(dir_name)
 server.register_function(list_contents, 'dir')
