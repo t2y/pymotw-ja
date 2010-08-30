@@ -1,32 +1,58 @@
+..
+    ===============================================
+    smtplib -- Simple Mail Transfer Protocol client
+    ===============================================
+
 ===============================================
-smtplib -- Simple Mail Transfer Protocol client
+smtplib -- 簡易メール転送プロトコルクライアント
 ===============================================
 
-.. module:: smtplib
+..
     :synopsis: Simple mail transfer protocol client.
 
-:Purpose: Interact with SMTP servers, including sending email.
-:Python Version: 1.5.2 and later
+.. module:: smtplib
+    :synopsis: 簡易メール転送プロトコルクライアント
 
-:mod:`smtplib` includes the class :class:`SMTP`, which is useful for communicating with mail servers to send mail.  
+..
+    :Purpose: Interact with SMTP servers, including sending email.
+    :Python Version: 1.5.2 and later
+
+:目的: メール送信を含めて SMTP サーバと通信する
+:Python バージョン: 1.5.2 以上
+
+..
+    :mod:`smtplib` includes the class :class:`SMTP`, which is useful for communicating with mail servers to send mail.  
+
+:mod:`smtplib` はメールの送信や SMTP サーバとの通信に便利な :class:`SMTP` クラスを提供します。
 
 .. note::
 
-    The email addresses, host names, and IP addresses in the following examples have been
-    obscured, but otherwise the transcripts illustrate the sequence of commands and responses
-    accurately.
+    .. The email addresses, host names, and IP addresses in the following examples have been
+       obscured, but otherwise the transcripts illustrate the sequence of commands and responses
+       accurately.
 
+    本稿で紹介するサンプルコードのメールアドレス、ホスト名、IP アドレスは隠蔽されていますが、そのログはコマンドの流れと正確なレスポンスを説明します。
 
-Sending an Email Message
-========================
+..
+    Sending an Email Message
+    ========================
 
-The most common use of :class:`SMTP` is to connect to a mail server and send a message.  The mail server host name and port can be passed to the constructor, or you can use ``connect()`` explicitly.  Once connected, just call ``sendmail()`` with the envelope parameters and body of the message.  The message text should be a fully formed :rfc:`2882`-compliant message, since smtplib does not modify the contents or headers at all.  That means you need to add the ``From`` and ``To`` headers yourself.
+メールを送信する
+================
+
+..
+    The most common use of :class:`SMTP` is to connect to a mail server and send a message.  The mail server host name and port can be passed to the constructor, or you can use ``connect()`` explicitly.  Once connected, just call ``sendmail()`` with the envelope parameters and body of the message.  The message text should be a fully formed :rfc:`2882`-compliant message, since smtplib does not modify the contents or headers at all.  That means you need to add the ``From`` and ``To`` headers yourself.
+
+:class:`SMTP` の一般的な用途はメールサーバへ接続してメールを送信することです。メールサーバのホスト名とポート番号は引数としてコンストラクタに渡すか、明示的に ``connect()`` メソッドで指定します。接続した時点でエンベロープパラメータとメッセージ本文と共に ``sendmail()`` を呼び出してください。smtplib はコンテンツやヘッダを全く変更しないので、メッセージのテキストは :rfc:`2882` 完全準拠のメッセージであるべきです。つまり自分で ``From`` や ``To`` をヘッダに追加するということを意味します。
 
 .. include:: smtplib_sendmail.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this example, debugging is also turned on to show the communication between client and server.  Otherwise the example would produce no output at all.
+..
+    In this example, debugging is also turned on to show the communication between client and server.  Otherwise the example would produce no output at all.
+
+このサンプルではクライアントとサーバ間の通信を表示するためにデバッグも有効にしています。そうしないと、このサンプルは何も出力しません。
 
 ::
 
@@ -70,19 +96,31 @@ In this example, debugging is also turned on to show the communication between c
     reply: '221 2.0.0 mail.example.com closing connection\r\n'
     reply: retcode (221); Msg: 2.0.0 mail.example.com closing connection
 
-Notice that the second argument to ``sendmail()``, the recipients, is passed as a list.  You can include any number of addresses in the list to have the message delivered to each of them in turn.  Since the envelope information is separate from the message headers, you can even BCC someone by including them in the method argument but not in the message header.
+..
+    Notice that the second argument to ``sendmail()``, the recipients, is passed as a list.  You can include any number of addresses in the list to have the message delivered to each of them in turn.  Since the envelope information is separate from the message headers, you can even BCC someone by including them in the method argument but not in the message header.
 
+``sendmail()`` の2番目の引数、受取人がリストとして渡されていることに注意してください。次々にメッセージを配送するために受取人のリストへ幾つでもメールアドレスを追加することができます。エンベロープ情報はメッセージヘッダから分離されるので BCC で指定するメールアドレスは ``sendmail()`` メソッドの引数に追加しますが、メッセージヘッダには追加しません。
 
-Authentication and Encryption
-=============================
+..
+    Authentication and Encryption
+    =============================
 
-The SMTP class also handles authentication and TLS (transport layer security) encryption, when the server supports them.  To determine if the server supports TLS, call ``ehlo()`` directly to identify your computer to the server and ask it what extensions are available.  Then call ``has_extn()`` to check the results.  Once TLS is started, you must call ``ehlo()`` again before authenticating.
+認証と暗号化
+============
+
+..
+    The SMTP class also handles authentication and TLS (transport layer security) encryption, when the server supports them.  To determine if the server supports TLS, call ``ehlo()`` directly to identify your computer to the server and ask it what extensions are available.  Then call ``has_extn()`` to check the results.  Once TLS is started, you must call ``ehlo()`` again before authenticating.
+
+SMTP クラスはサーバが認証と TLS (transport layer security) 暗号化をサポートするときにそういった機能も扱えます。サーバが TLS をサポートする場合、サーバに対してあなたのコンピュータを識別してどのような機能が有効かを問い合わせるために、直接 ``ehlo()`` を呼び出してください。それからその応答を確認するために ``has_extn()`` を呼び出してください。TLS が開始されると、認証の前に再度 ``ehlo()`` を呼び出さなければなりません。
 
 .. include:: smtplib_authenticated.py
     :literal:
     :start-after: #end_pymotw_header
 
-Notice that ``STARTTLS`` does not appear in the list of extensions (in the reply to ``EHLO``) once TLS is enabled.
+..
+    Notice that ``STARTTLS`` does not appear in the list of extensions (in the reply to ``EHLO``) once TLS is enabled.
+
+TLS が有効になった時点で ``STARTTLS`` は ( ``EHLO`` の応答の) 機能リストに現れないことに注意してください。
 
 ::
 
@@ -142,17 +180,26 @@ Notice that ``STARTTLS`` does not appear in the list of extensions (in the reply
     reply: '221 elasmtp-isp.net closing connection\r\n'
     reply: retcode (221); Msg: elasmtp-isp.net closing connection
 
+..
+    Verifying an Email Address
+    ==========================
 
-Verifying an Email Address
-==========================
+メールアドレスを検証する
+========================
 
-The SMTP protocol includes a command to ask a server whether an address is valid.  Usually ``VRFY`` is disabled to prevent spammers from finding legitimate email addresses, but if it is enabled you can ask the server about an address and receive a status code indicating validity along with the user's full name, if it is available.
+..
+    The SMTP protocol includes a command to ask a server whether an address is valid.  Usually ``VRFY`` is disabled to prevent spammers from finding legitimate email addresses, but if it is enabled you can ask the server about an address and receive a status code indicating validity along with the user's full name, if it is available.
+
+SMTP プロトコルにはメールアドレスが有効かどうかをサーバへ問い合わせるコマンドがあります。通常 ``VRFY`` は正規のメールアドレスをスパマーが見つけられないように無効にしていますが、もしそのコマンドが有効な場合、サーバへ問い合わせて完全なユーザ名と有効かどうかを表すステータスコードを受信します。
 
 .. include:: smtplib_verify.py
     :literal:
     :start-after: #end_pymotw_header
 
-As the last 2 lines of output here show, the address ``dhellmann`` is valid but ``notthere`` is not.
+..
+    As the last 2 lines of output here show, the address ``dhellmann`` is valid but ``notthere`` is not.
+
+結果出力の最後の2行を見ると、メールアドレス ``dhellmann`` は有効ですが ``notthere`` は存在しません。
 
 ::
 
@@ -172,23 +219,37 @@ As the last 2 lines of output here show, the address ``dhellmann`` is valid but 
 .. seealso::
 
     `smtplib <http://docs.python.org/lib/module-smtplib.html>`_
-        Standard library documentation for this module.
+        .. Standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
 
     :rfc:`821`
-        The Simple Mail Transfer Protocol (SMTP) specification.
+        .. The Simple Mail Transfer Protocol (SMTP) specification.
+
+        簡易メール転送プロトコル (SMTP) 仕様
 
     :rfc:`1869`
-        SMTP Service Extensions to the base protocol.
+        .. SMTP Service Extensions to the base protocol.
+
+        ベースプロトコルに対する SMTP サービス拡張
 
     :rfc:`822`
-        "Standard for the Format of ARPA Internet Text Messages", the original email message
-        format specification.
+        .. "Standard for the Format of ARPA Internet Text Messages", the original email message
+           format specification.
+
+        "APRA インターネットテキストメッセージフォーマットの標準仕様" 
 
     :rfc:`2822`
-        "Internet Message Format", updates to the email message format.
+        .. "Internet Message Format", updates to the email message format.
+
+        "インターネットメッセージフォーマット"、メールメッセージフォーマットの更新版
 
     :mod:`email`
-        Standard library module for parsing email messages.
+        .. Standard library module for parsing email messages.
+
+        メールを構文解析する標準モジュール
 
     :mod:`smtpd`
-        Implements a simple SMTP server.
+        .. Implements a simple SMTP server.
+
+        シンプルな SMTP サーバを実装する
