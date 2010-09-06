@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# encoding: utf-8
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -32,5 +33,5 @@ __module_id__ = "$Id$"
 
 import subprocess
 
-# Simple command
+# シンプルコマンド
 subprocess.call(['ls', '-1'], shell=True)

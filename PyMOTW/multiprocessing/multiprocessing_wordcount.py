@@ -25,9 +25,9 @@ def file_to_words(filename):
 
     with open(filename, 'rt') as f:
         for line in f:
-            if line.lstrip().startswith('..'): # Skip rst comment lines
+            if line.lstrip().startswith('..'): # rst コメント行を読み飛ばす
                 continue
-            line = line.translate(TR) # Strip punctuation
+            line = line.translate(TR) # 句読点を取り除く
             for word in line.split():
                 word = word.lower()
                 if word.isalpha() and word not in STOP_WORDS:
