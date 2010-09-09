@@ -18,7 +18,7 @@ Process オブジェクト
     The simplest way to use a sub-process is to instantiate it with a target function
     and call start() to let it begin working.
 
-サブプロセスを使用する最も簡単な方法は対象関数と共にプロセスオブジェクトをインスタンス化して、その処理を開始させる start() を呼び出してください。
+サブプロセスを使用する最も簡単な方法は対象関数と共にプロセスオブジェクトをインスタンス化することで、その処理を開始させるために start() を呼び出してください。
 
 .. include:: multiprocessing_simple.py
     :literal:
@@ -43,7 +43,7 @@ Process オブジェクト
     could pass each worker a number so the output is a little more
     interesting in the second example.
 
-実行する処理を引数で渡して生成できるので通常はもっと便利です。 :mod:`threading` とは違い :mod:`multiprocessing` プロセスへ引数を渡すためには、その引数は :mod:`pickle` を使用してシリアライズ可能でなければなりません。簡単な2番目のサンプルとして、出力結果はもう少し面白くなるように各ワーカーへ数値を渡します。
+実行する処理を引数で渡してプロセスを生成できるので本当にかなり便利です。 :mod:`threading` とは違い :mod:`multiprocessing` プロセスへ引数を渡すには、その引数は :mod:`pickle` を使用してシリアライズ可能でなければなりません。簡単な2番目のサンプルとして、出力結果がもう少し面白くなるように各ワーカーへ数値を渡します。
 
 .. include:: multiprocessing_simpleargs.py
     :literal:
@@ -76,7 +76,7 @@ Process オブジェクト
     child as the module is imported.  You could also import the target
     function from a separate script.
 
-:mod:`threading` と :mod:`multiprocessing` のサンプルを比較して気付く違いの1つは、ここで使用する ``__main__``  のための追加の保護機構です。新しいプロセスが開始されるためには、子プロセスは対象関数を実装したスクリプトファイルをインポートできる必要があります。そのモジュールをインポートして各子プロセスが再起的に実行されないように、これらのサンプルではそのアプリケーションの main 処理をラッピングすることでその処理を成し遂げます。さらに分割したスクリプトファイルから対象関数をインポートすることもできます。
+:mod:`threading` と :mod:`multiprocessing` のサンプルを比較して気付く違いの1つとして、ここで使用する ``__main__``  の追加の保護機構です。新しいプロセスが開始されるために、子プロセスは対象関数を実装したスクリプトファイルをインポートできる必要があります。そのモジュールをインポートして各子プロセスが再起的に実行されないように、これらのサンプルではそのアプリケーションの main 処理をラッピングすることでその処理を実現します。さらに分割したスクリプトファイルから対象関数をインポートすることもできます。
 
 ..
     For example, this main program:
@@ -99,7 +99,7 @@ Process オブジェクト
 ..
     and produces output like the first example above:
 
-そして前のセクションで紹介した最初のサンプルと同様に出力を表示します。
+そして前のセクションで紹介した最初のサンプルと同じ出力を表示します。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_import_main.py'))
@@ -119,7 +119,7 @@ Process オブジェクト
     the process is created. Naming processes is useful if you have a server
     with multiple service children handling different operations. 
 
-プロセスに識別子や名前を付けたりすることは全く不要で面倒なだけです。各プロセスのインスタンスはプロセスの生成時に変更可能な名前とデフォルト値を持っています。もし複数サービスを提供するサーバを持っているなら、プロセスに名前を付けることはその子プロセスが別の処理を扱えるので便利です。
+プロセスに識別子や名前を付けたりすることは全く不要で面倒なだけです。各プロセスのインスタンスはプロセスの生成時に変更可能な名前とデフォルト値を持っています。もし複数サービスを提供するサーバを持っているなら、プロセスに名前を付けることで、その子プロセスが別の処理を扱えるので便利です。
 
 .. include:: multiprocessing_names.py
     :literal:
@@ -156,7 +156,7 @@ Process オブジェクト
     with a boolean value. The default is for processes to not be daemons,
     so passing True turns the daemon mode on.
 
-デフォルトでは、メインプログラムは全ての子プロセスが終了するまで終了しません。しかし、バックグラウンドプロセスを開始して、子プロセスの終了をメインプログラムでブロッキングせずに実行させたいときがあります。このようなデーモンプロセスをサービスで使用すると便利です。その用途はワーカーと相互にやり取りする簡単な方法がない可能性があったり、データの破損や失ってしまうことのない処理の中間で終了させたり(例えば、サービス監視ツールの "心電図" のような処理を生成するタスク)といったサービスになります。デーモンとしてプログラムをマークするには ``daemon`` 属性にブーリアン値を設定してください。デフォルトでは、プロセスはデーモンにならないのでデーモンモードに切り替えるために True を渡します。
+デフォルトでは、メインプログラムは全ての子プロセスが終了するまで終了しません。しかし、バックグラウンドプロセスを開始して、子プロセスの終了をメインプログラムでブロッキングせずに実行させたいときがあります。このようなデーモンプロセスはサービスで使用すると便利です。その用途としてはワーカーと相互にやり取りする簡単な方法がないかもしれない場合や、データが破損・消失することのない中間処理で終了させる場合(例えば、サービス監視ツールの "心電図" のような処理を生成するタスク)といったサービスになります。デーモンとしてプログラムをマークするには ``daemon`` 属性にブーリアン値を設定してください。デフォルトでは、プロセスはデーモンにならないのでデーモンモードに切り替えるために True を渡します。
 
 .. include:: multiprocessing_daemon.py
     :literal:
@@ -195,7 +195,7 @@ Process オブジェクト
     To wait until a process has completed its work and exited, use the
     ``join()`` method.
 
-あるプロセスが処理を完全に実行して終了するまで待つには ``join()`` メソッドを使用してください。
+あるプロセスが処理を実行した後で完全に終了するまで待つには ``join()`` メソッドを使用してください。
 
 .. include:: multiprocessing_daemon_join.py
     :literal:
@@ -205,7 +205,7 @@ Process オブジェクト
     Since we wait for the daemon to exit using ``join()``, we do see its
     "Exiting" message.
 
-ここでは ``join()`` を使用してデーモンの終了を待つので、デーモンが表示する "Exiting" メッセージをやっと見れます。
+ここでは ``join()`` を使用してデーモンの終了を待つので、ようやくデーモンが表示する "Exiting" メッセージが見れます。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_daemon_join.py'))
@@ -218,7 +218,7 @@ Process オブジェクト
     wait for the process to become inactive). If the process does not
     complete within the timeout period, ``join()`` returns anyway.
 
-デフォルトでは ``join()`` は無限にブロックします。さらにタイムアウト(プロセスが非アクティブになるのを待つ秒を小数で表せます)を引数で渡すこともできます。もしプロセスがタイムアウトの時間内で完了しなかったら、いずれにしても ``join()`` から返されます。
+デフォルトでは ``join()`` は無限にブロッキングします。さらにタイムアウト(小数はプロセスが非アクティブになるのを待つ秒数)を引数で渡すこともできます。もしプロセスがタイムアウトの時間内で完了しなかったら、いずれにしても ``join()`` から返されます。
 
 .. include:: multiprocessing_daemon_join_timeout.py
     :literal:
@@ -249,7 +249,7 @@ Process オブジェクト
     kill it forcibly.  Calling ``terminate()`` on a process object kills
     the child process.
 
-プロセスへ終了シグナルを送る *poison pill* メソッドを使用するのは良い方法ではありますが(参照 :ref:`multiprocessing-queues` ) 、もしプロセスがハングアップ又はデッドロックした場合、強制的にプロセスを kill できるとさらに便利です。プロセスオブジェクトで ``terminate()`` を呼び出すと子プロセスを kill します。
+プロセスへ終了シグナルを送る *poison pill* メソッドを使用するのは良い方法ではありますが(参照 :ref:`multiprocessing-queues` )、もしプロセスがハングアップ又はデッドロックした場合、強制的にプロセスを kill できるとさらに便利です。プロセスオブジェクトで ``terminate()`` を呼び出すと子プロセスを kill します。
 
 .. include:: multiprocessing_terminate.py
     :literal:
@@ -261,7 +261,7 @@ Process オブジェクト
        order to give the background machinery time to update the status
        of the object to reflect the termination.
 
-    プロセスの終了を反映するオブジェクトのステータスを更新するバックグラウンド機構のために終了後に ``join()`` することが重要です。
+    プロセスの終了を反映するために、オブジェクトのステータスを更新するバックグラウンド機構のために終了後に ``join()`` することが重要です。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_terminate.py'))
@@ -376,7 +376,7 @@ Process オブジェクト
     to use a custom subclass.  The derived class should override
     :meth:`run` to do its work.
 
-独立したプロセスのジョブを開始する最も簡単な方法は :class:`Process` クラスを使用して対象関数を渡すことではありますが、カスタムサブクラスを使用することもできます。派生クラスはその処理を行うために :meth:`run` をオーバライドすべきです。
+独立したプロセスのジョブを開始する最も簡単な方法は :class:`Process` クラスを使用して対象関数を引数で渡すことですが、カスタムサブクラスを使用することもできます。派生クラスは処理を行うために :meth:`run` をオーバライドすべきです。
 
 .. include:: multiprocessing_subclass.py
     :literal:

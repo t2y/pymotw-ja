@@ -48,7 +48,7 @@ multiprocessing のプロセス間通信
     worker to the job queue.  When a worker encounters the special value,
     it breaks out of its processing loop.
 
-もっと複雑なサンプルはキューからデータを取り出して結果を親プロセスへ返す複数のワーカーを管理する方法を紹介します。 *poison pill* テクニックはワーカーを停止するために使用されます。実際のタスク設定後、メインプログラムはワーカー毎に "stop" 値をジョブキューへ追加します。ワーカーは特別な値に遭遇したときにその処理ループから脱出します。
+もっと複雑なサンプルとして、キューからデータを取り出して結果を親プロセスへ返す複数ワーカーを管理する方法を紹介します。 *poison pill* テクニックはワーカーを停止するために使用されます。実際のタスク設定後、メインプログラムはワーカー毎に "stop" 値をジョブキューへ追加します。ワーカーは特別な値に遭遇したときにその処理ループから脱出します。
 
 .. include:: multiprocessing_producer_consumer.py
     :literal:
@@ -59,7 +59,7 @@ multiprocessing のプロセス間通信
     parallelized there is no guarantee about the order they will be
     completed.
 
-ジョブは順番にキューへ追加されますが、そのジョブの実行は並列化されるのでその処理が完了する順番については保証されません。
+ジョブは順番にキューへ追加されますが、追加されたジョブの実行は並列化されるのでジョブが完了する順番については保証されません。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_producer_consumer.py'))
@@ -108,7 +108,7 @@ Lock でリソースへのアクセスを制御する
     In situations when a single resource needs to be shared between
     multiple processes, a Lock can be used to avoid conflicting accesses.
 
-複数のプロセス間で1つのリソースを共有する必要がある状況で Lock は競合アクセスを避けるために使用されます。
+複数のプロセス間で1つのリソースを共有する必要があるような状況で Lock は競合アクセスを避けるために使用されます。
 
 .. include:: multiprocessing_lock.py
     :literal:
@@ -119,7 +119,7 @@ Lock でリソースへのアクセスを制御する
     together if the two processes do not synchronize their access of the
     output stream with the lock.
 
-このサンプルでは、2つのプロセスがロックで出力ストリームのアクセスを同期しないと標準出力へのメッセージはごちゃ混ぜになる可能性があります。
+このサンプルでは、2つのプロセスがロックを使用して出力ストリームへのアクセスを同期しないと標準出力へのメッセージはごちゃ混ぜになる可能性があります。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_lock.py'))
@@ -170,7 +170,7 @@ Semaphore でリソースへの並列アクセスを制御する
     fixed number of concurrent downloads. A Semaphore is one way to manage
     those connections.
 
-同時に1つのリソースへ2つ以上のワーカーからのアクセスを許容して、一方で全体のアクセス数を制限できると便利なときがあります。例えば、コネクションプールは同時接続数の最大数を制限するでしょうし、ネットワークアプリケーションは同時ダウンロード数の最大数を制限するでしょう。Semaphore はそういった接続を管理する方法の1つです。
+同時に1つのリソースへ2つ以上のワーカーからのアクセスを許容し、一方で全体のアクセス数を制限できると便利なときがあります。例えば、コネクションプールは同時接続数の最大数を制限するでしょうし、ネットワークアプリケーションは同時ダウンロード数の最大数を制限するでしょう。Semaphore はそういった接続を管理する方法の1つです。
 
 .. include:: multiprocessing_semaphore.py
     :literal:
@@ -236,7 +236,7 @@ Namespaces
     It is important to know that *updates* to the contents of mutable
     values in the namespace are *not* propagated automatically.
 
-Namespace に追加された可変コンテンツを *更新* しても自動的に伝播 *しない* ということを知っておくことは重要です。
+Namespace に追加された可変コンテンツを *更新* しても自動的に伝播 *しない* ということを知っておくことが重要です。
 
 .. include:: multiprocessing_namespaces_mutable.py
     :literal:

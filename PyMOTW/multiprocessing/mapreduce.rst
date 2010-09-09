@@ -10,7 +10,7 @@ multiprocessing で MapReduce を実装する
 ..
     The Pool class can be used to create a simple single-server MapReduce implementation.  Although it does not give the full benefits of distributed processing, it does illustrate how easy it is to break some problems down into distributable units of work.
 
-Pool クラスは1サーバで簡単な MapReduce 実装を作成するために使用することができます。それは分散処理の最大限の利点を得るものではないですが、ある問題を個々の分散処理の単位に解体することがどのぐらい簡単かを分かり易く説明します。
+Pool クラスは1サーバで簡単な MapReduce 実装を作成するために使用することができます。それは分散処理の最大限の利点を得るものではないですが、ある問題を個々の分散処理の単位に分解することがどのぐらい簡単かを分かり易く説明します。
 
 SimpleMapReduce
 ===============
@@ -18,7 +18,7 @@ SimpleMapReduce
 ..
     In MapReduce, input data is broken down into chunks for processing by different worker instances.  Each chunk of input data is *mapped* to an intermediate state using a simple transformation.  The intermediate data is then collected together and partitioned based on a key value so that all of the related values are together.  Finally, the partitioned data is *reduced* to a result set.
 
-MapReduce では、入力データを複数のワーカーインスタンスで処理するためにチャンクに解体します。各入力データのチャンクは簡単な変換を行って中間状態に *map* されます。中間データはまとめて集約されて、全ての関連する値が一緒になるように key value に基づいて分割されます。最後に、分割されたデータは結果セットへ *reduce* されます。
+MapReduce では、入力データを複数のワーカーインスタンスで処理するためにチャンクに分解します。各入力データのチャンクは簡単な変換を行って中間状態に *map* されます。中間データはまとめて集約されて、全ての関連する値が一緒になるように key value に基づいて分割されます。最後に、分割されたデータは結果セットへ *reduce* されます。
 
 .. include:: multiprocessing_mapreduce.py
     :literal:
