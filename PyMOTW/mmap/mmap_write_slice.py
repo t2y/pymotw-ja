@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -33,7 +34,7 @@ __version__ = "$Id$"
 import mmap
 import shutil
 
-# Copy the example file
+# サンプルファイルをコピーする
 shutil.copyfile('lorem.txt', 'lorem_copy.txt')
 
 word = 'consectetuer'

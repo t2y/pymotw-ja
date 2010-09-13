@@ -1,52 +1,87 @@
-=====================================
-heapq -- In-place heap sort algorithm
-=====================================
+..
+    =====================================
+    heapq -- In-place heap sort algorithm
+    =====================================
+
+=============================================
+heapq -- インプレースヒープソートアルゴリズム
+=============================================
 
 .. module:: heapq
-    :synopsis: In-place heap sort algorithm
+    :synopsis: インプレースヒープソートアルゴリズム
 
-:Purpose:
-    The heapq implements a min-heap sort algorithm suitable for use with
-    Python's lists.
-:Python Version: New in 2.3 with additions in 2.5
+..
+    :Purpose:
+        The heapq implements a min-heap sort algorithm suitable for use with
+        Python's lists.
+    :Python Version: New in 2.3 with additions in 2.5
 
-A *heap* is a tree-like data structure where the child nodes have a
-sort-order relationship with the parents. *Binary heaps* can be
-represented using a list or array organized so that the children of
-element N are at positions 2*N+1 and 2*N+2 (for zero-based
-indexes). This layout makes it possible to rearrange heaps in place,
-so it is not necessary to reallocate as much memory when adding or
-removing items.
+:目的:
+    heapq は Python のリストで使用し易い最小ヒープソートアルゴリズムを実装します
+:Python バージョン: 2.3 で新規追加、2.5 で機能拡張されています
 
-A max-heap ensures that the parent is larger than or equal to both of
-its children. A min-heap requires that the parent be less than or
-equal to its children. Python's heapq module implements a min-heap.
+..
+    A *heap* is a tree-like data structure where the child nodes have a
+    sort-order relationship with the parents. *Binary heaps* can be
+    represented using a list or array organized so that the children of
+    element N are at positions 2*N+1 and 2*N+2 (for zero-based
+    indexes). This layout makes it possible to rearrange heaps in place,
+    so it is not necessary to reallocate as much memory when adding or
+    removing items.
 
-Example Data
-============
+*ヒープ* は子ノードがその親とソートされた関係を持つ木(ツリー)のようなデータ構造です。 *バイナリヒープ* は、要素 N の子どもが 2*N+1 や 2*N+2(ゼロから始まるインデックス) に配置されるようにリスト又は配列で構成されます。この構造は配置済みのヒープに対して再配置することを可能にします。そのため、要素を追加したり削除したりするときに多くのメモリの再割当が必要ではありません。
 
-The examples below use this sample data:
+..
+    A max-heap ensures that the parent is larger than or equal to both of
+    its children. A min-heap requires that the parent be less than or
+    equal to its children. Python's heapq module implements a min-heap.
+
+最大ヒープは親がその子どもの両方と等価、又は大きいことを保証します。最小ヒープは親がその子どもと等価、又は小さくなるのを要求します。Python の heapq モジュールは最小ヒープを実装します。
+
+..
+    Example Data
+    ============
+
+サンプルデータ
+==============
+
+..
+    The examples below use this sample data:
+
+このサンプルデータを用いた例を次に示します。
 
 .. include:: heapq_heapdata.py
     :literal:
     :start-after: #end_pymotw_header
 
-The heap output is printed using ``heapq_showtree.py``:
+..
+    The heap output is printed using ``heapq_showtree.py``:
+
+ヒープの出力は ``heapq_showtree.py`` を使用して表示されます。
 
 .. include:: heapq_showtree.py
    :literal:
    :start-after: #end_pymotw_header
 
 
+..
+    Creating a Heap
+    ===============
 
-Creating a Heap
-===============
+ヒープを作成する
+================
 
-There are 2 basic ways to create a heap, ``heappush()`` and
-``heapify()``.
+..
+    There are 2 basic ways to create a heap, ``heappush()`` and
+    ``heapify()``.
 
-Using ``heappush()``, the heap sort order of the elements is
-maintained as new items are added from a data source.
+ヒープを作成する基本的な方法として ``heappush()`` と ``heapify()`` の2つの方法があります。
+
+..
+    Using ``heappush()``, the heap sort order of the elements is
+    maintained as new items are added from a data source.
+
+``heappush()`` を使用すると、その要素のヒープソートの順序はデータソースから追加された新たなアイテムとして保たれます。
 
 .. include:: heapq_heappush.py
     :literal:
@@ -57,9 +92,11 @@ maintained as new items are added from a data source.
 .. }}}
 .. {{{end}}}
 
+..
+    If the data is already in memory, it is more efficient to use
+    ``heapify()`` to rearrange the items of the list in place.
 
-If the data is already in memory, it is more efficient to use
-``heapify()`` to rearrange the items of the list in place.
+対象のデータが既にメモリ上にあるなら、配置済みリストのアイテムを再配置するために ``heapify()`` を使用する方が効率的です。
 
 .. include:: heapq_heapify.py
     :literal:
@@ -70,14 +107,20 @@ If the data is already in memory, it is more efficient to use
 .. }}}
 .. {{{end}}}
 
+..
+    Accessing Contents of a Heap
+    ============================
 
-Accessing Contents of a Heap
-============================
+ヒープの要素にアクセスする
+==========================
 
-Once the heap is organized correctly, use ``heappop()`` to remove the
-element with the lowest value. In this example, adapted from the
-stdlib documentation, ``heapify()`` and ``heappop()`` are used to sort
-a list of numbers.
+..
+    Once the heap is organized correctly, use ``heappop()`` to remove the
+    element with the lowest value. In this example, adapted from the
+    stdlib documentation, ``heapify()`` and ``heappop()`` are used to sort
+    a list of numbers.
+
+1度ヒープが正しく構成されると、最小値の要素を削除するために ``heappop()`` を使用します。標準ライブラリドキュメントで説明されている例では ``heapify()`` と ``heappop()`` が数値のリストをソートするために使用されています。
 
 .. include:: heapq_heappop.py
     :literal:
@@ -88,30 +131,42 @@ a list of numbers.
 .. }}}
 .. {{{end}}}
 
+..
+    To remove existing elements and replace them with new values in a
+    single operation, use ``heapreplace()``.
 
-To remove existing elements and replace them with new values in a
-single operation, use ``heapreplace()``.
+1回の操作で既存の要素を削除して新しい値をヒープに配置するには ``heapreplace()`` を使用してください。
 
 .. include:: heapq_heapreplace.py
     :literal:
     :start-after: #end_pymotw_header
 
-Replacing elements in place lets you maintain a fixed size heap, such
-as a queue of jobs ordered by priority.
+..
+    Replacing elements in place lets you maintain a fixed size heap, such
+    as a queue of jobs ordered by priority.
+
+配置済みの要素を置換する機能は、優先度で順序付けられたジョブキューのような固定長のヒープを保つのに役立ちます。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'heapq_heapreplace.py'))
 .. }}}
 .. {{{end}}}
 
-Data Extremes
-=============
+..
+    Data Extremes
+    =============
 
-:mod:`heapq` also includes 2 functions to examine an iterable to find
-a range of the largest or smallest values it contains. Using
-``nlargest()`` and ``nsmallest()`` are really only efficient for
-relatively small values of n > 1, but can still come in handy in a few
-cases.
+データの両端
+============
+
+..
+    :mod:`heapq` also includes 2 functions to examine an iterable to find
+    a range of the largest or smallest values it contains. Using
+    ``nlargest()`` and ``nsmallest()`` are really only efficient for
+    relatively small values of n > 1, but can still come in handy in a few
+    cases.
+
+:mod:`heapq` にはヒープに含まれる最小値や最大値の範囲を探すために繰り返し可能オブジェクトを調べる機能もあります。 ``nlargest()`` や ``nsmallest()`` を使用すると n > 1 の比較的小さい値の場合のみ本当に効率が良いですが、幾つかのケースでも役に立つことがあります。
 
 .. include:: heapq_extremes.py
     :literal:
@@ -122,8 +177,7 @@ cases.
 .. }}}
 .. {{{end}}}
 
-.. seealso::
-
+..
     `heapq <http://docs.python.org/library/heapq.html>`_
         The standard library documentation for this module.
 
@@ -136,3 +190,17 @@ cases.
     :ref:`Queue-PriorityQueue`
         A priority queue implementation from :mod:`Queue` in the
         standard library.
+
+.. seealso::
+
+    `heapq <http://docs.python.org/library/heapq.html>`_
+        本モジュールの標準ライブラリドキュメント
+
+    `WikiPedia: Heap (data structure) <http://en.wikipedia.org/wiki/Heap_(data_structure)>`_
+        ヒープのデータ構造の一般的な説明
+
+    :ref:`article-data-structures`
+        その他の Python のデータ構造
+
+    :ref:`Queue-PriorityQueue`
+        標準ライブラリ :mod:`Queue` による優先度キューの実装

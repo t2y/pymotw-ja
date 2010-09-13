@@ -12,7 +12,7 @@ __version__ = "$Id$"
 try:
     import readline
 except ImportError:
-    # Silently ignore missing readline module
+    # readline モジュールがないときは無視する
     pass
 else:
     import rlcompleter

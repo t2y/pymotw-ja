@@ -1,23 +1,43 @@
-===============================
-mhlib -- Work with MH mailboxes
-===============================
+..
+    ===============================
+    mhlib -- Work with MH mailboxes
+    ===============================
 
-.. module:: mhlib
+====================================
+mhlib -- MH メールボックスと連携する
+====================================
+
+..
     :synopsis: Work with MH mailboxes
 
-:Purpose: Manipulate the contents of MH mailboxes.
-:Python Version: 1.4 and later
+.. module:: mhlib
+    :synopsis: MH メールボックスと連携する
+
+..
+    :Purpose: Manipulate the contents of MH mailboxes.
+    :Python Version: 1.4 and later
+
+:目的: MH メールボックスのコンテンツを扱う
+:Python バージョン: 1.4 以上
 
 .. note::
-    This module is superseded by :mod:`mailbox`.
+    .. This module is superseded by :mod:`mailbox`.
+
+    本モジュールは :mod:`mailbox` モジュールに取って変わられました。
 
 .. seealso::
 
     `mhlib <http://docs.python.org/lib/module-mhlib.html>`_
-        Standard library documentation for this module.
+        .. Standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
 
     :mod:`email`
-        The email module.
+        .. The email module.
+
+        email モジュール
 
     :mod:`mailbox`
-        The mailbox module.
+        .. The mailbox module.
+
+        mailbox モジュール

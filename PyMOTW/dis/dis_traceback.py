@@ -5,7 +5,7 @@ i = 1
 j = 0
 k = 3
 
-# ... many lines removed ...
+# ... 多くの行が削除される ...
 
 try:
     result = k * (i / j) + (i / k)
