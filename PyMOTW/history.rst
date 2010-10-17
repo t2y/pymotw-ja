@@ -1,6 +1,33 @@
 History
 =======
 
+1.131
+
+  - 17 Oct 2010, :mod:`sqlite3`
+  - Updates to :mod:`xml.etree.ElementTree`
+  - Updates to :mod:`resource`
+  - Updates to :mod:`subprocess`
+  - Updates to :mod:`sys`
+  - Re-generate :mod:`platform` example output on more modern systems.
+  - Updates to :mod:`threading`
+  - Updates to :mod:`dircache`
+
+1.130
+
+  - 10 Oct 2010, :mod:`random`
+  - Updates to :mod:`contextlib`.
+  - Updates to :mod:`logging`.
+  - Updates to :mod:`mmap`.
+  - Added more details about dialects to :mod:`csv`.
+  - Updates to :mod:`difflib`.
+  - Updates to :mod:`multiprocessing`.
+  - Updates to :mod:`optparse`.
+  - Updates to :mod:`pkgutil`.
+
+1.129
+
+  - 3 Oct 2010, :mod:`select`
+
 1.128.1
 
   - 29 Sept 2010, Corrected the :class:`OrderedDict` equality example.
