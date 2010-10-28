@@ -1,11 +1,20 @@
 History
 =======
 
-development
+1.132
 
+  - 24 Oct 2010, rewrite :mod:`ConfigParser`
+
+1.131
+
+  - 17 Oct 2010, :mod:`sqlite3`
   - Updates to :mod:`xml.etree.ElementTree`
   - Updates to :mod:`resource`
   - Updates to :mod:`subprocess`
+  - Updates to :mod:`sys`
+  - Re-generate :mod:`platform` example output on more modern systems.
+  - Updates to :mod:`threading`
+  - Updates to :mod:`dircache`
 
 1.130
 

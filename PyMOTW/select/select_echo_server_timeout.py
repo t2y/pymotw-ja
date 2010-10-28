@@ -66,6 +66,7 @@ while inputs:
                 # Add output channel for response
                 if s not in outputs:
                     outputs.append(s)
+                    
             else:
                 # Interpret empty result as closed connection
                 print >>sys.stderr, 'closing', client_address, 'after reading no data'
