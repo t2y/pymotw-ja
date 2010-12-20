@@ -5,6 +5,60 @@
 履歴
 ====
 
+Development
+
+  - Merge in fixes to the :mod:`select` module examples from Michael
+    Schurter.
+
+1.132
+
+  - 24 Oct 2010, rewrite :mod:`ConfigParser`
+
+1.131
+
+  - 17 Oct 2010, :mod:`sqlite3`
+  - Updates to :mod:`xml.etree.ElementTree`
+  - Updates to :mod:`resource`
+  - Updates to :mod:`subprocess`
+  - Updates to :mod:`sys`
+  - Re-generate :mod:`platform` example output on more modern systems.
+  - Updates to :mod:`threading`
+  - Updates to :mod:`dircache`
+
+1.130
+
+  - 10 Oct 2010, :mod:`random`
+  - Updates to :mod:`contextlib`.
+  - Updates to :mod:`logging`.
+  - Updates to :mod:`mmap`.
+  - Added more details about dialects to :mod:`csv`.
+  - Updates to :mod:`difflib`.
+  - Updates to :mod:`multiprocessing`.
+  - Updates to :mod:`optparse`.
+  - Updates to :mod:`pkgutil`.
+
+1.129
+
+  - 3 Oct 2010, :mod:`select`
+
+1.128.1
+
+  - 29 Sept 2010, Corrected the :class:`OrderedDict` equality example.
+
+1.128
+
+  - 28 Sept 2010, Updated :mod:`collections` to add
+    :class:`OrderedDict` and :class:`Counter`, as well as the *rename*
+    argument to :class:`namedtuple`.
+
+1.127
+
+  - 26 Sept 2010, :mod:`socket`
+
+1.126
+
+  - 19 Sept 2010, :mod:`sysconfig`
+
 1.125
   .. - 12 Sept 2010, :mod:`pdb`
   - 2010年9月12日, :mod:`pdb`
@@ -151,7 +205,7 @@
   - :mod:`pickle` に循環参照のサンプルを追加
   - motw コマンドラインアプリが使用するプレーンテキストを作成するために Sphinx テキストビルダーを使用
   - :ref:`motw-cli` からプレーンテキストのヘルプを表示するための ``pager()`` に :mod:`pydoc` を追加
-  - インタラクティブシェルのセッションへ PyMOTW をインポートして対話的に PyMOTW のサンプルを取得し易いようにビルトイン関数 ``motw()`` を追加、 :ref:`motw-interactive` を参照
+  - インタラクティブシェルのセッションへ PyMOTW をインポートして対話的に PyMOTW のサンプルを取得し易いように組み込み関数 ``motw()`` を追加、 :ref:`motw-interactive` を参照
 
 1.99
   - 2 Aug 2009, Add :ref:`article-data-structures` article.

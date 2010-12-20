@@ -6,16 +6,18 @@ xml.etree.ElementTree -- XML Manipulation API
     :synopsis: XML Manipulation API
 
 :Purpose: Generate and parse XML documents
-:Python Version: 2.5+
+:Python Version: 2.5 and later
 
 The ElementTree library was contributed to the standard library by
 Fredrick Lundh.  It includes tools for parsing XML using event-based
 and document-based APIs, searching parsed documents with XPath
 expressions, and creating new or modifying existing documents.
 
-All of the examples in this section use the Python implementation of
-ElementTree for simplicity, but there is also a C implementation in
-:mod:`xml.etree.cElementTree`.
+.. note::
+
+  All of the examples in this section use the Python implementation of
+  ElementTree for simplicity, but there is also a C implementation in
+  :mod:`xml.etree.cElementTree`.
 
 .. toctree::
 

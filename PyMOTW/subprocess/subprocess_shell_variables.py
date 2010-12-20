@@ -12,4 +12,4 @@ __version__ = "$Id$"
 import subprocess
 
 # シェル変数を展開したコマンド
-subprocess.call('ls -1 $HOME', shell=True)
+subprocess.call('echo $HOME', shell=True)

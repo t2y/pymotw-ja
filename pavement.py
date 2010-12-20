@@ -34,7 +34,7 @@ except:
 PROJECT = 'PyMOTW'
 
 # What version is this?
-VERSION = '1.125'
+VERSION = '1.132'
 
 # The sphinx templates expect the VERSION in the shell environment
 os.environ['VERSION'] = VERSION
@@ -558,7 +558,9 @@ def checklist(options):
     """
     print """
 Checklist
-=========    
+=========
+
+USE "paver release"
 
 - hg pull into src sandbox
 - Change version in pavement.py

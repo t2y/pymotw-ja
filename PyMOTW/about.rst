@@ -161,17 +161,18 @@ PyMOTW の記事を Python インタラクティブインタプリタの実行�
 
   Ralf Schönian はアルファベット順に PyMOTW をドイツ語に翻訳しています。その成果は彼の web サイト http://schoenian-online.de/pymotw.html で確認できます。Ralf はドイツの `pyCologne <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_ ユーザグループのアクティブメンバーで、オープンソースの英語/ドイツ語のボキャブラリトレーナーである pyVoc (http://code.google.com/p/pyvoc/) の開発者です。
 
-.. 18 July 2010 - Removed for now because it looks like the site is offline.
+..
+    `Italian <http://robyp.x10hosting.com/>`_
+..
+   Roberto Pauletto is working on an Italian translation at
+   http://robyp.x10hosting.com/.  Roberto creates Windows applications
+   with C# by day, and tinkers with Linux and Python at home.  He has
+   recently moved to Python from Perl for all of his
+   system-administration scripting.
 
-.. `Italian <http://robyp.x10hosting.com/>`_
+`イタリア語 <http://robyp.x10hosting.com/>`_
 
-..   Roberto Pauletto is working on an Italian translation at
-..   http://robyp.x10hosting.com/.  Roberto creates Windows applications
-..   with C# by day, and tinkers with Linux and Python at home.  He has
-..   recently moved to Python from Perl for all of his
-..   system-administration scripting.
-
-..   Roberto Pauletto が http://robyp.x10hosting.com/ でイタリア語翻訳をしています。Roberto は昼間は Windows アプリケーションを C# で開発していて、自宅では Linux と Python をいじくり回しています。彼は最近、開発した全てのシステム管理用スクリプトを Perl から Python へ移行しました。
+  Roberto Pauletto が http://robyp.x10hosting.com/ でイタリア語翻訳をしています。Roberto は昼間は Windows アプリケーションを C# で開発していて、自宅では Linux と Python をいじくり回しています。彼は最近、開発した全てのシステム管理用スクリプトを Perl から Python へ移行しました。
 
 ..
     `Spanish <http://denklab.org/articles/category/pymotw/>`_

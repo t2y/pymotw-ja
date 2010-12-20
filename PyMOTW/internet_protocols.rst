@@ -17,6 +17,8 @@
     SimpleXMLRPCServer/index
     smtpd/index
     smtplib/index
+    socket/index
+    select/index
     SocketServer/index
     urllib/index
     urllib2/index

@@ -16,3 +16,5 @@
     itertools/index
     math/index
     operator/index
+    random/index
+

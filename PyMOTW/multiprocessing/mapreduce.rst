@@ -8,17 +8,25 @@ multiprocessing で MapReduce を実装する
 #######################################
 
 ..
-    The Pool class can be used to create a simple single-server MapReduce implementation.  Although it does not give the full benefits of distributed processing, it does illustrate how easy it is to break some problems down into distributable units of work.
+    The :class:`Pool` class can be used to create a simple single-server
+    MapReduce implementation.  Although it does not give the full benefits
+    of distributed processing, it does illustrate how easy it is to break
+    some problems down into distributable units of work.
 
-Pool クラスは1サーバで簡単な MapReduce 実装を作成するために使用することができます。それは分散処理の最大限の利点を得るものではないですが、ある問題を個々の分散処理の単位に分解することがどのぐらい簡単かを分かり易く説明します。
+:class:`Pool` クラスは1サーバで簡単な MapReduce 実装を作成するために使用することができます。それは分散処理の最大限の利点を得るものではないですが、ある問題を個々の分散処理の単位に分解することがどのぐらい簡単かを分かり易く説明します。
 
 SimpleMapReduce
 ===============
 
 ..
-    In MapReduce, input data is broken down into chunks for processing by different worker instances.  Each chunk of input data is *mapped* to an intermediate state using a simple transformation.  The intermediate data is then collected together and partitioned based on a key value so that all of the related values are together.  Finally, the partitioned data is *reduced* to a result set.
+    In a MapReduce-based system, input data is broken down into chunks for
+    processing by different worker instances.  Each chunk of input data is
+    *mapped* to an intermediate state using a simple transformation.  The
+    intermediate data is then collected together and partitioned based on
+    a key value so that all of the related values are together.  Finally,
+    the partitioned data is *reduced* to a result set.
 
-MapReduce では、入力データを複数のワーカーインスタンスで処理するためにチャンクに分解します。各入力データのチャンクは簡単な変換を行って中間状態に *map* されます。中間データはまとめて集約されて、全ての関連する値が一緒になるように key value に基づいて分割されます。最後に、分割されたデータは結果セットへ *reduce* されます。
+MapReduce ベースのシステムでは、入力データを複数のワーカーインスタンスで処理するためにチャンクに分解します。各入力データのチャンクは簡単な変換を行って中間状態に *map* されます。中間データはまとめて集約されて、全ての関連する値が一緒になるように key value に基づいて分割されます。最後に、分割されたデータは結果セットへ *reduce* されます。
 
 .. include:: multiprocessing_mapreduce.py
     :literal:
@@ -32,7 +40,9 @@ MapReduce では、入力データを複数のワーカーインスタンスで�
 ======================
 
 ..
-    The following example script uses SimpleMapReduce to counts the "words" in the reStructuredText source for this article, ignoring some of the markup.  
+    The following example script uses SimpleMapReduce to counts the
+    "words" in the reStructuredText source for this article, ignoring some
+    of the markup.
 
 次のサンプルスクリプトは、マークアップの幾つかを無視して本稿の reStructuredText のソースファイル内の "単語" を数える SimpleMapReduce を使用します。
 
@@ -41,9 +51,16 @@ MapReduce では、入力データを複数のワーカーインスタンスで�
     :start-after: #end_pymotw_header
 
 ..
-    Each input filename is converted to a sequence of ``(word, 1)`` pairs by ``file_to_words``.  The data is partitioned by ``SimpleMapReduce.partition()`` using the word as the key, so the partitioned data consists of a key and a sequence of 1 values representing the number of occurrences of the word.  The reduction phase converts that to a pair of ``(word, count)`` values by calling ``count_words`` for each element of the partitioned data set.
+    The :func:`file_to_words` function converts each input file to a
+    sequence of tuples containing the word and the number 1 (representing
+    a single occurrence) .The data is partitioned by :func:`partition`
+    using the word as the key, so the partitioned data consists of a key
+    and a sequence of 1 values representing each occurrence of the word.
+    The partioned data is converted to a set of suples containing a word
+    and the count for that word by :func:`count_words` during the
+    reduction phase.
 
-各入力ファイル名は ``file_to_words`` で ``(word, 1)`` タプルのシーケンスへ変換されます。そのデータはキーのように単語を使用して ``SimpleMapReduce.partition()`` で分割されます。そのため、分割したデータは単語が発生した数を表す1つの値のシーケンスとキーで構成されます。reduce フェーズは分割データセットの各要素に ``count_words`` を呼び出すことで ``(word, count)`` のペアに対して変換します。
+:func:`file_to_words` はそれぞれの入力ファイルを単語と数値1(1つ出現したことを表す)を持つタプルのシーケンスに変換します。そのデータはキーのようにその単語を使用して :func:`partition` で分割されます。そのため、分割したデータはその単語の出現頻度を表す1つの値のシーケンスとキーで構成されます。reduce フェーズでは、分割したデータは :func:`count_words` により単語とその単語の出現数を含むタプルのセットに変換されます。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_wordcount.py'))

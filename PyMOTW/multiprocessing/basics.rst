@@ -8,17 +8,11 @@ multiprocessing の基本
 ######################
 
 ..
-    Process objects
-    ===============
+    The simplest way to spawn a second is to instantiate a
+    :class:`Process` object with a target function and call :func:`start`
+    to let it begin working.
 
-Process オブジェクト
-====================
-
-..
-    The simplest way to use a sub-process is to instantiate it with a target function
-    and call start() to let it begin working.
-
-サブプロセスを使用する最も簡単な方法は対象関数と共にプロセスオブジェクトをインスタンス化することで、その処理を開始させるために start() を呼び出してください。
+サブプロセスを使用する最も簡単な方法は対象関数と共に :class:`Process` オブジェクトをインスタンス化することで、その処理を開始させるために :func:`start` を呼び出してください。
 
 .. include:: multiprocessing_simple.py
     :literal:
@@ -38,12 +32,11 @@ Process オブジェクト
 ..
     It usually more useful to be able to spawn a process with arguments to
     tell it what work to do.  Unlike with :mod:`threading`, to pass
-    arguments to a :mod:`multiprocessing` Process the argument must be
-    able to be serialized using :mod:`pickle`.  As a simple example we
-    could pass each worker a number so the output is a little more
-    interesting in the second example.
+    arguments to a :mod:`multiprocessing` :class:`Process` the argument
+    must be able to be serialized using :mod:`pickle`.  This example
+    passes each worker a number so the output is a little more interesting.
 
-実行する処理を引数で渡してプロセスを生成できるので本当にかなり便利です。 :mod:`threading` とは違い :mod:`multiprocessing` プロセスへ引数を渡すには、その引数は :mod:`pickle` を使用してシリアライズ可能でなければなりません。簡単な2番目のサンプルとして、出力結果がもう少し面白くなるように各ワーカーへ数値を渡します。
+実行する処理を引数で渡してプロセスを生成できるので本当にかなり便利です。 :mod:`threading` とは違い :mod:`multiprocessing` の :class:`Process` へ引数を渡すには、その引数は :mod:`pickle` でシリアライズ可能でなければなりません。このサンプルは出力結果がもう少し面白くなるように各ワーカーへ数値を渡します。
 
 .. include:: multiprocessing_simpleargs.py
     :literal:
@@ -67,16 +60,16 @@ Process オブジェクト
 ========================
 
 ..
-    One difference you will notice between the :mod:`threading` and
-    :mod:`multiprocessing` examples is the extra protection for
-    ``__main__`` used here.  Due to the way the new processes are started,
-    the child process needs to be able to import the script containing the
-    target function.  In these examples I accomplish that by wrapping the
-    main part of the application so it is not run recursively in each
-    child as the module is imported.  You could also import the target
-    function from a separate script.
+    One difference between the :mod:`threading` and :mod:`multiprocessing`
+    examples is the extra protection for ``__main__`` used in the
+    :mod:`multiprocessing` examples.  Due to the way the new processes are
+    started, the child process needs to be able to import the script
+    containing the target function.  Wrapping the main part of the
+    application in a check for ``__main__`` ensures that it is not run
+    recursively in each child as the module is imported.  Another approach
+    is to import the target function from a separate script.
 
-:mod:`threading` と :mod:`multiprocessing` のサンプルを比較して気付く違いの1つとして、ここで使用する ``__main__``  の追加の保護機構です。新しいプロセスが開始されるために、子プロセスは対象関数を実装したスクリプトファイルをインポートできる必要があります。そのモジュールをインポートして各子プロセスが再起的に実行されないように、これらのサンプルではそのアプリケーションの main 処理をラッピングすることでその処理を実現します。さらに分割したスクリプトファイルから対象関数をインポートすることもできます。
+:mod:`threading` と :mod:`multiprocessing` のサンプルの違いの1つは :mod:`multiprocessing` のサンプルで使用されている ``__main__``  の追加の保護機構です。新しいプロセスが開始されるために、子プロセスは対象関数を実装したスクリプトファイルをインポートできる必要があります。そのアプリケーションの ``__main__`` をチェックして main 処理をラッピングすることで、そのモジュールをインポートされてそれぞれの子プロセスで再起的に実行されないことを保証します。別の方法としては、別のスクリプトファイルから対象関数をインポートすることです。
 
 ..
     For example, this main program:
@@ -114,12 +107,13 @@ Process オブジェクト
 ==========================
 
 ..
-    Passing arguments to identify or name the process is cumbersome, and unnecessary.
-    Each Process instance has a name with a default value that you can change as
-    the process is created. Naming processes is useful if you have a server
-    with multiple service children handling different operations. 
+    Passing arguments to identify or name the process is cumbersome, and
+    unnecessary.  Each :class:`Process` instance has a name with a default
+    value that can be changed as the process is created. Naming processes
+    is useful for keeping track of them, especially in applications with
+    multiple types of processes running simultaneously.
 
-プロセスに識別子や名前を付けたりすることは全く不要で面倒なだけです。各プロセスのインスタンスはプロセスの生成時に変更可能な名前とデフォルト値を持っています。もし複数サービスを提供するサーバを持っているなら、プロセスに名前を付けることで、その子プロセスが別の処理を扱えるので便利です。
+プロセスに識別子や名前を付けたりすることは全く不要で面倒なだけです。それぞれの :class:`Process` インスタンスはプロセスの生成時に変更可能な名前とデフォルト値を持っています。名前付けプロセスはそういったプロセスを追跡するのに便利で、特に同時に実行中のプロセスが複数の型を持つアプリケーションで有効です。
 
 .. include:: multiprocessing_names.py
     :literal:
@@ -127,10 +121,10 @@ Process オブジェクト
 
 ..
     The debug output includes the name of the current process on each
-    line. The lines with "Process-3" in the name column correspond to the
-    unnamed process ``worker_1``.
+    line. The lines with ``Process-3`` in the name column correspond to
+    the unnamed process ``worker_1``.
 
-デバッグ出力は行単位にカレントプロセスの名前が表示されます。名前に "Process-3" がある行は名前が付けられていないプロセス ``worker_2`` に対応します。
+デバッグ出力は行単位にカレントプロセスの名前が表示されます。名前に ``Process-3`` がある行は名前が付けられていないプロセス ``worker_2`` に対応します。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_names.py'))
@@ -146,27 +140,31 @@ Process オブジェクト
 
 ..
     By default the main program will not exit until all of the children
-    have exited. There are times when you want to start a background
-    process and let it run without blocking the main program from
-    exiting. Using daemon processes like this is useful for services where
-    there may not be an easy way to interrupt the worker or where letting
-    it die in the middle of its work does not lose or corrupt data (for
-    example, a task that generates "heart beats" for a service monitoring
-    tool). To mark a process as a daemon, set its ``daemon`` attribute
-    with a boolean value. The default is for processes to not be daemons,
-    so passing True turns the daemon mode on.
+    have exited. There are times when starting a background process that
+    runs without blocking the main program from exiting is useful, such as
+    in services where there may not be an easy way to interrupt the
+    worker, or where letting it die in the middle of its work does not
+    lose or corrupt data (for example, a task that generates "heart beats"
+    for a service monitoring tool). 
 
-デフォルトでは、メインプログラムは全ての子プロセスが終了するまで終了しません。しかし、バックグラウンドプロセスを開始して、子プロセスの終了をメインプログラムでブロッキングせずに実行させたいときがあります。このようなデーモンプロセスはサービスで使用すると便利です。その用途としてはワーカーと相互にやり取りする簡単な方法がないかもしれない場合や、データが破損・消失することのない中間処理で終了させる場合(例えば、サービス監視ツールの "心電図" のような処理を生成するタスク)といったサービスになります。デーモンとしてプログラムをマークするには ``daemon`` 属性にブーリアン値を設定してください。デフォルトでは、プロセスはデーモンにならないのでデーモンモードに切り替えるために True を渡します。
+デフォルトでは、メインプログラムは全ての子プロセスが終了するまで終了しません。メインプログラムを終了からブロッキングせずにバックグラウンドプロセスを開始することは便利なときがあります。このようなサービスは、ワーカーと相互にやり取りする簡単な方法がなくても良い場合や、データが破損・消失することのない中間処理で終了させる場合(例えば、サービス監視ツールの "心電図" のような処理を生成するタスク)といったサービスになります。
+
+..
+    To mark a process as a daemon, set its :attr:`daemon` attribute with a
+    boolean value. The default is for processes to not be daemons, so
+    passing True turns the daemon mode on.
+
+デーモンとしてプログラムをマークするには :attr:`daemon` 属性にブーリアン値を設定してください。デフォルトでは、プロセスはデーモンにならないのでデーモンモードに切り替えるために True を渡します。
 
 .. include:: multiprocessing_daemon.py
     :literal:
     :start-after: #end_pymotw_header
 
 ..
-    Notice that the output does not include the "Exiting" message from the
-    daemon process, since all of the non-daemon processes (including the
-    main program) exit before the daemon process wakes up from its 2
-    second sleep.
+    The output does not include the "Exiting" message from the daemon
+    process, since all of the non-daemon processes (including the main
+    program) exit before the daemon process wakes up from its 2 second
+    sleep.
 
 全ての非デーモンプロセス(メインプログラムも含む)はデーモンプロセスが2秒間のスリープから復帰する前に終了するので、その出力結果はデーモンプロセスから表示される "Exiting" メッセージを含んでいません。
 
@@ -177,9 +175,9 @@ Process オブジェクト
 
 ..
     The daemon process is terminated automatically before the main program
-    exits, to  avoid leaving orphaned  processes running.  You  can verify
-    this by  looking for  the process  id value printed  when you  run the
-    program,  and then  checking  for  that process  with  a command  like
+    exits, to avoid leaving orphaned processes running.  You can verify
+    this by looking for the process id value printed when you run the
+    program, and then checking for that process with a command like
     ``ps``.
 
 デーモンプロセスは、実行プロセスが孤児として残ってしまわないようにメインプログラムが終了する前に自動的に終了します。プログラムを実行するときに表示したプロセス ID の値を覚えておき ``ps`` のようなコマンドでそのプロセスを調べることで検証することができます。
@@ -193,19 +191,19 @@ Process オブジェクト
 
 ..
     To wait until a process has completed its work and exited, use the
-    ``join()`` method.
+    :func:`join` method.
 
-あるプロセスが処理を実行した後で完全に終了するまで待つには ``join()`` メソッドを使用してください。
+あるプロセスが処理を実行した後で完全に終了するまで待つには :func:`join` メソッドを使用してください。
 
 .. include:: multiprocessing_daemon_join.py
     :literal:
     :start-after: #end_pymotw_header
 
 ..
-    Since we wait for the daemon to exit using ``join()``, we do see its
-    "Exiting" message.
+    Since the main process waits for the daemon to exit using
+    :func:`join`, the "Exiting" message is printed this time.
 
-ここでは ``join()`` を使用してデーモンの終了を待つので、ようやくデーモンが表示する "Exiting" メッセージが見れます。
+メインプロセスは :func:`join` で終了するデーモンを待つので、今回は "Exiting" メッセージが表示されます。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_daemon_join.py'))
@@ -213,12 +211,12 @@ Process オブジェクト
 .. {{{end}}}
 
 ..
-    By default, ``join()`` blocks indefinitely. It is also possible to
+    By default, :func:`join` blocks indefinitely. It is also possible to
     pass a timeout argument (a float representing the number of seconds to
     wait for the process to become inactive). If the process does not
-    complete within the timeout period, ``join()`` returns anyway.
+    complete within the timeout period, :func:`join` returns anyway.
 
-デフォルトでは ``join()`` は無限にブロッキングします。さらにタイムアウト(小数はプロセスが非アクティブになるのを待つ秒数)を引数で渡すこともできます。もしプロセスがタイムアウトの時間内で完了しなかったら、いずれにしても ``join()`` から返されます。
+デフォルトでは :func:`join` は無限にブロッキングします。さらにタイムアウト(小数はプロセスが非アクティブになるのを待つ秒数)を引数で渡すこともできます。もしプロセスがタイムアウトの時間内で完了しなかったら、いずれにしても :func:`join` から返されます。
 
 .. include:: multiprocessing_daemon_join_timeout.py
     :literal:
@@ -226,9 +224,9 @@ Process オブジェクト
 
 ..
     Since the timeout passed is less than the amount of time the daemon
-    sleeps, the process is still "alive" after ``join()`` returns.
+    sleeps, the process is still "alive" after :func:`join` returns.
 
-渡されたそのタイムアウトの時間はデーモンがスリープしている時間よりも短いので、そのプロセスは ``join()`` が返された後もまだ "実行中" です。
+渡されたそのタイムアウトの時間はデーモンがスリープしている時間よりも短いので、そのプロセスは :func:`join` が返された後もまだ "実行中" です。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_daemon_join_timeout.py'))
@@ -246,10 +244,10 @@ Process オブジェクト
     Although it is better to use the *poison pill* method of signaling to
     a process that it should exit (see :ref:`multiprocessing-queues`), if
     a process appears hung or deadlocked it can be useful to be able to
-    kill it forcibly.  Calling ``terminate()`` on a process object kills
+    kill it forcibly.  Calling :func:`terminate` on a process object kills
     the child process.
 
-プロセスへ終了シグナルを送る *poison pill* メソッドを使用するのは良い方法ではありますが(参照 :ref:`multiprocessing-queues` )、もしプロセスがハングアップ又はデッドロックした場合、強制的にプロセスを kill できるとさらに便利です。プロセスオブジェクトで ``terminate()`` を呼び出すと子プロセスを kill します。
+プロセスへ終了シグナルを送る *poison pill* メソッドを使用するのは良い方法ではありますが(:ref:`multiprocessing-queues` を参照)、もしプロセスがハングアップ又はデッドロックした場合、強制的にプロセスを kill できるとさらに便利です。プロセスオブジェクトで :func:`terminate` を呼び出すと子プロセスを kill します。
 
 .. include:: multiprocessing_terminate.py
     :literal:
@@ -257,11 +255,11 @@ Process オブジェクト
 
 .. note::
 
-    .. It is important to ``join()`` the process after terminating it in
-       order to give the background machinery time to update the status
-       of the object to reflect the termination.
+    ..  It is important to :func:`join` the process after terminating it
+        in order to give the background machinery time to update the
+        status of the object to reflect the termination.
 
-    プロセスの終了を反映するために、オブジェクトのステータスを更新するバックグラウンド機構のために終了後に ``join()`` することが重要です。
+    プロセスの終了を反映するために、オブジェクトのステータスを更新するバックグラウンド機構のために終了後に :func:`join` することが重要です。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_terminate.py'))
@@ -277,14 +275,14 @@ Process オブジェクト
 
 ..
     The status code produced when the process exits can be accessed via
-    the ``exitcode`` attribute.
+    the :attr:`exitcode` attribute.
 
-プロセスの終了が ``exitcode`` 属性を経由してアクセスされるときにステータスコードが生成されます。
+プロセスの終了が :attr:`exitcode` 属性を経由してアクセスされるときにステータスコードが生成されます。
 
 ..
-    For ``exitcode`` values
+    For :attr:`exitcode` values
 
-``exitcode`` の値とは、
+:attr:`exitcode` の値とは、
 
 ..
     * ``== 0`` -- no error was produced
@@ -300,12 +298,13 @@ Process オブジェクト
     :start-after: #end_pymotw_header
 
 ..
-    Processes that raise an exception automatically get an ``exitcode`` of 1.
+    Processes that raise an exception automatically get an
+    :attr:`exitcode` of 1.
 
-例外が発生するプロセスは自動的に ``exitcode`` が 1 になります。
+例外が発生するプロセスは自動的に :attr:`exitcode` が 1 になります。
 
 .. {{{cog
-.. cog.out(run_script(cog.inFile, 'multiprocessing_exitcode.py'))
+.. cog.out(run_script(cog.inFile, 'multiprocessing_exitcode.py', break_lines_at=68))
 .. }}}
 .. {{{end}}}
 
@@ -373,14 +372,18 @@ Process オブジェクト
 ..
     Although the simplest way to start a job in a separate process is to
     use :class:`Process` and pass a target function, it is also possible
-    to use a custom subclass.  The derived class should override
-    :meth:`run` to do its work.
+    to use a custom subclass.
 
-独立したプロセスのジョブを開始する最も簡単な方法は :class:`Process` クラスを使用して対象関数を引数で渡すことですが、カスタムサブクラスを使用することもできます。派生クラスは処理を行うために :meth:`run` をオーバライドすべきです。
+独立したプロセスのジョブを開始する最も簡単な方法は :class:`Process` クラスを使用して対象関数を引数で渡すことですが、カスタムサブクラスを使用することもできます。
 
 .. include:: multiprocessing_subclass.py
     :literal:
     :start-after: #end_pymotw_header
+
+..
+    The derived class should override :meth:`run` to do its work.
+
+派生クラスは処理を行うために :meth:`run` をオーバライドすべきです。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'multiprocessing_subclass.py'))

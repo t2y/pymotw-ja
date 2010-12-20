@@ -24,9 +24,11 @@ class Consumer(multiprocessing.Process):
             if next_task is None:
                 # Poison pill は終了を意味します
                 print '%s: Exiting' % proc_name
+                self.task_queue.task_done()
                 break
             print '%s: %s' % (proc_name, next_task)
             answer = next_task()
+            self.task_queue.task_done()
             self.result_queue.put(answer)
         return
 
@@ -44,7 +46,7 @@ class Task(object):
 
 if __name__ == '__main__':
     # コミュニケーションキューを作成する
-    tasks = multiprocessing.Queue()
+    tasks = multiprocessing.JoinableQueue()
     results = multiprocessing.Queue()
     
     # consumers 処理を開始する
@@ -63,10 +65,12 @@ if __name__ == '__main__':
     # 各 consumer へ poison pill を追加する
     for i in xrange(num_consumers):
         tasks.put(None)
+
+    # 全てのタスクの終了を待つ
+    tasks.join()
     
     # 結果を表示し始める
     while num_jobs:
         result = results.get()
         print 'Result:', result
         num_jobs -= 1
-        
