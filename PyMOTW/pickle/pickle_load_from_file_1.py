@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -46,7 +47,7 @@ except IndexError:
 
 in_s = open(filename, 'rb')
 try:
-    # Read the data
+    # データを読み込む
     while True:
         try:
             o = pickle.load(in_s)
