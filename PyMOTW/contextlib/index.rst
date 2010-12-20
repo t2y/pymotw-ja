@@ -158,11 +158,14 @@ contextlib -- コンテキストマネージャユーティリティ
     :literal:
     :start-after: #end_pymotw_header
 
-The generator should initialize the context, yield exactly one time,
-then clean up the context. The value yielded, if any, is bound to the
-variable in the :command:`as` clause of the :command:`with`
-statement. Exceptions from within the :command:`with` block are
-re-raised inside the generator, so they can be handled there.
+..
+    The generator should initialize the context, yield exactly one time,
+    then clean up the context. The value yielded, if any, is bound to the
+    variable in the :command:`as` clause of the :command:`with`
+    statement. Exceptions from within the :command:`with` block are
+    re-raised inside the generator, so they can be handled there.
+
+ジェネレータはコンテキストを初期化し、厳密に一度だけ yield します。それからそのコンテキストをクリーンアップします。yield される値があるなら :command:`with` 文の :command:`as` の変数に束縛されます。 :command:`with` ブロック内の例外は、ジェネレータ内部で扱うことができるので再発生させます。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'contextlib_contextmanager.py', ignore_error=True))
