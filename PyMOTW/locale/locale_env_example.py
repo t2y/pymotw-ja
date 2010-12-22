@@ -26,7 +26,6 @@ for env_name in [ 'LC_ALL', 'LC_CTYPE', 'LANG', 'LANGUAGE' ]:
 print
 print 'Locale from environment:', locale.getlocale()
 
-=======
 template = """
 Numeric formatting:
 
