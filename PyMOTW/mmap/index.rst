@@ -157,7 +157,7 @@
     ----------------
 
 ACCESS_COPY モード
-----------------
+------------------
 
 ..
     Using the access setting :const:`ACCESS_COPY` does not write changes

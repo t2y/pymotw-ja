@@ -29,7 +29,7 @@ class MyObj(object):
     def __cmp__(self, other):
         return cmp(self.arg, other.arg)
 
-# Register the functions for manipulating the type.
+# 型を操作する関数を登録する
 sqlite3.register_adapter(MyObj, adapter_func)
 sqlite3.register_converter("MyObj", converter_func)
 
@@ -40,16 +40,16 @@ def collation_func(a, b):
     return cmp(a_obj, b_obj)
 
 with sqlite3.connect(db_filename, detect_types=sqlite3.PARSE_DECLTYPES) as conn:
-    # Define the collation
+    # 照合を定義する
     conn.create_collation('unpickle', collation_func)
 
-    # Clear the table and insert new values
+    # テーブルをクリアして新しい値を追加する
     conn.execute('delete from obj')
     conn.executemany('insert into obj (data) values (?)',
                      [(MyObj(x),) for x in xrange(5, 0, -1)],
                      )
 
-    # Query the database for the objects just saved
+    # たった今データベースに保存されたオブジェクトをクエリする
     print '\nQuerying:'
     cursor = conn.cursor()
     cursor.execute("select id, data from obj order by data collate unpickle")

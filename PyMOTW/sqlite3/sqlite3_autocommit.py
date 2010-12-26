@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.DEBUG,
                     )
 
 db_filename = 'todo.db'
-isolation_level = None # autocommit mode
+isolation_level = None # 自動コミットモード
 
 def writer():
     my_name = threading.currentThread().name
@@ -29,7 +29,7 @@ def writer():
         cursor.execute('update task set priority = priority + 1')
         logging.debug('changes made')
         logging.debug('waiting to synchronize')
-        ready.wait() # synchronize
+        ready.wait() # 同期
         logging.debug('PAUSING')
         time.sleep(1)
     return
@@ -39,7 +39,7 @@ def reader():
     with sqlite3.connect(db_filename, isolation_level=isolation_level) as conn:
         cursor = conn.cursor()
         logging.debug('waiting to synchronize')
-        ready.wait() # synchronize
+        ready.wait() # 同期
         logging.debug('wait over')
         cursor.execute('select * from task')
         logging.debug('SELECT EXECUTED')
