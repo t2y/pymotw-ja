@@ -11,14 +11,14 @@ __version__ = "$Id$"
 
 import collections
 
-# Add to the right
+# 右側に追加
 d = collections.deque()
 d.extend('abcdefg')
 print 'extend    :', d
 d.append('h')
 print 'append    :', d
 
-# Add to the left
+# 左側に追加
 d = collections.deque()
 d.extendleft('abcdefg')
 print 'extendleft:', d

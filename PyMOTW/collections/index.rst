@@ -1,15 +1,30 @@
-===================================
-collections -- Container data types
-===================================
+..
+    ===================================
+    collections -- Container data types
+    ===================================
 
-.. module:: collections
+===============================
+collections -- コンテナデータ型
+===============================
+
+..
     :synopsis: Container data types.
 
-:Purpose: Container data types.
-:Python Version: 2.4 and later
+.. module:: collections
+    :synopsis: コンテナデータ型
 
-The :mod:`collections` module includes container data types beyond the
-built-in types :class:`list`, :class:`dict`, and :class:`tuple`.
+..
+    :Purpose: Container data types.
+    :Python Version: 2.4 and later
+
+:目的: コンテナデータ型
+:Python バージョン: 2.5 以上
+
+..
+    The :mod:`collections` module includes container data types beyond the
+    built-in types :class:`list`, :class:`dict`, and :class:`tuple`.
+
+:mod:`collections` モジュールは組み込み型の :class:`list`, :class:`dict` や :class:`tuple` より高機能なコンテナデータ型を提供します。
 
 .. toctree::
    :maxdepth: 2
@@ -24,4 +39,6 @@ built-in types :class:`list`, :class:`dict`, and :class:`tuple`.
 .. seealso::
 
     `collections <http://docs.python.org/library/collections.html>`_
-        The standard library documentation for this module.
+        .. The standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
