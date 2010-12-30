@@ -7,6 +7,9 @@
 pprint -- データ構造を見やすい形で出力する
 ===========================================
 
+..
+    :synopsis: Pretty-print data structures
+
 .. module:: pprint
     :synopsis: データ構造を見やすい形で出力する
 
@@ -25,12 +28,12 @@ pprint -- データ構造を見やすい形で出力する
    read. The output is kept on a single line, if possible, and indented
    when split across multiple lines.
 
-:mod:`pprint` はあなたのデータ構造を美しく、安心出来るような形で出力する "pretty printer" を含んでいます。インタプリタによって、正しく解析されうるデータ構造を正しく、そして人が見やすい形で出力してくれます。出力は可能ならば1行でなされ、複数行にまたぐときはインデントされます。
+:mod:`pprint` はデータ構造の表現を見て美しい形で出力する "pretty printer" を提供します。そのフォーマッタはインタープリタが正しく解析したデータ構造の形を生成します。さらにそれは人間にとっても読み易いです。その出力はできるだけ1行でなされ、複数行にわたるときはインデントされます。
 
 ..
    The examples below all depend on ``pprint_data.py``, which contains:
 
-以下の例は ``pprint_data.py`` に依存しており、そのファイルは以下のデータを含んでいます。
+全てのサンプルは ``pprint_data.py`` に依存しており、そのファイルは次のデータを含んでいます。
 
 .. include:: pprint_data.py
     :literal:
@@ -40,7 +43,7 @@ pprint -- データ構造を見やすい形で出力する
    Printing
    ========
 
-出力
+表示
 ====
 
 ..
@@ -49,7 +52,7 @@ pprint -- データ構造を見やすい形で出力する
    passed as argument (or :ref:`sys.stdout <sys-input-output>` by
    default).
 
-このモジュールを使う一番シンプルな方法は ``pprint()`` 関数を使うことです。この関数は、あなたのオブジェクトをフォーマットし直し、命令として渡されたデータストリームに書き出します。(デフォルトでは :ref:`sys.stdout <sys-input-output>` )
+このモジュールを使う一番シンプルな方法は ``pprint()`` 関数を使うことです。この関数は引数として渡されたオブジェクトを整形して、その内容をデータストリーム(デフォルトでは :ref:`sys.stdout <sys-input-output>`)へ書き込みます。
 
 .. include:: pprint_pprint.py
     :literal:
@@ -65,7 +68,7 @@ pprint -- データ構造を見やすい形で出力する
    ==========
 
 体裁を整える
-=============
+============
 
 ..
    If you need to format a data structure, but do not want to write it
@@ -73,7 +76,7 @@ pprint -- データ構造を見やすい形で出力する
    ``pformat()`` to build a string representation that can then be passed
    to another function.
 
-データ構造の体裁を整える必要があるが、直接ストリームに書き出したくない場合(ログなどの目的で)、 ``pformat()`` 関数は別の関数が扱えるように文字表現を組み立ててくれます。
+データ構造の体裁を整える必要があるが、直接ストリームに書き出したくない場合(例えば、ログ目的)、別の関数へ渡せるようにそのデータ構造の文字列表現を組み立てる ``pformat()`` を使うことができます。
 
 .. include:: pprint_pformat.py
     :literal:
@@ -89,13 +92,13 @@ pprint -- データ構造を見やすい形で出力する
    =================
 
 任意のクラス
-===============
+============
 
 ..
    The ``PrettyPrinter`` class used by ``pprint()`` can also work with
    your own classes, if they define a ``__repr__()`` method.
 
-``pprint()`` が使っている ``PrettyPrinter`` クラスは ``__repr__()`` メソッドが定義されていれば、あなたの自身のクラスとも働きます。
+``pprint()`` が使う ``PrettyPrinter`` クラスは ``__repr__()`` メソッドを定義すれば、独自のクラスと連携することもできます。
 
 .. include:: pprint_arbitrary_object.py
     :literal:
@@ -111,14 +114,14 @@ pprint -- データ構造を見やすい形で出力する
    =========
 
 再帰型のデータ
-================
+==============
 
 ..
    Recursive data structures are represented with a reference to the original
    source of the data, with the form ``<Recursion on typename with id=number>``. For
    example:
 
-再帰的なデータ構造は、 ``<Recursion on typename with id=number>`` という形式を用いてデータの元のソースへの参照として表現されます。例えば
+再帰的なデータ構造は ``<Recursion on typename with id=number>`` という形式でデータの元のソースへの参照として表現されます。例えば
 
 .. include:: pprint_recursion.py
     :literal:
@@ -134,8 +137,8 @@ pprint -- データ構造を見やすい形で出力する
    Limiting Nested Output
    ======================
 
-制限した入れ子の出力
-======================
+入れ子になった出力の制限
+========================
 
 ..
    For very deep data structures, you may not want the output to include all of
@@ -144,7 +147,7 @@ pprint -- データ構造を見やすい形で出力する
    the depth argument can control how far down into the nested data structure the
    pretty printer goes.
 
-とでも深い構造を持ったデータに対しては、あなたはすべての詳細を出力に含めたいと思わないかもしれません。適切にデータの体裁を整えるのは不可能かもしれないし、体裁を整えた後のテキストデータは管理するには大きすぎるかもしれないし、また詳細まですべて必要かもしれません。この場合、pretty printer がどこまで深く入れ子になったデータを見るのか、命令によってコントロールすることができます。
+とても深い構造を持ったデータに対しては、全ての詳細を出力に含めたくないかもしれません。適切にデータの体裁を整えるのは不可能かもしれないし、体裁を整えた後のテキストデータは管理するには大きすぎるかもしれません。もしくは全ての詳細が必要かもしれません。そういった場合、pretty printer が入れ子になったデータ構造をどのぐらい辿るのかを depth 引数で制御することができます。
 
 .. include:: pprint_depth.py
     :literal:
@@ -161,13 +164,13 @@ pprint -- データ構造を見やすい形で出力する
    ========================
 
 出力の幅の設定
-=================
+==============
 
 ..
    The default output width for the formatted text is 80 columns. To adjust that
    width, use the width argument to ``pprint()``.
 
-体裁を整えた後のテキストのデフォルトでの幅は、80列です。幅を合わせるためには、幅の命令を ``pprint()`` に入力してください。
+体裁を整えたテキストのデフォルト幅は 80 列です。その幅を調整するには ``pprint()`` の width 引数を使用してください。
 
 .. include:: pprint_width.py
     :literal:
@@ -179,7 +182,7 @@ pprint -- データ構造を見やすい形で出力する
    structure, the lines are not truncated or wrapped if that would introduce
    invalid syntax.
 
-体裁を整えた後のデータ構造を表現するのに、幅が狭すぎた場合、構文エラーを導く場合は出力データは省略されたりまとめられたりはしません。
+体裁を整えたデータ構造を表示するのにその幅が狭すぎるとき、そのデータ構造が不正な構文であっても、その行が切り捨てられたり、まとめられたりはしないことに注意してください。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'pprint_width.py'))
@@ -189,4 +192,6 @@ pprint -- データ構造を見やすい形で出力する
 .. seealso::
 
     `pprint <http://docs.python.org/lib/module-pprint.html>`_
-        このモジュールの基本ドキュメンテーション
+        .. Standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
