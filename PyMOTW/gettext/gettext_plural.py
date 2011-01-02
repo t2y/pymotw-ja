@@ -14,5 +14,5 @@ t = translation('gettext_plural', 'locale', fallback=True)
 num = int(sys.argv[1])
 msg = t.ungettext('%(num)d means singular.', '%(num)d means plural.', num)
 
-# Still need to add the values to the message ourself.
+# まだそのメッセージのために値を追加する必要がある
 print msg % {'num':num}
