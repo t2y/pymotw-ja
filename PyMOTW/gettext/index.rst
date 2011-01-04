@@ -28,7 +28,7 @@ gettext -- メッセージカタログ
     message catalog containing translations, and use that message catalog
     to print an appropriate message for the user at runtime.
 
-:mod:`gettext` モジュールは、`GNU gettext`_ ライブラリ互換なメッセージ翻訳とカタログ管理のためにピュア Python の実装を提供します。Python のソースと一緒に配布可能なツールは、ソースからメッセージを展開して、翻訳を含んだメッセージカタログを構築し、実行時にそのメッセージカタログを使用してユーザへ適切なメッセージを表示します。
+:mod:`gettext` モジュールは `GNU gettext`_ ライブラリ互換なメッセージ翻訳とカタログ管理のためにピュア Python の実装を提供します。Python のソースと一緒に配布可能なツールは、ソースからメッセージを展開して、翻訳を含んだメッセージカタログを構築し、実行時にそのメッセージカタログを使用してユーザへ適切なメッセージを表示します。
 
 ..
     Message catalogs can be used to provide internationalized interfaces
