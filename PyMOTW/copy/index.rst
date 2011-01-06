@@ -7,22 +7,24 @@
 copy -- オブジェクトのコピー
 ============================
 
+..
+    :synopsis: Provides functions for duplicating objects using shallow or deep copy semantics.
+
 .. module:: copy
-    :synopsis: オブジェクトを浅い動作や深い動作を使いコピーをする関数の提供
+    :synopsis: 浅いコピー(shallow copy)や深いコピー(deep copy)でオブジェクトをコピーする関数を提供する
 
 ..
    :Purpose: Provides functions for duplicating objects using shallow or deep copy semantics.
    :Python Version: 1.4
 
-:目的: オブジェクトを浅い動作や深い動作を使いコピーをする関数の提供
+:目的: 浅いコピー(shallow copy)や深いコピー(deep copy)でオブジェクトをコピーする関数を提供する
 :Python バージョン: 1.4
-
 
 ..
    The copy module includes 2 functions, copy() and deepcopy(), for duplicating
    existing objects.
 
-copy モジュールは存在するオブジェクトのコピーのために、 copy() と deepcopy() の 2 つの関数を含んでいます。
+copy モジュールは既存のオブジェクトをコピーする copy() と deepcopy() の2つの関数を提供します。
 
 ..
    Shallow Copies
@@ -36,7 +38,7 @@ copy モジュールは存在するオブジェクトのコピーのために、
    references to the contents of the original object. For example, a new list is
    constructed and the elements of the original list are appended to it.
 
-copy() 関数によって作られる浅いコピーは、元のオブジェクトの内容への参照を含んだ新しいコンテイナとなっています。例えば、新しいリストが作られ、そして元のリストの要素がそこに加えられます。
+copy() 関数が作成する浅いコピーは、元のオブジェクトのコンテンツへの参照をもつコンテナです。例えば、新しいリストが作られて、元のリストの要素がそのリストへ加えられます。
 
 .. include:: copy_shallow.py
     :literal:
@@ -46,7 +48,7 @@ copy() 関数によって作られる浅いコピーは、元のオブジェク�
    For a shallow copy, the MyClass instance is not duplicated so the reference in
    the dup list is to the same object that is in the l list.
 
-浅いコピーでは、 MyClass インスタンスは複製されません。なので、 dup リストに含まれた参照は、 l リストに含まれたものとなっています。
+浅いコピーでは、MyClass のインスタンスはコピーされません。そのため、dup リストのオブジェクトの参照先は l リストのオブジェクトと同じです。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_shallow.py'))
@@ -67,13 +69,13 @@ copy() 関数によって作られる浅いコピーは、元のオブジェク�
    and the elements of the original list are copied, then the copies are appended
    to the new list.
 
-deepcopy() 関数を使って作られた深いコピーは、元のオブジェクトの内容のコピーを含んだ新しいコンテイナとなっています。例えば、新しいリストが作られ、そして元のリストの要素がコピーされます。そして、コピーされた後のものが作られた新しいリストに加えられます。
+deepcopy() 関数が作成する深いコピーは、元のオブジェクトのコンテンツのコピーをもつ新しいコンテナです。例えば、新しいリストが作られて、元のリストの要素がコピーされます。それからコピーされた要素が新しいリストへ加えられます。
 
 ..
    By replacing the call to copy() with deepcopy(), the difference becomes
    apparent.
 
-先程の例において、 copy() 関数の呼び出しを deepcopy() に置き換えることによって、違いは明らかになります。
+先程の例において、copy() 関数の呼び出しを deepcopy() に置き換えることにより、その違いは明らかになります。
 
 ::
 
@@ -83,7 +85,7 @@ deepcopy() 関数を使って作られた深いコピーは、元のオブジェ
    Notice that the first element of the list is no longer the same object
    reference, but the two objects still evaluate as being equal.
 
-リストの最初の要素がもはや同じオブジェクトへの参照でないことに注意してください。しかしながら、 2 つのオブジェクトは未だ等しい物として評価されます。
+リストの最初の要素がもはや同じオブジェクトへの参照でないことに注意してください。しかし、2つのオブジェクトはそれでも等しいと評価されます。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_deep.py'))
@@ -95,20 +97,20 @@ deepcopy() 関数を使って作られた深いコピーは、元のオブジェ
    Controlling Copy Behavior
    =========================
 
-コピーの挙動の制御
-==================
+コピーの振る舞いの制御
+======================
 
 ..
    It is possible to control how copies are made using the __copy__ and
    __deepcopy__ hooks.
 
-__copy__ と __deepcopy__ を使うことで、どのようにコピーがなされるかを制御することが可能となっています。
+__copy__ と __deepcopy__ フックを使用して、コピーする方法を制御することができます。
 
 ..
    * __copy__() is called without any arguments and should return a shallow copy
      of the object.
 
-* __copy__() は引数なしで呼び出され、オブジェクトの浅いコピーを返すべきとなっています。
+* __copy__() は引数なしで呼び出され、オブジェクトの浅いコピーを返します。
 
 ..
    * __deepcopy__() is called with a memo dictionary, and should return a
@@ -116,7 +118,7 @@ __copy__ と __deepcopy__ を使うことで、どのようにコピーがなさ
      deep-copied should be passed to copy.deepcopy(), along with the memo
      dictionary, to control for recursion (see below).
 
-* __deepcopy__() は小さなメモのようなディクショナリと共に呼び出され、オブジェクトの深いコピーを返すべきとなっています。再帰のコントロールの為に、深いコピーをされるべき属性はすべてメモのようなディクショナリと共に copy.deepcopy() に渡されるべきとなっています。(以下参照)
+* __deepcopy__() はメモディクショナリと共に呼び出され、オブジェクトの深いコピーを返します。深いコピーが行われる全てのメンバ属性は、再起を制御するためにメモディクショナリと共に copy.deepcopy() へ渡されます。(以下を参照)
 
 ..
    This example illustrates how the methods are called:
@@ -145,7 +147,7 @@ __copy__ と __deepcopy__ を使うことで、どのようにコピーがなさ
    a dictionary to track objects that have already been copied. This dictionary
    is passed to the ``__deepcopy__()`` method so it can be used there as well.
 
-再帰のかかったデータ構造を複製する問題を避けるために、 ``deepcopy()`` 関数は既にコピーされたオブジェクトを追うために、ディクショナリを使用します。このディクショナリは ``__deepcopy__()`` メソッドに渡されることにより、そこで同様に使用されます。
+再帰的なデータ構造のコピーによる問題を避けるために ``deepcopy()`` 関数は既にコピーされたオブジェクトを保持するディクショナリを使用します。このディクショナリは ``__deepcopy__()`` メソッドに渡されるので、そこでも同様に使用されます。
 
 ..
    This example shows how an interconnected data structure such as a Digraph
@@ -154,7 +156,7 @@ __copy__ と __deepcopy__ を使うことで、どのようにコピーがなさ
    purposes, since the default implementation of ``deepcopy()`` already handles the
    recursion cases correctly.
 
-以下の例は ``__deepcopy__()`` メソッドを実装することにより、どのようにして有向グラフのような相互に連結されたデータ構造が再帰に対しての保護を助けるかどうかを示しています。デフォルトでの ``deepcopy()`` の実装自体が再帰の場合を正しく対処するため、この例は示すだけのものとなっています。
+この例は ``__deepcopy__()`` メソッドを実装することにより、有向グラフのような相互に連結されたデータ構造が再起に対して保護し易くする方法を説明します。デフォルトの ``deepcopy()`` 実装が再起のデータ構造を正しく扱うので、この例はただ説明目的だけのものです。
 
 .. include:: copy_recursion.py
     :literal:
@@ -166,7 +168,7 @@ __copy__ と __deepcopy__ を使うことで、どのようにコピーがなさ
    addConnection() method is used to set up bi-directional connections. It is
    also used by the deepcopy operator.
 
-まず初めに、基本的な有向グラフのメソッドについて見てみましょう。まずグラフはグラフの名前とグラフが連結されている、存在する節のリストと共に初期化されます。 addConnection() メソッドは双方向の連結を作るために使われます。これはまた deepcopy 演算子によっても使用されます。
+まず初めに、基本的な有向グラフのメソッドについて見てみましょう。グラフは名前とそのグラフが連結される既存のノードリストで初期化されます。addConnection() メソッドは双方向に連結するために使われます。またそれは deepcopy 演算子により使用されます。
 
 ..
    The ``__deepcopy__()`` method prints messages to show how it is called, and
@@ -176,13 +178,13 @@ __copy__ と __deepcopy__ を使うことで、どのようにコピーがなさ
    as each new node is duplicated, and avoids recursion issues or extra copies of
    nodes. As before, it returns the copied object when it is done.
 
-``__deepcopy__()`` メソッドは、どのようにして呼び出されるかを示すためにメッセージを表示し、必要ならばメモのようなディクショナリを管理します。連結のリストすべてをコピーする代わりに、新しいリストを作成し、個々の連結のコピーをそこに加えます。それぞれの節が複製されるたびにメモのようなディクショナリが更新されているか確かにし、再帰問題や、節の余分なコピーを避けます。前と同じように、終了時にはコピーされたオブジェクトを返します。
+``__deepcopy__()`` メソッドは、どのようにして呼び出されるかを示すためにメッセージを表示して、必要に応じてメモディクショナリを管理します。連結のリスト全てをコピーせずに、新しいリストを作成し、個々の連結のコピーをそこに加えます。それぞれのノードがコピーされると、メモディクショナリが更新されることを保証します。そして、再帰の問題やノードの追加コピーを避けます。前のセクションで説明したように、終了時にコピーされたオブジェクトを返します。
 
 ..
    Next we can set up a graph with a nodes *root*, *a*, and *b*. The
    graph looks like:
 
-次に、 *root*, *a*, *b* の節でできたグラフを用意します。グラフは次のようなものです。
+次に *root*, *a*, *b* のノードをもつグラフを用意します。グラフは次のようなものです。
 
 .. digraph:: copy_example
 
@@ -198,7 +200,7 @@ __copy__ と __deepcopy__ を使うことで、どのようにコピーがなさ
    with the memo dictionary we can avoid having the traversal cause a
    stack overflow error.  When the *root* node is copied, we see:
 
-グラフにはいくつかのループがありますが、ディクショナリを使って再帰に対処することで走査する際にスタックオーバーフローエラーが起こるのを避けることができます。 *root* の節がコピーされた時は以下のようになります。
+グラフ内の参照先が循環しますが、メモディクショナリでその再帰処理を扱うことでスタックオーバーフローエラーを発生させないようにします。 *root* ノードがコピーされるときは以下のようになります。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'copy_recursion.py'))
@@ -211,9 +213,11 @@ __copy__ と __deepcopy__ を使うことで、どのようにコピーがなさ
    existing value from the memo dictionary instead of creating a new
    object.
 
-*root* の節が 2 回目に出てきたとき、 *a* の節はコピーされているので、 ``__deepcopy__`` は再帰を検知し、新しいオブジェクトを作成する代わりに、ディクショナリから存在する値を再利用する。
+*root* ノードが2回目に出てきたとき *a* ノードはコピーされているので、 ``__deepcopy__`` は再帰を検知し、新しいオブジェクトを作成せずにメモディクショナリから既存の値を再利用します。
 
 .. seealso::
 
     `copy <http://docs.python.org/library/copy.html>`_
-        このモジュールの基本ドキュメンテーション
+        .. The standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
