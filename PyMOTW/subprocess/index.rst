@@ -207,7 +207,6 @@
     the console.
 
 いま、そのエラーと標準出力のチャンネルは一緒にまとめられます。そのため、コマンドがエラーメッセージを表示するなら、そのメッセージは取得されてコンソールには送られません。
-あ
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'subprocess_check_output_error_trap_output.py', ignore_error=True, break_lines_at=70))
