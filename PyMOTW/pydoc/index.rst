@@ -1,53 +1,98 @@
-=======================================
-pydoc -- Online help for Python modules
-=======================================
+..
+    =======================================
+    pydoc -- Online help for Python modules
+    =======================================
 
-.. module:: pydoc
+============================================
+pydoc -- Python モジュールのオンラインヘルプ
+============================================
+
+..
     :synopsis: Online help for Python modules
 
-:Purpose: Generates help for Python modules and classes from the code.
-:Python Version: 2.1 and later
+.. module:: pydoc
+    :synopsis: Python モジュールのオンラインヘルプ
 
-The :mod:`pydoc` module imports a Python module and uses the contents
-to generate help text at runtime. The output includes docstrings for
-any objects that have them, and all of the documentable contents of
-the module are described.
+..
+    :Purpose: Generates help for Python modules and classes from the code.
+    :Python Version: 2.1 and later
 
-Plain Text Help
-===============
+:目的: コードから Python モジュールやクラスのヘルプを生成する
+:Python バージョン: 2.1 以上
 
-Running::
+..
+    The :mod:`pydoc` module imports a Python module and uses the contents
+    to generate help text at runtime. The output includes docstrings for
+    any objects that have them, and all of the documentable contents of
+    the module are described.
+
+:mod:`pydoc` モジュールは Python モジュールをインポートし、実行時にヘルプを生成してそのコンテンツを利用します。任意のオブジェクトの docstrings 出力とモジュールの全ドキュメントコンテンツが記述されます。
+
+..
+    Plain Text Help
+    ===============
+
+テキストヘルプ
+==============
+
+..
+    Running::
+
+実行方法::
 
     $ pydoc atexit
 
-Produces plaintext help on the console, using your pager if one is
-configured.
+..
+    Produces plaintext help on the console, using your pager if one is
+    configured.
 
-HTML Help
-=========
+コンソール上にテキストヘルプを生成します。設定すればページャも使用できます。
 
-You can also cause :mod:`pydoc` to generate HTML output, either
-writing a static file to a local directory or starting a web server to
-browse documentation online.
+..
+    HTML Help
+    =========
+
+HTML ヘルプ
+===========
+
+..
+    You can also cause :mod:`pydoc` to generate HTML output, either
+    writing a static file to a local directory or starting a web server to
+    browse documentation online.
+
+さらに :mod:`pydoc` は HTML 出力も生成できます。ローカルディレクトリの静的ファイルへ書き込むか、オンラインドキュメントをブラウズするために web サーバを起動するかを選べます。
 
 ::
 
     $ pydoc -w atexit
 
-Creates ``atexit.html`` in the current directory.
+..
+    Creates ``atexit.html`` in the current directory.
+
+カレントディレクトリに ``atexit.html`` を作成します。
 
 ::
 
     $ pydoc -p 5000
 
-Starts a web server listening at http://localhost:5000/. The server
-generates documentation as you browse through the available modules.
+..
+    Starts a web server listening at http://localhost:5000/. The server
+    generates documentation as you browse through the available modules.
 
-Interactive Help
-================
+http://localhost:5000/ で web サーバを起動します。このサーバは利用可能なモジュールをブラウズできるようにドキュメントを生成します。
 
-pydoc also adds a function ``help()`` to the ``__builtins__`` so you
-can access the same information from the Python interpreter prompt.
+..
+    Interactive Help
+    ================
+
+インタラクティブヘルプ
+======================
+
+..
+    pydoc also adds a function ``help()`` to the ``__builtins__`` so you
+    can access the same information from the Python interpreter prompt.
+
+さらに pydoc は ``__builtins__`` に ``help()`` 関数を追加するので、Python インタープリタプロンプトから同じ情報にアクセスできます。
 
 ::
 
@@ -68,10 +113,16 @@ can access the same information from the Python interpreter prompt.
 .. seealso::
 
     `pydoc <http://docs.python.org/library/pydoc.html>`_
-        The standard library documentation for this module.
+        .. The standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
 
     :ref:`motw-cli`
-        Accessing the Module of the Week articles from the command line.
-    
+        .. Accessing the Module of the Week articles from the command line.
+
+        コマンドラインから PyMOTW の記事へアクセスする
+
     :ref:`motw-interactive`
-        Accessing the Module of the Week articles from the interactive interpreter.
+        .. Accessing the Module of the Week articles from the interactive interpreter.
+
+        Python インタラクティブインタープリタから PyMOTW の記事へアクセスする
