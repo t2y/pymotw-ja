@@ -1,30 +1,55 @@
-=======================================
-compileall -- Byte-compile Source Files
-=======================================
+..
+    =======================================
+    compileall -- Byte-compile Source Files
+    =======================================
 
-.. module:: compileall
+==================================================
+compileall -- ソースファイルをバイトコンパイルする
+==================================================
+
+..
     :synopsis: Byte-compile Source Files
 
-:Purpose: Convert source files to byte-compiled version.
-:Python Version: 1.4
+.. module:: compileall
+    :synopsis: ソースファイルをバイトコンパイルする
 
-The :mod:`compileall` module finds Python source files and compiles
-them to the byte-code representation, saving the results in ``.pyc``
-or ``.pyo`` files.
+..
+    :Purpose: Convert source files to byte-compiled version.
+    :Python Version: 1.4
 
-Compiling One Directory
-=======================
+:目的: ソースファイルをバイトコンパイルされたファイルに変換する
+:Python バージョン: 1.4
 
-``compile_dir()`` is used to recursively scan a directory and
-byte-compile the files within it.
+..
+    The :mod:`compileall` module finds Python source files and compiles
+    them to the byte-code representation, saving the results in ``.pyc``
+    or ``.pyo`` files.
+
+:mod:`compileall` モジュールは Python のソースファイルを見つけてバイトコンパイルされたファイルにコンパイルします。その出力は ``.pyc`` か ``.pyo`` ファイルに保存されます。
+
+..
+    Compiling One Directory
+    =======================
+
+ディレクトリ単位でコンパイルする
+================================
+
+..
+    ``compile_dir()`` is used to recursively scan a directory and
+    byte-compile the files within it.
+
+``compile_dir()`` はディレクトリを再帰的に調べて、その中にあるファイルをバイトコンパイルします。
 
 .. include:: compileall_compile_dir.py
     :literal:
     :start-after: #end_pymotw_header
 
-By default, all of the subdirectories are scanned to a depth of 10.
-When using a version control system such as subversion, this can lead
-to unnecessary scanning, as seen here:
+..
+    By default, all of the subdirectories are scanned to a depth of 10.
+    When using a version control system such as subversion, this can lead
+    to unnecessary scanning, as seen here:
+
+デフォルトでは、深さ10までの全サブディレクトリを調べます。subversion のようなバージョン管理システムを使用しているときは次のように不要な調査を行います。
 
 .. {{{cog
 .. workdir = path(cog.inFile).dirname()
@@ -34,8 +59,11 @@ to unnecessary scanning, as seen here:
 .. }}}
 .. {{{end}}}
 
-To filter directories out, use the ``rx`` argument to provide a
-regular expression to match the names to exclude.
+..
+    To filter directories out, use the ``rx`` argument to provide a
+    regular expression to match the names to exclude.
+
+ディレクトリをフィルタするには ``rx`` 引数に除外する名前にマッチする正規表現を渡します。
 
 .. include:: compileall_exclude_dirs.py
     :literal:
@@ -48,8 +76,11 @@ regular expression to match the names to exclude.
 .. }}}
 .. {{{end}}}
 
-The maxlevels argument controls the depth of recursion.  For example,
-to avoid recursion entirely pass ``0``.
+..
+    The maxlevels argument controls the depth of recursion.  For example,
+    to avoid recursion entirely pass ``0``.
+
+``maxlevels`` 引数は再帰的に調べる深さを制御します。例えば、再帰的に調べないには ``0`` を渡します。
 
 .. include:: compileall_recursion_depth.py
     :literal:
@@ -64,19 +95,29 @@ to avoid recursion entirely pass ``0``.
 .. {{{end}}}
 
 
-Compiling sys.path
-==================
+..
+    Compiling sys.path
+    ==================
 
-All of the Python source files found in sys.path can be compiled with
-a single call to ``compile_path()``.
+sys.path をコンパイルする
+=========================
+
+..
+    All of the Python source files found in sys.path can be compiled with
+    a single call to ``compile_path()``.
+
+``compile_path()`` を呼び出すと sys.path で見つけた全ての Python ソースファイルをコンパイルします。
 
 .. include:: compileall_path.py
     :literal:
     :start-after: #end_pymotw_header
 
-This example replaces the default contents of sys.path to avoid
-permission errors while running the script, but still illustrates the
-default behavior.  Note that the maxlevels value defaults to ``0``.
+..
+    This example replaces the default contents of sys.path to avoid
+    permission errors while running the script, but still illustrates the
+    default behavior.  Note that the maxlevels value defaults to ``0``.
+
+このサンプルは、実行してパーミッションエラーが起きないようにデフォルトの sys.path を置き換えています。それでも、デフォルトの動作は把握できます。 ``maxlevels`` の値はデフォルトから ``0`` になるので注意してください。
 
 .. {{{cog
 .. workdir = path(cog.inFile).dirname()
@@ -86,20 +127,30 @@ default behavior.  Note that the maxlevels value defaults to ``0``.
 .. {{{end}}}
 
 
-From the Command Line
-=====================
+..
+    From the Command Line
+    =====================
 
-It is also possible to invoke :mod:`compileall` from the command line,
-as you might when integrating it with a build system via a Makefile.
-For example:
+コマンドラインから
+==================
+
+..
+    It is also possible to invoke :mod:`compileall` from the command line,
+    as you might when integrating it with a build system via a Makefile.
+    For example:
+
+Makefile 経由でビルドシステムから利用するといったコマンドラインからも :mod:`compileall` を実行できます。例えば、次の通りです。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, '-m compileall -h', ignore_error=True))
 .. }}}
 .. {{{end}}}
 
-To recreate the example above, skipping ``.svn`` directories, one
-would run:
+..
+    To recreate the example above, skipping ``.svn`` directories, one
+    would run:
+
+前節で紹介したサンプルと同様に ``.svn`` ディレクトリをスキップするには次のように実行します。
 
 .. {{{cog
 .. workdir = path(cog.inFile).dirname()
@@ -112,4 +163,6 @@ would run:
 .. seealso::
 
     `compileall <http://docs.python.org/library/compileall.html>`_
-        The standard library documentation for this module.
+        .. The standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
