@@ -1,21 +1,43 @@
-======================================
-dumbdbm -- Portable DBM Implementation
-======================================
+..
+    ======================================
+    dumbdbm -- Portable DBM Implementation
+    ======================================
 
-.. module:: dumbdbm
+================================
+dumbdbm -- 移植性の高い DBM 実装
+================================
+
+..
     :synopsis: Portable DBM Implementation
 
-:Purpose: Last-resort backend implementation for :mod:`anydbm`.
-:Python Version: 1.4 and later
+.. module:: dumbdbm
+    :synopsis: 移植性の高い DBM 実装
 
-The :mod:`dumbdbm` module is a portable fallback implementation of the DBM API when no other implementations are available.  No external dependencies are required to use :mod:`dumbdbm`, but it is slower than most other implementations.
+..
+    :Purpose: Last-resort backend implementation for :mod:`anydbm`.
+    :Python Version: 1.4 and later
 
-It follows the semantics of the :mod:`anydbm` module.
+:目的: :mod:`anydbm` のバックエンド実装における最終手段
+:Python バージョン: 1.4 以上
+
+..
+    The :mod:`dumbdbm` module is a portable fallback implementation of the DBM API when no other implementations are available.  No external dependencies are required to use :mod:`dumbdbm`, but it is slower than most other implementations.
+
+:mod:`dumbdbm` モジュールは、その他の実装が使用できないときに DBM API の代替となる移植性の高い実装です。 :mod:`dumbdbm` を使用するのに外部ライブラリを必要としませんが、その他の実装と比べて遅くなります。
+
+..
+    It follows the semantics of the :mod:`anydbm` module.
+
+:mod:`anydbm` モジュールと仕組みや動作は同じです。
 
 .. seealso::
 
     `dumbdbm <http://docs.python.org/library/dumbdbm.html>`_
-        The standard library documentation for this module.
+        .. The standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
 
     :mod:`anydbm`
-        The :mod:`anydbm` module.
+        .. The :mod:`anydbm` module.
+
+        :mod:`anydbm` モジュール
