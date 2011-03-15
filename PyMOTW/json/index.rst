@@ -1,9 +1,17 @@
-=============================================
-json -- JavaScript Object Notation Serializer
-=============================================
+..
+    =============================================
+    json -- JavaScript Object Notation Serializer
+    =============================================
+
+===============================================
+json -- JavaScript Object Notation シリアライザ
+===============================================
+
+..
+    :synopsis: JavaScript Object Notation Serializer
 
 .. module:: json
-    :synopsis: JavaScript Object Notation Serializer
+    :synopsis: JavaScript Object Notation シリアライザ
 
 ..
     :Purpose: Encode Python objects as JSON strings, and decode JSON strings into Python objects.
@@ -22,7 +30,7 @@ json -- JavaScript Object Notation Serializer
     between the web server and client in an AJAX application, but is not
     limited to that problem domain.
 
-:mod:`json` モジュールはインメモリ Python オブジェクトを `JavaScript Object Notation`_ (JSON) というシリアライズされたフォーマットへ変換するための :mod:`pickle` に似た API を提供します。pickle と違うのは、JSON はアプリケーション間通信に適応するために多くの言語(特に JavaScript)で実装されている利点があります。JSON は AJAX アプリケーションにおける web サーバとクライアント間通信でおそらくは最もよく利用されていますが、その領域の問題が制限されていません。
+:mod:`json` モジュールはインメモリの Python オブジェクトを `JavaScript Object Notation`_ (JSON) というシリアライズされたフォーマットへ変換する :mod:`pickle` に似た API を提供します。pickle と違うのは、JSON はアプリケーション間通信に適応するように多くの言語(特に JavaScript)で実装されている利点があります。JSON は AJAX アプリケーションにおける web サーバとクライアント間の通信でおそらく最もよく利用されていますが、その課題領域のみに制限されているわけではありません。
 
 ..
     Encoding and Decoding Simple Data Types
@@ -35,7 +43,7 @@ json -- JavaScript Object Notation Serializer
     The encoder understands Python's native types by default (string,
     unicode, int, float, list, tuple, dict).
 
-そのエンコーダはデフォルトで Python のネイティブのデータ型(string, unicode, int, float, list, tuple, dict)を解釈します。
+エンコーダはデフォルトで Python のネイティブのデータ型(string, unicode, int, float, list, tuple, dict)を理解します。
 
 .. include:: json_simple_types.py
     :literal:
@@ -45,7 +53,7 @@ json -- JavaScript Object Notation Serializer
     Values are encoded in a manner very similar to Python's ``repr()``
     output.
 
-値は、言わば、Python の ``repr()`` 出力とよく似た値にエンコードされます。
+値は Python の ``repr()`` の出力とよく似た値にエンコードされます。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_simple_types.py'))
@@ -56,7 +64,7 @@ json -- JavaScript Object Notation Serializer
     Encoding, then re-decoding may not give exactly the same type of
     object.
 
-エンコードした後に再度デコードすると厳密には同じ型のオブジェクトを取得できない可能性があります。
+エンコードした後に再度デコードすると、厳密には同じ型のオブジェクトを取得できないこともあります。
 
 .. include:: json_simple_types_decode.py
     :literal:
@@ -77,8 +85,8 @@ json -- JavaScript Object Notation Serializer
     Human-consumable vs. Compact Output
     ===================================
 
-Human-consumable vs. コンパクトアウトプット
-===========================================
+人間が読み易い 対 コンパクトアウトプット
+========================================
 
 ..
     Another benefit of JSON over pickle is that the results are
@@ -87,7 +95,7 @@ Human-consumable vs. コンパクトアウトプット
     encoder to output the keys of a dictionary in sorted, instead of
     random, order.
 
-pickle より優れた JSON の他の利点はその結果(出力)を人間が読み易いことです。 ``dumps()`` 関数はその出力を読み易くするために複数の引数を受け取ります。例えば、 ``sort_keys`` はランダムな順序ではなく、ディクショナリのキーをソートして出力するようにエンコーダへ伝えます。
+pickle より優れている JSON の他の利点はその出力結果を人間が読み易いことです。 ``dumps()`` 関数はその出力を読み易くするために複数の引数を受け取ります。例えば、 ``sort_keys`` はランダムな順序ではなく、ディクショナリのキーをソートして出力するようにエンコーダへ伝えます。
 
 .. include:: json_sort_keys.py
     :literal:
@@ -97,7 +105,7 @@ pickle より優れた JSON の他の利点はその結果(出力)を人間が�
     Sorting makes it easier to scan the results by eye, and also makes it
     possible to compare JSON output in tests.
 
-ソートされていると、目視でその結果(出力)を確認するのに便利です。またテスト時に JSON の出力を比較するのが簡単になります。
+ソートすることで、その出力結果を目視で確認するのに便利です。さらにテストのときに JSON の出力を比較するのも簡単です。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_sort_keys.py'))
@@ -133,7 +141,7 @@ pickle より優れた JSON の他の利点はその結果(出力)を人間が�
     fact, you may want to adjust the settings for separating data in the
     encoded output to make it even more compact than the default.
 
-同じデータ量を送信する必要性がある冗長な出力は、例のようにバイト数が増加しますが、本番環境で意図したようにソートされるとは限りません。実際、デフォルト設定よりもっとコンパクトになるようにエンコードされたその出力内にあるデータを分離するための設定を調整したくなるでしょう。
+同じデータ量を送信する必要ある冗長な出力には、サンプルのようにバイト数が増加しますが、本番環境で意図したようにソートされるとは限りません。実際、デフォルト設定よりもっとコンパクトになるようにエンコードしたとしても、エンコードされた出力のデータを分割するために設定を調整したくなるかもしれません。
 
 .. include:: json_compact_encoding.py
     :literal:
@@ -145,7 +153,7 @@ pickle より優れた JSON の他の利点はその結果(出力)を人間が�
     values in a dictionary.  The default is ``(', ', ': ')``. By removing
     the whitespace, we can produce a more compact output.
 
-``dumps()`` への ``separators`` 引数はディクショナリの値からリストやキーのアイテムを分離するためにその文字列を含むタプルにすべきです。デフォルトは ``(', ', ': ')`` です。スペースを削除することでもっとコンパクトな出力になります。
+``dumps()`` への ``separators`` 引数はディクショナリの値からリストやキーのアイテムを分離するためにその文字列を含むタプルにします。デフォルトは ``(', ', ': ')`` です。スペースを削除することでもっとコンパクトな出力になります。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'json_compact_encoding.py'))
@@ -166,7 +174,7 @@ pickle より優れた JSON の他の利点はその結果(出力)を人間が�
     to work around that limitation is to skip over non-string keys using
     the ``skipkeys`` argument:
 
-JSON フォーマットはディクショナリのキーが文字列であることを前提とします。ディクショナリのキーに他のデータ型を使用していて、そのオブジェクトをエンコードしようとすると :ref:`ValueError <exceptions-ValueError>` が発生します。その制限を回避する1つのワークアラウンドは ``skipkeys`` 引数を使用して非文字列のキーを読み飛ばすことです。
+JSON フォーマットはディクショナリのキーが文字列であることを前提とします。ディクショナリのキーに他のデータ型を使用している場合、そのオブジェクトをエンコードしようとすると :ref:`ValueError <exceptions-ValueError>` が発生します。その制限を回避する1つのワークアラウンドは ``skipkeys`` 引数を使用して非文字列のキーを読み飛ばすことです。
 
 .. include:: json_skipkeys.py
     :literal:
@@ -196,7 +204,7 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
     course, to have your own types that you want to be able to encode as
     well.  There are two ways to do that.
 
-これまでの全ての例は Python のビルトインのデータ型がネイティブに :mod:`json` でサポートされているのでビルトインのデータ型を使用していました。Python のデータ型と同様にエンコードできるようにしたい独自のデータ型を持つことは珍しいことではありません。そのために2つの方法があります。
+これまでの全てのサンプルは Python の組み込みデータ型がネイティブに :mod:`json` でサポートされているので、そういった組み込みデータ型を使用していました。Python のデータ型と同様にエンコードできるようにしたい独自のデータ型を定義することは珍しいことではありません。そのために2つの方法があります。
 
 ..
     First, we'll need a class to encode:
@@ -237,7 +245,7 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
     create the instance.  For that, we use the ``object_hook`` argument to
     ``loads()``.
 
-その結果(出力)をデコードして ``MyObj`` インスタンスを作成するためには、そのモジュールからクラスをインポートして、そのクラスのインスタンスを作成できるようにデコーダへ結び付ける必要があります。そのため ``loads()`` への ``object_hook`` 引数を使用します。
+その出力結果をデコードして ``MyObj`` インスタンスを作成するには、そのモジュールからクラスをインポートして、そのクラスのインスタンスを作成できるようにデコーダへ関連付ける必要があります。そのため ``loads()`` への ``object_hook`` 引数を使用します。
 
 ..
     The ``object_hook`` is called for each dictionary decoded from the
@@ -245,7 +253,7 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
     another type of object.  The hook function should return the object it
     wants the calling application to receive instead of the dictionary.
 
-``object_hook`` は入ってくるデータストリームからデコードされる各ディクショナリのために呼び出されます。つまり、そのディクショナリから他のオブジェクトのデータ型へ変換する機会を提供してくれます。そのフック関数はそのディクショナリの代わりに受け取るための呼び出しアプリケーションを要求するオブジェクトを返すべきです。
+``object_hook`` は入ってくるデータストリームからデコードされるディクショナリ毎に呼び出されます。つまり、そのディクショナリから他のオブジェクトのデータ型へ変換する機会を提供してくれます。そのフック関数はそのディクショナリの代わりに受け取るための呼び出しアプリケーションを要求するオブジェクトを返すべきです。
 
 .. include:: json_load_object_hook.py
     :literal:
@@ -268,7 +276,7 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
     (``parse_int``), floating point numbers (``parse_float``), and
     constants (``parse_constant``).
 
-よく似たフック関数がビルトイン型の整数(``parse_int``), 浮動小数点数(``parse_float``) と定数 (``parse_constant``) のために使用できます。
+よく似たフック関数が組み込み型の整数(``parse_int``), 浮動小数点数(``parse_float``) と定数 (``parse_constant``) のために使用できます。
 
 ..
     Encoder and Decoder Classes
@@ -283,7 +291,7 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
     using the classes directly, you have access to extra APIs and can
     create subclasses to customize their behavior.
 
-既に説明した便利な関数に加えて、 :mod:`json` モジュールはエンコーディングとデコーディングのためのクラスを提供します。そのクラスを直接使用する場合、拡張 API へアクセスして、それらのクラスの振る舞いをカスタマイズするサブクラスを作成することができます。
+既に説明した便利な関数に加えて、 :mod:`json` モジュールはエンコーディングとデコーディングのクラスを提供します。そのクラスを直接使用する場合、拡張 API へアクセスして、それらのクラスの振る舞いをカスタマイズするサブクラスを作成できます。
 
 ..
     The JSONEncoder provides an iterable interface for producing "chunks"
@@ -291,7 +299,7 @@ JSON フォーマットはディクショナリのキーが文字列であるこ
     sockets without having to represent an entire data structure in
     memory.
 
-JSONEncoder はエンコードデータの "チャンク" を生成するために繰り返し利用可能なインタフェースを提供します。そして、メモリ内にある完全なデータ構造を再構成せずにネットワークソケット又はファイルへの書き込むを簡単にします。
+JSONEncoder はエンコードデータの "チャンク" を生成するために繰り返し利用できるインタフェースを提供します。そして、メモリ内にある完全なデータ構造を再構成せずに簡単にネットワークソケット又はファイルへの書き込みます。
 
 .. include:: json_encoder_iterable.py
     :literal:
@@ -313,14 +321,14 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
     ``''.join(encoder.iterencode())``, with some extra error checking up
     front.
 
-``encode()`` メソッドは ``''.join(encoder.iterencode())`` と基本的には等価です。そして、フロント側で追加のエラーを調べます。
+``encode()`` メソッドは ``''.join(encoder.iterencode())`` と基本的には等価です。そして、フロント側でその他のエラーを調べます。
 
 ..
     To encode arbitrary objects, we can override the ``default()`` method
     with an implementation similar to what we used above in
     ``convert_to_builtin_type()``.
 
-任意のオブジェクトをエンコードするために、上述した ``convert_to_builtin_type()`` で使用した内容と同様の実装で ``default()`` メソッドをオーバーライドすることができます。
+任意のオブジェクトをエンコードするために、上述した ``convert_to_builtin_type()`` の方法と同様の実装で ``default()`` メソッドをオーバーライドできます。
 
 .. include:: json_encoder_default.py
     :literal:
@@ -341,7 +349,7 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
     little more work to set up than our previous implementation, but not
     much.
 
-テキストをデコードした後、そのディクショナリをオブジェクトへ変換するためには、以前の実装より少しだけ作業が必要になりますが、大したことはありません。
+テキストをデコードした後、そのディクショナリをオブジェクトへ変換するには、以前の実装より少しだけ作業が必要ですが、大したことはありません。
 
 .. include:: json_decoder_object_hook.py
     :literal:
@@ -372,7 +380,7 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
     functions ``load()`` and ``dump()`` accept references to a file-like
     object to use for reading or writing.
 
-これまでの全ての例では、メモリ内に完全なデータ構造が構成されているときにエンコードデータを対象として扱える(扱うべき)ということを前提としていました。巨大なデータ構造では、例えばファイルのようなオブジェクトへ直接的にそのエンコードデータを書き込む方が望ましいでしょう。そのための便利な関数 ``load()`` と ``dump()`` は、読み書き用途にファイルのようなオブジェクトへのリファレンスを受け取ることができます。
+これまでの全ての例では、メモリ内に完全なデータ構造が構成されているときにエンコードデータを対象として扱える(扱うべき)ということを前提としていました。巨大なデータ構造、例えばファイルのようなオブジェクトへ直接的にそのエンコードデータを書き込む方が望ましいでしょう。そのための便利な関数 ``load()`` と ``dump()`` は、読み書き用途にファイルのようなオブジェクトへのリファレンスを受け取ることができます。
 
 .. include:: json_dump_file.py
     :literal:
@@ -394,7 +402,7 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
     the ``load()`` function still offers the benefit of encapsulating the
     logic of generating objects from stream input.
 
-1度にデータの一部のみを読み込むようには最適化されてはいませんが、その ``load()`` 関数は入力ストリームからオブジェクトを生成するカプセル化ロジックの利点も提供します。
+一度にデータの一部のみを読み込むように最適化されてはいませんが、 ``load()`` 関数は入力ストリームからオブジェクトを生成するカプセル化のロジックの利点も提供します。
 
 .. include:: json_load_file.py
     :literal:
@@ -410,8 +418,8 @@ JSONEncoder はエンコードデータの "チャンク" を生成するため�
     Mixed Data Streams
     ==================
 
-ミックスされたデータストリーム
-==============================
+混在するデータストリーム
+========================
 
 ..
     The JSONDecoder includes the ``raw_decode()`` method for decoding a
@@ -454,18 +462,31 @@ JSONDecoder には終了文字のある JSON データのような、複数の�
 .. seealso::
 
     `json <http://docs.python.org/library/json.html>`_
+        .. The standard library documentation for this module.
+
         本モジュールの標準ライブラリドキュメント
 
     `JavaScript Object Notation`_
-        JSON のホームページでドキュメントや他言語の実装があります。
+        .. JSON home, with documentation and implementations in other languages.
+
+        JSON のホームページでドキュメントや他言語の実装がある
 
     http://code.google.com/p/simplejson/
-        Bob Ippolito やその他の人による simplejson は Python2.6 と Python 3.0 に含まれる json ライブラリの開発バージョンが外部でメンテナンスされています。Python 2.4 と 2.5 にも後方互換性があります。
+        .. simplejson, from Bob Ippolito, et al, is the externally
+           maintained development version of the json library included
+           with Python 2.6 and Python 3.0. It maintains backwards
+           compatibility with Python 2.4 and Python 2.5.
+
+        Bob Ippolito と他の人による simplejson は Python2.6 と Python 3.0 で提供された json ライブラリの開発バージョンとしてメンテナンスされている、Python 2.4 と 2.5 にも後方互換性があるようにメンテナンスされている
 
     `jsonpickle <http://code.google.com/p/jsonpickle/>`_
-        jsonpickle は JSON にシリアライズされるどのような Python オブジェクトをも許容します。
+        .. jsonpickle allows for any Python object to be serialized into JSON. 
+
+        jsonpickle は任意の Python オブジェクトを JSON にシリアライズする
 
     :ref:`article-data-persistence`
+        .. Other examples of storing data from Python programs.
+
         Python プログラムからデータを格納するその他のサンプル
 
 .. _JavaScript Object Notation: http://json.org/
