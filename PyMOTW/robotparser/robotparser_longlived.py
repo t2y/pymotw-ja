@@ -13,7 +13,7 @@ import urlparse
 
 AGENT_NAME = 'PyMOTW'
 parser = robotparser.RobotFileParser()
-# Using the local copy
+# ローカルコピーを使用する
 parser.set_url('robots.txt')
 parser.read()
 parser.modified()
