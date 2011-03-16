@@ -9,14 +9,10 @@
 import bisect
 import random
 
-# Use a constant see to ensure that we see
-# the same pseudo-random numbers each time
-# we run the loop.
+# ループの実行時に同じ疑似乱数になるように定数を使用する
 random.seed(1)
 
-# Generate 20 random numbers and
-# insert them into a list in sorted
-# order.
+# 20個の乱数を生成してソート順序を保持してリストへ挿入する
 l = []
 for i in range(1, 20):
     r = random.randint(1, 100)
