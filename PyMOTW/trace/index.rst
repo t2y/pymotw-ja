@@ -32,8 +32,8 @@ trace -- 実行された通りに Python コードを追跡する
     Command Line Interface
     ======================
 
-コマンドラインインターフェイス
-==============================
+コマンドラインインタフェース
+============================
 
 ..
     It is easy use :mod:`trace` directly from the command line.  Given the
@@ -202,8 +202,8 @@ trace -- 実行された通りに Python コードを追跡する
     Programming Interface
     =====================
 
-プログラミングインターフェイス
-==============================
+プログラミングインタフェース
+============================
 
 ..
     For a little more control over the trace interface, you can invoke it
@@ -211,7 +211,7 @@ trace -- 実行された通りに Python コードを追跡する
     :class:`Trace` lets you set up fixtures and other dependencies before
     running a single function or execing a Python command to be traced.
 
-trace のインターフェイス上でもう少し制御するためにプログラム内で :class:`Trace` オブジェクトを使用して実行できます。 :class:`Trace` クラスは1つの関数を実行する、もしくはトレースする Python コマンドを実行する前にフィクスチャとその他の依存関係を設定します。
+trace のインタフェース上でもう少し制御するためにプログラム内で :class:`Trace` オブジェクトを使用して実行できます。 :class:`Trace` クラスは1つの関数を実行する、もしくはトレースする Python コマンドを実行する前にフィクスチャとその他の依存関係を設定します。
 
 .. include:: trace_run.py
     :literal:
@@ -257,7 +257,7 @@ trace のインターフェイス上でもう少し制御するためにプロ�
     the command line interface.  The data must be saved explicitly, using
     the :class:`CoverageResults` instance from the :class:`Trace` object.
 
-件数とカバレッジ情報はコマンドラインインターフェイスと同様に記録されます。そのデータは :class:`Trace` オブジェクトの :class:`CoverageResults` インスタンスを使用して明示的に保存されなければなりません。
+件数とカバレッジ情報はコマンドラインインタフェースと同様に記録されます。そのデータは :class:`Trace` オブジェクトの :class:`CoverageResults` インスタンスを使用して明示的に保存されなければなりません。
 
 .. include:: trace_CoverageResults.py
     :literal:

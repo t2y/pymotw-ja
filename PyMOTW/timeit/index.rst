@@ -27,7 +27,7 @@ timeit -- 小さな Python コードの実行時間を計る
     calculation possible. It reduces the impact of startup or shutdown
     costs on the time calculation by executing the code repeatedly.
 
-:mod:`timeit` モジュールは小さな Python コードの実行時間を計るシンプルなインターフェイスを提供します。なるべく正確な時間を算出するためにプロットフォーム特有の time 関数を使用します。そして対象のコードを何回も実行することで時間計算のための起動や終了による影響を少なくします。
+:mod:`timeit` モジュールは小さな Python コードの実行時間を計るシンプルなインタフェースを提供します。なるべく正確な時間を算出するためにプロットフォーム特有の time 関数を使用します。そして対象のコードを何回も実行することで時間計算のための起動や終了による影響を少なくします。
 
 ..
     Module Contents
@@ -226,7 +226,7 @@ timeit -- 小さな Python コードの実行時間を計る
     In addition to the programmatic interface, timeit provides a command
     line interface for testing modules without instrumentation.
 
-プログラミングインターフェイスに加えて、timeit はインストールせずにモジュールをテストするコマンドラインインターフェイスを提供します。
+プログラミングインタフェースに加えて、timeit はインストールせずにモジュールをテストするコマンドラインインタフェースを提供します。
 
 ..
     To run the module, use the new :option:`-m` option to find the module and
