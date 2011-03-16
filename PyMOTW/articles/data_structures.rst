@@ -41,7 +41,7 @@ Python は標準的なプログラミングのデータ構造を `組み込み�
 ..
     Another option for building sorted lists or arrays is :mod:`bisect`.  bisect uses a binary search to find the insertion point for new items, and is an alternative to repeatedly sorting a list that changes frequently.
 
-ソートされたリストや array を作成する別の選択肢として :mod:`bisect` があります。 :mod:`bisect` は、新しい要素追加に2分探索を使用して、変更時にリストのソートを繰り返す代替方法になります。
+ソートされたリストや array を作成する別の選択肢として :mod:`bisect` があります。 :mod:`bisect` は、新しい要素の挿入位置を2分探索で探すことで、変更する毎にリストのソートを繰り返すことの代替方法になります。
 
 ..
     Queue
