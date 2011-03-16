@@ -150,14 +150,14 @@ shelve -- 任意の Python オブジェクトの永続ストレージ
 
 .. _shelve-shelf-types:
 
+==============
+特別なシェルフ
+==============
+
 ..
     ====================
     Specific Shelf Types
     ====================
-
-==============
-特別なシェルフ
-==============
 
 ..
     The examples above all use the default shelf implementation. Using

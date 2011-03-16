@@ -1,13 +1,13 @@
 .. _article-data-structures:
 
+####################
+インメモリデータ構造
+####################
+
 ..
     #########################
     In-Memory Data Structures
     #########################
-
-####################
-インメモリデータ構造
-####################
 
 ..
     Python includes several standard programming data structures as `built-in types <http://docs.python.org/library/stdtypes.html>`_ (list, tuple, dictionary, and set).  Most applications won't need any other structures, but when they do the standard library delivers.

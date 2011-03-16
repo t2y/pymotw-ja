@@ -1,13 +1,12 @@
 .. _article-data-persistence:
 
+####################
+データの永続化と変換
+####################
 ..
     #############################
     Data Persistence and Exchange
     #############################
-
-####################
-データの永続化と変換
-####################
 
 ..
     Python provides several modules for storing data.  There are basically two aspects to persistence: converting the in-memory object back and forth into a format for saving it, and working with the storage of the converted data.
