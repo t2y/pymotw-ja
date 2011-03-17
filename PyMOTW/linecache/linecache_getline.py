@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -36,8 +37,8 @@ from linecache_data import *
 
 filename = make_tempfile()
 
-# Pick out the same line from source and cache.
-# (Notice that linecache counts from 1)
+# ソースとキャッシュから同じ行を取り出す
+# (linecache は 1 から始まるのに注意してください)
 print 'SOURCE: ', lorem.split('\n')[4]
 print 'CACHE : ', linecache.getline(filename, 5).rstrip()
 
