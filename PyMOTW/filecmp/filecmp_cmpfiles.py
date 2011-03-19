@@ -12,7 +12,7 @@ __version__ = "$Id$"
 import filecmp
 import os
 
-# Determine the items that exist in both directories
+# 両方のディレクトリに存在する要素を決定する
 d1_contents = set(os.listdir('example/dir1'))
 d2_contents = set(os.listdir('example/dir2'))
 common = list(d1_contents & d2_contents)
@@ -22,7 +22,7 @@ common_files = [ f
                 ]
 print 'Common files:', common_files
 
-# Compare the directories
+# ディレクトリを比較する
 match, mismatch, errors = filecmp.cmpfiles('example/dir1', 
                                            'example/dir2', 
                                            common_files)
