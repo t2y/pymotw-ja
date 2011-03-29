@@ -554,7 +554,7 @@ optparse と比較する
     built-in handlers are ``error`` (the default), and ``resolve``, which
     picks a handler based on the order they are added.
 
-前節で紹介したサンプルは、同じ引数の名前でパーサへ2つの引数ハンドラを追加することで例外を発生させると説明しました。 *conflict_handler* へ渡すことで競合を解決するように変更してください。2つの組み込みハンドラ ``error`` (デフォルト) と ``resolve`` があり、追加される順番に基づいてハンドラを選択します。
+前節で紹介したサンプルは、同じ引数の名前でパーサへ2つの引数ハンドラを追加することで例外を発生させると説明しました。 *conflict_handler* に ``resolve`` を渡すことで競合を解決するように変更してください。2つの組み込みハンドラ ``error`` (デフォルト) と ``resolve`` があり、追加される順番に基づいてハンドラを選択します。
 
 .. include:: argparse_conflict_handler_resolve.py
    :literal:
