@@ -15,7 +15,7 @@ def reporthook(blocks_read, block_size, total_size):
         print 'Connection opened'
         return
     if total_size < 0:
-        # Unknown size
+        # 不明サイズ
         print 'Read %d blocks' % blocks_read
     else:
         amount_read = blocks_read * block_size
