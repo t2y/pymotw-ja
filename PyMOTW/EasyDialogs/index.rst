@@ -312,7 +312,7 @@ GetArgv
     Let's look at an example that builds a command using the options supported by
     the Python interpreter.
 
-Python インタプリタでサポートされているオプションを使用してコマンドを作成するサンプルをみてみましょう。
+Python インタープリタでサポートされているオプションを使用してコマンドを作成するサンプルをみてみましょう。
 
 .. include:: EasyDialogs_GetArgv.py
     :literal:
