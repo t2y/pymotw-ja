@@ -27,7 +27,7 @@ class BufferAwareCompleter(object):
     def complete(self, text, state):
         response = None
         if state == 0:
-            # This is the first time for this text, so build a match list.
+            # このテキストは初めてなのでマッチリストを作成する
             
             origline = readline.get_line_buffer()
             begin = readline.get_begidx()
@@ -46,20 +46,19 @@ class BufferAwareCompleter(object):
             else:
                 try:
                     if begin == 0:
-                        # first word
+                        # 最初の単語
                         candidates = self.options.keys()
                     else:
-                        # later word
+                        # 後続の単語
                         first = words[0]
                         candidates = self.options[first]
                     
                     if being_completed:
-                        # match options with portion of input
-                        # being completed
+                        # 補完される入力部をもつオプションにマッチする
                         self.current_candidates = [ w for w in candidates
                                                     if w.startswith(being_completed) ]
                     else:
-                        # matching empty string so use all candidates
+                        # 空の文字列がマッチしたので全ての候補を使用する
                         self.current_candidates = candidates
 
                     logging.debug('candidates=%s', self.current_candidates)
@@ -82,15 +81,15 @@ def input_loop():
         line = raw_input('Prompt ("stop" to quit): ')
         print 'Dispatch %s' % line
 
-# Register our completer function
+# 補完関数を登録する
 readline.set_completer(BufferAwareCompleter(
     {'list':['files', 'directories'],
      'print':['byname', 'bysize'],
      'stop':[],
     }).complete)
 
-# Use the tab key for completion
+# 補完に tab キーを使用する
 readline.parse_and_bind('tab: complete')
 
-# Prompt the user for text
+# ユーザへテキストを表示する
 input_loop()
