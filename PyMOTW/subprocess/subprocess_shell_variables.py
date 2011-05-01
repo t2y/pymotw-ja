@@ -11,5 +11,5 @@ __version__ = "$Id$"
 
 import subprocess
 
-# Command with shell expansion
+# シェル変数を展開したコマンド
 subprocess.call('echo $HOME', shell=True)

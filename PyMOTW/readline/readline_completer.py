@@ -26,7 +26,7 @@ class SimpleCompleter(object):
     def complete(self, text, state):
         response = None
         if state == 0:
-            # This is the first time for this text, so build a match list.
+            # このテキストは初めてなのでマッチリストを作成する
             if text:
                 self.matches = [s 
                                 for s in self.options
@@ -36,8 +36,7 @@ class SimpleCompleter(object):
                 self.matches = self.options[:]
                 logging.debug('(empty input) matches: %s', self.matches)
         
-        # Return the state'th item from the match list,
-        # if we have that many.
+        # たくさんある場合、マッチリストから state 番目の値を返す
         try:
             response = self.matches[state]
         except IndexError:
@@ -52,11 +51,11 @@ def input_loop():
         line = raw_input('Prompt ("stop" to quit): ')
         print 'Dispatch %s' % line
 
-# Register our completer function
+# 補完関数を登録する
 readline.set_completer(SimpleCompleter(['start', 'stop', 'list', 'print']).complete)
 
-# Use the tab key for completion
+# 補完に tab キーを使用する
 readline.parse_and_bind('tab: complete')
 
-# Prompt the user for text
+# ユーザへテキストを表示する
 input_loop()

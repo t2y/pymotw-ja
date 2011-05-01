@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -53,7 +54,7 @@ class EchoRequestHandler(SocketServer.BaseRequestHandler):
     def handle(self):
         self.logger.debug('handle')
 
-        # Echo the back to the client
+        # クライアントへ echo back する
         data = self.request.recv(1024)
         self.logger.debug('recv()->"%s"', data)
         self.request.send(data)
@@ -111,34 +112,34 @@ if __name__ == '__main__':
     import socket
     import threading
 
-    address = ('localhost', 0) # let the kernel give us a port
+    address = ('localhost', 0) # カーネルにポート番号を割り当てさせる
     server = EchoServer(address, EchoRequestHandler)
-    ip, port = server.server_address # find out what port we were given
+    ip, port = server.server_address # 与えられたポート番号を調べる
 
     t = threading.Thread(target=server.serve_forever)
-    t.setDaemon(True) # don't hang on exit
+    t.setDaemon(True) # 終了時にハングアップしない
     t.start()
 
     logger = logging.getLogger('client')
     logger.info('Server on %s:%s', ip, port)
 
-    # Connect to the server
+    # サーバへ接続する
     logger.debug('creating socket')
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     logger.debug('connecting to server')
     s.connect((ip, port))
 
-    # Send the data
+    # データを送る
     message = 'Hello, world'
     logger.debug('sending data: "%s"', message)
     len_sent = s.send(message)
 
-    # Receive a response
+    # レスポンスを受けとる
     logger.debug('waiting for response')
     response = s.recv(len_sent)
     logger.debug('response from server: "%s"', response)
 
-    # Clean up
+    # クリーンアップ
     logger.debug('closing socket')
     s.close()
     logger.debug('done')

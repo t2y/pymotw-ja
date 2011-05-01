@@ -17,13 +17,13 @@ group_name = ''
 
 for (event, node) in iterparse('podcasts.opml', events=['start']):
     if node.tag != 'outline':
-        # Ignore anything not part of the outline
+        # outline 以外を無視する
         continue
     if not node.attrib.get('xmlUrl'):
-        # Remember the current group
+        # カレントグループを覚える
         group_name = node.attrib['text']
     else:
-        # Output a podcast entry
+        # podcast エントリを出力する
         writer.writerow( (group_name, node.attrib['text'],
                           node.attrib['xmlUrl'],
                           node.attrib.get('htmlUrl', ''),

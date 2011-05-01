@@ -14,7 +14,7 @@ from ElementTree_pretty import prettify
 
 generated_on = str(datetime.datetime.now())
 
-# Configure one attribute with set()
+# set() で属性を1つ設定する
 root = Element('opml')
 root.set('version', '1.0')
 
@@ -36,11 +36,9 @@ with open('podcasts.csv', 'rt') as f:
     for row in reader:
         group_name, podcast_name, xml_url, html_url = row
         if current_group is None or group_name != current_group.text:
-            # Start a new group
+            # 新しいグループを開始する
             current_group = SubElement(body, 'outline', {'text':group_name})
-        # Add this podcast to the group,
-        # setting all of its attributes at
-        # once.
+        # 一度に全ての属性をセットしてこの podcast をグループに追加する
         podcast = SubElement(current_group, 'outline',
                              {'text':podcast_name,
                               'xmlUrl':xml_url,

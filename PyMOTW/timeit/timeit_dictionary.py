@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -36,7 +37,7 @@ __version__ = "$Id$"
 import timeit
 import sys
 
-# A few constants
+# 定数定義
 range_size=1000
 count=1000
 setup_statement="l = [ (str(x), x) for x in range(%d) ]; d = {}" % range_size
@@ -60,7 +61,7 @@ print
 # Using __setitem__ without checking for existing values first
 print '__setitem__:\t',
 sys.stdout.flush()
-# using setitem
+# setitem を使用する
 t = timeit.Timer("""
 for s, i in l:
     d[s] = i
@@ -70,7 +71,7 @@ show_results(t.timeit(number=count))
 # [[[endsection]]]
 
 # [[[section setdefault]]]
-# Using setdefault
+# setdefault を使用する
 print 'setdefault:\t',
 sys.stdout.flush()
 t = timeit.Timer("""
@@ -82,10 +83,10 @@ show_results(t.timeit(number=count))
 # [[[endsection]]]
 
 # [[[section has_key]]]
-# Using has_key
+# has_key を使用する
 print 'has_key:\t',
 sys.stdout.flush()
-# using setitem
+# setitem を使用する
 t = timeit.Timer("""
 for s, i in l:
     if not d.has_key(s):
@@ -96,10 +97,10 @@ show_results(t.timeit(number=count))
 # [[[endsection]]]
 
 # [[[section exception]]]
-# Using exceptions
+# exceptions を使用する
 print 'KeyError:\t',
 sys.stdout.flush()
-# using setitem
+# setitem を使用する
 t = timeit.Timer("""
 for s, i in l:
     try:
@@ -112,10 +113,10 @@ show_results(t.timeit(number=count))
 # [[[endsection]]]
 
 # [[[section in]]]
-# Using "in"
+# "in" を使用する
 print '"not in":\t',
 sys.stdout.flush()
-# using setitem
+# setitem を使用する
 t = timeit.Timer("""
 for s, i in l:
     if s not in d:

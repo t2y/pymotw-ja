@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -13,7 +14,7 @@ import mmap
 import shutil
 import contextlib
 
-# Copy the example file
+# サンプルファイルをコピーする
 shutil.copyfile('lorem.txt', 'lorem_copy.txt')
 
 word = 'consectetuer'

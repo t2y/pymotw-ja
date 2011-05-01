@@ -16,8 +16,7 @@ from weakref_graph import Graph, demo
 class WeakGraph(Graph):
     def set_next(self, other):
         if other is not None:
-            # See if we should replace the reference
-            # to other with a weakref.
+            # 弱参照をもつ他の参照に置き換えるべきかを調べる
             if self in other.all_nodes():
                 other = weakref.proxy(other)
         super(WeakGraph, self).set_next(other)

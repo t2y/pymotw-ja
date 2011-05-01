@@ -34,18 +34,18 @@ class MyObj(object):
     def __str__(self):
         return 'MyObj(%r)' % self.arg
 
-# Register the functions for manipulating the type.
+# 型を操作する関数を登録する
 sqlite3.register_adapter(MyObj, adapter_func)
 sqlite3.register_converter("MyObj", converter_func)
 
-# Create some objects to save.  Use a list of tuples so we can pass
-# this sequence directly to executemany().
+# 保存するオブジェクトを作成する
+# タプルのリストを使用するのでこのシーケンスを直接 executemany() へ渡せる
 to_save = [ (MyObj('this is a value to save'),),
             (MyObj(42),),
             ]
 
 with sqlite3.connect(db_filename, detect_types=sqlite3.PARSE_DECLTYPES) as conn:
-    # Create a table with column of type "MyObj"
+    # "MyObj" 型の列でテーブルを作成する
     conn.execute("""
     create table if not exists obj (
         id    integer primary key autoincrement not null,
@@ -54,10 +54,10 @@ with sqlite3.connect(db_filename, detect_types=sqlite3.PARSE_DECLTYPES) as conn:
     """)
     cursor = conn.cursor()
 
-    # Insert the objects into the database
+    # オブジェクトをデータベースへ追加する
     cursor.executemany("insert into obj (data) values (?)", to_save)
 
-    # Query the database for the objects just saved
+    # たった今データベースに保存されたオブジェクトをクエリする
     cursor.execute("select id, data from obj")
     for obj_id, obj in cursor.fetchall():
         print 'Retrieved', obj_id, obj, type(obj)

@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -35,7 +36,7 @@ import SocketServer
 class EchoRequestHandler(SocketServer.BaseRequestHandler):
 
     def handle(self):
-        # Echo the back to the client
+        # クライアントへ echo back する
         data = self.request.recv(1024)
         self.request.send(data)
         return
@@ -44,27 +45,27 @@ if __name__ == '__main__':
     import socket
     import threading
 
-    address = ('localhost', 0) # let the kernel give us a port
+    address = ('localhost', 0) # カーネルにポート番号を割り当てさせる
     server = SocketServer.TCPServer(address, EchoRequestHandler)
-    ip, port = server.server_address # find out what port we were given
+    ip, port = server.server_address # 与えられたポート番号を調べる
 
     t = threading.Thread(target=server.serve_forever)
-    t.setDaemon(True) # don't hang on exit
+    t.setDaemon(True) # 終了時にハングアップしない
     t.start()
 
-    # Connect to the server
+    # サーバへ接続する
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((ip, port))
 
-    # Send the data
+    # データを送る
     message = 'Hello, world'
     print 'Sending : "%s"' % message
     len_sent = s.send(message)
 
-    # Receive a response
+    # レスポンスを受けとる
     response = s.recv(len_sent)
     print 'Received: "%s"' % response
 
-    # Clean up
+    # クリーンアップ
     s.close()
     server.socket.close()

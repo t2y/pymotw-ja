@@ -9,10 +9,10 @@
 import bisect
 import random
 
-# Reset the seed
+# シードをリセットする
 random.seed(1)
 
-# Use bisect_left and insort_left.
+# bisect_left と insort_left を使用する
 l = []
 for i in range(1, 20):
     r = random.randint(1, 100)

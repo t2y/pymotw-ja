@@ -10,7 +10,7 @@
 import sys
 import tabnanny
 
-# Turn on verbose mode
+# 冗長モードを有効にする
 tabnanny.verbose = 1
 
 for dirname in sys.argv[1:]:

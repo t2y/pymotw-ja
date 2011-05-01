@@ -27,15 +27,12 @@ class EchoServer(asyncore.dispatcher):
         return
 
     def handle_accept(self):
-        # Called when a client connects to our socket
+        # クライアントがソケットへ接続したときに呼び出される
         client_info = self.accept()
         self.logger.debug('handle_accept() -> %s', client_info[1])
         EchoHandler(sock=client_info[0])
-        # We only want to deal with one client at a time,
-        # so close as soon as we set up the handler.
-        # Normally you would not do this and the server
-        # would run forever or until it received instructions
-        # to stop.
+        # 一度に一クライアントのみを扱うのでハンドラを設定したらクローズする
+        # 普通はクローズせずにサーバは停止命令を受け取るか、永遠に実行される
         self.handle_close()
         return
     
@@ -136,9 +133,9 @@ if __name__ == '__main__':
                         format='%(name)s: %(message)s',
                         )
 
-    address = ('localhost', 0) # let the kernel give us a port
+    address = ('localhost', 0) # カーネルにポート番号を割り当てさせる
     server = EchoServer(address)
-    ip, port = server.address # find out what port we were given
+    ip, port = server.address # 与えられたポート番号を調べる
 
     client = EchoClient(ip, port, message=open('lorem.txt', 'r').read())
 

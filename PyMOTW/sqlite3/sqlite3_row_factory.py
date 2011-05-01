@@ -12,7 +12,7 @@ import sqlite3
 db_filename = 'todo.db'
 
 with sqlite3.connect(db_filename) as conn:
-    # Change the row factory to use Row
+    # Row を使用するために行ファクトリを変更する
     conn.row_factory = sqlite3.Row
     
     cursor = conn.cursor()

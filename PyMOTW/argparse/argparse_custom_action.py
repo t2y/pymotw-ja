@@ -48,13 +48,12 @@ class CustomAction(argparse.Action):
         print '  values = %r' % values
         print '  option_string = %r' % option_string
         
-        # Do some arbitrary processing of the input values
+        # 入力値に任意の処理を行う
         if isinstance(values, list):
             values = [ v.upper() for v in values ]
         else:
             values = values.upper()
-        # Save the results in the namespace using the destination
-        # variable given to our constructor.
+        # コンストラクタへ渡された dest 値で namespace に結果を保存する
         setattr(namespace, self.dest, values)
 
 parser = argparse.ArgumentParser()

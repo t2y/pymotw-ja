@@ -1,58 +1,90 @@
-==========================================================
-xmlrpclib -- Client-side library for XML-RPC communication
-==========================================================
+..
+    ==========================================================
+    xmlrpclib -- Client-side library for XML-RPC communication
+    ==========================================================
 
-.. module:: xmlrpclib
+=======================================================
+xmlrpclib -- XML-RPC 通信のためのクライアントライブラリ
+=======================================================
+
+..
     :synopsis: Client-side library for XML-RPC communication.
 
-:Purpose: Client-side library for XML-RPC communication.
-:Available In: 2.2 and later
+.. module:: xmlrpclib
+    :synopsis: XML-RPC 通信のためのクライアントライブラリ
 
-We have already looked at :mod:`SimpleXMLRPCServer`, the library for
-creating an XML-RPC server. The :mod:`xmlrpclib` module lets you
-communicate from Python with any XML-RPC server written in any
-language.
+..
+    :Purpose: Client-side library for XML-RPC communication.
+    :Available In: 2.2 and later
+
+:目的: XML-RPC 通信のためのクライアントライブラリ
+:利用できるバージョン: 2.2 以上
+
+..
+    We have already looked at :mod:`SimpleXMLRPCServer`, the library for
+    creating an XML-RPC server. The :mod:`xmlrpclib` module lets you
+    communicate from Python with any XML-RPC server written in any
+    language.
+
+既に XML-RPC サーバを構築する :mod:`SimpleXMLRPCServer` を紹介しました。 :mod:`xmlrpclib` モジュールを使用すると Python からどんな言語で書かれた XML-RPC サーバとも通信することができます。
 
 .. note::
 
-    All of the examples below use the server defined in
-    ``xmlrpclib_server.py``, available in the source distribution and
-    repeated here for reference:
+    ..
+        All of the examples below use the server defined in
+        ``xmlrpclib_server.py``, available in the source distribution and
+        repeated here for reference:
+
+    本稿で紹介する全てのサンプルはソースの再配布が可能な ``xmlrpclib_server.py`` で定義されたサーバを使用します。ここではリファレンスのために繰り返して説明します。
 
 .. include:: xmlrpclib_server.py
     :literal:
     :start-after: #end_pymotw_header
 
+..
+    Connecting to a Server
+    ======================
 
-Connecting to a Server
-======================
+サーバへ接続する
+================
 
-The simplest way to connect a client to a server is to instantiate a
-:class:`ServerProxy` object, giving it the URI of the server. For
-example, the demo server runs on port 9000 of localhost:
+..
+    The simplest way to connect a client to a server is to instantiate a
+    :class:`ServerProxy` object, giving it the URI of the server. For
+    example, the demo server runs on port 9000 of localhost:
+
+クライアントからサーバへ接続する最も簡単な方法はサーバの URI を渡して :class:`ServerProxy` オブジェクトをインスタンス化することです。例えば、デモサーバはローカルホストの9000番ポートで起動します。
 
 .. include:: xmlrpclib_ServerProxy.py
     :literal:
     :start-after: #end_pymotw_header
 
-In this case, the :func:`ping()` method of the service takes no
-arguments and returns a single boolean value.
+..
+    In this case, the :func:`ping()` method of the service takes no
+    arguments and returns a single boolean value.
+
+このケースでは、そのサーバサービスの :func:`ping()` メソッドは引数を受け取らず、1つのブーリアン値を返します。
 
 ::
 
     $ python xmlrpclib_ServerProxy.py
     Ping: True
 
+..
+    Other options are available to support alternate transport. Both HTTP
+    and HTTPS are supported out of the box, as are basic
+    authentication. You would only need to provide a transport class if
+    your communication channel was not one of the supported types. It
+    would be an interesting exercise, for example, to implement XML-RPC
+    over SMTP. Not terribly useful, but interesting.
 
-Other options are available to support alternate transport. Both HTTP
-and HTTPS are supported out of the box, as are basic
-authentication. You would only need to provide a transport class if
-your communication channel was not one of the supported types. It
-would be an interesting exercise, for example, to implement XML-RPC
-over SMTP. Not terribly useful, but interesting.
+代替の通信方法をサポートするために他のオプションが利用できます。ベーシック認証がそうであるように HTTP と HTTPS の両方ともそのボックスの外部でサポートされます。通信チャンネルがサポートされている種別ではなかった場合、通信クラスのみを提供する必要があります。それはおもしろい練習問題になります。例えば SMTP 上で XML-RPC を実装することです。全く使い物にはなりませんが、おもしろいです。
 
-The verbose option gives you debugging information useful for working
-out where communication errors might be happening.
+..
+    The verbose option gives you debugging information useful for working
+    out where communication errors might be happening.
+
+verbose オプションは通信エラーが発生したときに解決するためのデバッグ情報を出力します。
 
 .. include:: xmlrpclib_ServerProxy_verbose.py
     :literal:
@@ -76,31 +108,42 @@ out where communication errors might be happening.
     body: "<?xml version='1.0'?>\n<methodResponse>\n<params>\n<param>\n<value><boolean>1</boolean></value>\n</param>\n</params>\n</methodResponse>\n"
     True
 
-You can change the default encoding from UTF-8 if you need to use an
-alternate system.
+..
+    You can change the default encoding from UTF-8 if you need to use an
+    alternate system.
+
+他のシステムで使用する必要があるなら、デフォルトエンコーディングを UTF-8 から変更することができます。
 
 .. include:: xmlrpclib_ServerProxy_encoding.py
     :literal:
     :start-after: #end_pymotw_header
 
-The server should automatically detect the correct encoding.
+..
+    The server should automatically detect the correct encoding.
+
+サーバは自動的に正しいエンコーディングを検出すべきです。
 
 ::
 
     $ python xmlrpclib_ServerProxy_encoding.py
     Ping: True
 
+..
+    The *allow_none* option controls whether Python's ``None`` value is
+    automatically translated to a nil value or if it causes an error.
 
-The *allow_none* option controls whether Python's ``None`` value is
-automatically translated to a nil value or if it causes an error.
+*allow_none* オプションは Python の ``None`` の値を自動的に nil 値へ変換するかどうか、又はそれがエラーを引き起こすかを制御します。
 
 .. include:: xmlrpclib_ServerProxy_allow_none.py
     :literal:
     :start-after: #end_pymotw_header
 
-The error is raised locally if the client does not allow ``None``, but
-can also be raised from within the server if it is not configured to
-allow ``None``.
+..
+    The error is raised locally if the client does not allow ``None``, but
+    can also be raised from within the server if it is not configured to
+    allow ``None``.
+
+エラーは、クライアントが ``None`` を許容しない場合はローカル側で発生しますが、サーバ内で ``None`` を許容しないように設定されている場合はサーバ側で発生させることもできます。
 
 ::
 
@@ -124,25 +167,38 @@ allow ``None``.
         raise TypeError, "cannot marshal None unless allow_none is enabled"
     TypeError: cannot marshal None unless allow_none is enabled
 
+..
+    The *use_datetime* option lets you pass :mod:`datetime` and related
+    objects in to the proxy or receive them from the server. If
+    *use_datetime* is False, the internal :class:`DateTime` class is used
+    to represent dates instead.
 
-The *use_datetime* option lets you pass :mod:`datetime` and related
-objects in to the proxy or receive them from the server. If
-*use_datetime* is False, the internal :class:`DateTime` class is used
-to represent dates instead.
+*use_datetime* オプションは :mod:`datetime` と関連オブジェクトをプロキシへ渡す、又はサーバからそれらのオブジェクトを受け取ります。もし *use_datetime* が False なら、内部の :class:`DateTime` クラスが日付表示の代わりに使用されます。
 
-Data Types
-==========
+..
+    Data Types
+    ==========
 
-The XML-RPC protocol recognizes a limited set of common data
-types. The types can be passed as arguments or return values and
-combined to create more complex data structures.
+データ型
+========
+
+..
+    The XML-RPC protocol recognizes a limited set of common data
+    types. The types can be passed as arguments or return values and
+    combined to create more complex data structures.
+
+XML-RPC プロトコルは制限された共通データ型セットを認識します。そのデータ型は引数として渡されるか、値を返します。そして、もっと複雑なデータ構造を作成するために組み合わせることができます。
 
 .. include:: xmlrpclib_types.py
     :literal:
     :start-after: #end_pymotw_header
 
+..
+    The simple types::
 
-The simple types::
+単純なデータ型です。
+
+::
 
     $ python xmlrpclib_types.py
     boolean               : ['True', "<type 'bool'>", True]
@@ -154,8 +210,10 @@ The simple types::
     array                 : ["['a', 'tuple']", "<type 'list'>", ['a', 'tuple']]
     structure             : ["{'a': 'dictionary'}", "<type 'dict'>", {'a': 'dictionary'}]
 
+..
+    And they can be nested to create values of arbitrary complexity:
 
-And they can be nested to create values of arbitrary complexity:
+任意の複雑な値を作成するためにネストすることができます。
 
 .. include:: xmlrpclib_types_nested.py
     :literal:
@@ -210,22 +268,30 @@ And they can be nested to create values of arbitrary complexity:
       'string': 'some text',
       'structure': {'a': 'dictionary'}}]
 
+..
+    Passing Objects
+    ===============
 
-Passing Objects
-===============
+オブジェクトを渡す
+==================
 
-Instances of Python classes are treated as structures and passed as a
-dictionary, with the attributes of the object as values in the
-dictionary.
+..
+    Instances of Python classes are treated as structures and passed as a
+    dictionary, with the attributes of the object as values in the
+    dictionary.
+
+Python クラスのインスタンスは構造体のように扱われてディクショナリとして渡されます。それはディクショナリの値のようにそのオブジェクトの属性を持ちます。
 
 .. include:: xmlrpclib_types_object.py
     :literal:
     :start-after: #end_pymotw_header
 
+..
+    Round-tripping the value gives a dictionary on the client, since there
+    is nothing encoded in the values to tell the server (or client) that
+    it should be instantiated as part of a class.
 
-Round-tripping the value gives a dictionary on the client, since there
-is nothing encoded in the values to tell the server (or client) that
-it should be instantiated as part of a class.
+クラスの一部としてインスタンス化される、サーバ(又はクライアント)へ渡される値は何もエンコードしないので、クライアントからサーバへ渡されてクライアントへ返された値はディクショナリになります。
 
 ::
 
@@ -235,23 +301,32 @@ it should be instantiated as part of a class.
     o2= MyObj(2, MyObj(1, 'b goes here'))
     ["{'a': 2, 'b': {'a': 1, 'b': 'b goes here'}}", "<type 'dict'>", {'a': 2, 'b': {'a': 1, 'b': 'b goes here'}}]
 
+..
+    Binary Data
+    ===========
 
-Binary Data
-===========
+バイナリデータ
+==============
 
-All values passed to the server are encoded and escaped
-automatically. However, some data types may contain characters that
-are not valid XML. For example, binary image data may include byte
-values in the ASCII control range 0 to 31.  If you need to pass binary
-data, it is best to use the :class:`Binary` class to encode it for
-transport.
+..
+    All values passed to the server are encoded and escaped
+    automatically. However, some data types may contain characters that
+    are not valid XML. For example, binary image data may include byte
+    values in the ASCII control range 0 to 31.  If you need to pass binary
+    data, it is best to use the :class:`Binary` class to encode it for
+    transport.
+
+サーバへ渡される全ての値はエンコードとエスケープが自動的に行われます。しかし、データ型によっては無効な XML データの文字を含む可能性があります。例えば、バイナリイメージのデータは ASCII の制御文字 0 から 31 の範囲のバイト値を含む可能性があります。もしバイナリデータを渡す必要があるなら :class:`Binary` クラスを使用して通信のためにエンコードすることが最も良い方法です。
 
 .. include:: xmlrpclib_Binary.py
     :literal:
     :start-after: #end_pymotw_header
 
-If we pass the string containing a NULL byte to :func:`show_type()`,
-an exception is raised in the XML parser:
+..
+    If we pass the string containing a NULL byte to :func:`show_type()`,
+    an exception is raised in the XML parser:
+
+:func:`show_type()` へ NULL バイトを含む文字列を渡すと XML パーサで例外が発生します。
 
 ::
 
@@ -274,20 +349,24 @@ an exception is raised in the XML parser:
         raise Fault(**self._stack[0])
     xmlrpclib.Fault: <Fault 1: "<class 'xml.parsers.expat.ExpatError'>:not well-formed (invalid token): line 6, column 55">
 
+..
+    :class:`Binary` objects can also be used to send objects using
+    :mod:`pickle`. The normal security issues related to sending what
+    amounts to executable code over the wire apply here (i.e., don't do
+    this unless you're sure your communication channel is secure).
 
-:class:`Binary` objects can also be used to send objects using
-:mod:`pickle`. The normal security issues related to sending what
-amounts to executable code over the wire apply here (i.e., don't do
-this unless you're sure your communication channel is secure).
+:class:`Binary` オブジェクトは :mod:`pickle` を使用してオブジェクトを送信するために使用することもできます。どんな実行コードが送信されて実行されるかに関しては通常セキュリティの問題があります(例えば、通信チェネルがセキュアだと確信がない限りこれを実行してはいけません)。
 
 .. include:: xmlrpclib_Binary_pickle.py
     :literal:
     :start-after: #end_pymotw_header
 
+..
+    Remember, the data attribute of the :class:`Binary` instance contains
+    the pickled version of the object, so it has to be unpickled before it
+    can be used. That results in a different object (with a new id value).
 
-Remember, the data attribute of the :class:`Binary` instance contains
-the pickled version of the object, so it has to be unpickled before it
-can be used. That results in a different object (with a new id value).
+:class:`Binary` インスタンスのデータ属性が pickle 化されたオブジェクトを含みます。そのため、使用する前に unpickle 化しなければならないことを覚えておいてください。その結果は(新たな id 値を持つ)違うオブジェクトです。
 
 ::
 
@@ -296,14 +375,20 @@ can be used. That results in a different object (with a new id value).
     As object: ["{'a': 1, 'b': 'b goes here'}", "<type 'dict'>", {'a': 1, 'b': 'b goes here'}]
     From pickle: MyObj(1, 'b goes here') 11049200
 
+..
+    Exception Handling
+    ==================
 
-Exception Handling
-==================
+例外の取り扱い
+==============
 
-Since the XML-RPC server might be written in any language, exception
-classes cannot be transmitted directly. Instead, exceptions raised in
-the server are converted to :class:`Fault` objects and raised as
-exceptions locally in the client.
+..
+    Since the XML-RPC server might be written in any language, exception
+    classes cannot be transmitted directly. Instead, exceptions raised in
+    the server are converted to :class:`Fault` objects and raised as
+    exceptions locally in the client.
+
+XML-RPC サーバは他の言語でも実装される可能性があるので、例外クラスは直接的には転送されません。その代わり、サーバ側で発生した例外は :class:`Fault` オブジェクトへ変換されてクライアント側でローカルの例外のように発生します。
 
 .. include:: xmlrpclib_exception.py
     :literal:
@@ -320,12 +405,15 @@ exceptions locally in the client.
 MultiCall
 =========
 
-Multicall is an extension to the XML-RPC protocol to allow more than
-one call to be sent at the same time, with the responses collected and
-returned to the caller. The :class:`MultiCall` class was added to
-:mod:`xmlrpclib` in Python 2.4. To use a :class:`MultiCall` instance,
-invoke the methods on it as with a :class:`ServerProxy`, then call the
-object with no arguments. The result is an iterator with the results.
+..
+    Multicall is an extension to the XML-RPC protocol to allow more than
+    one call to be sent at the same time, with the responses collected and
+    returned to the caller. The :class:`MultiCall` class was added to
+    :mod:`xmlrpclib` in Python 2.4. To use a :class:`MultiCall` instance,
+    invoke the methods on it as with a :class:`ServerProxy`, then call the
+    object with no arguments. The result is an iterator with the results.
+
+Multicall は1度に1つ以上の呼び出しの送信を許容する XML-RPC プロトコルの機能拡張です。そして、呼び出し側へまとめてレスポンスが返されます。Python 2.4 で :class:`MultiCall` クラスが :mod:`xmlrpclib` に追加されました。 :class:`MultiCall` インスタンスを使用するには :class:`ServerProxy` と同様にそのインスタンスでメソッドを実行します。そして、引数なしでそのオブジェクトを呼び出します。その出力はそのメソッドの実行結果のイテレータになります。
 
 .. include:: xmlrpclib_MultiCall.py
     :literal:
@@ -338,10 +426,12 @@ object with no arguments. The result is an iterator with the results.
     1 ['1', "<type 'int'>", 1]
     2 ['string', "<type 'str'>", 'string']
 
+..
+    If one of the calls causes a :class:`Fault` or otherwise raises an
+    exception, the exception is raised when the result is produced from
+    the iterator and no more results are available.
 
-If one of the calls causes a :class:`Fault` or otherwise raises an
-exception, the exception is raised when the result is produced from
-the iterator and no more results are available.
+もしその呼び出しの1つが :class:`Fault` を引き起こすか、例外を発生させる場合、実行結果がイテレータから生成されるときに例外が発生します。そして、後続の実行結果は生成されません。
 
 .. include:: xmlrpclib_MultiCall_exception.py
     :literal:
@@ -362,7 +452,11 @@ the iterator and no more results are available.
 .. seealso::
 
     `xmlrpclib <http://docs.python.org/lib/module-xmlrpclib.html>`_
-        Standard library documentation for this module.
+        .. Standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント
 
     :mod:`SimpleXMLRPCServer`
-        An XML-RPC server implementation.
+        .. An XML-RPC server implementation.
+
+        XML-RPC サーバの1つの実装

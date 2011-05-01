@@ -11,7 +11,7 @@ __version__ = "$Id$"
 
 import itertools
 
-# Try to create a MemoryError by allocating a lot of memory
+# 大量のメモリを割り当てることで MemoryError の発生を試みる
 l = []
 for i in range(3):
     try:

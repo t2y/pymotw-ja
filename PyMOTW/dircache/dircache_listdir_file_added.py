@@ -15,16 +15,16 @@ import os
 path = '/tmp'
 file_to_create = os.path.join(path, 'pymotw_tmp.txt')
 
-# Look at the directory contents
+# ディレクトリのコンテンツを調べる
 first = dircache.listdir(path)
 
-# Create the new file
+# 新しいファイルを作成する
 open(file_to_create, 'wt').close()
 
-# Rescan the directory
+# ディレクトリを再スキャンする
 second = dircache.listdir(path)
 
-# Remove the file we created
+# 作成したファイルを削除する
 os.unlink(file_to_create)
 
 print 'Identical :', first is second

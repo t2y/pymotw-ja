@@ -13,21 +13,21 @@ import profile
 import pstats
 from profile_fibonacci_memoized import fib, fib_seq
 
-# Create 5 set of stats
+# stats ファイルを5セット作成する
 filenames = []
 for i in range(5):
     filename = 'profile_stats_%d.stats' % i
     profile.run('print %d, fib_seq(20)' % i, filename)
 
-# Read all 5 stats files into a single object
+# 1つのオブジェクトへ5つの stats ファイルを全て読み込む
 stats = pstats.Stats('profile_stats_0.stats')
 for i in range(1, 5):
     stats.add('profile_stats_%d.stats' % i)
 
-# Clean up filenames for the report
+# レポートのファイル名をクリーンアップする
 stats.strip_dirs()
 
-# Sort the statistics by the cumulative time spent in the function
+# 関数の累積時間によって統計をソートする
 stats.sort_stats('cumulative')
 
 stats.print_stats()
