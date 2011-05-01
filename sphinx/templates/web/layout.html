@@ -58,10 +58,10 @@
 
 {%- block rellinks %}
     {%- if hasdoc('about') %}
-    <link rel="author" title="About these documents" href="{{ pathto('about') }}" />
+    <link rel="author" title="このドキュメントについて" href="{{ pathto('about') }}" />
     {%- endif %}
-    <link rel="contents" title="Global table of contents" href="{{ pathto('contents') }}" />
-    <link rel="index" title="Global index" href="{{ pathto('genindex') }}" />
+    <link rel="contents" title="コンテンツテーブル" href="{{ pathto('contents') }}" />
+    <link rel="index" title="インデックス" href="{{ pathto('genindex') }}" />
     {%- if hasdoc('copyright') %}
     <link rel="copyright" title="Copyright" href="{{ pathto('copyright') }}" />
     {%- endif %}
@@ -77,10 +77,10 @@
     {%- endif %}
 {%- endblock %}
 {% endblock %}
-    
+
 {% block sidebar_l %}
   <div id="sidebar_left">
-      <p>If you find this information useful, consider picking up a copy of my book,
+      <p>この情報が役に立つと思われたら、私の本を手に取ってみてください。
       <i><a href="/books/byexample/">The Python Standard Library By
       Example</a></i>.</p>
   </div>

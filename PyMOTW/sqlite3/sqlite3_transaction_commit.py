@@ -23,7 +23,7 @@ with sqlite3.connect(db_filename) as conn1:
     print 'Before changes:'
     show_projects(conn1)
 
-    # Insert in one cursor
+    # あるカーソルで追加する
     cursor1 = conn1.cursor()
     cursor1.execute("""
     insert into project (name, description, deadline)
@@ -33,12 +33,12 @@ with sqlite3.connect(db_filename) as conn1:
     print '\nAfter changes in conn1:'
     show_projects(conn1)
 
-    # Select from another connection, without committing first
+    # 他のコネクションからコミットせずに選択する
     print '\nBefore commit:'
     with sqlite3.connect(db_filename) as conn2:
         show_projects(conn2)
 
-    # Commit then select from another connection
+    # コミットしてから他のコネクションで選択する
     conn1.commit()
     print '\nAfter commit:'
     with sqlite3.connect(db_filename) as conn3:

@@ -20,13 +20,13 @@ class PodcastListToCSV(object):
 
     def start(self, tag, attrib):
         if tag != 'outline':
-            # Ignore anything not part of the outline
+            # outline 以外を無視する
             return
         if not attrib.get('xmlUrl'):
-            # Remember the current group
+            # カレントグループを覚える
             self.group_name = attrib['text']
         else:
-            # Output a podcast entry
+            # podcast エントリを出力する
             self.writer.writerow( (self.group_name, attrib['text'],
                                    attrib['xmlUrl'],
                                    attrib.get('htmlUrl', ''),
@@ -34,13 +34,13 @@ class PodcastListToCSV(object):
                                   )
 
     def end(self, tag):
-        # Ignore closing tags
+        # 閉じタグを無視する
         pass
     def data(self, data):
-        # Ignore data inside nodes
+        # ノード内部のデータを無視する
         pass
     def close(self):
-        # Nothing special to do here
+        # 特別な処理は何もしない
         return
 
 

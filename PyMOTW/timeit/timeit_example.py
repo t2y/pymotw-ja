@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -34,7 +35,7 @@ __version__ = "$Id$"
 
 import timeit
 
-# using setitem
+# setitem を使用する
 t = timeit.Timer("print 'main statement'", "print 'setup'")
 
 print 'TIMEIT:'

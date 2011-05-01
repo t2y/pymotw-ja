@@ -32,7 +32,7 @@ if __name__ == '__main__':
     
     queue.put(MyFancyClass('Fancy Dan'))
     
-    # Wait for the worker to finish
+    # ワーカーが終了するまで待つ
     queue.close()
     queue.join_thread()
     p.join()

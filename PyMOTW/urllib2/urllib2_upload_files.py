@@ -41,14 +41,13 @@ class MultiPartForm(object):
     
     def __str__(self):
         """Return a string representing the form data, including attached files."""
-        # Build a list of lists, each containing "lines" of the
-        # request.  Each part is separated by a boundary string.
-        # Once the list is built, return a string where each
-        # line is separated by '\r\n'.  
+        # リクエストの "行" を含むリストを作成する
+        # それぞれのパートはバウンダリ文字列で分割される
+        # リストが作成されると '\r\n' で区切られた行を返す
         parts = []
         part_boundary = '--' + self.boundary
         
-        # Add the form fields
+        # フォームフィールドを追加する
         parts.extend(
             [ part_boundary,
               'Content-Disposition: form-data; name="%s"' % name,
@@ -58,7 +57,7 @@ class MultiPartForm(object):
             for name, value in self.form_fields
             )
         
-        # Add the files to upload
+        # アップロードするファイルを追加する
         parts.extend(
             [ part_boundary,
               'Content-Disposition: file; name="%s"; filename="%s"' % \
@@ -70,24 +69,24 @@ class MultiPartForm(object):
             for field_name, filename, content_type, body in self.files
             )
         
-        # Flatten the list and add closing boundary marker,
-        # then return CR+LF separated data
+        # リストにしてバウンダリ文字列をクローズするマーカーを
+        # 追加してから CR+LF で分割されたデータを返す
         flattened = list(itertools.chain(*parts))
         flattened.append('--' + self.boundary + '--')
         flattened.append('')
         return '\r\n'.join(flattened)
 
 if __name__ == '__main__':
-    # Create the form with simple fields
+    # シンプルなフィールドでフォームを作成する
     form = MultiPartForm()
     form.add_field('firstname', 'Doug')
     form.add_field('lastname', 'Hellmann')
     
-    # Add a fake file
+    # うそのファイルを追加する
     form.add_file('biography', 'bio.txt', 
                   fileHandle=StringIO('Python developer and blogger.'))
 
-    # Build the request
+    # リクエストを作成する
     request = urllib2.Request('http://localhost:8080/')
     request.add_header('User-agent', 'PyMOTW (http://www.doughellmann.com/PyMOTW/)')
     body = str(form)

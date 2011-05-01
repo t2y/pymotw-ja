@@ -11,6 +11,6 @@ __version__ = "$Id$"
 
 import linecache
 
-# Errors are even hidden if linecache cannot find the file
+# linecache がファイルを見つけられなくてもエラーが隠される
 no_such_file = linecache.getline('this_file_does_not_exist.txt', 1)
 print '\nNO FILE: ', no_such_file

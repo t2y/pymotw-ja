@@ -22,17 +22,17 @@ class ExpensiveObject(object):
         print '(Deleting %s)' % self
         
 def demo(cache_factory):
-    # hold objects so any weak references 
-    # are not removed immediately
+    # オブジェクトを保持して
+    # 全ての弱参照がすぐに削除されないようにする
     all_refs = {}
-    # the cache using the factory we're given
+    # 渡されたファクトリを使用するキャッシュ
     print 'CACHE TYPE:', cache_factory
     cache = cache_factory()
     for name in [ 'one', 'two', 'three' ]:
         o = ExpensiveObject(name)
         cache[name] = o
         all_refs[name] = o
-        del o # decref
+        del o # 参照カウンタを減らす
 
     print 'all_refs =',
     pprint(all_refs)
@@ -41,7 +41,7 @@ def demo(cache_factory):
         print '  %s = %s' % (name, value)
         del value # decref
         
-    # Remove all references to our objects except the cache
+    # キャッシュを除く全てのオブジェクトに対する参照を削除
     print 'Cleanup:'
     del all_refs
     gc.collect()

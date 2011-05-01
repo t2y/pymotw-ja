@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -32,24 +33,24 @@ See http://blog.doughellmann.com/2007/04/pymotw-stringio-and-cstringio.html
 __module_id__ = "$Id$"
 #end_pymotw_header
 
-# Find the best implementation available on this platform
+# このプラットホーム上で利用可能な最も良い実装を探す
 try:
     from cStringIO import StringIO
 except:
     from StringIO import StringIO
 
-# Writing to a buffer
+# バッファへ書き込む
 output = StringIO()
 output.write('This goes into the buffer. ')
 print >>output, 'And so does this.'
 
-# Retrieve the value written
+# 書き込まれた値を取り出す
 print output.getvalue()
 
-output.close() # discard buffer memory
+output.close() # バッファメモリを廃棄する
 
-# Initialize a read buffer
+# 読み込みバッファを初期化する
 input = StringIO('Inital value for read buffer')
 
-# Read from the buffer
+# バッファから読み込む
 print input.read()

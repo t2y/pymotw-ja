@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -36,9 +37,8 @@ from linecache_data import *
 
 filename = make_tempfile()
 
-# The cache always returns a string, and uses
-# an empty string to indicate a line which does
-# not exist.
+# キャッシュはいつも文字列を返します
+# 存在しない行は空行で表します
 not_there = linecache.getline(filename, 500)
 print '\nNOT THERE: "%s" includes %d characters' %  (not_there, len(not_there))
 

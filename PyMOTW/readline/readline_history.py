@@ -67,11 +67,11 @@ def input_loop():
         print 'Final history:', get_history_items()
         readline.write_history_file(HISTORY_FILENAME)
 
-# Register our completer function
+# 補完関数を登録する
 readline.set_completer(HistoryCompleter().complete)
 
-# Use the tab key for completion
+# 補完に tab キーを使用する
 readline.parse_and_bind('tab: complete')
 
-# Prompt the user for text
+# ユーザへテキストを表示する
 input_loop()

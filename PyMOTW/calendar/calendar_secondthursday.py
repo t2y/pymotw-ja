@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -32,18 +33,17 @@ __module_id__ = "$Id$"
 
 import calendar
 
-# Show every month
+# 全ての月を表示する
 for month in range(1, 13):
 
-    # Compute the dates for each week that overlaps the month
+    # その月と重複するそれぞれの週の日付を計算する
     c = calendar.monthcalendar(2007, month)
     first_week = c[0]
     second_week = c[1]
     third_week = c[2]
 
-    # If there is a Thursday in the first week, the second Thursday
-    # is in the second week.  Otherwise the second Thursday must 
-    # be in the third week.
+    # 最初の週に木曜日がある場合、第2木曜日は2番目の週になる
+    # それ以外は第3週にある
     if first_week[calendar.THURSDAY]:
         meeting_date = second_week[calendar.THURSDAY]
     else:

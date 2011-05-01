@@ -11,7 +11,6 @@ __version__ = "$Id$"
 
 import linecache
 
-# Look for the linecache module, using
-# the built in sys.path search.
+# sys.path を検索して linecache モジュールを探す
 module_line = linecache.getline('linecache.py', 3)
 print '\nMODULE : ', module_line

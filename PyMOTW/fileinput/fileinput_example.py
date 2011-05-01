@@ -13,7 +13,7 @@ import time
 from xml.etree.ElementTree import Element, SubElement, tostring
 from xml.dom import minidom
 
-# Establish the RSS and channel nodes
+# RSS とチャンネルノードを設定する
 rss = Element('rss', {'xmlns:dc':"http://purl.org/dc/elements/1.1/",
                       'version':'2.0',
                       })

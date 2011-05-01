@@ -9,7 +9,7 @@
 
 import gettext
 
-# Set up message catalog access
+# メッセージカタログへのアクセスを設定する
 t = gettext.translation('gettext_example', 'locale', fallback=True)
 _ = t.ugettext
 

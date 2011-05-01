@@ -52,16 +52,16 @@ class FauxNFSHandler(urllib2.BaseHandler):
 if __name__ == '__main__':
     tempdir = tempfile.mkdtemp()
     try:
-        # Populate the temporary file for the simulation
+        # シミュレーションのために一時ファイルを作成する
         with open(os.path.join(tempdir, 'file.txt'), 'wt') as f:
             f.write('Contents of file.txt')
         
-        # Construct an opener with our NFS handler
-        # and register it as the default opener.
+        # NFS ハンドラの opener を作成して、
+        # デフォルトの opener として登録する
         opener = urllib2.build_opener(FauxNFSHandler(tempdir))
         urllib2.install_opener(opener)
 
-        # Open the file through a URL.
+        # URL を通してファイルをオープンする
         response = urllib2.urlopen('nfs://remote_server/path/to/the/file.txt')
         print
         print 'READ CONTENTS:', response.read()

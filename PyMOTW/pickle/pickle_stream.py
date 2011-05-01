@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -51,19 +52,19 @@ data.append(SimpleObject('pickle'))
 data.append(SimpleObject('cPickle'))
 data.append(SimpleObject('last'))
 
-# Simulate a file with StringIO
+# StringIO でファイルを模倣する
 out_s = StringIO()
 
-# Write to the stream
+# ストリームに書き込む
 for o in data:
     print 'WRITING: %s (%s)' % (o.name, o.name_backwards)
     pickle.dump(o, out_s)
     out_s.flush()
 
-# Set up a read-able stream
+# 読み込み可能なストリームをセット
 in_s = StringIO(out_s.getvalue())
 
-# Read the data
+# データを読み込む
 while True:
     try:
         o = pickle.load(in_s)

@@ -14,34 +14,34 @@
   <h1>{{ docstitle }}</h1>
 <div class="section">
   <p>
-      The <a alt="Python Module of the Week" href="http://www.doughellmann.com/PyMOTW/">Python Module of the Week</a> series, or PyMOTW, is a tour of the <a alt="Python" href="http://www.python.org/">Python</a> standard library through short examples. This is version {{ release }}{% if last_updated %}, last updated {{ last_updated }}{% endif %} to cover the <a href="{{module}}/index.html">{{ module }}</a> module.
+      <a alt="Python Module of the Week" href="http://www.doughellmann.com/PyMOTW/">Python Module of the Week</a> の連載、PyMOTW は <a alt="Python" href="http://www.python.org/">Python</a> 標準ライブラリの短いサンプルを通して学ぶチュートリアルです。現在のバージョンは {{ release }}{% if last_updated %}, 最終更新は {{ last_updated }}{% endif %} で <a href="{{module}}/index.html">{{ module }}</a> モジュールを説明します。
   </p>
   {% block tables %}
   <table class="contentstable" align="center" valign="top"><tr>
     <td width="50%">
-      <p class="biglink"><a class="biglink" href="{{ pathto("contents") }}">Complete Table of Contents</a><br>
-         <span class="linkdescr">lists all articles and subsections</span></p>
+      <p class="biglink"><a class="biglink" href="{{ pathto("contents") }}">完全なコンテンツテーブル</a><br>
+         <span class="linkdescr">全ての記事とサブセクションを表示</span></p>
      {%- if hasdoc('about') %}
-     <p class="biglink"><a class="biglink" href="{{ pathto('about') }}">About PyMOTW</a><br>
-         <span class="linkdescr">background on the project</span></p>
+     <p class="biglink"><a class="biglink" href="{{ pathto('about') }}">PyMOTW について</a><br>
+         <span class="linkdescr">プロジェクトの背景</span></p>
      {%- endif %}
     </td><td width="50%">
-      <p class="biglink"><a class="biglink" href="{{ pathto("py-modindex") }}">Global Module Index</a><br>
-         <span class="linkdescr">quick access to all modules</span></p>
-      <p class="biglink"><a class="biglink" href="{{ pathto("genindex") }}">General Index</a><br>
-         <span class="linkdescr">all functions, classes, terms</span></p>
+      <p class="biglink"><a class="biglink" href="{{ pathto("py-modindex") }}">全般的なモジュールインデックス</a><br>
+         <span class="linkdescr">全てのモジュールへのクイックアクセス</span></p>
+      <p class="biglink"><a class="biglink" href="{{ pathto("genindex") }}">索引</a><br>
+         <span class="linkdescr">全ての関数、クラス、項目</span></p>
     </td></tr>
   </table>
   
-  <h3>Download</h3>
-  <p>Download <a href="/downloads/PyMOTW-{{version}}.tar.gz">version {{ version }}</a>, including all source files with examples and HTML versions of the documentation.</p>
-  
-  <p>There is also a PDF of this entire document <a href="PyMOTW-{{version}}.pdf">available for download</a>.</p>
+  <h3>ダウンロード</h3>
+  <p>全てのソースファイルとドキュメントの HTML バージョンを含む <a href="/downloads/PyMOTW-{{version}}.tar.gz">バージョン {{ version }}</a> をダウンロードする。</p>
 
-  <h3>Translations</h3>
-  <p><a href="about.html#translations-and-other-versions">Several translations</a> are in process.</p>
+  <p>完全なドキュメントの PDF も <a href="PyMOTW-{{version}}.pdf">ダウンロードすることができます</a>。</p>
+
+  <h3>翻訳</h3>
+  <p><a href="about.html#translations-and-other-versions">多言語への翻訳</a> が実行中です。</p>
   
-  <h3>Recent Blog Posts</h3>
+  <h3>最新のブログ投稿</h3>
   <script src="http://feeds.feedburner.com/PyMOTW?format=sigpro" type="text/javascript" ></script><noscript><p>Subscribe to RSS headline updates from: <a href="http://feeds.feedburner.com/PyMOTW"></a><br/>Powered by FeedBurner</p> </noscript>
 
   </div>

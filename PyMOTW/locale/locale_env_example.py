@@ -15,14 +15,14 @@ import sys
 
 sys.stdout = codecs.getwriter('UTF-8')(sys.stdout)
 
-# Default settings based on the user's environment.
+# ユーザ環境に基づいたデフォルト設定
 locale.setlocale(locale.LC_ALL, '')
 
 print 'Environment settings:'
 for env_name in [ 'LC_ALL', 'LC_CTYPE', 'LANG', 'LANGUAGE' ]:
     print '\t%s = %s' % (env_name, os.environ.get(env_name, ''))
 
-# What is the locale?
+# デフォルトロケールは何？
 print
 print 'Locale from environment:', locale.getlocale()
 
@@ -64,7 +64,7 @@ info = {}
 info.update(locale.localeconv())
 info['p_sign_posn'] = sign_positions[info['p_sign_posn']]
 info['n_sign_posn'] = sign_positions[info['n_sign_posn']]
-# convert the currency symbol to unicode
+# currency symbol をユニコードに変換する
 info['currency_symbol_u'] = info['currency_symbol'].decode('utf-8')
 
 print (template % info)

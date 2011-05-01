@@ -14,7 +14,7 @@ import textwrap
 csv.register_dialect('escaped', escapechar='\\', doublequote=False, quoting=csv.QUOTE_NONE)
 csv.register_dialect('singlequote', quotechar="'", quoting=csv.QUOTE_ALL)
 
-# Generate sample data for all known dialects
+# 全ての dialect が分かっているサンプルデータを生成する
 
 samples = []
 
@@ -29,8 +29,7 @@ for name in sorted(csv.list_dialects()):
             )
     samples.append( (name, dialect, buffer.getvalue()) )
 
-# Guess the dialect for a given sample, then use the results to parse
-# the data.
+# サンプルの dialect を推測して、その結果をデータ解析に使用する
  
 sniffer = csv.Sniffer()
 
