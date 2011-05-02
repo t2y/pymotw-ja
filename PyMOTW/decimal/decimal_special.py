@@ -13,10 +13,10 @@ for value in [ 'Infinity', 'NaN', '0' ]:
     print decimal.Decimal(value), decimal.Decimal('-' + value)
 print
 
-# Math with infinity
+# 無限大
 print 'Infinity + 1:', (decimal.Decimal('Infinity') + 1)
 print '-Infinity + 1:', (decimal.Decimal('-Infinity') + 1)
 
-# Print comparing NaN
+# NaN との比較結果を表示する
 print decimal.Decimal('NaN') == decimal.Decimal('Infinity')
 print decimal.Decimal('NaN') != decimal.Decimal(1)

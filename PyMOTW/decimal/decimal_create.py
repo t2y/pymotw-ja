@@ -13,11 +13,11 @@ fmt = '{0:<20} {1:<20}'
 print fmt.format('Input', 'Output')
 print fmt.format('-' * 20, '-' * 20)
 
-# Integer
+# 整数
 print fmt.format(5, decimal.Decimal(5))
 
-# String
+# 文字列
 print fmt.format('3.14', decimal.Decimal('3.14'))
 
-# Float
+# 浮動小数
 print fmt.format(repr(0.1), decimal.Decimal(str(0.1)))
