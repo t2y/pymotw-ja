@@ -25,24 +25,24 @@ def show_deck(deck):
             print '%2s%s' % j,
         print
 
-# Get a new deck, with the cards in order
+# カードが順番に並んだ新しいデッキを取得する
 deck = new_deck()
 print 'Initial deck:'
 show_deck(deck)
 
-# Shuffle the deck to randomize the order
+# ランダムな順番にカードをシャッフルする
 random.shuffle(deck)
 print '\nShuffled deck:'
 show_deck(deck)
 
-# Deal 4 hands of 5 cards each
+# 5つのカードのうち4つを配る
 hands = [ [], [], [], [] ]
 
 for i in xrange(5):
     for h in hands:
         h.append(deck.pop())
 
-# Show the hands
+# 手札のカードを表示する
 print '\nHands:'
 for n, h in enumerate(hands):
     print '%d:' % (n+1),
@@ -50,6 +50,6 @@ for n, h in enumerate(hands):
         print '%2s%s' % c,
     print
     
-# Show the remaining deck
+# デッキに残っているカードを表示する
 print '\nRemaining deck:'
 show_deck(deck)

@@ -13,7 +13,7 @@ import time
 r1 = random.Random()
 r2 = random.Random()
 
-# Force r2 to a different part of the random period than r1.
+# r1 から r2 を強制的に別の乱数周期にする
 r2.setstate(r1.getstate())
 r2.jumpahead(1024)
 
