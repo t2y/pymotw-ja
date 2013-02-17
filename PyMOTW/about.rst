@@ -21,7 +21,7 @@ PyMOTW は `Doug Hellmann <http://www.doughellmann.com/>`_ が執筆している
     updates and the latest release.  Source code is available from
     http://bitbucket.org/dhellmann/pymotw/.
 
-最新リリースや更新については、プロジェクトのホームページ(http://www.doughellmann.com/PyMOTW/ )を参照してください。ソースコードは http://bitbucket.org/dhellmann/pymotw/ から取得できます。
+最新リリースや更新については、プロジェクトのホームページ(http://pymotw.com/ )を参照してください。ソースコードは http://bitbucket.org/dhellmann/pymotw/ から取得できます。
 
 ..
     Complete documentation for the standard library can be found on the
@@ -228,11 +228,11 @@ PyMOTW の記事を Python インタラクティブインタプリタの実行�
   member of `Python Japan User's Group <http://www.python.jp/Zope/>`_
   and `Python Code Reading
   <http://groups.google.co.jp/group/python-code-reading>`_. The home
-  page for his translation is http://www.doughellmann.com/PyMOTW-ja/.
+  page for his translation is http://ja.pymotw.com/.
 
-`日本語 <http://www.doughellmann.com/PyMOTW-ja/>`_
+`日本語 <http://ja.pymotw.com/>`_
 
-  `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ は日本語翻訳をしています。Tetsuya は Python を 1.5 年程度使っています。彼は Linux ディストリビュータで働いていた頃 RPM パッケージのビルド等に yum, anaconda や rpm-tools で Python を使用していました。現在は自分用のツールを開発したりして Django, mercurial や wxPython 等のアプリケーションフレームワークに興味を持っています。Tetsuya は `Python Japan User's Group <http://www.python.jp/Zope/>`_ や `Python Code Reading <http://groups.google.co.jp/group/python-code-reading>`_ のメンバーです。日本語翻訳は http://www.doughellmann.com/PyMOTW-ja/ にあります。
+  `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ は日本語翻訳をしています。Tetsuya は Python を 1.5 年程度使っています。彼は Linux ディストリビュータで働いていた頃 RPM パッケージのビルド等に yum, anaconda や rpm-tools で Python を使用していました。現在は自分用のツールを開発したりして Django, mercurial や wxPython 等のアプリケーションフレームワークに興味を持っています。Tetsuya は `Python Japan User's Group <http://www.python.jp/Zope/>`_ や `Python Code Reading <http://groups.google.co.jp/group/python-code-reading>`_ のメンバーです。日本語翻訳は http://ja.pymotw.com/ にあります。
 
 ..
     Compendiums

@@ -67,9 +67,7 @@ options(
         author = 'Doug Hellmann',
         author_email = 'doug.hellmann@gmail.com',
 
-        url = 'http://www.doughellmann.com/PyMOTW/',
-        download_url = 'http://www.doughellmann.com/downloads/%s-%s.tar.gz' % \
-                        (PROJECT, VERSION),
+        url = 'http://ja.pymotw.com/',
 
         classifiers = [ 'Development Status :: 5 - Production/Stable',
                         'Environment :: Console',
@@ -127,8 +125,8 @@ options(
         builddir = 'web',
         
         # What server hosts the website?
-        server = 'www.doughellmann.com',
-        server_path = '/var/www/doughellmann/DocumentRoot/PyMOTW-ja/',
+        server = 'pymotw.com',
+        server_path = '/home/dhellmann/ja.pymotw.com/2/',
 
         # What template should be used for the web site HTML?
         template_source = '%s/source/_templates/base.html' % WEB_WORK_DIR,
@@ -361,7 +359,7 @@ def pdf():
     return
 
 @task
-@needs(['cog'])
+#@needs(['cog'])
 def website(options):
     """Create local copy of website files.
     """

@@ -26,7 +26,7 @@
 <div id="container">
     
 <div id="header">
-  <a href="/"><h1>{% block page_heading %}Doug Hellmann{% endblock %}</h1></a>
+  <a href="/"><h1>{% block page_heading %}PyMOTW{% endblock %}</h1></a>
   <p>{% block page_subheading %}{% endblock %}</p>
 </div>
 
@@ -34,15 +34,11 @@
 
 <div id="navigation"> 
 	<ul id="navlist">
-		<li><a href="/">ホーム</a></li>
-		<li><a href="{{pathto('index')}}">PyMOTW</a></li>
+		<li><a href="{{pathto('index')}}">ホーム</a></li>
 		<li><a href="http://blog.doughellmann.com/" target="_">ブログ</a></li>
-		<li><a href="/articles/">記事</a></li>
-		<li><a href="/books/">書籍</a></li>
-		<li><a href="/projects/">プロジェクト</a></li>
-		<li><a href="http://code.doughellmann.com/" target="_">コード</a></li>
-		<li><a href="/about/">自己紹介</a></li>
-		<li><a href="/genindex.html">サイトインデックス</a></li>
+        <li><a href="http://www.doughellmann.com/books/">書籍</a></li>
+		<li><a href="{{pathto('about')}}">自己紹介</a></li>
+		<li><a href="/2/genindex.html">サイトインデックス</a></li>
 	</ul>
 </div>
 
