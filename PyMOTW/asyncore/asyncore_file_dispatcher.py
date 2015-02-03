@@ -22,7 +22,7 @@ class FileReader(asyncore.file_dispatcher):
         print 'READ: (%d) "%s"' % (len(data), data)
         
     def handle_expt(self):
-        # Ignore events that look like out of band data
+        # 帯域外のデータにみえるイベントを無視する
         pass
     
     def handle_close(self):

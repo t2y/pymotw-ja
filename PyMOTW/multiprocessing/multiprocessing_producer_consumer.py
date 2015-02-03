@@ -22,7 +22,7 @@ class Consumer(multiprocessing.Process):
         while True:
             next_task = self.task_queue.get()
             if next_task is None:
-                # Poison pill means shutdown
+                # Poison pill は終了を意味します
                 print '%s: Exiting' % proc_name
                 self.task_queue.task_done()
                 break
@@ -38,18 +38,18 @@ class Task(object):
         self.a = a
         self.b = b
     def __call__(self):
-        time.sleep(0.1) # pretend to take some time to do the work
+        time.sleep(0.1) # この処理に少し時間がかかることを意図しています
         return '%s * %s = %s' % (self.a, self.b, self.a * self.b)
     def __str__(self):
         return '%s * %s' % (self.a, self.b)
 
 
 if __name__ == '__main__':
-    # Establish communication queues
+    # コミュニケーションキューを作成する
     tasks = multiprocessing.JoinableQueue()
     results = multiprocessing.Queue()
     
-    # Start consumers
+    # consumers 処理を開始する
     num_consumers = multiprocessing.cpu_count() * 2
     print 'Creating %d consumers' % num_consumers
     consumers = [ Consumer(tasks, results)
@@ -57,19 +57,19 @@ if __name__ == '__main__':
     for w in consumers:
         w.start()
     
-    # Enqueue jobs
+    # ジョブをキューへ入れる
     num_jobs = 10
     for i in xrange(num_jobs):
         tasks.put(Task(i, i))
     
-    # Add a poison pill for each consumer
+    # 各 consumer へ poison pill を追加する
     for i in xrange(num_consumers):
         tasks.put(None)
 
-    # Wait for all of the tasks to finish
+    # 全てのタスクの終了を待つ
     tasks.join()
     
-    # Start printing results
+    # 結果を表示し始める
     while num_jobs:
         result = results.get()
         print 'Result:', result

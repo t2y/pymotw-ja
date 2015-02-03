@@ -46,13 +46,13 @@ def show_edges(root):
             continue
         print '%5s -> %2s (%s)' % (parent.name, child.name, id(child))
 
-# Set up the nodes.
+# ノードをセット
 root = Node('root')
 a = Node('a')
 b = Node('b')
 c = Node('c')
 
-# Add edges between them.
+# エッジを追加
 root.add_edge(a)
 root.add_edge(b)
 a.add_edge(b)
@@ -63,8 +63,7 @@ a.add_edge(a)
 print 'ORIGINAL GRAPH:'
 show_edges(root)
 
-# Pickle and unpickle the graph to create
-# a new set of nodes.
+# ノードの新セットを作成するためにグラフを pickle/unpickle
 dumped = pickle.dumps(root)
 reloaded = pickle.loads(dumped)
 

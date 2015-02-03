@@ -15,8 +15,8 @@ class EchoHandler(asynchat.async_chat):
     """Handles echoing messages from a single client.
     """
 
-    # Artificially reduce buffer sizes to illustrate
-    # sending and receiving partial messages.
+    # 並列にメッセージを送受信するのを説明するために
+    # 人為的にバッファサイズを減少させる
     ac_in_buffer_size = 64
     ac_out_buffer_size = 64
     
@@ -24,7 +24,7 @@ class EchoHandler(asynchat.async_chat):
         self.received_data = []
         self.logger = logging.getLogger('EchoHandler')
         asynchat.async_chat.__init__(self, sock)
-        # Start looking for the ECHO command
+        # ECHO コマンドを探すのを開始する
         self.process_data = self._process_command
         self.set_terminator('\n')
         return
@@ -54,6 +54,5 @@ class EchoHandler(asynchat.async_chat):
         to_echo = ''.join(self.received_data)
         self.logger.debug('_process_message() echoing\n"""%s"""', to_echo)
         self.push(to_echo)
-        # Disconnect after sending the entire response
-        # since we only want to do one thing at a time
+        # 一度に一つだけ処理するので応答を送信した後で切断する
         self.close_when_done()

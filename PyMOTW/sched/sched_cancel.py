@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -36,7 +37,7 @@ import time
 
 scheduler = sched.scheduler(time.time, time.sleep)
 
-# Set up a global to be modified by the threads
+# スレッドが変更できるグローバル変数をセットする
 counter = 0
 
 def increment_counter(name):
@@ -49,14 +50,14 @@ print 'START:', time.time()
 e1 = scheduler.enter(2, 1, increment_counter, ('E1',))
 e2 = scheduler.enter(3, 1, increment_counter, ('E2',))
 
-# Start a thread to run the events
+# イベントを実行するスレッドを開始する
 t = threading.Thread(target=scheduler.run)
 t.start()
 
-# Back in the main thread, cancel the first scheduled event.
+# メインスレッドに戻り、最初のイベントをキャンセルする
 scheduler.cancel(e1)
 
-# Wait for the scheduler to finish running in the thread
+# スケジューラのスレッドの実行が終わるまで待つ
 t.join()
 
 print 'FINAL:', counter

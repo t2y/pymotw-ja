@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -36,7 +37,7 @@ import cgi
 class PostHandler(BaseHTTPRequestHandler):
     
     def do_POST(self):
-        # Parse the form data posted
+        # POST されたフォームデータを解析する
         form = cgi.FieldStorage(
             fp=self.rfile, 
             headers=self.headers,
@@ -44,7 +45,7 @@ class PostHandler(BaseHTTPRequestHandler):
                      'CONTENT_TYPE':self.headers['Content-Type'],
                      })
 
-        # Begin the response
+        # レスポンス開始
         self.send_response(200)
         self.end_headers()
         self.wfile.write('Client: %s\n' % str(self.client_address))
@@ -52,18 +53,18 @@ class PostHandler(BaseHTTPRequestHandler):
         self.wfile.write('Path: %s\n' % self.path)
         self.wfile.write('Form data:\n')
 
-        # Echo back information about what was posted in the form
+        # フォームに POST されたデータの情報を送り返す
         for field in form.keys():
             field_item = form[field]
             if field_item.filename:
-                # The field contains an uploaded file
+                # field はアップロードされたファイルを含みます
                 file_data = field_item.file.read()
                 file_len = len(file_data)
                 del file_data
                 self.wfile.write('\tUploaded %s as "%s" (%d bytes)\n' % \
                         (field, field_item.filename, file_len))
             else:
-                # Regular form value
+                # 通常のフォーム値
                 self.wfile.write('\t%s=%s\n' % (field, form[field].value))
         return
 

@@ -22,7 +22,7 @@ def my_service():
 
 t = threading.Thread(name='my_service', target=my_service)
 w = threading.Thread(name='worker', target=worker)
-w2 = threading.Thread(target=worker) # use default name
+w2 = threading.Thread(target=worker) # デフォルト名を使う
 
 w.start()
 w2.start()

@@ -25,26 +25,26 @@ with sqlite3.connect(db_filename) as conn:
 
     try:
 
-        # Insert
+        # 削除
         cursor = conn.cursor()
         cursor.execute("delete from project where name = 'virtualenvwrapper'")
 
-        # Show the settings
+        # 設定を表示する
         print '\nAfter delete:'
         show_projects(conn)
 
-        # Pretend the processing caused an error
+        # 処理がエラーを引き起こしたように見せかける
         raise RuntimeError('simulated error')
 
     except Exception, err:
-        # Discard the changes
+        # 変更を放棄する
         print 'ERROR:', err
         conn.rollback()
         
     else:
-        # Save the changes
+        # 変更を保存する
         conn.commit()
 
-    # Show the results
+    # 結果を表示する
     print '\nAfter rollback:'
     show_projects(conn)

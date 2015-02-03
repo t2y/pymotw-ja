@@ -16,8 +16,8 @@ class EchoClient(asynchat.async_chat):
     """Sends messages to the server and receives responses.
     """
 
-    # Artificially reduce buffer sizes to illustrate
-    # sending and receiving partial messages.
+    # 並列にメッセージを送受信するのを説明するために
+    # 人為的にバッファサイズを減少させる
     ac_in_buffer_size = 64
     ac_out_buffer_size = 64
     
@@ -33,12 +33,11 @@ class EchoClient(asynchat.async_chat):
         
     def handle_connect(self):
         self.logger.debug('handle_connect()')
-        # Send the command
+        # コマンドを送る
         self.push('ECHO %d\n' % len(self.message))
-        # Send the data
+        # データを送る
         self.push_with_producer(EchoProducer(self.message, buffer_size=self.ac_out_buffer_size))
-        # We expect the data to come back as-is, 
-        # so set a length-based terminator
+        # データがそのまま送り返されるはずなのでデータ長をターミネイタにセットする
         self.set_terminator(len(self.message))
     
     def collect_incoming_data(self, data):

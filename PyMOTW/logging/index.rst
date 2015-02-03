@@ -1,44 +1,76 @@
-============================================================
-logging -- Report status, error, and informational messages.
-============================================================
+..
+    ============================================================
+    logging -- Report status, error, and informational messages.
+    ============================================================
 
-.. module:: logging
+=========================================================
+logging -- ステータス、エラー、その他の情報をログ出力する
+=========================================================
+
+..
     :synopsis: Report status, error, and informational messages.
 
-:Purpose: Report status, error, and informational messages.
-:Available In: 2.3
+.. module:: logging
+    :synopsis: ステータス、エラー、その他の情報をログ出力する
 
-The :mod:`logging` module defines a standard API for reporting errors
-and status information from applications and libraries. The key
-benefit of having the logging API provided by a standard library
-module is that all Python modules can participate in logging, so an
-application's log can include messages from third-party modules.
+..
+    :Purpose: Report status, error, and informational messages.
+    :Available In: 2.3
 
-Logging in Applications
-=======================
+:目的: ステータス、エラー、その他の情報をログ出力する
+:利用できるバージョン: 2.3
 
-There are two perspectives for examining logging.  Application
-developers set up the :mod:`logging` module, directing the messages to
-appropriate output channels.  It is possible to log messages with
-different verbosity levels or to different destinations. Handlers for
-writing log messages to files, HTTP GET/POST locations, email via
-SMTP, generic sockets, or OS-specific logging mechanisms are all
-included, and it is possible to create custom log destination classes
-for special requirements not handled by any of the built-in classes.
+..
+    The :mod:`logging` module defines a standard API for reporting errors
+    and status information from applications and libraries. The key
+    benefit of having the logging API provided by a standard library
+    module is that all Python modules can participate in logging, so an
+    application's log can include messages from third-party modules.
 
-Logging to a File
------------------
+:mod:`logging` モジュールは、アプリケーションやライブラリからのエラーやステータスといった情報をログ出力する標準の API を定義します。標準ライブラリモジュールがログ出力の API を提供する主な利点は、全ての Python モジュールが logging を使用するので、サードパーティモジュールからのメッセージをアプリケーションのログに含められます。
 
-Most applications are probably going to want to log to a file. Use the
-:func:`basicConfig()` function to set up the default handler so that
-debug messages are written to a file.
+..
+    Logging in Applications
+    =======================
+
+アプリケーションのログ出力
+==========================
+
+..
+    There are two perspectives for examining logging.  Application
+    developers set up the :mod:`logging` module, directing the messages to
+    appropriate output channels.  It is possible to log messages with
+    different verbosity levels or to different destinations. Handlers for
+    writing log messages to files, HTTP GET/POST locations, email via
+    SMTP, generic sockets, or OS-specific logging mechanisms are all
+    included, and it is possible to create custom log destination classes
+    for special requirements not handled by any of the built-in classes.
+
+ログを精査するために2つの視点があります。アプリケーションの開発者は、 :mod:`logging` モジュールを設定して、適切な出力チャンネルへメッセージを出力します。これは異なる冗長レベルを用いたり、別の出力先へログメッセージを出力したりします。ログメッセージを書き込む、ファイル、HTTP GET/POST の場所、SMTP 経由のメール、汎用的なソケット、OS に特化したログの仕組みといったハンドラが全て含まれています。そして、そういった組み込みクラスでは扱えない特別な要件のためにカスタムログクラスを作成できます。
+
+..
+    Logging to a File
+    -----------------
+
+ファイルへのログ出力
+--------------------
+
+..
+    Most applications are probably going to want to log to a file. Use the
+    :func:`basicConfig()` function to set up the default handler so that
+    debug messages are written to a file.
+
+ほとんどのアプリケーションは、ファイルにログ出力することが多いはずです。デバッグメッセージをファイルへ書き込むためにデフォルトハンドラを設定するには、 :func:`basicConfig()` 関数を使用してください。
 
 .. include:: logging_file_example.py
     :literal:
     :start-after: #end_pymotw_header
 
-After running the script, the log message is written to
-``logging_example.out``:
+..
+    After running the script, the log message is written to
+    ``logging_example.out``:
+
+このスクリプトを実行すると、 ``logging_example.out`` にログメッセージが書き込まれます。
 
 .. {{{cog
 .. outfile = path(cog.inFile).parent / 'logging_example.out'
@@ -56,22 +88,31 @@ After running the script, the log message is written to
 
 .. {{{end}}}
 
+..
+    Rotating Log Files
+    ------------------
 
-Rotating Log Files
-------------------
+ログファイルのローテイト
+------------------------
 
-Running the script repeatedly causes more messages to be appended to
-the file. To create a new file each time the program runs, pass a
-``filemode`` argument to :func:`basicConfig()` with a value of
-``'w'``. Rather than managing the creation of files this way, though,
-it is simpler to use a :class:`RotatingFileHandler`:
+..
+    Running the script repeatedly causes more messages to be appended to
+    the file. To create a new file each time the program runs, pass a
+    ``filemode`` argument to :func:`basicConfig()` with a value of
+    ``'w'``. Rather than managing the creation of files this way, though,
+    it is simpler to use a :class:`RotatingFileHandler`:
+
+スクリプトを繰り返し実行すると、ファイルにメッセージがどんどん追加されます。プログラムを実行する度に新しいファイルを作成するには、 :func:`basicConfig()` の ``filemode`` 引数に ``'w'`` を渡してください。この方法でもファイルの作成を管理できますが、それよりも次の :class:`RotatingFileHandler` を使用する方がもっと簡単です。
 
 .. include:: logging_rotatingfile_example.py
     :literal:
     :start-after: #end_pymotw_header
 
-The result should be six separate files, each with part of the log
-history for the application:
+..
+    The result should be six separate files, each with part of the log
+    history for the application:
+
+この実行結果は、6つのファイルにアプリケーションのログの履歴がそれぞれ出力されます。
 
 .. {{{cog
 .. outfile = path(cog.inFile).parent / 'logging_rotatingfile_example.out'
@@ -92,51 +133,81 @@ history for the application:
 
 .. {{{end}}}
 
-The most current file is always ``logging_rotatingfile_example.out``, and
-each time it reaches the size limit it is renamed with the suffix ``.1``. Each of
-the existing backup files is renamed to increment the suffix (``.1`` becomes ``.2``,
-etc.) and the ``.5`` file is erased.
+..
+    The most current file is always ``logging_rotatingfile_example.out``, and
+    each time it reaches the size limit it is renamed with the suffix ``.1``. Each of
+    the existing backup files is renamed to increment the suffix (``.1`` becomes ``.2``,
+    etc.) and the ``.5`` file is erased.
+
+最新のファイルは常に ``logging_rotatingfile_example.out`` です。そして、このファイルがサイズ制限に達すると、接尾辞に ``.1`` を付けてファイル名が変更されます。既存のバックアップファイルは、接尾辞を増加させてファイル名が変更され (``.1`` の次は ``.2`` になる)、 ``.5`` のファイルは削除されます。
 
 .. note::
 
-  Obviously this example sets the log length much much too small as an
-  extreme example. Set *maxBytes* to a more appropriate value in a
-  real program.
+    .. Obviously this example sets the log length much much too small as an
+       extreme example. Set *maxBytes* to a more appropriate value in a
+       real program.
 
-Verbosity Levels
-----------------
+    このサンプルでは、極端な例として、わざとログサイズをかなり小さくしています。実際のプログラムは *maxBytes* に適切な値を設定してください。
 
-Another useful feature of the :mod:`logging` API is the ability to
-produce different messages at different log levels. This code to be
-instrumented with debug messages, for example, while setting the log
-level down so that those debug messages are not written on a
-production system.
+..
+    Verbosity Levels
+    ----------------
 
-========  =====
-Level     Value
-========  =====
+冗長性レベル
+------------
+
+..
+    Another useful feature of the :mod:`logging` API is the ability to
+    produce different messages at different log levels. This code to be
+    instrumented with debug messages, for example, while setting the log
+    level down so that those debug messages are not written on a
+    production system.
+
+その他の :mod:`logging` API の便利な機能は、異なるログレベルでメッセージを生成する仕組みです。デバッグメッセージを出力するようにしたコードは、例えば、本番システムではそういったデバッグメッセージを出力しないようにそのログレベル設定を下げます。
+
+..
+    ========  =====
+    Level     Value
+    ========  =====
+    CRITICAL  50
+    ERROR     40
+    WARNING   30
+    INFO      20
+    DEBUG     10
+    UNSET      0
+    ========  =====
+
+========  ==
+レベル    値
+========  ==
 CRITICAL  50
 ERROR     40
 WARNING   30
 INFO      20
 DEBUG     10
 UNSET      0
-========  =====
+========  ==
 
-The logger, handler, and log message call each specify a level. The
-log message is only emitted if the handler and logger are configured
-to emit messages of that level or higher. For example, if a message is
-:const:`CRITICAL`, and the logger is set to :const:`ERROR`, the
-message is emitted (50 > 40). If a message is a :const:`WARNING`, and
-the logger is set to produce only messages set to :const:`ERROR`, the
-message is not emitted (30 < 40).
+..
+    The logger, handler, and log message call each specify a level. The
+    log message is only emitted if the handler and logger are configured
+    to emit messages of that level or higher. For example, if a message is
+    :const:`CRITICAL`, and the logger is set to :const:`ERROR`, the
+    message is emitted (50 > 40). If a message is a :const:`WARNING`, and
+    the logger is set to produce only messages set to :const:`ERROR`, the
+    message is not emitted (30 < 40).
+
+ロガー、ハンドラ、ログメッセージは、それぞれのログレベルを指定して呼び出します。ハンドラとロガーがあるログレベル以上のログメッセージを出力するように設定されている場合のみ、そのメッセージを出力します。例えば、あるメッセージが :const:`CRITICAL` で、そのロガーが :const:`ERROR` に設定されているなら、そのメッセージは出力されます (50> 40) 。あるメッセージが :const:`WARNING` で、そのロガーが :const:`ERROR` に設定されているなら、そのメッセージは出力されません (30 < 40) 。
 
 .. include:: logging_level_example.py
     :literal:
     :start-after: #end_pymotw_header
 
-Run the script with an argument like 'debug' or 'warning' to see which
-messages show up at different levels:
+..
+    Run the script with an argument like 'debug' or 'warning' to see which
+    messages show up at different levels:
+
+このスクリプトを 'debug' または 'warning' といった引数で実行してみてください。異なるログレベルでメッセージが表示されることを確認できます。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'logging_level_example.py debug'))
@@ -162,35 +233,52 @@ messages show up at different levels:
 
 .. {{{end}}}
 
-Logging in Libraries
+..
+    Logging in Libraries
+    ====================
+
+ライブラリのログ出力
 ====================
 
-Developers of libraries, rather than applications, should also use
-:mod:`logging`.  For them, there is even less work to do.  Simply
-create a logger instance for each context, using an appropriate name,
-and then log messages using the stanard levels.  As long as a library
-uses the logging API with consistent naming and level selections, the
-application can be configured to show or hide messages from the
-library, as desired.
+..
+    Developers of libraries, rather than applications, should also use
+    :mod:`logging`.  For them, there is even less work to do.  Simply
+    create a logger instance for each context, using an appropriate name,
+    and then log messages using the stanard levels.  As long as a library
+    uses the logging API with consistent naming and level selections, the
+    application can be configured to show or hide messages from the
+    library, as desired.
 
-Naming Logger Instances
------------------------
+アプリケーションよりも、むしろライブラリの開発者が :mod:`logging` を使用すべきです。ライブラリの開発者にとっても、その作業は少ない労力で行えます。それぞれのコンテキストに、適切な名前を付けて単純にロガーを作成してください。それから、標準レベルでメッセージをログ出力します。ライブラリが一貫性のある命名規則とログレベルを選択した logging API を使用するなら、そのライブラリを利用するアプリケーションは、必要に応じてライブラリからのメッセージを表示したり、隠したりするように設定できます。
 
-All of the previous log messages all have 'root' embedded in them. The
-:mod:`logging` module supports a hierarchy of loggers with different
-names. An easy way to tell where a specific log message comes from is
-to use a separate logger object for each module. Every new logger
-inherits the configuration of its parent, and log messages sent to a
-logger include the name of that logger. Optionally, each logger can be
-configured differently, so that messages from different modules are
-handled in different ways. Below is an example of how to log from
-different modules so it is easy to trace the source of the message:
+..
+    Naming Logger Instances
+    -----------------------
+
+ロガーインスタンスに名前を付ける
+--------------------------------
+
+..
+    All of the previous log messages all have 'root' embedded in them. The
+    :mod:`logging` module supports a hierarchy of loggers with different
+    names. An easy way to tell where a specific log message comes from is
+    to use a separate logger object for each module. Every new logger
+    inherits the configuration of its parent, and log messages sent to a
+    logger include the name of that logger. Optionally, each logger can be
+    configured differently, so that messages from different modules are
+    handled in different ways. Below is an example of how to log from
+    different modules so it is easy to trace the source of the message:
+
+これまでに紹介した全てのログメッセージは、そのロガーの 'root' に組み込まれていました。 :mod:`logging` モジュールは、異なる名前で階層構造をもつロガーをサポートします。特別なログメッセージをどこに出力するかを伝える簡単な方法は、それぞれのモジュールのために別々のロガーオブジェクトを使用することです。新たに作成された全てのロガーは、その親から設定を継承します。そして、ロガーへ送られるログメセージには、そのロガーの名前も含みます。それぞれのロガーは、必要に応じて別々のモジュールからのメッセージを違った方法で扱うために個別に設定できます。別々のモジュールからのログ出力する次のサンプルは、メッセージソースを追跡するのが簡単です。
 
 .. include:: logging_modules_example.py
     :literal:
     :start-after: #end_pymotw_header
 
-And the output:
+..
+    And the output:
+
+このプログラムの出力結果です。
 
 .. {{{cog
 .. cog.out(run_script(cog.inFile, 'logging_modules_example.py'))
@@ -205,14 +293,18 @@ And the output:
 
 .. {{{end}}}
 
-There are many, many, more options for configuring logging, including
-different log message formatting options, having messages delivered to
-multiple destinations, and changing the configuration of a long-running
-application on the fly using a socket interface. All of these options are
-covered in depth in the library module documentation.
+..
+    There are many, many, more options for configuring logging, including
+    different log message formatting options, having messages delivered to
+    multiple destinations, and changing the configuration of a long-running
+    application on the fly using a socket interface. All of these options are
+    covered in depth in the library module documentation.
 
+さらに logging の設定には、オプションでメッセージのフォーマットを変更する、複数の出力先へメッセージを送る、長期間、実行されるアプリケーションの設定変更のためにソケットのインタフェースを使用するといった、もっともっとたくさんのオプションがあります。これらの全てのオプションは、標準ライブラリのドキュメントで詳しく説明されています。
 
 .. seealso::
 
     `logging <http://docs.python.org/library/logging.html>`_
-        The standard library documentation for this module.
+        .. The standard library documentation for this module.
+
+        本モジュールの標準ライブラリドキュメント

@@ -10,7 +10,7 @@
 import hashlib
 import time
 
-# Data to use to calculate md5 checksums
+# md5 を計算するのに使用するデータ
 data = open(__file__, 'rt').read()
 
 for i in range(5):

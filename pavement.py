@@ -67,7 +67,7 @@ options(
         author = 'Doug Hellmann',
         author_email = 'doug.hellmann@gmail.com',
 
-        url = 'http://pymotw.com/',
+        url = 'http://ja.pymotw.com/',
 
         classifiers = [ 'Development Status :: 5 - Production/Stable',
                         'Environment :: Console',
@@ -126,7 +126,7 @@ options(
         
         # What server hosts the website?
         server = 'pymotw.com',
-        server_path = '/home/douhel3shell/pymotw.com/2/',
+        server_path = '/home/dhellmann/ja.pymotw.com/2/',
 
         # What template should be used for the web site HTML?
         template_source = '%s/source/_templates/base.html' % WEB_WORK_DIR,
@@ -359,14 +359,15 @@ def pdf():
     return
 
 @task
+#@needs(['cog'])
 def website(options):
     """Create local copy of website files.
     """
-    pdf(options)
+#    pdf(options)
     webhtml(options)
     # Copy the PDF to the files to be copied to the directory to install
-    pdf_file = path(options.pdf.builddir) / 'latex' / (PROJECT + '-' + VERSION + '.pdf')
-    pdf_file.copy(path(options.website.builddir) / 'html')
+#    pdf_file = path(options.pdf.builddir) / 'latex' / (PROJECT + '-' + VERSION + '.pdf')
+#    pdf_file.copy(path(options.website.builddir) / 'html')
     return
 
 @task

@@ -29,7 +29,7 @@ def writer():
         cursor.execute('update task set priority = priority + 1')
         logging.debug('changes made')
         logging.debug('waiting to synchronize')
-        ready.wait() # synchronize
+        ready.wait() # 同期
         logging.debug('PAUSING')
         time.sleep(1)
         conn.commit()
@@ -41,7 +41,7 @@ def reader():
     with sqlite3.connect(db_filename, isolation_level=isolation_level) as conn:
         cursor = conn.cursor()
         logging.debug('waiting to synchronize')
-        ready.wait() # synchronize
+        ready.wait() # 同期
         logging.debug('wait over')
         cursor.execute('select * from task')
         logging.debug('SELECT EXECUTED')

@@ -18,9 +18,9 @@ logging.basicConfig(level=logging.DEBUG,
                     format='%(name)s: %(message)s',
                     )
 
-address = ('localhost', 0) # let the kernel give us a port
+address = ('localhost', 0) # カーネルにポート番号を割り当てさせる
 server = EchoServer(address)
-ip, port = server.address # find out what port we were given
+ip, port = server.address # 与えられたポート番号を調べる
 
 message_data = open('lorem.txt', 'r').read()
 client = EchoClient(ip, port, message=message_data)

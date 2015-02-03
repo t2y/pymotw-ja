@@ -1,34 +1,58 @@
-===============================
-About Python Module of the Week
-===============================
+..
+    ===============================
+    About Python Module of the Week
+    ===============================
 
-PyMOTW is a series of blog posts written by `Doug Hellmann
-<http://www.doughellmann.com/>`_.  It was started as a way to build
-the habit of writing something on a regular basis.  The focus of the
-series is building a set of example code for the modules in the
-`Python <http://www.python.org/>`_ standard library.
+==================================
+Python Module of the Week について
+==================================
 
-See the project home page at http://pymotw.com/ for
-updates and the latest release.  Source code is available from
-http://bitbucket.org/dhellmann/pymotw/.
+..
+    PyMOTW is a series of blog posts written by `Doug Hellmann
+    <http://www.doughellmann.com/>`_.  It was started as a way to build
+    the habit of writing something on a regular basis.  The focus of the
+    series is building a set of example code for the modules in the
+    `Python <http://www.python.org/>`_ standard library.
 
-Complete documentation for the standard library can be found on the
-Python web site at http://docs.python.org/library/.
+PyMOTW は `Doug Hellmann <http://www.doughellmann.com/>`_ が執筆しているブログの連載です。当初は定期的に何かを書く習慣を身に着ける方法として始めました。この連載の主要な点は `Python <http://www.python.org/>`_ 標準ライブラリモジュールのサンプルコードを書くことです。
 
-Tools
-=====
+..
+    See the project home page at http://pymotw.com/ for
+    updates and the latest release.  Source code is available from
+    http://bitbucket.org/dhellmann/pymotw/.
 
-The source text for PyMOTW is reStructuredText_
-and the HTML and PDF output are
-created using Sphinx_.
+最新リリースや更新については、プロジェクトのホームページ(http://pymotw.com/ )を参照してください。ソースコードは http://bitbucket.org/dhellmann/pymotw/ から取得できます。
+
+..
+    Complete documentation for the standard library can be found on the
+    Python web site at http://docs.python.org/library/.
+
+標準ライブラリの完全なドキュメントは Python web サイト(http://docs.python.org/library/) で見つけることができます。
+
+..
+    Tools
+    =====
+
+ツール
+======
+
+..
+    The source text for PyMOTW is reStructuredText_
+    and the HTML and PDF output are
+    created using Sphinx_.
+
+PyMOTW のソースは `reStructuredText`_ です。 `Sphinx`_ を利用して HTML と PDF ファイルを作成しています。
 
 .. _reStructuredText: http://docutils.sourceforge.net/
 
 .. _Sphinx: http://sphinx.pocoo.org/
 
-The output from all the example programs has been generated with
-CPython (see below for version) and inserted into the text using
-cog_. 
+..
+    The output from all the example programs has been generated with
+    CPython (see below for version) and inserted into the text using
+    cog_. 
+
+すべてのサンプルプログラムの出力は、CPython (バージョンは以下を参照) で生成され、 cog_ を使用して本文に挿入しています。
 
 .. _cog: http://nedbatchelder.com/code/cog/
 
@@ -46,49 +70,81 @@ cog_.
 
 .. warning::
 
-  Some of the features described here may not be available in earlier
-  versions of the standard library. When in doubt, refer to the
-  documentation for the version of Python you are using.
+    .. Some of the features described here may not be available in earlier
+       versions of the standard library. When in doubt, refer to the
+       documentation for the version of Python you are using.
 
+    本連載では、標準ライブラリの初期のバージョンでは利用できない機能も紹介している可能性があります。疑問に思ったら、使用している Python のバージョンに関する標準ドキュメントを調べてください。
 
-Subscribe
-=========
+..
+    Subscribe
+    =========
 
-As new articles are written, they are posted to my blog
-(http://blog.doughellmann.com/).  Updates are available by RSS from
-http://feeds.doughellmann.com/PyMOTW and `email
-<http://feedburner.google.com/fb/a/mailverify?uri=PyMOTW&amp;loc=en_US>`_.
+フィード登録
+============
+
+..
+    As new articles are written, they are posted to my blog
+    (http://blog.doughellmann.com/).  Updates are available by RSS from
+    http://feeds.doughellmann.com/PyMOTW and `email
+    <http://feedburner.google.com/fb/a/mailverify?uri=PyMOTW&amp;loc=en_US>`_.
+
+PyMOTW の新しい記事が私のブログ(http://blog.doughellmann.com/)に投稿されると、新しい記事になります。 http://feeds.doughellmann.com/PyMOTW から RSS や `メール <http://feedburner.google.com/fb/a/mailverify?uri=PyMOTW&amp;loc=en_US>`_ で更新情報を取得できます。
 
 .. _motw-cli:
 
-The motw Command Line Interface
-===============================
+..
+    The motw Command Line Interface
+    ===============================
 
-PyMOTW includes a command line program, ``motw``, to make it even
-easier to access the examples while you are developing. Simply run
-``motw module`` to open the local copy of the HTML text for the named
-module. There are also options to view the articles in different
-formats (see the ``-h`` output for details).
+motw コマンドラインインタフェース
+=================================
 
-Usage: ``motw [options] <module_name>``
+..
+    PyMOTW includes a command line program, ``motw``, to make it even
+    easier to access the examples while you are developing. Simply run
+    ``motw module`` to open the local copy of the HTML text for the named
+    module. There are also options to view the articles in different
+    formats (see the ``-h`` output for details).
 
-Options:
+PyMOTW は開発中にサンプルコードへ簡単にアクセスできるようにコマンドラインプログラム ``motw`` が用意されています。単純に ``motw module`` と実行するとローカルにあるモジュールの HTML ファイルを表示します。またフォーマットを変更して記事を表示するオプションがあります(詳細は ``-h`` の出力を参照)。
 
--h, --help  show this help message and exit
--t, --text  Print plain-text version of help to stdout
--w, --web   Open HTML version of help from web
---html      Open HTML version of help from installed file
+..
+    Usage: ``motw [options] <module_name>``
+
+使用方法: ``motw [options] <module_name>``
+
+..
+    Options:
+    -h, --help  show this help message and exit
+    -t, --text  Print plain-text version of help to stdout
+    -w, --web   Open HTML version of help from web
+    --html      Open HTML version of help from installed file
+
+オプション:
+
+    -h, --help  ヘルプメッセージを表示する
+    -t, --text  標準出力にヘルプのプレーンテキスト版を表示する
+    -w, --web   ウェブからヘルプの HTML 版を開く
+    --html      インストールされたファイルからヘルプの HTML 版を開く
 
 .. _motw-interactive:
 
-Using PyMOTW with the Interactive Interpreter
-=============================================
+..
+    Using PyMOTW with the Interactive Interpreter
+    =============================================
 
-PyMOTW articles are at your fingertips while you're working with the
-Python interactive interpreter.  Importing ``PyMOTW`` adds the
-function ``motw()`` to the ``__builtins__`` namespace.  Run
-``motw(module)`` to see the help for an imported module.  Enclose the
-name in quotes for a module that you haven't already imported.
+PyMOTW をインタラクティブインタプリタで使用する
+===============================================
+
+..
+    PyMOTW articles are at your fingertips while you're working with the
+    Python interactive interpreter.  Importing ``PyMOTW`` adds the
+    function ``motw()`` to the ``__builtins__`` namespace.  Run
+    ``motw(module)`` to see the help for an imported module.  Enclose the
+    name in quotes for a module that you haven't already imported.
+
+PyMOTW の記事を Python インタラクティブインタプリタの実行中に見ることができます。 ``PyMOTW`` をインポートして ``motw()`` 関数を ``__builtins__`` 名前空間へ追加してください。そしてインポートされたモジュールのヘルプを見るために ``motw(module)`` を実行してください。見たいモジュールがインポートされていないときはモジュール名をクォートしてください。
 
 ::
 
@@ -105,17 +161,27 @@ name in quotes for a module that you haven't already imported.
 
 .. _translations:
 
-Translations and Other Versions
-===============================
+..
+    Translations and Other Versions
+    ===============================
 
-`Chinese <http://www.vbarter.cn/pymotw/>`_
+翻訳や他のバージョン
+====================
 
+..
+    `Chinese <http://www.vbarter.cn/pymotw/>`_
+..
   Junjie Cai (蔡俊杰) and Yan Sheng (盛艳) have started a google code
   project called PyMOTWCN (http://code.google.com/p/pymotwcn/) and
   posted the completed translations at http://www.vbarter.cn/pymotw/.
 
-`German <http://schoenian-online.de/pymotw.html>`_
+`中国語 <http://www.vbarter.cn/pymotw/>`_
 
+  Junjie Cai (蔡俊杰) と Yan Sheng (盛艳) は PyMOTWCN (http://code.google.com/p/pymotwcn/) という google code プロジェクトを始めました。 http://www.vbarter.cn/pymotw/ に完全な翻訳を投稿しています。
+
+..
+    `German <http://schoenian-online.de/pymotw.html>`_
+..
   Ralf Schönian is translating PyMOTW into German, following an
   alphabetical order.  The results are available on his web site,
   http://schoenian-online.de/pymotw.html.  Ralf is an active member of
@@ -124,16 +190,26 @@ Translations and Other Versions
   user group in Germany and author of pyVoc, the open source
   English/German vocabulary trainer (http://code.google.com/p/pyvoc/).
 
-`Italian <http://robyp.x10host.com/>`_
+`ドイツ語 <http://schoenian-online.de/pymotw.html>`_
 
-  Roberto Pauletto is working on an Italian translation at
-  http://robyp.x10host.com/.  Roberto creates Windows applications
-  with C# by day, and tinkers with Linux and Python at home.  He has
-  recently moved to Python from Perl for all of his
-  system-administration scripting.
+  Ralf Schönian はアルファベット順に PyMOTW をドイツ語に翻訳しています。その成果は彼の web サイト http://schoenian-online.de/pymotw.html で確認できます。Ralf はドイツの `pyCologne <http://wiki.python.de/User_Group_K%C3%B6ln?action=show&redirect=pyCologne>`_ ユーザグループのアクティブメンバーで、オープンソースの英語/ドイツ語のボキャブラリトレーナーである pyVoc (http://code.google.com/p/pyvoc/) の開発者です。
 
-`Spanish <http://denklab.org/articles/category/pymotw/>`_
+..
+    `Italian <http://robyp.x10host.com/>`_
+..
+   Roberto Pauletto is working on an Italian translation at
+   http://robyp.x10host.com/.  Roberto creates Windows applications
+   with C# by day, and tinkers with Linux and Python at home.  He has
+   recently moved to Python from Perl for all of his
+   system-administration scripting.
 
+`イタリア語 <http://robyp.x10host.com/>`_
+
+  Roberto Pauletto が http://robyp.x10host.com/ でイタリア語翻訳をしています。Roberto は昼間は Windows アプリケーションを C# で開発していて、自宅では Linux と Python をいじくり回しています。彼は最近、開発した全てのシステム管理用スクリプトを Perl から Python へ移行しました。
+
+..
+    `Spanish <http://denklab.org/articles/category/pymotw/>`_
+..
   `Ernesto Rico Schmidt <http://denklab.org/>`_ provides a Spanish
   translation that follows the English version posts. Ernesto is in
   Bolivia, and is translating these examples as a way to contribute to
@@ -143,8 +219,13 @@ Translations and Other Versions
   http://denklab.org/articles/category/pymotw/, and there is an `RSS
   feed <http://denklab.org/feeds/articles/category/pymotw/>`_.
 
-`Japanese <http://ja.pymotw.com/>`_
+`スペイン語 <http://denklab.org/articles/category/pymotw/>`_
 
+  `Ernesto Rico Schmidt <http://denklab.org/>`_ は英語版の投稿を見ながらスペイン語翻訳を提供しています。Ernesto は Bolivia に住んでいて、Python を使用する `Bolivian Free Software <http://www.softwarelibre.org.bo/>`_ コミュニティメンバーへの貢献手段の1つの例として翻訳しています。スペイン語の記事の完全なリストは http://denklab.org/articles/category/pymotw/ で発見できます。 `RSS フィード <http://denklab.org/feeds/articles/category/pymotw/>`_ も提供されています。
+
+..
+    `Japanese <http://ja.pymotw.com/>`_
+..
   `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ is creating a
   Japanese translation. Tetsuya has used Python for 1.5 years. He has
   as experience at a Linux Distributor using Python with yum,
@@ -156,22 +237,39 @@ Translations and Other Versions
   <http://groups.google.co.jp/group/python-code-reading>`_. The home
   page for his translation is http://ja.pymotw.com/.
 
+`日本語 <http://ja.pymotw.com/>`_
 
-Compendiums
------------
+  `Tetsuya Morimoto <http://d.hatena.ne.jp/t2y-1979/>`_ は日本語翻訳をしています。Tetsuya は Python を 1.5 年程度使っています。彼は Linux ディストリビュータで働いていた頃 RPM パッケージのビルド等に yum, anaconda や rpm-tools で Python を使用していました。現在は自分用のツールを開発したりして Django, mercurial や wxPython 等のアプリケーションフレームワークに興味を持っています。Tetsuya は `Python Japan User's Group <http://www.python.jp/Zope/>`_ や `Python Code Reading <http://groups.google.co.jp/group/python-code-reading>`_ のメンバーです。日本語翻訳は http://ja.pymotw.com/ にあります。
 
-Gerard Flanagan is working on a "Python compendium" called `The Hazel
-Tree <http://www.thehazeltree.org/>`_.  He is converting a collection
-of old and new of Python-related reference material into
-reStructuredText and then building a single searchable repository from
-the results.  I am very pleased to have PyMOTW included with works
-from authors like Mark Pilgrim, Fredrik Lundh, Andrew Kuchling, and a
-growing list of others.
+..
+    Compendiums
+    -----------
 
-Other Contributors
-==================
+抄録
+----
 
-Thank you to John Benediktsson for the original HTML-to-reST
-conversion.
+..
+    Gerard Flanagan is working on a "Python compendium" called `The Hazel
+    Tree <http://www.thehazeltree.org/>`_.  He is converting a collection
+    of old and new of Python-related reference material into
+    reStructuredText and then building a single searchable repository from
+    the results.  I am very pleased to have PyMOTW included with works
+    from authors like Mark Pilgrim, Fredrik Lundh, Andrew Kuchling, and a
+    growing list of others.
+
+Gerard Flanagan は `The Hazel Tree <http://www.thehazeltree.org/>`_ という "Python 抄録" を作成しています。彼は Python に関連する新旧のリファレンス資料を reStructuredText へ変換しています。そして、その結果から1つの検索可能なリポジトリを構築します。私は Mark Pilgrim, Fredrik Lundh, Andrew Kuchling のような著者やさらに他の著者も増え続けるそのリストへ PyMOTW が追加されてとても嬉しいです。
+
+..
+    Other Contributors
+    ==================
+
+その他の貢献者
+==============
+
+..
+    Thank you to John Benediktsson for the original HTML-to-reST
+    conversion.
+
+オリジナルの HTML から reST への変換を手伝ってくれた John Benediktsson に感謝します。
 
 .. include:: copyright.rst

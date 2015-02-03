@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # Copyright 2007 Doug Hellmann.
 #
@@ -36,7 +37,7 @@ from linecache_data import *
 
 filename = make_tempfile()
 
-# Blank lines include the newline
+# 空行に改行が含まれる
 print '\nBLANK : "%s"' % linecache.getline(filename, 6)
 
 cleanup(filename)

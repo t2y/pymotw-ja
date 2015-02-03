@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 #
 # $Id$
 #
@@ -31,19 +32,19 @@ See http://blog.doughellmann.com/2007/04/pymotw-queue.html
 """
 #end_pymotw_header
 
-# System modules
+# システムモジュール
 from Queue import Queue
 from threading import Thread
 import time
 
-# Local modules
+# ローカルモジュール
 import feedparser
 
-# Set up some global variables
+# グローバル変数をセット
 num_fetch_threads = 2
 enclosure_queue = Queue()
 
-# A real app wouldn't use hard-coded data...
+# 実際のアプリではハードコーディングしない...
 feed_urls = [ 'http://www.castsampler.com/cast/feed/rss/guest',
              ]
 
@@ -59,29 +60,26 @@ def downloadEnclosures(i, q):
         print '%s: Looking for the next enclosure' % i
         url = q.get()
         print '%s: Downloading:' % i, url
-        # instead of really downloading the URL,
-        # we just pretend and sleep
+        # URL から実際にダウンロードせずに sleep で欺く
         time.sleep(i + 2)
         q.task_done()
 
 
-# Set up some threads to fetch the enclosures
+# エンクロージャを取得してスレッドを設定する
 for i in range(num_fetch_threads):
     worker = Thread(target=downloadEnclosures, args=(i, enclosure_queue,))
     worker.setDaemon(True)
     worker.start()
 
-# Download the feed(s) and put the enclosure URLs into
-# the queue.
+# フィードをダウンロードしてキューへエンクロージャの URL を追加する
 for url in feed_urls:
     response = feedparser.parse(url, agent='fetch_podcasts.py')
     for entry in response['entries']:
         for enclosure in entry.get('enclosures', []):
             print 'Queuing:', enclosure['url']
             enclosure_queue.put(enclosure['url'])
-        
-# Now wait for the queue to be empty, indicating that we have
-# processed all of the downloads.
+
+# 全てのダウンロード処理が完了したことを表す、キューが空になるまで待つ
 print '*** Main thread waiting'
 enclosure_queue.join()
 print '*** Done'

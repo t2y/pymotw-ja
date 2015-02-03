@@ -18,11 +18,11 @@ def func2(a, divisor):
 
 def func1(a, b):
     c = b - 5
-    # Really
-    # long
-    # comment
-    # goes
-    # here.
+    # 本当に
+    # 長い
+    # コメントが
+    # ここに
+    # 記述されます
     return func2(a, c)
 
 func1(1, 5)

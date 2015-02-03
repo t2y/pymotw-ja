@@ -22,11 +22,11 @@ class ZlibRequestHandler(SocketServer.BaseRequestHandler):
     def handle(self):
         compressor = zlib.compressobj(1)
         
-        # Find out what file the client wants
+        # どのファイルをクライアントが要求しているかを調べる
         filename = self.request.recv(1024)
         self.logger.debug('client asked for: "%s"', filename)
         
-        # Send chunks of the file as they are compressed
+        # 圧縮されるようにファイルのチャンクを送信する
         with open(filename, 'rb') as input:
             while True:            
                 block = input.read(BLOCK_SIZE)
@@ -40,7 +40,7 @@ class ZlibRequestHandler(SocketServer.BaseRequestHandler):
                 else:
                     self.logger.debug('BUFFERING')
         
-        # Send any data being buffered by the compressor
+        # compressor でバッファされるデータを送信する
         remaining = compressor.flush()
         while remaining:
             to_send = remaining[:BLOCK_SIZE]
@@ -60,26 +60,26 @@ if __name__ == '__main__':
                         )
     logger = logging.getLogger('Client')
 
-    # Set up a server, running in a separate thread
-    address = ('localhost', 0) # let the kernel give us a port
+    # サーバをセットアップして、別のスレッドで実行する
+    address = ('localhost', 0) # カーネルにポートを要求する
     server = SocketServer.TCPServer(address, ZlibRequestHandler)
-    ip, port = server.server_address # find out what port we were given
+    ip, port = server.server_address # どのポートが与えられたかを調べる
 
     t = threading.Thread(target=server.serve_forever)
     t.setDaemon(True)
     t.start()
 
-    # Connect to the server
+    # サーバへ接続する
     logger.info('Contacting server on %s:%s', ip, port)
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((ip, port))
 
-    # Ask for a file
+    # ファイルを依頼する
     requested_file = 'lorem.txt'
     logger.debug('sending filename: "%s"', requested_file)
     len_sent = s.send(requested_file)
 
-    # Receive a response
+    # レスポンスを受け取る
     buffer = StringIO()
     decompressor = zlib.decompressobj()
     while True:
@@ -88,20 +88,20 @@ if __name__ == '__main__':
             break
         logger.debug('READ "%s"', binascii.hexlify(response))
 
-        # Include any unconsumed data when feeding the decompressor.
+        # decompressor に入力する消費されていないデータを含める
         to_decompress = decompressor.unconsumed_tail + response
         while to_decompress:
             decompressed = decompressor.decompress(to_decompress)
             if decompressed:
                 logger.debug('DECOMPRESSED "%s"', decompressed)
                 buffer.write(decompressed)
-                # Look for unconsumed data due to buffer overflow
+                # バッファオーバーフローに起因して消費されていないデータを探す
                 to_decompress = decompressor.unconsumed_tail
             else:
                 logger.debug('BUFFERING')
                 to_decompress = None
 
-    # deal with data reamining inside the decompressor buffer
+    # decompressor バッファ内部に残っているデータを扱う
     remainder = decompressor.flush()
     if remainder:
         logger.debug('FLUSHED "%s"', remainder)
@@ -111,6 +111,6 @@ if __name__ == '__main__':
     lorem = open('lorem.txt', 'rt').read()
     logger.debug('response matches file contents: %s', full_response == lorem)
 
-    # Clean up
+    # クリーンアップ
     s.close()
     server.socket.close()

@@ -9,15 +9,15 @@
 
 import decimal
 
-# Set up a context with limited precision
+# コンテキストを制限された精度で設定する
 c = decimal.getcontext().copy()
 c.prec = 3
 
-# Create our constant
+# 定数を作成
 pi = c.create_decimal('3.1415')
 
-# The constant value is rounded off
+# 定数の値は丸められる
 print 'PI:', pi
 
-# The result of using the constant uses the global context
+# 定数を使用した結果はグローバルコンテキストを使用する
 print 'RESULT:', decimal.Decimal('2.01') * pi
